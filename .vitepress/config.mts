@@ -1,11 +1,11 @@
 import { defineConfig } from "vitepress";
 
-process.env.VITE_EXTRA_EXTENSIONS = "crt";
 export default defineConfig({
   title: "OpenGL Wiki",
   description: "OpenGL 官方文档的中文本地化版本",
   lang: "zh-CN",
   srcDir: "./docs",
+  outDir: "./dist",
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
