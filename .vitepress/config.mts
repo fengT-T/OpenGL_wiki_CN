@@ -266,7 +266,7 @@ export default defineConfig({
     socialLinks: [
       {
         icon: "github",
-        link: "https://github.com/KhronosGroup/OpenGL-Refpages",
+        link: "https://github.com/fengT-T/OpenGL_wiki_CN",
       },
     ],
 
