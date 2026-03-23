@@ -435,11 +435,9 @@ void glVertexAttribL*(GLuint index, Type values);
 
 ## 绘制（Drawing）
 
-一旦 VAO 正确设置，顶点数据数组就可以作为图元（Primitive）进行渲染。OpenGL 提供了多种渲染顶点数据的选项，详见 [顶点渲染](./vertex-rendering.md)。
+一旦 VAO 正确设置，顶点数据数组就可以作为图元（Primitive）进行渲染。OpenGL 提供了多种渲染顶点数据的选项，详见 [顶点渲染](../pipeline/vertex-rendering)。
 
 ## 参考链接
 
-- [Primitive（图元）](./primitive.md)
-- [Vertex Rendering（顶点渲染）](./vertex-rendering.md)
-- [Vertex Attribute（顶点属性）](../concepts/vertex-attribute.md)
-- [Vertex Specification Best Practices（顶点规范最佳实践）](../concepts/vertex-specification-best-practices.md)
+- [Primitive（图元）](../pipeline/primitive)
+- [Vertex Rendering（顶点渲染）](../pipeline/vertex-rendering)

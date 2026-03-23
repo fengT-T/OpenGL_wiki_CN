@@ -346,4 +346,3 @@ void glVertexAttribL*(GLuint index, Type values);
 
 - [图元 (Primitive)](/pipeline/primitive)
 - [顶点渲染 (Vertex Rendering)](/pipeline/vertex-rendering)
-- [顶点属性 (Vertex Attribute)](/pipeline/vertex-attribute)

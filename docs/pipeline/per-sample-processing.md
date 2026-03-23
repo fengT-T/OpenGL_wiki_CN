@@ -38,7 +38,7 @@
 
 ## 多重采样操作 (Multisample Operations)
 
-详见 [多重采样](./multisampling.md) 相关文档。
+详见多重采样相关文档。
 
 ## 模板测试 (Stencil Test)
 

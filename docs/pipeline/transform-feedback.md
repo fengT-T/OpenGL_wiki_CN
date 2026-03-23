@@ -202,6 +202,6 @@ void glDrawTransformFeedbackInstanced(GLenum mode, GLuint id, GLsizei instanceco
 
 ## 另见
 
-- [顶点渲染](../rendering/vertex-rendering)
-- [缓冲对象](../concepts/buffer-object)
+- [顶点渲染](./vertex-rendering)
+- [缓冲对象](../objects/buffers/)
 - [图元](./primitive)

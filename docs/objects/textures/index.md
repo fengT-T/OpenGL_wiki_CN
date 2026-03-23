@@ -120,7 +120,7 @@ Image Load Store 不使用采样器对象，但仍执行纹理完整性检查，
 
 ## 存储（Storage）
 
-纹理对象的存储创建涉及众多函数，详见 [Texture Storage](./texture-storage.md)。
+纹理对象的存储创建涉及众多函数，详见 [Texture Storage](./storage)。
 
 ## 参数（Parameters）
 
@@ -184,7 +184,7 @@ Swizzle 掩码只影响着色器读取操作，不影响 Image Load Store 写入
 
 ## 采样参数（Sampling Parameters）
 
-采样是从纹理获取值的过程。采样参数详见 [Sampler Object](./sampler-object.md)。
+采样是从纹理获取值的过程。采样参数详见 [Sampler Object](./sampler)。
 
 采样参数由纹理对象和 Sampler Object 共享。使用采样器对象时，其参数会覆盖纹理对象的参数。
 
@@ -245,4 +245,4 @@ glBindTexture(GL_TEXTURE_2D, texture);
 
 ## 渲染目标（Render Targets）
 
-通过 Framebuffer Object（帧缓冲对象），纹理中的单个图像可作为渲染目标。详见 [Framebuffer Object](./framebuffer-object.md)。
+通过 Framebuffer Object（帧缓冲对象），纹理中的单个图像可作为渲染目标。详见 [Framebuffer Object](../framebuffers/)。

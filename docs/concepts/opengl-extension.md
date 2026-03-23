@@ -163,4 +163,4 @@ OpenGL 3.0 引入，用于在低版本中暴露高版本的核心功能：
 ## 相关链接
 
 - [OpenGL Extension Registry](http://www.opengl.org/registry/)
-- [加载 OpenGL 函数](./../getting-started/loading-opengl-functions.md)
+

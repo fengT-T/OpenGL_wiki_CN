@@ -141,6 +141,5 @@ $$y_{window} = viewport_y + \frac{viewport_{height} \times (y_{ndc} + 1)}{2}$$
 ## 参见
 
 - [图元 (Primitive)](/pipeline/primitive)
-- [片段 (Fragment)](/pipeline/fragment)
-- [片段着色器 (Fragment Shader)](/pipeline/fragment-shader)
+- [片段着色器 (Fragment Shader)](/shaders/fragment)
 - [图元组装 (Primitive Assembly)](/pipeline/primitive-assembly)

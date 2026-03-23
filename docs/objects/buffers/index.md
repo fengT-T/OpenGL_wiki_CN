@@ -257,7 +257,7 @@ void glInvalidateBufferSubData(GLuint buffer, GLintptr offset, GLsizeiptr length
 
 流式传输是指频繁上传数据并使用缓冲区的过程。关键在于避免同步：如果 OpenGL 正在使用缓冲区时尝试更新数据，线程将被阻塞。
 
-详细信息请参阅 [Buffer Object Streaming](./buffer-object-streaming.md)。
+详细信息请参阅 Buffer Object Streaming 相关文档。
 
 ## 通用用途
 

@@ -4,7 +4,7 @@
 
 ## 透明度 (Transparency)
 
-混合常用于实现透明效果，但这需要特殊处理，尤其是透明物体的排序问题。详见[透明度排序](/concepts/transparency-sorting)。
+混合常用于实现透明效果，但这需要特殊处理，尤其是透明物体的排序问题。
 
 ## 片段输出 (Fragment Outputs)
 

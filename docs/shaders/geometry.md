@@ -200,6 +200,6 @@ layout(stream = 2) out;
 
 ## 另见
 
-- [片段着色器](./fragment-shader)
+- [片段着色器](./fragment)
 - 类型限定符 (Type Qualifier)
 - 几何着色器示例

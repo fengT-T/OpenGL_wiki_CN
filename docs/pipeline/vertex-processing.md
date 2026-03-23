@@ -60,7 +60,7 @@
 
 ## 参见
 
-- [顶点着色器 (Vertex Shader)](/pipeline/vertex-shader)
-- [曲面细分 (Tessellation)](/pipeline/tessellation)
-- [几何着色器 (Geometry Shader)](/pipeline/geometry-shader)
+- [顶点着色器 (Vertex Shader)](/shaders/vertex)
+- [曲面细分 (Tessellation)](/shaders/tessellation)
+- [几何着色器 (Geometry Shader)](/shaders/geometry)
 - [顶点后处理 (Vertex Post-Processing)](/pipeline/vertex-post-processing)

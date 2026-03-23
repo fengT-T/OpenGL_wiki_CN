@@ -64,7 +64,7 @@ OpenGL 3.0 及以上版本的上下文可以设置 "forward compatibility"（向
 
 上下文可以在调试模式下创建，这将使 Debug Output（调试输出）功能更有效地工作。
 
-详见 [Debug Output](/concepts/debug-output) 章节。
+详见 Debug Output 相关文档。
 
 ### No Error Contexts（无错误上下文）
 

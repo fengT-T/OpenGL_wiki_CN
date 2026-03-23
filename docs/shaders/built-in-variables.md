@@ -342,4 +342,4 @@ GLSL 提供了许多常量整数变量，为着色器提供实现定义的限制
 | `gl_MaxDrawBuffers` | 8 | 绘制缓冲区数 |
 | `gl_MaxClipDistances` | 8 | 裁剪距离数 |
 | `gl_MaxViewports` | 16 | 视口数（GL 4.1+） |
-| `gl_MaxComputeWorkGroupSize` | {1024, 1024, 64} | 计算工作组最大尺寸（GL 4.3+） |
+| `gl_MaxComputeWorkGroupSize` | \{ 1024, 1024, 64 \} | 计算工作组最大尺寸（GL 4.3+） |

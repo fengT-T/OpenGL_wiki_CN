@@ -183,7 +183,7 @@ glPrimitiveRestartIndex(index);
 
 ## 另见
 
-- [顶点规范](../rendering/vertex-specification)
-- [顶点渲染](../rendering/vertex-rendering)
+- [顶点规范](./vertex-specification)
+- [顶点渲染](./vertex-rendering)
 - [曲面细分](../shaders/tessellation)
 - [几何着色器](../shaders/geometry)

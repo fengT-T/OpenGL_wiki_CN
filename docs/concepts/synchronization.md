@@ -64,8 +64,4 @@ OpenGL 提供两个显式同步机制：
 
 围栏是命令流中的标记，可测试其是否已完成。若围栏已完成，则其之前发出的所有命令也已完成。
 
-详见 [同步对象](/concepts/sync-objects)。
-
-## 参考
-
-- [Core API 同步函数参考](/api/synchronization)
+详见 [同步对象](/objects/sync-object)。

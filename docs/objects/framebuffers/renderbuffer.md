@@ -43,7 +43,7 @@ void glRenderbufferStorage(
 
 参数说明：
 - `target`：必须是 `GL_RENDERBUFFER`
-- `internalformat`：图像的内部格式（详见[图像格式](../textures/image-format.md)）
+- `internalformat`：图像的内部格式（详见[图像格式](../textures/formats)）
 - `width`、`height`：渲染缓冲区的宽度和高度
 
 ### 多重采样渲染缓冲区

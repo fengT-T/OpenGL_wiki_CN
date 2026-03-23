@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress";
 
+process.env.VITE_EXTRA_EXTENSIONS = "crt";
 export default defineConfig({
   title: "OpenGL Wiki",
   description: "OpenGL 官方文档的中文本地化版本",
@@ -28,7 +29,10 @@ export default defineConfig({
             { text: "概述", link: "/objects/buffers/" },
             { text: "顶点缓冲对象 (VBO)", link: "/objects/buffers/vbo" },
             { text: "统一缓冲对象 (UBO)", link: "/objects/buffers/ubo" },
-            { text: "着色器存储缓冲对象 (SSBO)", link: "/objects/buffers/ssbo" },
+            {
+              text: "着色器存储缓冲对象 (SSBO)",
+              link: "/objects/buffers/ssbo",
+            },
             { text: "像素缓冲对象 (PBO)", link: "/objects/buffers/pbo" },
           ],
         },
@@ -57,8 +61,14 @@ export default defineConfig({
           collapsed: true,
           items: [
             { text: "概述", link: "/objects/framebuffers/" },
-            { text: "默认帧缓冲", link: "/objects/framebuffers/default-framebuffer" },
-            { text: "渲染缓冲对象", link: "/objects/framebuffers/renderbuffer" },
+            {
+              text: "默认帧缓冲",
+              link: "/objects/framebuffers/default-framebuffer",
+            },
+            {
+              text: "渲染缓冲对象",
+              link: "/objects/framebuffers/renderbuffer",
+            },
           ],
         },
         {
@@ -217,7 +227,10 @@ export default defineConfig({
           collapsed: true,
           items: [
             { text: "历史概述", link: "/concepts/history" },
-            { text: "可编程性历史", link: "/concepts/history-of-programmability" },
+            {
+              text: "可编程性历史",
+              link: "/concepts/history-of-programmability",
+            },
           ],
         },
       ],
@@ -250,7 +263,10 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: "github", link: "https://github.com/KhronosGroup/OpenGL-Refpages" },
+      {
+        icon: "github",
+        link: "https://github.com/KhronosGroup/OpenGL-Refpages",
+      },
     ],
 
     footer: {
