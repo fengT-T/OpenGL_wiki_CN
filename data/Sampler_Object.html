@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Sampler Object - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sampler_Object rootpage-Sampler_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Sampler Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Sampler Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/sampler_objects.txt">ARB_sampler_objects</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>A <b>Sampler Object</b> is an <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a> that stores the sampling parameters for a <a href="/opengl/Texture" title="Texture">Texture</a> access <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">inside of a shader</a>.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Management"><span class="tocnumber">1</span> <span class="toctext">Management</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Sampling_parameters"><span class="tocnumber">2</span> <span class="toctext">Sampling parameters</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Filtering"><span class="tocnumber">2.1</span> <span class="toctext">Filtering</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Anisotropic_filtering"><span class="tocnumber">2.1.1</span> <span class="toctext">Anisotropic filtering</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#LOD_range"><span class="tocnumber">2.1.2</span> <span class="toctext">LOD range</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#LOD_bias"><span class="tocnumber">2.1.3</span> <span class="toctext">LOD bias</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Comparison_mode"><span class="tocnumber">2.2</span> <span class="toctext">Comparison mode</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Edge_value_sampling"><span class="tocnumber">2.3</span> <span class="toctext">Edge value sampling</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Border_color"><span class="tocnumber">2.3.1</span> <span class="toctext">Border color</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Seamless_cubemap_fetching"><span class="tocnumber">2.4</span> <span class="toctext">Seamless cubemap fetching</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Management">Management</span></h2>
+<p>As a standard OpenGL Object, it has the usual functions: <span class="tpl-code"><a href="/opengl/GLAPI/glGenSamplers" title="GLAPI/glGenSamplers">glGenSamplers</a></span>, <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteSamplers" title="GLAPI/glDeleteSamplers">glDeleteSamplers</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glIsSampler" title="GLAPI/glIsSampler">glIsSampler</a></span>, and with <a href="/opengl/Direct_State_Access" title="Direct State Access">Direct State Access</a> it also has <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glCreateSamplers&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glCreateSamplers (page does not exist)">glCreateSamplers</a></span>.
+</p><p>It also has <span class="tpl-code"><a href="/opengl/GLAPI/glBindSampler" title="GLAPI/glBindSampler">glBindSampler</a></span>, which takes a texture unit index (on the half-open range [0, <span class="tpl-enum">GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS</span>) ) and a sampler object. Unlike most other OpenGL objects however, you do not need to bind sampler objects to modify them. The functions to set state in them take sampler objects as parameters. You only bind a sampler object to a texture image unit when you wish to <i>use</i> it, not just to change it.
+</p><p>To set a parameter on a sampler object, use one of these functions below:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glSamplerParameter" title="GLAPI/glSamplerParameter">glSamplerParameter[if]</a></span>( GLuint <span class="tpl-param">sampler​​</span>, GLenum <span class="tpl-param">pname​</span>, T <span class="tpl-param">param​</span>);
+ void <span class="tpl-code"><a href="/opengl/GLAPI/glSamplerParameter" title="GLAPI/glSamplerParameter">glSamplerParameter[if]v</a></span>( GLuint <span class="tpl-param">sampler​​</span>, GLenum <span class="tpl-param">pname​</span>, T *<span class="tpl-param">params​</span> );
+ void <span class="tpl-code"><a href="/opengl/GLAPI/glSamplerParameter" title="GLAPI/glSamplerParameter">glSamplerParameterI[i ui]v</a></span>( GLuint <span class="tpl-param">sampler​​</span>, GLenum <span class="tpl-param">pname​</span>, T *<span class="tpl-param">params​</span> );
+</pre>
+<p><span class="tpl-param">pname​</span> specifies the name of the parameter being set. <span class="tpl-param">param(s)​</span> is the value to set into that parameter. The valid <span class="tpl-param">pname​</span> parameters and <span class="tpl-param">params​</span> for them are defined below.
+</p><p>When a sampler object is bound to a texture image unit, the <a href="/opengl/Texture_Object" class="mw-redirect" title="Texture Object">internal sampling parameters</a> for a texture bound to the same image unit are <i>all</i> ignored. Instead, the sampling parameters are taken from this sampler object.
+</p>
+<h2><span class="mw-headline" id="Sampling_parameters">Sampling parameters</span></h2>
+<p>All of the following parameters can be used with the <span class="tpl-code"><a href="/opengl/GLAPI/glTexParameter" title="GLAPI/glTexParameter">glTexParameter*</a></span> set of functions. You could say that a texture object contains a sampler object, which you access through the texture interface.
+</p>
+<h3><span class="mw-headline" id="Filtering">Filtering</span></h3>
+<p>Filtering is the process of accessing a particular sample from a texture. There are two cases for filtering: minification and magnification. Magnification means that the area of the fragment in texture space is smaller than a texel, and minification means that the area of the fragment in texture space is larger than a texel. Filtering for these two cases can be set independently.
+</p><p>The magnification filter is controlled by the <span class="tpl-enum">GL_TEXTURE_MAG_FILTER</span> texture parameter. This value can be <span class="tpl-enum">GL_LINEAR</span> or <span class="tpl-enum">GL_NEAREST</span>. If <span class="tpl-enum">GL_NEAREST</span> is used, then the implementation will select the texel nearest the texture coordinate; this is commonly called "point sampling". If <span class="tpl-enum">GL_LINEAR</span> is used, the implementation will perform a weighted linear blend between the nearest adjacent samples.
+</p><p>The minification filter is controlled by the <span class="tpl-enum">GL_TEXTURE_MIN_FILTER</span> texture parameter. To understand these values better, it is important to discuss what the particular options are.
+</p><p>When doing minification, you can choose to use mipmapping or not. Using mipmapping means selecting between multiple mipmaps based on the angle and size of the texture relative to the screen. Whether you use mipmapping or not, you can still select between linear blending of the particular layer or nearest. And if you do use mipmapping, you can choose to either select a single mipmap to sample from, or you can sample the two adjacent mipmaps and linearly blend the resulting values to get the final result.
+</p><p>The OpenGL minification settings for these are as follows:
+</p>
+<table class="wikitable" border="1">
+
+<tbody><tr>
+<th>Param Setting
+</th>
+<th>Linear within mip-level
+</th>
+<th>Has mipmapping
+</th>
+<th>Linear between mip-levels
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_NEAREST</span>
+</td>
+<td>No
+</td>
+<td>No
+</td>
+<td>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINEAR</span>
+</td>
+<td>Yes
+</td>
+<td>No
+</td>
+<td>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_NEAREST_MIPMAP_NEAREST</span>
+</td>
+<td>No
+</td>
+<td>Yes
+</td>
+<td>No
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINEAR_MIPMAP_NEAREST</span>
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td>
+<td>No
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_NEAREST_MIPMAP_LINEAR</span>
+</td>
+<td>No
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINEAR_MIPMAP_LINEAR</span>
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td></tr></tbody></table>
+<p>Filtering textures that use the <a href="/opengl/SRGB_Image_Format" class="mw-redirect" title="SRGB Image Format">sRGB colorspace</a> may be sRGB correct or it may not. Linear interpolation in a non-linear colorspace like sRGB will not produce correct results. The OpenGL specification recommends, but does not <i>require</i> that implementations covert samples to linear RGB before filtering. They may do filtering in sRGB space, then convert to linear. Generally speaking, all GL 3.x+ hardware will do filtering correctly.
+</p>
+<div style="margin-left: 3em;">
+<p><b>Note:</b> On terminology. This discussion has refrained from using the common filtering terms "bilinear" and "trilinear." This is for a good reason; these terms are often misunderstood and do not carry over to all texture types.
+</p><p>Take the term "bilinear". This term is used because it refers to linear filtering in 2 axes: horizontally and vertically in a 2D texture. A monolinear would be filtering in one axis, and thus trilinear is filtering in 3 axes.
+</p><p>The problem is that what constitutes "bilinear" depends on the texture type. Or specifically, its dimensionality. Setting <span class="tpl-enum">GL_TEXTURE_MAG_FILTER</span> and <span class="tpl-enum">MIN_FILTERs</span> to <span class="tpl-enum">GL_LINEAR</span> will create monolinear filtering in a 1D texture, bilinear filtering in a 2D texture, and trilinear in a 3D texture. In all cases, it is simply doing a linear filter between the nearest samples; some texture types simply have more nearest samples than others.
+</p><p>Unfortunately, what most people think of as "trilinear" is not linear filtering of a 3D texture, but what in OpenGL terms is <span class="tpl-enum">GL_LINEAR</span> mag filter and <span class="tpl-enum">GL_LINEAR_MIPMAP_LINEAR</span> in the min filter in a 2D texture. That is, it is bilinear filtering of each appropriate mipmap level, and doing a third linear filter between the adjacent mipmap levels. Hence the term "trilinear".
+</p>
+This is easily confused with what is just <span class="tpl-enum">GL_LINEAR</span> for 3D textures. That is why OpenGL and this discussion does not use these terms.</div>
+<h4><span class="mw-headline" id="Anisotropic_filtering">Anisotropic filtering</span></h4>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Anisotropic Filtering</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_filter_anisotropic.txt">ARB_texture_filter_anisotropic</a></td></tr>
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">EXT extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_filter_anisotropic.txt">EXT_texture_filter_anisotropic</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div style="margin-left: 3em;">
+<b>Note:</b> Though this feature only became core in OpenGL 4.6, it is <a href="/opengl/Ubiquitous_Extensions" class="mw-redirect" title="Ubiquitous Extensions">widely available</a> through the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_filter_anisotropic.txt">EXT_texture_filter_anisotropic</a> extension.</div>
+<p>Anisotropic filtering is an advanced filtering technique that takes multiple samples, blending the results together. Exactly how this is done is implementation-dependent, but control over the feature is specific: the user provides a maximum number of samples that can be taken of the texture during any one texture fetch. Note that this is the "maximum" number of samples; a particular texture fetch may take fewer samples. Hardware generally attempts to determine the best number of samples to take, clamped to the user-provided maximum.
+</p><p>To use anisotropic filtering, set the <span class="tpl-enum">GL_TEXTURE_MAX_ANISOTROPY</span> sampling parameter. This parameter is floating-point, and can be set between 1.0f and an implementation-defined maximum anisotropy (queried with <span class="tpl-enum">GL_MAX_TEXTURE_MAX_ANISOTROPY</span>). Any value greater than 1.0f counts as a use of anisotropic filtering.
+</p><p>Anisotropic filtering is not a replacement for mipmaps or mipmap filtering. For best results, combine anisotropic filtering with a <span class="tpl-enum">GL_LINEAR_MIPMAP_LINEAR</span> minification filter.
+</p>
+<h4><span class="mw-headline" id="LOD_range">LOD range</span></h4>
+<p>There is a pair of sampling parameters that affect the mipmap image selection: <span class="tpl-enum">GL_TEXTURE_MAX_LOD</span> and <span class="tpl-enum">GL_TEXTURE_MIN_LOD</span> (floating-point values). The way these work in mipmap selection is quite complicated; the specification goes into full detail about it. These selection clamping parameters will not cause sampling outside of the <a href="/opengl/Texture_Mipmap_Range" class="mw-redirect" title="Texture Mipmap Range">texture's mipmap range</a> specified by <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span> and <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span>.
+</p>
+<h4><span class="mw-headline" id="LOD_bias">LOD bias</span></h4>
+<p>The mipmap image selection process can be adjusted coarsely by using the <span class="tpl-enum">GL_TEXTURE_LOD_BIAS​</span> sampling parameter. This bias will be added to the mipmap LOD calculation, as well as the bias provided by one of the <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">texture sampling functions</a> in GLSL. This LOD calculation is used to select the mipmap level or pair of mipmap levels to sample from. A positive bias means that larger mipmaps will be selected even when the texture is viewed from farther away. This can cause visual aliasing, but in small quantities it can make textures a bit more sharp.
+</p><p>These selection clamping parameters will not cause sampling outside of the <a href="/opengl/Texture_Mipmap_Range" class="mw-redirect" title="Texture Mipmap Range">texture's mipmap range</a> specified by <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span> and <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span>.
+</p>
+<h3><span class="mw-headline" id="Comparison_mode">Comparison mode</span></h3>
+<p>Depth textures (textures that have a depth component <a href="/opengl/Image_Formats" class="mw-redirect" title="Image Formats">image format</a>) can be sampled in one of two ways. They can be sampled as a normal texture, which simply retrieves the depth value (with filtering applied). This will return a vec4 containing a single floating-point value.
+</p><p>They can also be fetched in comparison mode. This means that sampling from the texture requires a value to compare to those pulled from the texture; this value is called the <i>reference value</i>. The result of the comparison depends on the comparison function set in the texture. If the function succeeds, the resulting value is 1.0f; if it fails, it is 0.0f. Swizzling can be used, but only the R component of the swizzled result will be returned. So it's not very useful.
+</p><p>When <a href="#Filtering">linear filtering</a> is used, the actual returned value is implementation-defined. However, the value will be on the range [0, 1] and will be proportional to the number of neighboring texels that pass the comparison based on the single given value. In effect, it performs linear filtering on the <i>results</i> of fetching from the nearest texels in the texture. This is commonly called "Percentage Closer Filtering".
+</p><p>If the texture is a normalized integer depth format, then the reference value is clamped to [0, 1], to match the values from the texture. Otherwise, the value is not clamped.
+</p><p>Using this mode requires two special settings. First, the <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">sampler</a> used in GLSL must be a shadow sampler. Second, the texture used in that sampler must have activated depth comparison mode. Attempting to use a texture without comparison with a shadow sampler, or vice-versa, will result in an error upon rendering.
+</p><p>To set the texture to comparison mode, set the <span class="tpl-enum">GL_TEXTURE_COMPARE_MODE</span> texture parameter to <span class="tpl-enum">GL_COMPARE_REF_TO_TEXTURE</span>. The comparison function to use when comparing the reference to the texture is set with the <span class="tpl-enum">GL_TEXTURE_COMPARE_FUNC</span> texture parameter. Acceptable values are <span class="tpl-enum">GL_NEVER</span> (always fails), <span class="tpl-enum">GL_ALWAYS</span> (always succeeds), <span class="tpl-enum">GL_LESS</span>, <span class="tpl-enum">GL_LEQUAL</span>, <span class="tpl-enum">GL_EQUAL</span>, <span class="tpl-enum">GL_NOT_EQUAL</span>, <span class="tpl-enum">GL_GEQUAL</span>, and <span class="tpl-enum">GL_GREATER</span>. The comparison works as follows:
+</p>
+<pre> <i>ref</i> OPERATOR <i>texture</i>
+</pre>
+<p>Where <i>ref</i> is the reference value given to the texture lookup function by GLSL, and <i>texture</i> is the value fetched from the texture. So <span class="tpl-enum">GL_LESS</span> will be true if the reference value is strictly less than the value pulled from the texture.
+</p>
+<h3><span class="mw-headline" id="Edge_value_sampling">Edge value sampling</span></h3>
+<p>Normalized texture coordinates are not limited to values between 0.0 and 1.0. They can be any floating-point number. When a texture coordinate is not within the [0, 1] range, a heuristic must be employed to decide what the color value will be.
+</p><p>Each dimension of a texture can have a different heuristic. These are set by setting the texture parameters <span class="tpl-enum">GL_TEXTURE_WRAP_S</span>, <span class="tpl-enum">GL_TEXTURE_WRAP_T</span>, and <span class="tpl-enum">GL_TEXTURE_WRAP_R</span>, where S, T, and R are the first 3 texture coordinates in order. The possible heuristics are:
+</p>
+<ul><li><span class="tpl-enum">GL_REPEAT</span>: the texture coordinate wraps around the texture. So a texture coordinate of -0.2 becomes the equivalent of 0.8.</li>
+<li><span class="tpl-enum">GL_MIRRORED_REPEAT</span>: the texture coordinate wraps around like a mirror. -0.2 becomes 0.2, -1.2 becomes 0.8, etc.</li>
+<li><span class="tpl-enum">GL_CLAMP_TO_EDGE</span>: the texture coordinate is clamped to the [0, 1] range.</li>
+<li><span class="tpl-enum">GL_CLAMP_TO_BORDER</span>: the texture coordinate is clamped to the [0, 1] range, but the edge texels are blended with a <a href="#Border_color">constant border color</a>.</li>
+<li><span class="tpl-enum">GL_MIRROR_CLAMP_TO_EDGE</span> (requires OpenGL 4.4<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_mirror_clamp_to_edge.txt">ARB_texture_mirror_clamp_to_edge</a>): the texture coordinates are clamped to the [-1, 1] range, but the negative coordinates are mirrors of the positive. This effectively makes the texture twice as big through mirroring, but clamps to the edge beyond that.</li></ul>
+<p>This also applies to <a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a>, except that the range at which they apply edge sampling is based on the texel width/height of the texture, not the normalized [0, 1] range. Sampling modes are irrelevant for <a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a>, as they must use the <span class="tpl-code">texelFetch</span> sampling functions and thus cannot sample outside of the texel range of the texture.
+</p>
+<h4><span class="mw-headline" id="Border_color">Border color</span></h4>
+<p>The <span class="tpl-enum">GL_CLAMP_TO_BORDER</span> requires a color that edge texels are blended when texture coordinates fall outside of the valid area of the texture. When this this edge mode is used, a border color must be set by setting the <span class="tpl-enum">GL_TEXTURE_BORDER_COLOR</span> parameter.
+</p><p>The border color can be provided in floating-point values, <a href="/opengl/Normalized_Integer" title="Normalized Integer">Normalized Integers</a>, or non-normalized integers, using the various forms of <span class="tpl-code"><a href="/opengl/GLAPI/glSamplerParameter" title="GLAPI/glSamplerParameter">glSamplerParameter</a></span>/<span class="tpl-code"><a href="/opengl/GLAPI/glTexParameter" title="GLAPI/glTexParameter">glTexParameter</a></span>. Note that the border color is a 4-component color, so you must use the <b>v</b> version of the function, and you must provide all four components in a single call.
+</p><p>When using the <b>fv</b> function, the color will be stored as a float. When using <b>iv</b>, the color will be converted to a float via signed normalization. Since the components are <a href="/opengl/OpenGL_Type" title="OpenGL Type"><span class="tpl-code">GLint</span> 32-bit integers</a>, the range is from [-2<sup>31</sup>, 2<sup>31</sup>). When using the <b>Ii</b> or <b>Iui</b> forms, the color will be stored as signed or unsigned integers, as appropriate.
+</p><p>The border color provided must use integer/float values consistent with the <a href="/opengl/Image_Format" title="Image Format">Image Format</a> for the texture being used. For floating-point color formats (including normalized integers), the provided data must be floating point/normalized. For integers, the provided border colors must be signed/unsigned, to match the internal format.
+</p><p>For textures that have depth, the border color must be float/normalized (and only the Red component matters). For <a href="/opengl/Stencil_Texture" class="mw-redirect" title="Stencil Texture">stencil-aspect texture fetching</a>, the border color must be unsigned integer (and again, only the Red component matters).
+</p><p>If these formatting rules are violated, undefined behavior occurs.
+</p>
+<h3><span class="mw-headline" id="Seamless_cubemap_fetching">Seamless cubemap fetching</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Seamless Cubemap per Texture</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/seamless_cubemap_per_texture.txt">ARB_seamless_cubemap_per_texture</a></td></tr>
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Vendor extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/AMD/seamless_cubemap_per_texture.txt">AMD_seamless_cubemap_per_texture</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>As an OpenGL extension, seamless cubemap filtering can be manipulated on a per-texture or per-sampler object basis. Note that if you <a href="/opengl/Seamless_Cubemap" class="mw-redirect" title="Seamless Cubemap">use the global version</a>, it will still globally force seamless behavior on all cubemaps.
+</p><p>This is governed by a simple boolean sampler parameter, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP_SEAMLESS</span>. Setting it to 0 turns it off for that texture/sampler; setting it to any other value causes accesses to the cubemap to be seamless.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318062826
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.099 seconds
+Real time usage: 0.103 seconds
+Preprocessor visited node count: 2351/1000000
+Post‐expand include size: 25464/2097152 bytes
+Template argument size: 9104/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   60.729      1 -total
+ 60.03%   36.457      3 Template:Infobox_feature
+ 55.63%   33.782      3 Template:Infobox2
+ 19.42%   11.796     30 Template:Infobox/shortrow
+ 18.01%   10.936     30 Template:Infobox/longrow
+  8.42%    5.112     11 Template:Apifunc
+  7.92%    4.807     52 Template:Enum
+  6.95%    4.220      2 Template:Note
+  4.47%    2.715      2 Template:Note_style
+  4.36%    2.650     13 Template:Code
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2282-0!canonical and timestamp 20260318062826 and revision id 14968. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Sampler_Object&amp;oldid=14968">https://wikis.khronos.org/opengl/index.php?title=Sampler_Object&amp;oldid=14968</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:Textures" title="Category:Textures">Textures</a></li><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

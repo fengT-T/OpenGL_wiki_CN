@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Tessellation - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tessellation rootpage-Tessellation skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Tessellation</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Tessellation</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><b>Tessellation</b></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table> 
+<p><b>Tessellation</b> is the <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage in the OpenGL rendering pipeline where patches of vertex data are subdivided into smaller <a href="/opengl/Primitive" title="Primitive">Primitives</a>. This process is governed by two shader stages and a fixed-function stage.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This describes the OpenGL 4.0 feature, not the old <span class="tpl-code">gluTess*</span> tessellation functionality.</div>
+<p>The tessellation process is divided into three stages which form an optional part of <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> in the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">rendering pipeline</a>. Two of the stages are programmable; between them is a fixed function stage. They are described below, in the order they are processed.
+</p><p>Generally, the process of tessellation involves subdividing a patch of some type, then computing new vertex values (position, color, texture coordinates, etc.) for each of the vertices generated by this process. Each stage of the tessellation pipeline performs part of this process.
+</p><p>The <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a> (TCS) determines how much tessellation to do (it can also adjust the actual patch data, as well as feed additional patch data to later stages). Therefore, the TCS is primarily responsible for ensuring continuity across patches. So if you have two adjacent patches that need to have different levels of tessellation, the TCS invocations for the different patches need to use their tessellation controls to ensure that the shared edge(s) between the patches use the same level of tessellation. Without this protection, gaps and breaks in what are supposed to be contiguous patches can occur.
+</p><p>The TCS is optional; default tessellation values can be used if no TCS is provided.
+</p><p>The <a href="#Tessellation_primitive_generator">tessellation primitive generator</a> takes the input patch and subdivides it based on values computed by the TCS or provided as defaults.
+</p><p>The <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a> (TES) takes the tessellated patch and computes the vertex values for each generated vertex.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Patches"><span class="tocnumber">1</span> <span class="toctext">Patches</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Tessellation_control_shader"><span class="tocnumber">2</span> <span class="toctext">Tessellation control shader</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Tessellation_primitive_generation"><span class="tocnumber">3</span> <span class="toctext">Tessellation primitive generation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Abstract_patch"><span class="tocnumber">3.1</span> <span class="toctext">Abstract patch</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Tessellation_levels"><span class="tocnumber">3.2</span> <span class="toctext">Tessellation levels</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Edge_tessellation_spacing"><span class="tocnumber">3.3</span> <span class="toctext">Edge tessellation spacing</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Primitive_generation_order"><span class="tocnumber">3.4</span> <span class="toctext">Primitive generation order</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Tessellating_primitives"><span class="tocnumber">4</span> <span class="toctext">Tessellating primitives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Triangles"><span class="tocnumber">4.1</span> <span class="toctext">Triangles</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Quads"><span class="tocnumber">4.2</span> <span class="toctext">Quads</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Isolines"><span class="tocnumber">4.3</span> <span class="toctext">Isolines</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#Examples"><span class="tocnumber">4.3.1</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Tessellation_evaluation_shader"><span class="tocnumber">5</span> <span class="toctext">Tessellation evaluation shader</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Patch_interface_and_continuity"><span class="tocnumber">6</span> <span class="toctext">Patch interface and continuity</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Examples_2"><span class="tocnumber">7</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Patches">Patches</span></h2>
+<p>Tessellation stages operate on patches, a <a href="/opengl/Primitive" title="Primitive">primitive type</a> denoted by the constant <span class="tpl-enum">GL_PATCHES</span>. A patch primitive is a general-purpose primitive, where every <span class="tpl-param">n​</span> vertices is a new patch primitive. The number of vertices per patch can be defined on the application-level using:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glPatchParameter" title="GLAPI/glPatchParameter">glPatchParameteri</a></span>(GLenum <span class="tpl-param">pname​​</span>, GLint <span class="tpl-param">value​​</span>);
+</pre>
+<p>with <span class="tpl-enum">GL_PATCH_VERTICES</span> as target and a value which has is on the half-open range [1, <span class="tpl-enum">GL_MAX_PATCH_VERTICES</span>). The maximum number of patch vertices is implementation-dependent, but will never be less than 32.
+</p><p>Patch primitives are always a sequence of individual patches; there is no such thing as a "patch strip" or "patch loop" or such. So for a <a href="/opengl/Vertex_Specification" title="Vertex Specification">given vertex stream</a>, every group of <span class="tpl-param">value​</span> number of vertices will be a separate patch. If you need to do something like triangle strips, you should use <a href="/opengl/Indexed_Rendering" class="mw-redirect" title="Indexed Rendering">Indexed Rendering</a> to get similar behavior, though it will not reduce the number of vertices in the index list. Fortunately, the <a href="/opengl/Post-Transform_Cache" class="mw-redirect" title="Post-Transform Cache">Post-Transform Cache</a> should help mitigate the performance impact of providing more indices.
+</p>
+<h2><span class="mw-headline" id="Tessellation_control_shader">Tessellation control shader</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a><i></i></div>
+<p>The first step of tessellation is the optional invocation of a tessellation control shader (TCS). The TCS has two jobs:
+</p>
+<ul><li>Determine the amount of tessellation that a primitive should have.</li>
+<li>Perform any special transformations on the input patch data.</li></ul>
+<p>The TCS can change the size of a patch, adding more vertices per-patch or providing fewer. However, a TCS cannot discard a patch (directly; it can do so indirectly), nor can it write multiple patches. Therefore, for each patch provided by the application, one patch will be provided to the next tessellation stage.
+</p><p>The TCS is optional. If no TCS is active in the current program or program pipeline, then the patch data is passed directly from the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a> invocations to the <a href="#Tessellation_primitive_generation">tessellation primitive generation</a> step. The amount of tessellation done in this case is taken from default values set into the context. These are defined by the following function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glPatchParameter" title="GLAPI/glPatchParameter">glPatchParameterfv</a></span>(GLenum <span class="tpl-param">pname​​</span>, const GLfloat *<span class="tpl-param">values​</span>​);
+</pre>
+<p>When <span class="tpl-param">pname​</span> is <span class="tpl-enum">GL_PATCH_DEFAULT_OUTER_LEVEL</span>, <span class="tpl-param">values​</span> is a 4-element array of floats defining the four outer tessellation levels. When <span class="tpl-param">pname​</span> is <span class="tpl-enum">GL_PATCH_DEFAULT_INNER_LEVEL</span>, <span class="tpl-param">values​</span> is a 2-element array of floats defining the two inner tessellation levels.
+</p><p>These default values correspond to the TCS per-patch output variables <span class="tpl-code">gl_TessLevelOuter[4]</span> and <span class="tpl-code">gl_TessLevelInner[2]</span>.
+</p>
+<h2><span class="mw-headline" id="Tessellation_primitive_generation">Tessellation primitive generation</span></h2>
+<p>Primitive generation is a fixed-function stage responsible for creating a set of new primitives from the input patch. This stage is only executed if a <a href="#Tessellation_evaluation_shader">tessellation evaluation shader</a> (TES) is active in the current program or program pipeline. Primitive generation is affected by the following factors:
+</p>
+<ul><li>The tessellation levels, provided either by the TCS or the default values, as stated above.</li>
+<li>The spacing of the tessellated vertices, as defined by the subsequent TES stage. It may be <span class="tpl-code">equal_spacing</span>, <span class="tpl-code">fractional_even_spacing</span>, or <span class="tpl-code">fractional_odd_spacing</span>.</li>
+<li>The input primitive type defined by the subsequent TES which may be one of <span class="tpl-code">triangles</span>, <span class="tpl-code">quads</span> or <span class="tpl-code">isolines</span>. The TES can also force the generation of the tessellation as a series of points rather than triangles or lines by providing the <span class="tpl-code">point_mode</span> primitive.</li>
+<li>The primitive generation order defined by the subsequent TES, which may be <span class="tpl-code">cw</span> or <span class="tpl-code">ccw</span>. This, coupled with the position of the generated primitives, is used to determine the primitive's <a href="/opengl/Winding_Order" class="mw-redirect" title="Winding Order">Winding Order</a>.</li></ul>
+<h3><span class="mw-headline" id="Abstract_patch">Abstract patch</span></h3>
+<p>Notice that the primitive generation is not affected by the user-defined outputs of the TCS (or vertex shader if no TCS is active), the TCS's output patch size, or any per-patch TCS outputs besides the tessellation levels. The primitive generation part of the tessellation stage is <i>completely blind</i> to the actual vertex coordinates and other patch data.
+</p><p>The purpose of the primitive generation system is to determine how many vertices to generate, in which order to generate them, and what kind of primitives to build out of them. The actual per-vertex data for these vertices, such as position, color, etc., is to be generated by the TES, based on information provided by the primitive generator.
+</p><p>Because of this dichotomy, the primitive generator operates on what could be considered an "abstract patch". It doesn't look at the patch output from the TCS; it thinks only in terms of tessellating an abstract quad, triangle, or "isoline" block.
+</p><p>Depending on the abstract patch type, the primitive generator evaluates a different number of tessellation levels and applies different tessellation algorithms. Each generated vertex has a normalized position (i.e. the coordinates are on the range [0, 1]) within the abstract patch. This position has two or three components, depending on the type of the patch. The coordinates are provided to the TES via the built-in <span class="tpl-code">in vec3 gl_TessCoord</span> input.
+</p>
+<h3><span class="mw-headline" id="Tessellation_levels">Tessellation levels</span></h3>
+<p>The amount of tessellation that is done over the abstract patch type is defined by inner and outer tessellation levels. These, as previously stated, are provided either by the TCS or by context parameters specified via <span class="tpl-code"><a href="/opengl/GLAPI/glPatchParameter" title="GLAPI/glPatchParameter">glPatchParameter</a></span>. They are a 4-vector of floats defining the "outer tessellation levels" and a 2-vector of floats defining the "inner tessellation levels."
+</p><p>The specific interpretation depends on the abstract patch type being used, but the general idea is this. In most cases, each tessellation level defines how many segments an edge is tessellated into; so a tessellation level of 4 means that an edge will become 4 edges (2 vertices become 5). The "outer" tessellation levels define the tessellation for the outer edges of the primitive. This makes it possible for two or more patches to properly connect, while still having different tessellation levels within the patch. The inner tessellation levels are for the number of tessellations within the abstract patch.
+</p><p>Not all abstract patches use the same number of values in the outer/inner tessellation levels data. For example, triangles only uses one inner level and 3 outer levels. The rest are ignored.
+</p><p>The patch can be discarded if any outer tessellation level is 0 or less, but only for tessellation levels that the abstract patch actually uses. The patch can also be discarded if one of these values is a <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/NaN">floating-point NaN</a>. A patch that is discarded does not get tessellated, and no TES is invoked for it. It is simply swallowed by the system as though it never were.
+</p><p>This allows a TCS to effectively cull patches by passing 0 for a relevant outer tessellation level.
+</p><p>The tessellation levels specified in this way are not directly used. They go through a clamping process to generate the effective tessellation levels that are used to tessellate the primitive. This process depends on the TES's spacing parameter.
+</p><p>In the below discussion, <span class="tpl-param">max​</span> is the maximum allowed tessellation level, as defined by the <span class="tpl-enum">GL_MAX_TESS_GEN_LEVEL</span>. It must be at least 64, so you have some room to play with.
+</p><p>The spacing affects the effective tessellation level as follows:
+</p>
+<dl><dt><span class="tpl-code">equal_spacing</span></dt>
+<dd>Each tessellation level is individually clamped to the closed range [1, <span class="tpl-param">max​</span>]. Then it is rounded up to the nearest integer to give the effective tessellation level.</dd>
+<dt><span class="tpl-code">fractional_even_spacing</span></dt>
+<dd>Each tessellation level is individually clamped to the closed range [2, <span class="tpl-param">max​</span>]. Then it is rounded up to the nearest <i>even</i> integer to give the effective tessellation level.</dd>
+<dt><span class="tpl-code">fractional_odd_spacing</span></dt>
+<dd>Each tessellation level is individually clamped to the closed range [1, <span class="tpl-param">max​</span> - 1]. Then it is rounded up to the nearest <i>odd</i> integer to give the effective tessellation level.</dd></dl>
+<h3><span class="mw-headline" id="Edge_tessellation_spacing">Edge tessellation spacing</span></h3>
+<p>At various points in the forthcoming discussion about tessellating the abstract patch, there will be statements that say to tessellate an edge of some primitive. This means to subdivide it into a series of segments according to a particular tessellation level. The total length of these segments is the length of the original segment. However, the length of individual segments relative to one another depends on the spacing parameter specified in the TES and the tessellation level.
+</p><p>If the spacing is set to <span class="tpl-code">equal_spacing</span>, then all tessellated segments on an edge will have equal length. Since <span class="tpl-code">equal_spacing</span> rounds tessellation levels to the next integer, this means that edges will "pop" as tessellation levels go from one integer to the next.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:SubdivideEqual.gif" class="mw-file-description"><img src="/opengl/images/SubdivideEqual.gif" decoding="async" width="200" height="39" class="mw-file-element" /></a></span>
+</p><p>The other two spacing schemes are intended to provide smooth(er) behavior as the tessellation levels change. These are useful for cases where the amount of tessellation is based on the area being viewed from the camera.
+</p><p>We need to define two values first:
+</p>
+<ul><li><span class="tpl-param">n​</span> shall be the <i>effective tessellation level</i> computed above for the edge in question.</li>
+<li><span class="tpl-param">f​</span> shall be the value computed <i>before</i> the rounding step above. Thus, it is a potentially fractional value.</li></ul>
+<p>If <span class="tpl-param">n​</span> is 1, then no tessellation occurs on this edge. If <span class="tpl-param">n​</span> is exactly 2, then there will be two segments of equal length.
+</p><p>Otherwise, the edge will be divided into two sets of segments. One set will have <span class="tpl-param">n​</span> - 2 segments in it, all of which will have equal length. The other set will have 2 segments, who shall have lengths equal to each other, but not necessarily the segments in set one. The 2 segments will be shorter than the others, so let us call this group the "short segments".
+</p><p>The length of the short segments, relative to the others, is based on (<span class="tpl-param">n​</span> - <span class="tpl-param">f​</span>). When this value is exactly 0, then the short segments will be the same length as the others. As this value approaches 2, the short segments' lengths will approach 0.0.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:SubdivideOdd.gif" class="mw-file-description"><img src="/opengl/images/SubdivideOdd.gif" decoding="async" width="200" height="39" class="mw-file-element" /></a></span> Fractional odd spacing
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:SubdivideEven.gif" class="mw-file-description"><img src="/opengl/images/SubdivideEven.gif" decoding="async" width="200" height="39" class="mw-file-element" /></a></span> Fractional even spacing
+</p><p>Despite the diagram above, the specification <i>does not</i> require the short segments to be in any particular location relative to the others. The specification only provides the following requirements:
+</p>
+<ul><li>That the short segments be placed symmetrically across the tessellated edge.</li>
+<li>That the placement of the short segments will be invariant with <span class="tpl-param">f​</span>, for *any* segment being tessellated.</li></ul>
+<p>Note that there is no guarantee that the placement of the short segments will not jump around as <span class="tpl-param">f​</span> changes. That is, there is no guarantee of smoothness as <span class="tpl-param">f​</span> changes.
+</p>
+<h3><span class="mw-headline" id="Primitive_generation_order">Primitive generation order</span></h3>
+<p>When rendering without tessellation, the <a href="/opengl/Primitive_Assembly#Primitive_order" title="Primitive Assembly">order of primitives</a> relative to one another in a rendering command is well defined. Rendering requires setting up a <a href="/opengl/Vertex_Specification" title="Vertex Specification">vertex stream</a>. This defines an ordered sequence of vertices. The <a href="/opengl/Primitive" title="Primitive">Primitive</a> specified at rendering time determines exactly how the stream is broken down into base primitives. And thus, each primitive is ordered based on the vertices that generate it.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This ordering does not mean that you can use <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> to read from memory written by a sibling shader invocation just because that invocation was from a "previous" primitive. Such read/writes follow <a href="/opengl/Incoherent_Memory_Access" class="mw-redirect" title="Incoherent Memory Access">Incoherent Memory Access</a> rules.</div>
+<p>Tessellation makes things less well defined. While the order of vertices within a primitive is well defined (determined by the TES's input layout settings <span class="tpl-code">cw</span> or <span class="tpl-code">ccw</span>), the order of primitives generated relative to one another is not. Implementations define this ordering, so you cannot rely on any particular order within a particular primitive.
+</p><p>Then again, most ways you could even tell rely on incoherent memory accesses...
+</p><p>What you can rely on is that all primitives generated by a patch will be ordered before all primitives generated by the next patch.
+</p>
+<h2><span class="mw-headline" id="Tessellating_primitives">Tessellating primitives</span></h2>
+<h3><span class="mw-headline" id="Triangles">Triangles</span></h3>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/opengl/File:TriangleLevels.png" class="mw-file-description"><img src="/opengl/images/TriangleLevels.png" decoding="async" width="200" height="200" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p>The abstract patch for triangle tessellation is a triangle, naturally. Only the first three outer tessellation levels are used, and only the first inner tessellation level is used. The outer tessellation levels apply to the edges shown in the diagram. Exactly how the inner tessellation level works is less intuitive than it seems.
+</p><p>Each vertex generated and sent to the TES will be given <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Barycentric_coordinates_%28mathematics%29#Barycentric_coordinates_on_triangles">Barycentric coordinates</a> as the <span class="tpl-code">gl_TessCoord</span> input. This coordinate defines where this vertex is located within the abstract triangle patch. The barycentric coordinates for the 3 vertices of the abstract triangle patch are shown in the diagram. All other vertices will be specified relative to these.
+</p><p>To perform linear interpolation between 3 values, at each of the three vertices, you would do this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">vec3</span><span class="w"> </span><span class="n">accum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">0.0</span><span class="n">f</span><span class="p">)</span>
+<span class="n">accum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">gl_TessCoord</span><span class="p">[</span><span class="mo">0</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">value</span><span class="p">[</span><span class="mo">0</span><span class="p">]</span>
+<span class="n">accum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">gl_TessCoord</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">value</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">accum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nb">gl_TessCoord</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">value</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</pre></div>
+<p>Where <span class="tpl-code">value</span> is an array of (in this case, <span class="tpl-code">vec3</span>) values that correspond to the three vertices depicted in the diagram.
+</p><p>The algorithm for tessellation of triangles is based on tessellating the edges of the triangle, then building vertices and triangles from them. This makes the behavior of the inner tessellation level a bit unintuitive, since it does not directly correspond to the number of inner triangles.
+</p><p>Step one removes the most degenerate case. If all of the effective outer levels (as computed above) levels are exactly 1.0, and the effective inner level is also 1.0, then nothing is tessellated, and the TES will get 3 vertices and one triangle. And thus, none of the later steps take place.
+</p><p>Next, if the effective inner level is 1.0 (and therefore at least one of the outer levels is &gt; 1.0, otherwise we'd have hit the above condition), then the effective inner level is recomputed as though the user had specified <span class="tpl-code">1.0 + e</span> for the inner level, where <span class="tpl-code">e</span> is a number infinitely close to zero. So <span class="tpl-code">1.0 + e</span> is a value just slightly above 1.0.
+</p><p>As a practical matter, this means that if any outer edge tessellation happens, the effective inner tessellation will be no less than 2 or 3, depending on the spacing. This ensures that, if there is any tessellating taking place, then there will always be at least one vertex inside of the triangle.
+</p><p>The next step in tessellation is to subdivide the edges of the abstract triangle patch based on the effective <i>inner</i> level. Yes, the algorithm begins by <i>ignoring</i> the outer tessellation levels; it applies the inner tessellation to all three outer edges:
+</p><p>From here, we build a series of concentric "rings" of inner triangles. At each corner of the outer triangle, the two neighboring subdivided vertices are taken. A vertex is computed from these two by finding the intersection of two perpendicular lines from these vertices. Perpendicular lines from the remaining vertices to the inner triangle's edges define where each edge of the new triangle is subdivided.
+</p><p>This process is repeated, using the new ring triangle to generate the next inner ring, until one of two end conditions is met. If the triangle ring has no subdivided edges (only 3 vertices), then the process stops.
+</p><p>If the triangle ring has exactly 2 subdivided edges (only 6 total vertices), then the "ring" it generates is not a triangle at all. It is a single vertex:
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:TriInnerOnlyTriCorr.png" class="mw-file-description"><img src="/opengl/images/TriInnerOnlyTriCorr.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+<span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:TriInnerOnlyPointCorr.png" class="mw-file-description"><img src="/opengl/images/TriInnerOnlyPointCorr.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+</p><p>By this algorithm, the number of inner triangle rings is half the effective inner tessellation level, rounded down. Note that if the inner level is even, the innermost ring will be a single vertex.
+</p><p>After producing these inner rings, the tessellation for the main outer triangle is discarded entirely. It is then re-tessellated in accord with the three effective outer tessellation levels.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:TriOuterAndNotris.png" class="mw-file-description"><img src="/opengl/images/TriOuterAndNotris.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+</p><p>With all the vertices generated, triangles must now be generated. The specification outlines a particular algorithm for doing so, but it leaves many of the details to the implementation. The specification guarantees:
+</p>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/opengl/File:TriFull.png" class="mw-file-description"><img src="/opengl/images/TriFull.png" decoding="async" width="200" height="219" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<ul><li>That the area of the triangle, in (u,v,w) space, will be completely covered by the generated triangulation.</li>
+<li>That no part of the area of the triangle will be covered more than once by the generated triangulation.</li>
+<li>That there will be edges between the neighboring vertices of each "ring" of triangles. That is, the dark lines in the above diagram are guaranteed by the specification to be there.</li>
+<li>If a vertex has corresponding vertices on the ring that immediately preceded it, then there will be an edge between that vertex and its corresponding ones (corners of ring triangles have 2 corresponding vertices). Similarly, if a vertex has a corresponding vertex on the ring within it, there will be an edge between them.</li></ul>
+<p>The rest of the edges are implementation-defined.
+</p>
+<h3><span class="mw-headline" id="Quads">Quads</span></h3>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/opengl/File:QuadLevels.png" class="mw-file-description"><img src="/opengl/images/QuadLevels.png" decoding="async" width="240" height="240" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<p>The abstract patch of a quad is a square, naturally. All 4 outer and 2 inner tessellation levels are used. The outer tessellation levels apply to the four edges shown in the diagram. The two inner tessellation levels apply to the edges depicted in the diagram, but they apply to the edges across from those as well. So inner level 0 applies to both the bottom and top edges. We will explain exactly how this works below.
+</p><p>Each vertex generated and sent to the TES will be provided a normalized 2D coordinate as the <span class="tpl-code">gl_TessCoord</span> input, representing the location of that vertex within the abstract patch. The third component of <span class="tpl-code">gl_TessCoord</span> will be 0.0.
+</p><p>Quad tessellation works rather like triangle tessellation, only with 4 sides. The tessellation is based on subdividing the edges and building vertices based on the subdivided edges.
+</p><p>Step one removes the most degenerate case. If all of the effective outer levels (as computed above) levels are exactly 1.0, and the effective inner levels are also 1.0, then nothing is tessellated. The TES will get 2 triangles and four vertices (though it may be invoked as much as 6 times). And thus, none of the later steps take place.
+</p><p>Next, if an effective inner level is 1.0 (and therefore at least one of the outer levels is &gt; 1.0, otherwise we'd have hit the above condition), then that effective inner level is recomputed as though the user had specified <span class="tpl-code">1.0 + e</span> for the level, where <span class="tpl-code">e</span> is a number infinitely close to zero. So <span class="tpl-code">1.0 + e</span> is a value just slightly above 1.0. This applies to both inner levels.
+</p><p>This ensures that, if there is any tessellating taking place along the outer edge, then there will always be at least one vertex inside of the quad.
+</p><p>The next step in tessellation is to subdivide the edges of the abstract quad patch based on the effective <i>inner</i> levels. Yes, the algorithm begins by <i>ignoring</i> the outer tessellation levels; it applies the inner tessellation to all four outer edges. Inner level 0 is applied to both horizontal edges, while level 1 is applied to the vertical edges.
+</p><p>From here, we build a series of concentric "rings" of inner quads. At each corner of the outer quad, the two neighboring subdivided vertices are taken. A vertex is computed from these two by finding the intersection of two perpendicular lines from these vertices. Perpendicular lines from the remaining vertices to the inner quad's edges define where each edge of the new quad is subdivided.
+</p><p>This process is repeated, using the new ring quad to generate the next inner ring, until one of two end conditions is met. If one or both of the inner rings has only one segment, then that ring is the final ring.
+</p><p>If one or both of the inner rings has exactly two segments, then the final ring is degenerate. That is, instead of being a quad, it is either a line (using the vertices from the long side to subdivide it) or a point (if both inner levels are identical):
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:QuadInnerOnlyQuadCorr.png" class="mw-file-description"><img src="/opengl/images/QuadInnerOnlyQuadCorr.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+<span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:QuadInnerOnlyLineCorr.png" class="mw-file-description"><img src="/opengl/images/QuadInnerOnlyLineCorr.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+<span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:QuadInnerOnlyPointCorr.png" class="mw-file-description"><img src="/opengl/images/QuadInnerOnlyPointCorr.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+</p><p>After producing these inner rings, the subdivision for the outer quad is discarded entirely. Each outer edge is then re-subdivided in accord with the four effective outer tessellation levels.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:QuadOuterAndNotris.png" class="mw-file-description"><img src="/opengl/images/QuadOuterAndNotris.png" decoding="async" width="200" height="219" class="mw-file-element" /></a></span>
+</p><p>With all the vertices generated, the area of the quad must now be broken down into triangles. The specification outlines a particular algorithm for doing so, but it leaves many of the details to the implementation. The specification guarantees:
+</p>
+<figure class="mw-default-size mw-halign-right" typeof="mw:File"><a href="/opengl/File:QuadFull.png" class="mw-file-description"><img src="/opengl/images/QuadFull.png" decoding="async" width="200" height="219" class="mw-file-element" /></a><figcaption></figcaption></figure>
+<ul><li>That the area of the quad, in (u,v) space, will be completely covered by the generated triangulation.</li>
+<li>That no part of the area of the quad will be covered more than once by the generated triangulation.</li>
+<li>That there will be edges between the neighboring vertices of each "ring" of quads. That is, the dark lines in the above diagram are guaranteed by the specification to be there.</li>
+<li>If a vertex has corresponding vertices on the ring that immediately preceded it, then there will be an edge between that vertex and its corresponding ones (corners of ring quads have 2 corresponding vertices). Similarly, if a vertex has a corresponding vertex on the ring within it, there will be an edge between them.</li></ul>
+<p>The rest of the edges are implementation-defined.
+</p>
+<h3><span class="mw-headline" id="Isolines">Isolines</span></h3>
+<figure class="mw-halign-right" typeof="mw:File"><a href="/opengl/File:Tessellation_isoline.png" class="mw-file-description"><img src="/opengl/images/thumb/Tessellation_isoline.png/300px-Tessellation_isoline.png" decoding="async" width="300" height="288" class="mw-file-element" srcset="/opengl/images/thumb/Tessellation_isoline.png/450px-Tessellation_isoline.png 1.5x, /opengl/images/Tessellation_isoline.png 2x" /></a><figcaption></figcaption></figure>
+<p>The space of the abstract patch of isolines is a square, but the abstract patch itself is a series of horizontal lines. Only the first two outer tessellation levels are used. The inner tessellation levels are ignored. The two outer tessellation levels apply to the edges as shown in the diagram.
+</p><p>Each vertex generated and sent to the TES will be provided a normalized 2D coordinate as the <span class="tpl-code">gl_TessCoord</span> input. <span class="tpl-code">gl_TessCoord.x</span> represents the distance along one of the lines, while <span class="tpl-code">gl_TessCoord.y</span> specifies which line the vertex is for. The third component of <span class="tpl-code">gl_TessCoord</span> will be 0.0.
+</p><p>The isolines patch is tessellated as follows. The effective tessellation level for outer level 0 is always computed as if you had specified <span class="tpl-code">equal_spacing</span>. The vertical edges of the square are tessellated based on this. Each vertex except the top one represents a single line.
+</p><p>The second effective tessellation level specifies how many segments the lines are divided into. It uses the standard rules for spacing to define how many segments the lines all get.
+</p><p>If you want to generate a single isoline, you should pass 1 for <span class="tpl-code">gl_TessLevelOuter[0]</span>. However, if you need more tessellated vertices than can be done in a single outer level value, the TES is perfectly capable of stitching multiple separate lines together. The tessellator guarantees that the first and last points for each line will be exactly 0.0 and 1.0.
+</p><p>Remember: the abstract patch is <i>abstract</i>; the TES can position the vertices wherever it wants.
+</p>
+<h4><span class="mw-headline" id="Examples">Examples</span></h4>
+<table class="wikitable" style="text-align:center">
+
+<tbody><tr>
+<td><span typeof="mw:File"><a href="/opengl/File:Tessellation_isoline_4_3.png" class="mw-file-description"><img src="/opengl/images/thumb/Tessellation_isoline_4_3.png/300px-Tessellation_isoline_4_3.png" decoding="async" width="300" height="266" class="mw-file-element" srcset="/opengl/images/Tessellation_isoline_4_3.png 1.5x" /></a></span>
+</td>
+<td><span typeof="mw:File"><a href="/opengl/File:Tessellation_isoline_6_2.png" class="mw-file-description"><img src="/opengl/images/thumb/Tessellation_isoline_6_2.png/300px-Tessellation_isoline_6_2.png" decoding="async" width="300" height="266" class="mw-file-element" srcset="/opengl/images/Tessellation_isoline_6_2.png 1.5x" /></a></span>
+</td></tr>
+<tr>
+<td>Isolines with tess levels (3,4)
+</td>
+<td>Isolines with tess levels (6,2)
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Tessellation_evaluation_shader">Tessellation evaluation shader</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a><i></i></div>
+<p>The Tessellation Evaluation Shader (TES) is responsible for taking the abstract coordinates generated by the primitive generator, along with the outputs from the TCS (or vertex shader, if no TCS is used), and using them to compute the actual values for the vertices. This is where you code the algorithm that you actually use to compute the new positions/normal/texcoords/etc. The TES is a mandatory part of tessellation; if one is not present, then tessellation doesn't happen.
+</p><p>The TES is rather like a vertex shader, in that each invocation operates on a distinct vertex within the tessellated patch (though, as with a vertex shader, the system may call the TES more than once for the same vertex, so it should be deterministic). Also, the TES cannot cull vertices.
+</p>
+<h2><span class="mw-headline" id="Patch_interface_and_continuity">Patch interface and continuity</span></h2>
+<p>Tessellating patches so that there are no gaps between primitives generated by adjacent patches is very important. It also is not something that simply happens. Because OpenGL is blind to how the actual tessellation works (the primitive generator only deals with the abstract patch), there are specific things that you must do to ensure gap-less tessellation between patches.
+</p><p><b>Rule 1:</b> The TES implementation of interpolation for the vertices regarding patch edges must receive binary-identical input values for those edges. The TES defines what the various patch data actually means, as it implements the interpolation. So your TCS, or per-vertex patch data in general, must make sure that the data the TES uses to generate those edge positions is the same for the shared edge on the two (or more) patches.
+</p><p>Fortunately, OpenGL's <a href="/opengl/Invariance" title="Invariance">invariance rules</a> means that shader computations that perform the exact same match will produce the exact same results. So usually, this only means making sure that the inputs to the TCS which contribute to interpolation along the edges get the same values from the <a href="/opengl/Vertex_Specification" title="Vertex Specification">vertex arrays</a>, as processed through the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>. However, different methods of tessellation and interpolation, as implemented by your TES, may have specific needs.
+</p><p><b>Rule 2:</b> The outer tessellation level for the shared edges must be binary-identical. While you could simply ensure that the "effective tessellation level" of the edges is identical, the specification says that tessellation invariance is only guaranteed if the <i>given</i> levels are identical. So it's best to be safe by ensuring that the two edges that are supposed to join together get the exact same tessellation level.
+</p><p>The above two rules will ensure that the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">TES</a> will receive binary identical values for the patch data used to compute shared edge vertices, as well as exactly matching <span class="tpl-code">gl_TessCoord</span> values for those vertices along the shared edge. Therefore, the only other rule that must be followed is:
+</p><p><b>Rule 3:</b> The TES must calculate edge vertices based only on the binary identical data using the <i>exact same math</i> between the shader invocations along the shared edges. OpenGL's standard <a href="/opengl/Invariance#Shader" title="Invariance">shader invariance rules</a> work as long as the same codepath is used for both invocations.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> If you're using two different programs (ie: two different rendering calls generate patches that share edges), then you need to make sure that the relevant shaders stages are also <a href="/opengl/Invariance#Shader" title="Invariance">invariant</a> between one another. So you may need to use the <span class="tpl-code">invariant</span> keyword where necessary.</div>
+<p>The complete invariance rules for tessellation, from <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/doc/glspec45.core.pdf#page=661">OpenGL 4.5, Appendix A.4, page 639</a>, explain how OpenGL provides those guarantees.
+</p><p>Despite the seeming complexity of these rules, they're really not hard to follow. Rule #1 can be hard to satisfy when using unusual tessellation algorithms, but for bezier or NURBS surfaces, so long as the control points are continuous in accord with those surface rules, these will be satisfied.
+</p><p>The most difficult one to satisfy generally would be rule #2, as it complicates the computations for outer tessellation levels. It can't simply be based on the distance to the overall patch; each patch has to know what the neighboring patches used so that they can all match. Essentially, you would have to compute the outer tessellation levels for a patch based on the distance for each edge to the camera. Or some similar algorithm that would be invariant across patches.
+</p><p>Rule 3 simply requires your shader to be reasonably sane, that it doesn't contain conditional logic that causes different patches to be generated using different math. Though if you need continuity between separate programs, that becomes a bit more challenging.
+</p>
+<h2><span class="mw-headline" id="Examples_2">Examples</span></h2>
+<ul><li><a rel="nofollow" class="external text" href="http://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html">OpenGL 4 Tessellation Shader Tutorial</a>: A simple OpenGL tutorial with source code for using Tessellation Shaders. Based on VC++ 2010.</li></ul>
+<ul><li><a rel="nofollow" class="external text" href="http://computeranimations.wordpress.com/2015/03/16/rasterization-of-parametric-curves-using-tessellation-shaders-in-glsl">Drawing curves using Tessellation Shaders</a>: A tutorial for the rasterization of parametric curves using Tessellation Shaders with source code.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318035246
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.082 seconds
+Real time usage: 0.089 seconds
+Preprocessor visited node count: 1630/1000000
+Post‐expand include size: 15685/2097152 bytes
+Template argument size: 6279/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 1/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 1584/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   32.077      1 -total
+ 57.65%   18.491      1 Template:Stack
+ 29.21%    9.370      1 Template:Infobox_feature
+ 26.51%    8.502      1 Template:Infobox2
+ 21.97%    7.047      1 Template:Pipeline_float
+ 15.97%    5.122      1 Template:Pipeline_list
+  8.67%    2.780     10 Template:Infobox/shortrow
+  8.63%    2.768     10 Template:Infobox/longrow
+  7.63%    2.446     20 Template:Pagelink
+  7.07%    2.269      3 Template:Note
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2209-0!canonical and timestamp 20260318035246 and revision id 14698. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation&amp;oldid=14698">https://wikis.khronos.org/opengl/index.php?title=Tessellation&amp;oldid=14698</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li><li><a href="/opengl/Category:Vertex_Processing" title="Category:Vertex Processing">Vertex Processing</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

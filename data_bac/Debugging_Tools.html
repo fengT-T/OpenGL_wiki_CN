@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Debugging Tools - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"3822544bb50b1e995031fc44","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Debugging_Tools","wgTitle":"Debugging Tools","wgCurRevisionId":14876,"wgRevisionId":14876,"wgArticleId":1406,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Related Toolkits \u0026 APIs"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Debugging_Tools","wgRelevantArticleId":1406,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=skins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Debugging_Tools rootpage-Debugging_Tools skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Debugging Tools</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>There are several tools that can aid in the debugging of your OpenGL program.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Debug_Output"><span class="tocnumber">1</span> <span class="toctext">Debug Output</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#RenderDoc"><span class="tocnumber">2</span> <span class="toctext">RenderDoc</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#BuGLe"><span class="tocnumber">3</span> <span class="toctext">BuGLe</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#AMD_CodeXL"><span class="tocnumber">4</span> <span class="toctext">AMD CodeXL</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#APITrace"><span class="tocnumber">5</span> <span class="toctext">APITrace</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#GLIntercept"><span class="tocnumber">6</span> <span class="toctext">GLIntercept</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#GLSL-Debugger"><span class="tocnumber">7</span> <span class="toctext">GLSL-Debugger</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Xcode_tools"><span class="tocnumber">8</span> <span class="toctext">Xcode tools</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Vogl"><span class="tocnumber">9</span> <span class="toctext">Vogl</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#AMD_GPU_PerfStudio"><span class="tocnumber">10</span> <span class="toctext">AMD GPU PerfStudio</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#NVIDIA_Nsight_Graphics"><span class="tocnumber">11</span> <span class="toctext">NVIDIA Nsight Graphics</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#NVIDIA_Nsight_VSE"><span class="tocnumber">12</span> <span class="toctext">NVIDIA Nsight VSE</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Intel_GPA"><span class="tocnumber">13</span> <span class="toctext">Intel GPA</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Debug_Output">Debug Output</span></h2>
+<dl><dd><dl><dd><div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Debug_Output" title="Debug Output">Debug Output</a><i></i></div></dd></dl></dd></dl>
+<p><b>Description:</b>
+</p><p>Debug Output is an OpenGL feature that makes debugging and optimizing OpenGL applications easier.  It is a core feature of GL 4.3 (described specifically in <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/KHR/debug.txt">KHR_debug</a>).  Ancestor GL extensions are available for older OpenGL implementations.
+</p><p>In a nutshell, it allows your application to be notified via a callback function when "interesting events" occur.  For instance, this allows the GL driver to notify your application:
+</p>
+<ul><li>when a GL error has occurred (and to provide extended information about why that error occurred),</li>
+<li>when your app is using a slow path in the GL driver,</li>
+<li>when (based on your usage) the GL driver has a performance tip to offer for improving your app's performance, or</li>
+<li>when some important state change has occurred in the driver that you might want to know about.</li></ul>
+<p>Catching GL errors with this method is much easier than by using <a href="/opengl/Error_Checking" class="mw-redirect" title="Error Checking">glGetError() error checking</a>.  Your application is also able to annotate GL objects with human-readable names and insert its own debugging messages into the event stream.
+</p><p><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/KHR/debug.txt">KHR_debug</a> (part of core OpenGL 4.3) provides a convenient way to <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable()</a></span> this debug output support from within a normal GL context.
+</p>
+<h2><span class="mw-headline" id="RenderDoc">RenderDoc</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://renderdoc.org/">https://renderdoc.org/</a></dd></dl>
+<p><b>Description:</b>
+RenderDoc is a stand-alone graphics debugging tool, released under the MIT License, that supports OpenGL 3.2+ (Core Profile only) development on Windows and Linux. Besides OpenGL, RenderDoc can also be used to debug <a rel="nofollow" class="external text" href="https://www.khronos.org/vulkan/">Vulkan</a> and several other graphics APIs.  Online documentation is available at <a rel="nofollow" class="external free" href="https://renderdoc.org/docs/index.html">https://renderdoc.org/docs/index.html</a>.
+</p>
+<h2><span class="mw-headline" id="BuGLe">BuGLe</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://www.opengl.org/sdk/tools/BuGLe/">https://www.opengl.org/sdk/tools/BuGLe/</a></dd></dl>
+<p><b>Description:</b> BuGLe is a free (as in freedom) software released under the GPLv2. It is a toolkit for debugging and profiling OpenGL applications running on UNIX-like systems. It consists of two parts: a collection of filter-sets that observe and sometimes modify calls to the OpenGL API, and a graphical debugger (<tt>gldb-gui</tt>) that helps in setting breakpoints, capturing errors, and examining state (including shader code, buffers and a visual feedback of the textures, the color buffers and depth buffer).
+</p><p><b>Note:</b> It was officially announced on November 23 2014 that BuGLe is no longer being developed. <a rel="nofollow" class="external autonumber" href="https://www.opengl.org/sdk/tools/BuGLe/news.php">[1]</a>
+</p>
+<h2><span class="mw-headline" id="AMD_CodeXL">AMD CodeXL</span></h2>
+<p>CodeXL is no longer being actively developed or supported.
+</p>
+<dl><dd><a rel="nofollow" class="external free" href="https://gpuopen.com/compute-product/codexl/">https://gpuopen.com/compute-product/codexl/</a></dd>
+<dd><a rel="nofollow" class="external free" href="https://en.wikipedia.org/wiki/CodeXL">https://en.wikipedia.org/wiki/CodeXL</a></dd></dl>
+<p><b>Description:</b>
+<a rel="nofollow" class="external text" href="http://gpuopen.com/compute-product/codexl/">AMD's CodeXL</a> is the successor to <a rel="nofollow" class="external text" href="https://www.khronos.org/news/permalink/amd-acquires-graphic-remedy-to-extend-its-technology-portfolio-and-opens-a">Graphic Remedy's gDebugger</a>.
+</p><p>gDebugger was a commercial application that hooked into your application and displayed info in text and graphical form in its own window. It could also show GPU utilization. You could use it to find out where the bottleneck is in your app. There were Windows and Linux versions.
+</p><p>It also supported <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/GREMEDY/string_marker.txt">GL_GREMEDY_string_marker</a> for leaving natural language description markers in your source code, which made it easier for you to locate where in your application that GL call sequences were being executed.
+</p>
+<h2><span class="mw-headline" id="APITrace">APITrace</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://github.com/apitrace/apitrace">https://github.com/apitrace/apitrace</a></dd></dl>
+<p><b>Description:</b>
+APITrace is another free (as in freedom) software. It is  a toolkit for debugging and profiling OpenGL and DirectX applications running on Linux or Windows. You first run your program to generate a "trace file", and this file can then be replayed or explored using the tools provided.
+</p>
+<h2><span class="mw-headline" id="GLIntercept">GLIntercept</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://github.com/dtrebilco/glintercept">https://github.com/dtrebilco/glintercept</a></dd></dl>
+<p><b>Description:</b>
+GLIntercept is a free open sourced program intended for Windows platforms. After installing, a folder (<span class="tpl-code">C:\Program Files\GLIntercept*_*</span> where the asterisks are the version numbers) will have been created. This folder holds several sample configuration files of interest which can be used to configure GLIntercept: <span class="tpl-code">gliConfig.ini</span>, <span class="tpl-code">gliConfig_AuthorStd.ini</span>, <span class="tpl-code">gliConfig_ExtOverride.ini</span>, etc. In addition, this folder holds a version of the <code>OpenGL32.dll</code> file which acts an intermediary between your system's OpenGL implementation and GLIntercept. To utilize this functionality, copy the DLL and a customized copy of the <span class="tpl-code">gliConfig.ini</span> file to your application's target folder (usually where the .EXE resides) and run your application. All invoked OpenGL function calls will route through the DLL, allowing GLIntercept to detect:
+</p>
+<ul><li>Errors</li>
+<li>Function calls before context creation</li>
+<li>Resource leaks</li></ul>
+<p>Once you close your app, GLI dumps the above info into gliLog.txt.
+</p><p>You may configure GLI to output a XML log file (upon pressing [Ctrl]+[Shift]+[f]) showing all of the OpenGL functions called, problems and used shaders and textures. GLI will make a folder where your EXE is and places the XML files and all related files like screen captures and textures.
+</p><p>In gliConfig.ini, check out section "LogPerFrame".
+</p><p><b>Cons:</b> The program is intended for applications that have a single GL context. Windows Only. It is compatible with OpenGL 3.x and above, but it will not provide the best form of logging for some of the more recent APIs and extensions.
+</p>
+<h2><span class="mw-headline" id="GLSL-Debugger">GLSL-Debugger</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="http://glsl-debugger.github.io/">http://glsl-debugger.github.io/</a></dd></dl>
+<p><b>Description:</b>
+GLSL-Debugger is similar in concept to gDebugger.  It works transparently just like gDebugger, and it can debug the shaders line by line.  It is also free. 
+</p><p>Linux and Windows.
+</p><p>The source code has been opened in 2013 and actively developing Open Source fork is now available: <a rel="nofollow" class="external free" href="http://glsl-debugger.github.io/">http://glsl-debugger.github.io/</a>.  This is a fork of the original glslDevil project.
+</p>
+<h2><span class="mw-headline" id="Xcode_tools">Xcode tools</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://developer.apple.com/xcode/">https://developer.apple.com/xcode/</a></dd></dl>
+<p><b>Description:</b>
+Under Mac OS X, Apple provides two very handy tools for debugging OpenGL applications as part of Xcode: <a rel="nofollow" class="external text" href="https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/OpenGLDriverMonitorUserGuide/Introduction/Introduction.html">OpenGL Driver Monitor</a> and <a rel="nofollow" class="external text" href="https://developer.apple.com/library/mac/documentation/GraphicsImaging/Conceptual/OpenGLProfilerUserGuide/Introduction/Introduction.html">OpenGL Profiler</a>.
+</p>
+<h2><span class="mw-headline" id="Vogl">Vogl</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://github.com/ValveSoftware/vogl">https://github.com/ValveSoftware/vogl</a></dd></dl>
+<p><b>Description:</b>
+Vogl is a free (as in freedom) software released under the MIT License by RAD Game Tools and Valve Software. It is an OpenGL capture / playback debugger running on Linux, Windows, and Mac OSX.
+</p>
+<h2><span class="mw-headline" id="AMD_GPU_PerfStudio">AMD GPU PerfStudio</span></h2>
+<p>GPU PerfStudio is no longer being maintained.
+</p>
+<dl><dd><a rel="nofollow" class="external free" href="http://gpuopen.com/archive/gpu-perfstudio/">http://gpuopen.com/archive/gpu-perfstudio/</a></dd></dl>
+<p><b>Description:</b>
+Supports Windows and Linux, can be used to analyze frames, see textures, buffers, shaders, etc. Also works on non-AMD hardware.
+</p>
+<h2><span class="mw-headline" id="NVIDIA_Nsight_Graphics">NVIDIA Nsight Graphics</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://developer.nvidia.com/nsight-graphics">https://developer.nvidia.com/nsight-graphics</a></dd></dl>
+<p><b>Description:</b>
+</p><p><a rel="nofollow" class="external text" href="https://developer.nvidia.com/nsight-graphics">Nsight Graphics</a> supports stand-alone profiling and debugging of OpenGL, Vulkan, and D3D applications on both Windows and Linux, including those utilizing OpenVR, the Oculus SDK, or the Ray Tracing extensions for Vulkan or D3D.  Here's the <a rel="nofollow" class="external text" href="https://developer.nvidia.com/nsight-graphics-features">Support Matrix</a>.  As of 2019, Nsight Graphics is being actively maintained and extended.  See also: <a rel="nofollow" class="external text" href="https://developer.nvidia.com/nsight-graphics-documentation-and-support">Documentation</a>, <a rel="nofollow" class="external text" href="https://devtalk.nvidia.com/default/board/322/nsight-graphics/">Support Forum</a> (post questions and feature requests here).
+</p><p>In practice, Nsight Graphics has solid capture, debugging, and profiling support for OpenGL applications, including complete support for OpenGL <a href="/opengl/Debug_Output" title="Debug Output">Debug_Output</a> APIs.  Marking sub-frame processing sections with named debug groups makes it fairly trivial to identify, examine, and profile these in frame captures.
+</p>
+<h2><span class="mw-headline" id="NVIDIA_Nsight_VSE">NVIDIA Nsight VSE</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://www.nvidia.com/object/nsight.html">https://www.nvidia.com/object/nsight.html</a></dd></dl>
+<p><b>Description:</b>
+The Nsight <a rel="nofollow" class="external text" href="https://developer.nvidia.com/nvidia-nsight-visual-studio-edition">Visual Studio Edition</a> provides visual debugging and profiling capability for OpenGL / CUDA / D3D (and more) programs on Windows.  This is an older tool that (unlike <a href="#NVIDIA_Nsight_Graphics">Nsight Graphics</a>) requires both Windows and Microsoft Visual Studio.
+</p><p><a rel="nofollow" class="external text" href="https://developer.nvidia.com/nsight-eclipse-edition">NSight Eclipse Edition</a> provides similar support for Linux and Mac OS. 
+</p>
+<h2><span class="mw-headline" id="Intel_GPA">Intel GPA</span></h2>
+<dl><dd><a rel="nofollow" class="external free" href="https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html">https://software.intel.com/content/www/us/en/develop/tools/graphics-performance-analyzers.html</a></dd></dl>
+<p><b>Description:</b>
+Intel® Graphics Performance Analyzers Framework - A command line and scripting interface allows users to access frameworks that expose capture and playback functionalities in Intel® Graphics Performance Analyzers (Intel® GPA). Capture multiframe streams, analyze stream data, generate reports, and automate profiling to spot or flag performance regressions.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318052101
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.036 seconds
+Real time usage: 0.037 seconds
+Preprocessor visited node count: 148/1000000
+Post‐expand include size: 625/2097152 bytes
+Template argument size: 208/2097152 bytes
+Highest expansion depth: 5/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    9.572      1 -total
+ 39.24%    3.756      1 Template:Main
+ 31.70%    3.034      1 Template:Apifunc
+ 20.22%    1.935      6 Template:Code
+ 15.78%    1.510      2 Template:Extref
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1406-0!canonical and timestamp 20260318052101 and revision id 14876. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Debugging_Tools&amp;oldid=14876">https://wikis.khronos.org/opengl/index.php?title=Debugging_Tools&amp;oldid=14876</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:Related_Toolkits_%26_APIs" title="Category:Related Toolkits &amp; APIs">Related Toolkits &amp; APIs</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Debugging+Tools" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Debugging_Tools" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Debugging_Tools&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Debugging_Tools"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Debugging_Tools&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Debugging_Tools&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Debugging_Tools" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Debugging_Tools" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Debugging_Tools&amp;oldid=14876" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Debugging_Tools&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Debugging_Tools&amp;id=14876&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 18 August 2021, at 17:25.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":167,"wgPageParseReport":{"limitreport":{"cputime":"0.036","walltime":"0.037","ppvisitednodes":{"value":148,"limit":1000000},"postexpandincludesize":{"value":625,"limit":2097152},"templateargumentsize":{"value":208,"limit":2097152},"expansiondepth":{"value":5,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%    9.572      1 -total"," 39.24%    3.756      1 Template:Main"," 31.70%    3.034      1 Template:Apifunc"," 20.22%    1.935      6 Template:Code"," 15.78%    1.510      2 Template:Extref"]},"cachereport":{"timestamp":"20260318052101","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6dfc3b11a3d1',t:'MTc3NDIzNzM4Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

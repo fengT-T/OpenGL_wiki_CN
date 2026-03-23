@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Texture - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"1ca5fe2a5e2b4b9ac3806b4e","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Texture","wgTitle":"Texture","wgCurRevisionId":14997,"wgRevisionId":14997,"wgArticleId":1562,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","Objects","Textures","Missing DSA"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Texture","wgRelevantArticleId":1562,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Texture rootpage-Texture skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Texture</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Objects</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a></div>
+<hr />
+<ul><li><a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>
+<ul><li><a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">Vertex Buffer Objects</a></li>
+<li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Objects</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Objects</a></li>
+<li><a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a></li>
+<li><a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a></li>
+<li><a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a></li></ul></li>
+<li><a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a></li>
+<li><b>Texture</b>s
+<ul><li><a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a></li>
+<li><a href="/opengl/Image_Format" title="Image Format">Image formats</a></li>
+<li><a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a></li>
+<li><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a></li>
+<li><a href="/opengl/Array_Texture" title="Array Texture">Array Textures</a></li>
+<li><a href="/opengl/Multisample_Texture" title="Multisample Texture">Multisample Textures</a></li>
+<li><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a></li>
+<li><a href="/opengl/3D_Texture" title="3D Texture">3D Textures</a></li>
+<li><a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a></li>
+<li><a href="/opengl/Texture_Storage#Texture_views" title="Texture Storage">Texture Views</a></li></ul></li>
+<li><a href="/opengl/Query_Object" title="Query Object">Asynchronous query objects</a></li>
+<li><a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a>
+<ul><li><a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a></li>
+<li><a href="/opengl/Renderbuffer_Object" title="Renderbuffer Object">Renderbuffer Objects</a></li></ul></li>
+<li><b>Unconventional objects:</b>
+<ul><li><a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a></li>
+<li><a href="/opengl/GLSL_Object" title="GLSL Object">Shader and program objects</a></li></ul></li></ul>
+</div>
+</div>
+<p>A <b>texture</b> is an <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">OpenGL Object</a> that contains one or more images that all have the same <a href="/opengl/Image_Formats" class="mw-redirect" title="Image Formats">image format</a>. A texture can be used in two ways: it can be the source of a texture access from a <a href="/opengl/Shader" title="Shader">Shader</a>, or it can be used as a render target.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Theory"><span class="tocnumber">1</span> <span class="toctext">Theory</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Mip_maps"><span class="tocnumber">1.1</span> <span class="toctext">Mip maps</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Texture_Objects"><span class="tocnumber">2</span> <span class="toctext">Texture Objects</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Texture_completeness"><span class="tocnumber">2.1</span> <span class="toctext">Texture completeness</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Mipmap_completeness"><span class="tocnumber">2.1.1</span> <span class="toctext">Mipmap completeness</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Cubemap_completeness"><span class="tocnumber">2.1.2</span> <span class="toctext">Cubemap completeness</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Image_format_completeness"><span class="tocnumber">2.1.3</span> <span class="toctext">Image format completeness</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Sampler_objects_and_completeness"><span class="tocnumber">2.1.4</span> <span class="toctext">Sampler objects and completeness</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Storage"><span class="tocnumber">3</span> <span class="toctext">Storage</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Parameters"><span class="tocnumber">4</span> <span class="toctext">Parameters</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Mipmap_range"><span class="tocnumber">4.1</span> <span class="toctext">Mipmap range</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Swizzle_mask"><span class="tocnumber">4.2</span> <span class="toctext">Swizzle mask</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Stencil_texturing"><span class="tocnumber">4.3</span> <span class="toctext">Stencil texturing</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Sampling_parameters"><span class="tocnumber">5</span> <span class="toctext">Sampling parameters</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Texture_image_units"><span class="tocnumber">6</span> <span class="toctext">Texture image units</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#GLSL_binding"><span class="tocnumber">7</span> <span class="toctext">GLSL binding</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Samplers"><span class="tocnumber">7.1</span> <span class="toctext">Samplers</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Images"><span class="tocnumber">7.2</span> <span class="toctext">Images</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#Render_targets"><span class="tocnumber">8</span> <span class="toctext">Render targets</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Reference"><span class="tocnumber">9</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Theory">Theory</span></h2>
+<p>For the purpose of this discussion, an <i>image</i> is defined as a single array of pixels of a certain dimensionality (1D, 2D, or 3D), with a particular size, and a specific <a href="/opengl/Image_Formats" class="mw-redirect" title="Image Formats">format</a>.
+</p><p>A texture is a container of one or more images. But textures do not store arbitrary images; a texture has specific constraints on the images it can contain. There are three defining characteristics of a texture, each of them defining part of those constraints: the texture type, texture size, and the image format used for images in the texture. The texture type defines the arrangement of images within the texture. The size defines the size of the images in the texture. And the image format defines the format that all of these images share.
+</p><p>There are a number of different types of textures. These are:
+</p>
+<ul><li><span class="tpl-enum">GL_TEXTURE_1D</span>: Images in this texture all are 1-dimensional. They have width, but no height or depth.</li>
+<li><span class="tpl-enum">GL_TEXTURE_2D</span>: Images in this texture all are 2-dimensional. They have width and height, but no depth.</li>
+<li><span class="tpl-enum">GL_TEXTURE_3D</span>: Images in this texture all are 3-dimensional. They have width, height, and depth.</li>
+<li><span class="tpl-enum"><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">GL_TEXTURE_RECTANGLE</a></span>: The image in this texture (only one image. No mipmapping) is 2-dimensional. Texture coordinates used for these textures are not normalized.</li>
+<li><span class="tpl-enum"><a href="/opengl/Texture_Buffer" class="mw-redirect" title="Texture Buffer">GL_TEXTURE_BUFFER</a></span>: The image in this texture (only one image. No mipmapping) is 1-dimensional. The storage for this data comes from a <a href="/opengl/Buffer_Objects" class="mw-redirect" title="Buffer Objects">Buffer Object</a>.</li>
+<li><span class="tpl-enum"><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">GL_TEXTURE_CUBE_MAP</a></span>: There are exactly 6 distinct sets of 2D images, each image being of the same size and must be of a square size. These images act as 6 faces of a cube.</li>
+<li><span class="tpl-enum"><a href="/opengl/Array_Texture" title="Array Texture">GL_TEXTURE_1D_ARRAY</a></span>: Images in this texture all are 1-dimensional. However, it contains multiple sets of 1-dimensional images, all within one texture. The array length is part of the texture's size.</li>
+<li><span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>: Images in this texture all are 2-dimensional. However, it contains multiple sets of 2-dimensional images, all within one texture. The array length is part of the texture's size.</li>
+<li><span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>: Images in this texture are all cube maps. It contains multiple sets of cube maps, all within one texture. The array length * 6 (number of cube faces) is part of the texture size.</li>
+<li><span class="tpl-enum"><a href="/opengl/Multisample_Texture" title="Multisample Texture">GL_TEXTURE_2D_MULTISAMPLE</a></span>: The image in this texture (only one image. No mipmapping) is 2-dimensional. Each pixel in these images contains multiple samples instead of just one value.</li>
+<li><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE_ARRAY</span>: Combines 2D array and 2D multisample types. No mipmapping.</li></ul>
+<p><br />
+Texture sizes have a limit based on the GL implementation. For 1D and 2D textures (and any texture types that use similar dimensionality, like cubemaps) the max size of either dimension is <span class="tpl-enum">GL_MAX_TEXTURE_SIZE</span>. For array textures, the maximum array length is <span class="tpl-enum">GL_MAX_ARRAY_TEXTURE_LAYERS</span>. For 3D textures, no dimension can be greater than <span class="tpl-enum">GL_MAX_3D_TEXTURE_SIZE</span> in size.
+</p><p>Within these limits, the size of a texture can be any value. It is advised however, that you stick to powers-of-two for texture sizes, unless you have a significant need to use arbitrary sizes.
+</p>
+<h3><span class="mw-headline" id="Mip_maps">Mip maps</span></h3>
+<p>When a texture is directly applied to a surface, how many pixels of that texture (commonly called "texels") are used depends on the angle at which that surface is rendered. A texture mapped to a plane that is almost edge-on with the camera will only use a fraction of the pixels of the texture. Similarly, looking directly down on the texture from far away will show fewer texels than an up-close version.
+</p><p>The problem is with animation. When you slowly zoom out on a texture, you start to see aliasing artifacts appear. These are caused by sampling fewer than all of the texels; the choice of which texels are sampled changes between different frames of the animation. Even with linear filtering (see below), artifacts will appear as the camera zooms out.
+</p><p>To solve this problem, we employ mip maps. These are pre-shrunk versions of the full-sized image. Each mipmap is half the size (rounded down) of the previous one in the chain, continuing until all dimensions are 1. So a 64x16 2D texture can have 6 mip-maps: 32x8, 16x4, 8x2, 4x1, 2x1, and 1x1. OpenGL does not require that the entire mipmap chain is complete; you can specify what range of mipmaps in a texture are available.
+</p><p>Note that the division by 2 rounds down. So a 63x63 texture has as its next lowest mipmap level 31x31. And so on.
+</p><p>The <i>base level</i> of a mipmap chain is the largest one in size. It is also the one that defines the full size of the texture. OpenGL numbers this mipmap level as 0; the next largest mipmap level is 1, and so on.
+</p><p>Some texture types have multiple conceptually independent sets of mipmaps. Each face of a cubemap has its own set of mipmaps, as does each entry in an array texture. However, while the chains are conceptually independent, there is only one mipmap setting per-texture. So all of the mipmap chains in a texture must have the same number of mipmaps.
+</p><p>When sampling a texture (see below), the implementation will automatically select which mipmap to use based on the viewing angle, size of texture, and various other factors.
+</p><p>The base level of a texture does not have to be loaded. The valid range of mipmaps must be contiguous, but the range need not start at 0.
+</p>
+<h2><span class="mw-headline" id="Texture_Objects">Texture Objects</span></h2>
+<figure typeof="mw:File/Frame"><a href="/opengl/File:Anatomy_of_a_Texture.png" class="mw-file-description"><img alt="Anatomy of a Texture" src="/opengl/images/Anatomy_of_a_Texture.png" decoding="async" width="415" height="341" class="mw-file-element" /></a><figcaption>Diagram of the contents of a texture object</figcaption></figure>
+<p>Textures in OpenGL are <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">OpenGL Objects</a>, and they follow the standard conventions of such. So they have the standard <span class="tpl-code"><a href="/opengl/GLAPI/glGenTextures" title="GLAPI/glGenTextures">glGenTextures</a></span>, <span class="tpl-code"><a href="/opengl/GLAPI/glBindTexture" title="GLAPI/glBindTexture">glBindTexture</a></span>, as you would expect.
+</p><p>The <i>target</i> parameter of <span class="tpl-code"><a href="/opengl/GLAPI/glBindTexture" title="GLAPI/glBindTexture">glBindTexture</a></span> corresponds to the texture's type. So when you use a freshly generated texture name, the first bind helps define the type of the texture. It is not legal to bind an object to a different target than the one it was previously bound with. So if you generate a texture and bind it as <span class="tpl-enum">GL_TEXTURE_1D</span>, then you <i>must</i> continue to bind it as such.
+</p><p>As with any other kind of OpenGL object, it is legal to bind multiple objects to different targets. So you can have a <span class="tpl-enum">GL_TEXTURE_1D</span> bound while a <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span> is bound.
+</p>
+<h3><span class="mw-headline" id="Texture_completeness">Texture completeness</span></h3>
+<p>A texture object has the concept of "completeness". A complete texture object is one which is in a logical state to be used for many operations. Until a texture is complete, it *cannot* be used in shader sampling or <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> operations. And attaching an image from a texture to a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Object</a> requires certain forms of completeness.
+</p><p>A texture object is complete if it fulfills the following 3 kinds of completeness requirements.
+</p>
+<h4><span class="mw-headline" id="Mipmap_completeness">Mipmap completeness</span></h4>
+<p>Mipmap completeness essentially requires that there is consistency between the image formats of the allocated mipmap levels, the <a href="#Parameters">texture parameters</a>, and the <a href="#Sampling_parameters">texture's sampling parameters</a>.
+</p><p>Textures that use storage allocated with <a href="/opengl/Immutable_Storage_Texture" class="mw-redirect" title="Immutable Storage Texture">immutable storage functions</a> (and <a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a>) will <i>always</i> be mipmap complete. For other textures, the following rules apply.
+</p><p>If the <a href="/opengl/Texture_Filtering" class="mw-redirect" title="Texture Filtering">texture's sampling parameter</a> <span class="tpl-enum">GL_TEXTURE_MIN_FILTER</span> specifies that it uses mipmaps, then the following must all be true:
+</p>
+<ul><li>Each mipmap level must use the <i>exact same</i> <a href="/opengl/Image_Format" title="Image Format">internal format</a>.</li>
+<li>Each allocated mipmap level must have a consistent size, relative to the one before it. The width/height/depth of a mipmap level is the width/height/depth of the base level / 2<sup><i>k</i></sup>, where <i>k</i> is the mipmap level (remember: 0 is the base level). Remember to <i>round down</i>, and that the minimum size is 1.
+<ul><li>1D <a href="/opengl/Array_Textures" class="mw-redirect" title="Array Textures">Array Textures</a> have a <span class="tpl-param">width​</span> and <span class="tpl-param">height​</span>. But the <span class="tpl-param">height​</span> specifies the number of array layers in the array of 1D textures. Therefore, the <span class="tpl-param">height​</span> <i>does not change</i> with mipmap levels. Each mipmap level uses the same <span class="tpl-param">height​</span>. The same goes for 2D Array textures and Cubemap Array textures with the <span class="tpl-param">depth​</span> parameter.</li></ul></li>
+<li>The <a href="#Mipmap_range">mipmap range</a> texture parameters are given values where <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span> &lt;= <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span>.</li>
+<li>The base and max levels must only specify mipmap levels that have been allocated, in accord with the above.</li></ul>
+<p>Mipmap completion only applies if the minification filtering parameters use mipmaps. If it does not, then the texture is always mipmap complete.
+</p>
+<h4><span class="mw-headline" id="Cubemap_completeness">Cubemap completeness</span></h4>
+<p><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a> have additional requirements, due to how they are allocated (with mutable storage functions). Textures that use storage allocated with immutable storage functions will <i>always</i> be cubemap complete. For other textures, the following rules apply:
+</p>
+<ul><li>For each mipmap level, each face of a cubemap must have the same size. And that size must be square.</li>
+<li>For each mipmap level, each face of a cubemap must have the same internal format.</li></ul>
+<h4><span class="mw-headline" id="Image_format_completeness">Image format completeness</span></h4>
+<p>The <a href="/opengl/Image_Format" title="Image Format">internal format</a> a texture uses can also affect its completeness, depending on its sampling parameters.
+</p><p>Integer color formats and stencil index formats (whether <span class="tpl-enum">GL_STENCIL_INDEX</span> directly or via <a href="/opengl/Stencil_Texturing" class="mw-redirect" title="Stencil Texturing">Stencil Texturing</a>) do not support linear filtering. As such, the <span class="tpl-enum">GL_TEXTURE_MAG_FILTER</span> sampling parameter must be <span class="tpl-enum">GL_NEAREST</span>, and <span class="tpl-enum">GL_TEXTURE_MIN_FILTER</span> must be either <span class="tpl-enum">GL_NEAREST</span> or <span class="tpl-enum">GL_NEAREST_MIPMAP_NEAREST</span>.
+</p>
+<h4><span class="mw-headline" id="Sampler_objects_and_completeness">Sampler objects and completeness</span></h4>
+<p>When using a texture with a <a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Object</a>, the completeness of that texture will be based on the sampler object's sampling parameters, rather than the <a href="#Sampling_parameters">internal sampling parameters</a> of the texture.
+</p><p>For example, if a texture object only has the base mipmap, and the <a href="#Mipmap_range">mipmap range parameters</a> permit accessing beyond the base level, that texture object will be incomplete if the <span class="tpl-enum">GL_TEXTURE_MIN_FILTER</span> parameters require access to mipmaps other than the base level. However, if you pair this object with a sampler who's min filter is <span class="tpl-enum">GL_LINEAR</span> or <span class="tpl-enum">GL_NEAREST</span>, then that texture image unit will be mipmap complete.
+</p><p>Similarly, if a texture uses an integer <a href="/opengl/Image_Format" title="Image Format">Image Format</a>, and the paired sampler only uses nearest filtering, the texture will be image format complete.
+</p><p>So a texture may be considered complete or not, based on where it is used.
+</p><p><a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> does not use sampler objects. But it still performs texture completeness checks. So it will apply the completeness rules based on the <a href="#Sampling_parameters">texture's internal sampling parameters</a>, not those of a sampler object.
+</p>
+<h2><span class="mw-headline" id="Storage">Storage</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a><i></i></div>
+<p>Texture objects come in three parts: storage, sampling parameters, and texture parameters. There are <i>numerous</i> functions to create a texture's storage; so many that the article needs its own page to describe them all.
+</p>
+<h2><span class="mw-headline" id="Parameters">Parameters</span></h2>
+<p>Texture objects have parameters. These parameters control many aspects of how the texture functions.
+</p><p>Texture parameters are set with the following functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexParameter" title="GLAPI/glTexParameter">glTexParameter[if]</a></span>( GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">pname​</span>, T <span class="tpl-param">param​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexParameter" title="GLAPI/glTexParameter">glTexParameter[if]v</a></span>( GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">pname​</span>, T *<span class="tpl-param">params​</span> );
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexParameter" title="GLAPI/glTexParameter">glTexParameterI[i ui]v</a></span>( GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">pname​</span>, T *<span class="tpl-param">params​</span> );
+</p>
+</div>
+<p>These function set the parameter values <span class="tpl-param">param​</span> or <span class="tpl-param">params​</span> for the particular parameter <span class="tpl-param">pname​</span> in the texture bound to <span class="tpl-param">target​</span>.
+</p><p>In the anatomy of a texture object image above, it shows three pieces of data: <a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a>, texture parameters, and <a href="/opengl/Sampling_Parameter" class="mw-redirect" title="Sampling Parameter">sampling parameters</a>. It's important to understand that both of the last two kinds of data are set by the <i>same functions</i> for textures. Certain parameters are about the texture itself, and some are about sampling from them.
+</p><p>This section will describe the texture parameters only.
+</p>
+<h3><span class="mw-headline" id="Mipmap_range">Mipmap range</span></h3>
+<p>The parameters <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span> and <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span> (integer values) define the closed range of the mipmaps that are to be considered available with this texture. Nothing can cause the sampling of mipmaps smaller than <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span> and nothing can cause the sampling of mipmaps greater than <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span>. This even filters into <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a>; the texture size functions will retrieve the size of <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span>, rather than the size of mipmap level 0.
+</p><p>Note that <a href="/opengl/Immutable_Storage_Texture" class="mw-redirect" title="Immutable Storage Texture">immutable storage textures</a> will already have these values set to the mipmap range of the storage upon creation. You can set them to be some subrange of this, but it is an <a href="/opengl/OpenGL_Error" title="OpenGL Error">error</a> to set the base or max level outside of the available mipmap range for the immutable storage.
+</p>
+<h3><span class="mw-headline" id="Swizzle_mask">Swizzle mask</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Texture Swizzle</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_swizzle.txt">ARB_texture_swizzle</a></td></tr>
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">EXT extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_swizzle.txt">EXT_texture_swizzle</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>While GLSL shaders are perfectly capable of reordering the <span class="tpl-code">vec4</span> value returned by a texture function, it is often more convenient to control the ordering of the data fetched from a texture from code. This is done through swizzle parameters.
+</p><p>Texture objects can have swizzling parameters. This only works for textures with color image formats. Each of the four output components, RGBA, can be set to come from a particular color channel. The swizzle mask is respected by all shader read accesses, whether via <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">texture samplers</a> or <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This feature only applies to reads from the shader. Writes via <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> are not affected by the swizzle mask. Also, are reads or writes from other sources, such as <a href="/opengl/Blending" title="Blending">Blending</a> operations, do not respect the swizzle mask.</div>
+<p>To set the output for a component, you would set the <span class="tpl-enum">GL_TEXTURE_SWIZZLE_<b>C</b></span> texture parameter, where <b>C</b> is R, G, B, or A. These parameters can be set to the following values:
+</p>
+<ul><li><span class="tpl-enum">GL_RED</span>: The value for this component comes from the red channel of the image. All color formats have at least a red channel.</li>
+<li><span class="tpl-enum">GL_GREEN</span>: The value for this component comes from the green channel of the image, or 0 if it has no green channel.</li>
+<li><span class="tpl-enum">GL_BLUE</span>: The value for this component comes from the blue channel of the image, or 0 if it has no blue channel.</li>
+<li><span class="tpl-enum">GL_ALPHA</span>: The value for this component comes from the alpha channel of the image, or 1 if it has no alpha channel.</li>
+<li><span class="tpl-enum">GL_ZERO</span>: The value for this component is always 0.</li>
+<li><span class="tpl-enum">GL_ONE</span>: The value for this component is always 1.</li></ul>
+<p>You can also use the <span class="tpl-enum">GL_TEXTURE_SWIZZLE_RGBA</span> parameter to set all four at once. This one takes an array of four values. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Bind the texture 2D.</span>
+<span class="n">GLint</span><span class="w"> </span><span class="n">swizzleMask</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GL_ZERO</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ZERO</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ZERO</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RED</span><span class="p">};</span>
+<span class="n">glTexParameteriv</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TEXTURE_SWIZZLE_RGBA</span><span class="p">,</span><span class="w"> </span><span class="n">swizzleMask</span><span class="p">);</span>
+</pre></div>
+<p>This will effectively map the red channel in the image to the alpha channel when the shader accesses it.
+</p>
+<h3><span class="mw-headline" id="Stencil_texturing">Stencil texturing</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Stencil Texturing</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/stencil_texturing.txt">ARB_stencil_texturing</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>A texture with a depth image format is normally considered a depth component texture. This means that non-depth comparison access will return a single floating-point value (as depth components are either normalized integers or floats). Depth textures in this way can be considered a special form of single-channel floating-point color textures.
+</p><p>However, if the texture uses a <a href="/opengl/Depth_Stencil_Format" class="mw-redirect" title="Depth Stencil Format">packed depth/stencil image format</a>, it is possible to access the stencil component <i>instead</i> of the depth component. This is controlled by the parameter <span class="tpl-enum">GL_DEPTH_STENCIL_TEXTURE_MODE</span>.
+</p><p>When the parameter is set to <span class="tpl-enum">GL_DEPTH_COMPONENT</span>, then accessing it from the shader will access the depth component as a single float, as normal. But when the parameter is set to <span class="tpl-enum">GL_STENCIL_INDEX</span>, the shader can access the stencil component.
+</p><p>This parameter changes the very nature of the texture access. The stencil component is an <i>unsigned integer</i> value, so you must use an <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">unsigned integer sampler</a> when accessing it. So when accessing the stencil component of a 2D depth/stencil texture, you must use <span class="tpl-code">usampler2D</span>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Though this parameter affects sampling, it is not a <i>sampling parameter</i>. As such, you cannot bind the same texture object to two image units and use two different sampler objects to fetch the depth and stencil components. However, you <i>can</i> create a <a href="/opengl/View_texture" class="mw-redirect" title="View texture">view of the texture</a> (both view textures and stencil texturing are GL 4.3 features), and set different texture parameters into the different views. One view for the depth, one view for the stencil.</div>
+<h2><span class="mw-headline" id="Sampling_parameters">Sampling parameters</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Sampler_Object#Sampling_parameters" title="Sampler Object">Sampler Object#Sampling parameters</a><i></i></div>
+<p>Sampling is the process of fetching a value from a texture at a given position. <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">GLSL</a> controls much of the process of sampling, but there are many values associated with the texture object that can affect this as well.
+</p><p>These parameters are shared with <a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a>, in that both texture objects and sampler objects have them. If a texture is used with a sampler object, all of the parameters from the sampler object override those set by the texture object.
+</p>
+<h2><span class="mw-headline" id="Texture_image_units">Texture image units</span></h2>
+<p>Much like with <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a> and <a href="/opengl/Buffer_Object#Binding_indexed_targets" title="Buffer Object">indexed targets</a>, a texture can be bound to one or more locations for rendering. These locations are called <i>texture image units</i>. OpenGL contexts have a maximum number of texture image units, queryable from the constant <span class="tpl-enum">GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS</span>.
+</p><p>Textures can be bound to these textures units with this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glBindTextureUnit&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glBindTextureUnit (page does not exist)">glBindTextureUnit</a></span>(GLuint <span class="tpl-param">unit​</span>, GLuint <span class="tpl-param">texture​</span>);</div>
+<p>Where <span class="tpl-param">unit​</span> is the 0-indexed texture unit you'd like to bind to, and <span class="tpl-param">texture​</span> is the texture object you'd like to bind there (or zero to unbind it).
+</p><p><span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glBindTextureUnit&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glBindTextureUnit (page does not exist)">glBindTextureUnit</a></span> is a <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> function, so if you don't have access to this you can also use the older <i>active texture unit</i> API: 
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glActiveTexture" title="GLAPI/glActiveTexture">glActiveTexture</a></span>(GLenum <span class="tpl-param">texture​</span>);</div>
+<p>Which specifies which texture unit a <span class="tpl-code"><a href="/opengl/GLAPI/glBindTexture" title="GLAPI/glBindTexture">glBindTexture</a></span> call should bind the texture object to, <i>and</i> defines the <i>active texture unit</i> that any subsequent function that takes a texture <i>target</i> should use.
+<span class="tpl-param">texture​</span> isn't a simple index as in <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glBindTextureUnit&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glBindTextureUnit (page does not exist)">glBindTextureUnit</a></span>, but one of a consecutive set of enums starting from <span class="tpl-enum">GL_TEXTURE0</span> - commonly written as <span class="tpl-code">GL_TEXTURE0 + <span class="tpl-param">unit​</span></span>.
+</p><p>Put simply, where with <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> you would write:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBindTextureUnit</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">texture1</span><span class="p">);</span>
+<span class="n">glBindTextureUnit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">texture2</span><span class="p">);</span>
+<span class="n">glBindTextureUnit</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">texture3</span><span class="p">);</span>
+</pre></div>
+<p>You would instead previously have written:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glActiveTexture</span><span class="p">(</span><span class="n">GL_TEXTURE0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">texture1</span><span class="p">);</span>
+
+<span class="n">glActiveTexture</span><span class="p">(</span><span class="n">GL_TEXTURE0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_3D</span><span class="p">,</span><span class="w"> </span><span class="n">texture2</span><span class="p">);</span>
+
+<span class="n">glActiveTexture</span><span class="p">(</span><span class="n">GL_TEXTURE0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">);</span>
+<span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">texture3</span><span class="p">);</span>
+</pre></div>
+<p>Noting that not only are there more calls and that there's some strangeness around <span class="tpl-enum">GL_TEXTURE0</span>s usage, but that you also must ensure to bind to the correct <span class="tpl-param">target​</span> as well. <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glBindTextureUnit&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glBindTextureUnit (page does not exist)">glBindTextureUnit</a></span> not only combines these calls, but derives the correct targets from the texture objects you bind, avoiding potential errors.
+</p><p>Each texture image unit supports bindings to all targets. So a 2D texture and an array texture can be bound to the same image unit, or different 2D textures can be bound in two different image units without affecting each other. So which texture gets used when rendering? In <a href="/opengl/GLSL_Sampler" class="mw-redirect" title="GLSL Sampler">GLSL</a>, this depends on the type of sampler that uses this texture image unit.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This sounds suspiciously like you can use the same texture image unit for different samplers, as long as they have different texture types. <i>Do not do this.</i> The spec explicitly disallows it; if two different GLSL samplers have different texture types, but are associated with the same texture image unit, then rendering will fail. Give each sampler a different texture image unit.</div>
+<h2><span class="mw-headline" id="GLSL_binding">GLSL binding</span></h2>
+<p>Shader programs are one of two uses of textures. In order to use textures with a program, the program itself must use certain syntax to expose texture binding points.
+</p>
+<h3><span class="mw-headline" id="Samplers">Samplers</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler (GLSL)</a><i></i></div>
+<p>A <i>sampler</i> in <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> is a uniform variable that represents an accessible texture. It cannot be set from within a program; it can only be set by the user of the program. Sampler types correspond to OpenGL texture types.
+</p><p>Samplers are used with GLSL texture access functions.
+</p><p><a href="/opengl/Use_Texture_With_Shader" class="mw-redirect" title="Use Texture With Shader">The process of using textures with program samplers</a> involves 2 halves. Texture objects are not directly associated with or attached to program objects. Instead, program samplers reference texture image unit indices. Whatever textures are bound to those image units at the time of rendering are used by the program.
+</p><p>So the first step is to set the <a href="/opengl/GLSL_Uniforms" class="mw-redirect" title="GLSL Uniforms">uniform</a> value for the program samplers. For each sampler uniform, set its uniform value to an integer on the range [0, <span class="tpl-enum">GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS</span>). When the time comes to use the program directly, simply use <span class="tpl-code"><a href="/opengl/GLAPI/glActiveTexture" title="GLAPI/glActiveTexture">glActiveTexture</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glBindTexture" title="GLAPI/glBindTexture">glBindTexture</a></span> to bind the textures of interest to these image units.
+</p><p>The textures bound to the image unit set in the sampler uniforms must match the sampler's type. So a <span class="tpl-code">sampler1D</span> will look to the <span class="tpl-enum">GL_TEXTURE_1D</span> binding in the image unit it is set in.
+</p><p>If a <a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Object</a> is bound to the same texture image unit as a texture, then the sampler object's <a href="/opengl/Sampling_Parameter" class="mw-redirect" title="Sampling Parameter">parameters</a> will <i>replace</i> the sampling parameters from that texture object.
+</p>
+<h3><span class="mw-headline" id="Images">Images</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a><i></i></div>
+<p>Images within a texture can be used for arbitrary image load/store operations. This is done via <i>image variables</i>, which are declared as uniforms. <a href="/opengl/Image_Type" class="mw-redirect" title="Image Type">Image uniforms</a> are associated with an image unit (different from a <i>texture</i> image unit). The association works similarly as for sampler uniforms, only the number of image units per shader stage is different from the number of texture image units per shader stage.
+</p><p>Images are bound to image units with <span class="tpl-code"><a href="/opengl/GLAPI/glBindImageTexture" title="GLAPI/glBindImageTexture">glBindImageTexture</a></span>.
+</p>
+<h2><span class="mw-headline" id="Render_targets">Render targets</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Framebuffer_Objects" class="mw-redirect" title="Framebuffer Objects">Framebuffer Objects</a><i></i></div>
+<p>Through the use of a framebuffer object, individual images within a texture can be the destination for rendering.
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Texturing" title="Category:Core API Ref Texturing">Category:Core API Ref Texturing‎</a>: Reference documentation for all functions related to textures and <a href="/opengl/Sampler_Object" title="Sampler Object">sampler objects</a>.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318040659
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.137 seconds
+Real time usage: 0.147 seconds
+Preprocessor visited node count: 2598/1000000
+Post‐expand include size: 25347/2097152 bytes
+Template argument size: 8517/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 3/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 3142/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   80.618      1 -total
+ 33.79%   27.242      2 Template:Infobox_feature
+ 31.46%   25.365      2 Template:Infobox2
+ 19.94%   16.079      1 Template:Object_float
+ 15.33%   12.358      1 Template:Object_list
+ 11.57%    9.330     20 Template:Infobox/longrow
+  9.98%    8.044     20 Template:Infobox/shortrow
+  8.18%    6.596     25 Template:Pagelink
+  7.37%    5.944     15 Template:Apifunc
+  6.97%    5.616      3 Template:Funcdef
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1562-0!canonical and timestamp 20260318040659 and revision id 14997. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Texture&amp;oldid=14997">https://wikis.khronos.org/opengl/index.php?title=Texture&amp;oldid=14997</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li><li><a href="/opengl/Category:Textures" title="Category:Textures">Textures</a></li><li><a href="/opengl/Category:Missing_DSA" title="Category:Missing DSA">Missing DSA</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Texture" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Texture" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Texture&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Texture"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Texture&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Texture&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Texture" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Texture" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Texture&amp;oldid=14997" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Texture&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Texture&amp;id=14997&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 1 August 2024, at 11:09.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":164,"wgPageParseReport":{"limitreport":{"cputime":"0.137","walltime":"0.147","ppvisitednodes":{"value":2598,"limit":1000000},"postexpandincludesize":{"value":25347,"limit":2097152},"templateargumentsize":{"value":8517,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":3,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":3142,"limit":5000000},"timingprofile":["100.00%   80.618      1 -total"," 33.79%   27.242      2 Template:Infobox_feature"," 31.46%   25.365      2 Template:Infobox2"," 19.94%   16.079      1 Template:Object_float"," 15.33%   12.358      1 Template:Object_list"," 11.57%    9.330     20 Template:Infobox/longrow","  9.98%    8.044     20 Template:Infobox/shortrow","  8.18%    6.596     25 Template:Pagelink","  7.37%    5.944     15 Template:Apifunc","  6.97%    5.616      3 Template:Funcdef"]},"cachereport":{"timestamp":"20260318040659","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6bf29abea3d1',t:'MTc3NDIzNzI5OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

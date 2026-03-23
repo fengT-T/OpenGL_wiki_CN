@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Vertex Post-Processing - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Vertex_Post-Processing rootpage-Vertex_Post-Processing skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Vertex Post-Processing</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><b>Vertex Post-Processing</b>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+<p><b>Vertex Post-Processing</b> is the stage in the OpenGL Rendering Pipeline where the vertex outputs of the <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> undergo a variety of operations. Many of these are setup for <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a> and <a href="/opengl/Rasterization" title="Rasterization">Rasterization</a> stages.
+</p><p>After vertex processing, the following steps occur in the order they appear on this page.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Transform_Feedback"><span class="tocnumber">1</span> <span class="toctext">Transform Feedback</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Primitive_Assembly"><span class="tocnumber">2</span> <span class="toctext">Primitive Assembly</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Clipping"><span class="tocnumber">3</span> <span class="toctext">Clipping</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Depth_clamping"><span class="tocnumber">3.1</span> <span class="toctext">Depth clamping</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#User-defined_clipping"><span class="tocnumber">3.2</span> <span class="toctext">User-defined clipping</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Uses"><span class="tocnumber">3.2.1</span> <span class="toctext">Uses</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Perspective_divide"><span class="tocnumber">4</span> <span class="toctext">Perspective divide</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Viewport_transform"><span class="tocnumber">5</span> <span class="toctext">Viewport transform</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Viewport_array"><span class="tocnumber">5.1</span> <span class="toctext">Viewport array</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#See_also"><span class="tocnumber">6</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Transform_Feedback">Transform Feedback</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a><i></i></div>
+<p>Transform feedback is a way of recording values output from the <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage into <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>. Only the last vertex processing stage can perform transform feedback.
+</p>
+<h2><span class="mw-headline" id="Primitive_Assembly">Primitive Assembly</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a><i></i></div>
+<p>Primitive assembly takes the vertex stream and converts it into a sequence of primitives, in accord with the <a href="/opengl/Primitive" title="Primitive">Primitive</a> type specified in the rendering command. Primitives can also be discarded at this point, to allow transform feedback without rendering anything.
+</p>
+<h2><span class="mw-headline" id="Clipping">Clipping</span></h2>
+<p>Primitives generated by previous stages are collected and then clipped to the view volume. Each vertex has a clip-space position (the <span class="tpl-code">gl_Position</span> output of the last <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage). The viewing volume for a vertex is defined by:
+</p><p><span class="mwe-math-fallback-source-inline tex" dir="ltr">$ {\begin{aligned}-w_{c}&amp;\leq x_{c}&amp;\leq w_{c}\\-w_{c}&amp;\leq y_{c}&amp;\leq w_{c}\\-w_{c}&amp;\leq z_{c}&amp;\leq w_{c}\end{aligned}} $</span>
+</p><p>This volume can be modified by <a href="#Depth_clamping">depth clamping</a> as well as the addition of <a href="#Clip_planes">user-defined clip-planes</a>. The total volume that primitives are clipped to, including user-defined clip planes, is the clipping volume.
+</p><p>The way primitives are clipped to this clipping volume depends on the basic <a href="/opengl/Primitive" title="Primitive">Primitive</a> type:
+</p>
+<dl><dt>Points</dt>
+<dd>Points are not really "clipped". If a point is in any way outside of the clipping volume, then the primitive is discarded (ie: not rendered). Points can be bigger than one pixel, but the clipping remains; if the center of the point (the actual <span class="tpl-code">gl_Position</span> value) is outside of the clipping range, it is discarded. Yes, this means that <a href="/opengl/Point_Sprite" class="mw-redirect" title="Point Sprite">Point Sprites</a> will disappear when the center moves off-screen.</dd>
+<dd><div style="margin-left: 3em;"></div></dd></dl>
+<p><b>Platform Issue (NVIDIA):</b> These cards will not clip points "properly". That is, they will do what people generally want (only discard the point if it is <i>fully</i> outside the volume), rather than what the OpenGL specification <i>requires</i>. Be advised that other hardware does what OpenGL asks.
+</p><dl><dt>Lines</dt>
+<dd>If the line is entirely outside of the volume, it is discarded. If the line is partially outside of the volume, then it is clipped; new vertex coordinates are computed for one or both vertices, as appropriate. The end-point of such a clipped vertex is on the boundary of the clipping volume.</dd>
+<dt>Triangles</dt>
+<dd>A triangle is clipped to the viewing volume by generating appropriate triangles who's vertices are on the boundary of the clipping volume. This may generate more than 1 triangle, as appropriate. If a triangle is entirely outside of the viewing volume, it is culled.</dd></dl>
+<p>When primitives are clipped, new per-vertex outputs must be generated for them. These are generated via linear interpolation (in clip-space) of the output values. Flat-shaded outputs don't get this treatment.
+</p>
+<h3><span class="mw-headline" id="Depth_clamping">Depth clamping</span></h3>
+<p>The clipping behavior against the Z position of a vertex (ie: <span class="mwe-math-fallback-source-inline tex" dir="ltr">$ -w_{c}\leq z_{c}\leq w_{c} $</span>) can be turned off by activating depth clamping. This is done with <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable(GL_DEPTH_CLAMP)</a></span>. This will cause the clip-space Z to remain unclipped by the front and rear viewing volume.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> With perspective projections, you still get clipping with the <i>sides</i> of the viewing volume. Depth clamping turns a frustum into a pyramid, and pyramids still end at the tip. So objects that go behind the camera are still clipped. What is unclipped are objects between the projection near-plane and the camera.</div>
+<p>The Z value computations will proceed as normal through the pipeline. After <a href="#Viewport_transform">computing the window-space position</a>, the resulting Z value will be clamped to the <span class="tpl-code"><a href="/opengl/GLAPI/glDepthRange" title="GLAPI/glDepthRange">glDepthRange</a></span>.
+</p>
+<h3><span class="mw-headline" id="User-defined_clipping">User-defined clipping</span></h3>
+<p>Additional clipping can be specified by the last active <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> shader stage, through the output array <span class="tpl-code">gl_ClipDistance</span>.
+</p><p>Each array element represents a distinct condition for clipping a primitive. Each array element has to be enabled independently via <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable(GL_CLIP_DISTANCEi)</a></span>, where <i>i</i> is the index of the clip distance in the array. The maximum number of clip distances is <span class="tpl-enum">GL_MAX_CLIP_DISTANCES</span>, which has a minimum value of 8.
+</p><p>For each enabled clip distance, the corresponding element in the <span class="tpl-code">gl_ClipDistance</span> array is checked during the clipping stage. If the distance is non-negative, then the primitive is considered to be within that clipping area. If the distance is negative, then it is outside of that clipping area.
+</p><p>When rendering point primitives, if the point's vertex is outside of one of the enabled clip distances, then the point is culled. For lines and triangles, these primitives are clipped at the place where the interpolated value of the <span class="tpl-code">gl_ClipDistance</span> goes from negative to non-negative. If multiple clip distances are enabled, then clipping works through the intersection of all such distances.
+</p><p>In order to write to the <span class="tpl-code">gl_ClipDistance</span> array, you must first redeclare this array with an explicit size: the number of array elements you intend to use. If you have GLSL 4.10<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">ARB_separate_shader_objects</a>, you must redeclare the entire <span class="tpl-code">gl_PerVertex</span> output <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">Interface Block</a>:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div>
+<p>Before GLSL 4.10<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">ARB_separate_shader_objects</a>, <span class="tpl-code">gl_ClipDistance</span> must be redeclared as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</pre></div>
+<p>Note that, despite redeclaring the output, you still have to <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable</a></span> the specific clip distances you intend to use. If you enable a clip distance, but do not write to it from the last vertex processing stage, you get undefined behavior.
+</p>
+<h4><span class="mw-headline" id="Uses">Uses</span></h4>
+<p>User-defined clipping can be used for many things. The classic use is to clip all vertices in a scene that are beyond a certain plane. The clip distance in this case is the distance to the plane, with the visible side of the plane providing non-negative distances.
+</p><p>Such distances are easy to compute in vertex shaders. The traditional plane equation consists of the equation <span class="mwe-math-fallback-source-inline tex" dir="ltr">$ Ax+By+Cz+D=0 $</span>, where A, B, and C are a unit normal for the plane, with D being the distance from that plane to the origin in that coordinate system.
+</p><p>Given such a plane, one can compute the clip distance with a simple dot product. Given a 4D vector position (with W = 1) in the same space as the plane equation, you simply compute <span class="tpl-code">dot(position, plane)</span>.
+</p><p>For example, in GUI elements, it is often desired to ensure that objects inside a GUI window cannot be drawn outside of that window. There are several tools one could use to ensure this, including changing employing <a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Testing</a>.
+</p><p>However, most of these solutions have one important downside: the parameters can only be changed between <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">rendering calls</a>. Which means, if you have a large batch of work that you want rendered, where parts of that batch are in different windows, you must do break it up into multiple rendering calls. This decreases performance.
+</p><p>User-defined clipping can help. These parameters can be per-vertex values, <a href="/opengl/Vertex_Format" class="mw-redirect" title="Vertex Format">sampled from vertex arrays</a>. The <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>, or other final processing stage, will be able to use them to set the <span class="tpl-code">gl_ClipDistance</span> outputs.
+</p><p>The key is to set the clipping parameters based on the requested clipping region and the world-space position of the vertices.
+</p><p>There are some downsides to this approach.
+</p><p>First, it requires an additional <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">per-vertex attribute</a>, who's values will typically be shared among many vertices. And this attribute would likely have to be a full 2D clipping region: an XY position and width+height. Storing such positions would probably require 16-bits per component, as 8 bits would not provide enough resolution for most displays. So that's a total of 8 bytes added to each vertex.
+</p><p>It is possible to mitigate this by using a <a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">UBO</a> to store an array of clipping regions, with each vertex simply specifying an integer index into that array.
+</p><p>Second, when user-defined clipping is used together with <a href="/opengl/Multisampling" title="Multisampling">Multisampling</a>, GUI elements may be drawn outside of the clipping region. User-defined clipping happens at the vertex level, not the fragment level. So it remains possible for multisampled <a href="/opengl/Rasterization" title="Rasterization">Rasterization</a> to generate <a href="/opengl/Fragment" title="Fragment">Fragments</a> outside of the pixel area assigned by the user-defined clipping region.
+</p>
+<h2><span class="mw-headline" id="Perspective_divide">Perspective divide</span></h2>
+<p>The clip-space positions returned from the clipping stage are transformed into normalized device coordinates (NDC) via this equation:
+</p><p><span class="mwe-math-fallback-source-inline tex" dir="ltr">$ {\begin{pmatrix}x_{ndc}\\y_{ndc}\\z_{ndc}\end{pmatrix}}={\begin{pmatrix}{\tfrac {x_{c}}{w_{c}}}\\{\tfrac {y_{c}}{w_{c}}}\\{\tfrac {z_{c}}{w_{c}}}\end{pmatrix}} $</span>
+</p>
+<h2><span class="mw-headline" id="Viewport_transform">Viewport transform</span></h2>
+<p>The viewport transform defines the transformation of vertex positions from NDC space to window space. These are the coordinates that are rasterized to the output image.
+</p><p>The viewport is defined by a number of viewport parameters. These parameters are set by these functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glViewport" title="GLAPI/glViewport">glViewport</a></span>(GLint <span class="tpl-param">x​</span>, GLint <span class="tpl-param">y​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glDepthRange" title="GLAPI/glDepthRange">glDepthRange</a></span>(GLdouble <span class="tpl-param">nearVal​</span>, GLdouble <span class="tpl-param">farVal​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glDepthRange" title="GLAPI/glDepthRange">glDepthRangef</a></span>(GLfloat <span class="tpl-param">nearVal​</span>, GLfloat <span class="tpl-param">farVal​</span>);
+</p>
+</div>
+<p>The second two functions set the same parameters, the near and far values of the depth range.
+</p><p>Given the viewport parameters, we compute the window-space coordinates via these equations:
+</p><p><span class="mwe-math-fallback-source-inline tex" dir="ltr">$ {\begin{pmatrix}x_{w}\\y_{w}\\z_{w}\end{pmatrix}}={\begin{pmatrix}{\begin{aligned}{\tfrac {width}{2}}x_{ndc}&amp;+x+{\tfrac {width}{2}}\\{\tfrac {height}{2}}y_{ndc}&amp;+y+{\tfrac {height}{2}}\\{\tfrac {farVal-nearVal}{2}}z_{ndc}&amp;+{\tfrac {farVal+nearVal}{2}}\end{aligned}}\end{pmatrix}} $</span>
+</p><p>Where <span class="tpl-param">x​</span>, <span class="tpl-param">y​</span>, <span class="tpl-param">width​</span>, <span class="tpl-param">height​</span>, <span class="tpl-param">nearVal​</span>, and <span class="tpl-param">farVal​</span> are the viewport parameters.
+</p>
+<h3><span class="mw-headline" id="Viewport_array">Viewport array</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Viewport Arrays</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.1</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/viewport_array.txt">ARB_viewport_array</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Multiple viewports can be used in OpenGL. The specific <a href="/opengl/Layered_Rendering" class="mw-redirect" title="Layered Rendering">viewport for a particular primitive can be set by the Geometry Shader</a>. If the GS does not specify a viewport, then viewport number 0 is selected. The computation works as above, except where it says "the viewport parameters", it means "the viewport parameters for the primitive's viewport index".
+</p><p>There are sets of viewports, indexed on the half-open range [0, <span class="tpl-enum">GL_MAX_VIEWPORTS</span>). Each index has its own depth range and viewport coordinates. The previously defined functions will only set the value for viewport index 0.
+</p><p>To set the viewport parameters for a particular index, use this pair of functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glViewportIndexed" title="GLAPI/glViewportIndexed">glViewportIndexedf</a></span>(GLuint <span class="tpl-param">index​</span>, GLfloat <span class="tpl-param">x​</span>, GLfloat <span class="tpl-param">y​</span>, GLfloat <span class="tpl-param">w​</span>, GLfloat <span class="tpl-param">h​</span>)
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glViewportIndexed" title="GLAPI/glViewportIndexed">glViewportIndexedfv</a></span>(GLuint <span class="tpl-param">index​</span>, const GLfloat *<span class="tpl-param">v​</span>)
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glDepthRangeIndexed" title="GLAPI/glDepthRangeIndexed">glDepthRangeIndexed</a></span>(GLuint <span class="tpl-param">index​</span>, GLdouble <span class="tpl-param">nearVal​</span>, GLdouble <span class="tpl-param">farVal​</span>)
+</p>
+</div>
+<p>The <span class="tpl-param">index​</span> is the viewport index to set the parameters for. <span class="tpl-code"><a href="/opengl/GLAPI/glViewportIndexed" title="GLAPI/glViewportIndexed">glViewportIndexedfv</a></span> takes an array of 4 floats, in the same orders as the parameters for <span class="tpl-code"><a href="/opengl/GLAPI/glViewportIndexed" title="GLAPI/glViewportIndexed">glViewportIndexedf</a></span>.
+</p><p>Multiple viewport indices can be set with a single function, via these APIs:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glViewportArray" title="GLAPI/glViewportArray">glViewportArrayv</a></span>(GLuint <span class="tpl-param">first​</span>, GLsizei <span class="tpl-param">count​</span>, const GLfloat *<span class="tpl-param">v​</span>)
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glDepthRangeArray" title="GLAPI/glDepthRangeArray">glDepthRangeArrayv</a></span>(GLuint <span class="tpl-param">first​</span>, GLsizei <span class="tpl-param">count​</span>, const GLdouble *<span class="tpl-param">v​</span>)
+</p>
+</div>
+<p>The <span class="tpl-param">first​</span> index is the first viewport index to set. <span class="tpl-param">count​</span> is the number of viewport indices to be set by the function. <span class="tpl-param">v​</span> is an array of viewport values, which contains <span class="tpl-param">count​</span> * 4 or 2 values, depending on the function being called. The values for a single viewport index are in the same order as the arguments in the regular function calls.
+</p>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<!-- 
+NewPP limit report
+Cached time: 20260318073325
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.419 seconds
+Real time usage: 1.051 seconds
+Preprocessor visited node count: 1604/1000000
+Post‐expand include size: 15906/2097152 bytes
+Template argument size: 5972/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 2/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 1973/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00% 1003.000      1 -total
+  2.14%   21.509      1 Template:Infobox_feature
+  1.91%   19.164      1 Template:Infobox2
+  1.24%   12.471      1 Template:Pipeline_float
+  1.14%   11.422      3 Template:Funcdef
+  1.02%   10.209      1 Template:Pipeline_list
+  0.72%    7.243     10 Template:Infobox/longrow
+  0.61%    6.101     20 Template:Pagelink
+  0.56%    5.614      2 Template:Require_glsl
+  0.54%    5.463     14 Template:Apifunc
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2246-0!canonical and timestamp 20260318073325 and revision id 14828. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Vertex_Post-Processing&amp;oldid=14828">https://wikis.khronos.org/opengl/index.php?title=Vertex_Post-Processing&amp;oldid=14828</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Type Qualifier (GLSL) - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"f967395b9afd4fd60ddc6c87","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Type_Qualifier_(GLSL)","wgTitle":"Type Qualifier (GLSL)","wgCurRevisionId":14918,"wgRevisionId":14918,"wgArticleId":1641,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Type_Qualifier_(GLSL)","wgRelevantArticleId":1641,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Type_Qualifier_GLSL rootpage-Type_Qualifier_GLSL skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Type Qualifier (GLSL)</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><b>Type qualifiers</b></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p>A <b>type qualifier</b> is used in the <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a> (GLSL) to modify the storage or behavior of global and locally defined variables. These qualifiers change particular aspects of the variable, such as where they get their data from and so forth. They come in a number of different categories.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Storage_qualifiers"><span class="tocnumber">1</span> <span class="toctext">Storage qualifiers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Default"><span class="tocnumber">1.1</span> <span class="toctext">Default</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Constant_qualifier"><span class="tocnumber">1.2</span> <span class="toctext">Constant qualifier</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Shader_stage_inputs_and_outputs"><span class="tocnumber">1.3</span> <span class="toctext">Shader stage inputs and outputs</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Vertex_shader_inputs"><span class="tocnumber">1.3.1</span> <span class="toctext">Vertex shader inputs</span></a></li>
+<li class="toclevel-3 tocsection-6"><a href="#Tessellation_control_shader_outputs"><span class="tocnumber">1.3.2</span> <span class="toctext">Tessellation control shader outputs</span></a></li>
+<li class="toclevel-3 tocsection-7"><a href="#Tessellation_evaluation_shader_inputs"><span class="tocnumber">1.3.3</span> <span class="toctext">Tessellation evaluation shader inputs</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Geometry_shader_inputs"><span class="tocnumber">1.3.4</span> <span class="toctext">Geometry shader inputs</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Fragment_shader_outputs"><span class="tocnumber">1.3.5</span> <span class="toctext">Fragment shader outputs</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Interpolation_qualifiers"><span class="tocnumber">1.3.6</span> <span class="toctext">Interpolation qualifiers</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#Uniforms"><span class="tocnumber">1.4</span> <span class="toctext">Uniforms</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Buffer"><span class="tocnumber">1.5</span> <span class="toctext">Buffer</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Interface_blocks"><span class="tocnumber">1.6</span> <span class="toctext">Interface blocks</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Shared"><span class="tocnumber">1.7</span> <span class="toctext">Shared</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#Layout_qualifiers"><span class="tocnumber">2</span> <span class="toctext">Layout qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#Precision_qualifiers"><span class="tocnumber">3</span> <span class="toctext">Precision qualifiers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Precision_statements"><span class="tocnumber">3.1</span> <span class="toctext">Precision statements</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Memory_qualifiers"><span class="tocnumber">4</span> <span class="toctext">Memory qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-19"><a href="#Invariance_qualifiers"><span class="tocnumber">5</span> <span class="toctext">Invariance qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-20"><a href="#Precise_qualifiers"><span class="tocnumber">6</span> <span class="toctext">Precise qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-21"><a href="#Qualifier_order"><span class="tocnumber">7</span> <span class="toctext">Qualifier order</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Built-in_redeclaration"><span class="tocnumber">8</span> <span class="toctext">Built-in redeclaration</span></a></li>
+<li class="toclevel-1 tocsection-23"><a href="#Removed_qualifiers"><span class="tocnumber">9</span> <span class="toctext">Removed qualifiers</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Storage_qualifiers">Storage qualifiers</span></h2>
+<p>Storage qualifiers define where a variable's storage comes from.
+</p>
+<h3><span class="mw-headline" id="Default">Default</span></h3>
+<p>If no storage qualifier is specified when declaring a global variable, then the variable is just a normal global variable. All global variables have a scope of the particular shader stage. So if you have two vertex shader objects that define <span class="tpl-code">int someValue;</span>, when you link them into a program, they will both be referring to the same value.
+</p><p>Each separate invocation of the same shader stage will refer to different versions of the same global variable. So invocations cannot communicate between each other through default-qualified global variables; that would require the <a href="#shared">shared qualifier</a>.
+</p><p>If no storage qualifier is specified for a local variable, then the variable is a local variable that can be modified. Local variables are scoped as with C/C++: the local scope in which they are declared.
+</p>
+<h3><span class="mw-headline" id="Constant_qualifier">Constant qualifier</span></h3>
+<p>Global and local variables, as well as <a href="/opengl/Function_Parameter_(GLSL)" class="mw-redirect" title="Function Parameter (GLSL)">input function parameters</a>, can be declared with the <span class="tpl-code">const</span> qualifier. This means that the variable's value cannot be changed after it is initialized. This also means that the variable declaration must initialize the variable.
+</p><p>For variables that are not function parameters, <span class="tpl-code">const</span>-qualified variables which are initialized by <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expressions</a> are themselves constant expressions. GLSL versions before 4.20 required that all non-parameter <span class="tpl-code">const</span>-qualified variables be initialized with <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expressions</a>. 4.20 permits such variables to be initialized with non-constant expressions, but the variable in that case will not be a constant expression.
+</p>
+<h3><span class="mw-headline" id="Shader_stage_inputs_and_outputs">Shader stage inputs and outputs</span></h3>
+<p>Global variables declared with the <span class="tpl-code">in</span> qualifier are shader stage input variables. These variables are given values by the previous stage (possibly via interpolation of values output from multiple shader executions). These variables are not constant (in the sense of <span class="tpl-code">const</span>), but they cannot be changed by user code.
+</p><p>Global variables declared with the <span class="tpl-code">out</span> qualifier are shader stage output variables. These values are passed to the next stage of the pipeline (possibly via interpolation of values output from multiple shader executions). The shader must set all output variables at some point in its execution; there are only two exceptions to this:
+</p>
+<ol><li>The shader is a <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> which executes the <span class="tpl-code">discard</span> statement.</li>
+<li>The output variables which are not written are not read by the next shader stage or pipeline process. This includes writes to fragment shader outputs which are <a href="/opengl/Write_Mask" title="Write Mask">masked off</a>.</li></ol>
+<p>These qualifiers can not be used on local variables. And on <a href="/opengl/Function_Parameter" class="mw-redirect" title="Function Parameter">Function Parameters</a>, they take on an entirely different meaning.
+</p><p>Variables qualified with these can be of any non-<a href="/opengl/Opaque_Type" class="mw-redirect" title="Opaque Type">opaque</a> basic type (though some stages have more restrictive limitations on types. See below). They cannot be of struct types, but they can be <a href="/opengl/GLSL_Array" class="mw-redirect" title="GLSL Array">arrays</a>. Input/output variables can be aggregated into <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface blocks</a>. There are usually very strict limits on the number of user-defined input and output values available to each shader stage.
+</p><p>The input and output-qualified variables define an interface between this shader and the previous/next part of the pipeline. The interfaces between two shader stages <a href="/opengl/Interface_Matching" class="mw-redirect" title="Interface Matching">must match, though not necessarily exactly</a>.
+</p><p>There are some special cases with input and output variables for different stages.
+</p>
+<h4><span class="mw-headline" id="Vertex_shader_inputs">Vertex shader inputs</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Shader#Inputs" title="Vertex Shader">Vertex Shader#Inputs</a><i></i></div>
+<p>User-defined inputs for vertex shaders are called vertex attributes. They are passed via <a href="/opengl/Vertex_Specification" title="Vertex Specification">vertex arrays</a> to the vertex shader from data stored in <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>.
+</p><p>Vertex shader inputs have attribute location indices that are used in vertex specification to identify a particular input. Most input variables take up only one attribute location index, but certain types (matrices, array inputs, and some double-precision types) can take up more than one index.
+</p>
+<h4><span class="mw-headline" id="Tessellation_control_shader_outputs">Tessellation control shader outputs</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Control_Shader#Outputs" title="Tessellation Control Shader">Tessellation Control Shader#Outputs</a><i></i></div>
+<p>Tessellation Control Shader outputs can be either per-vertex or per-patch. Per-vertex outputs are aggregated into arrays, where the length of the arrays is the number of output vertices in the patch. Per-patch outputs (declared with the <span class="tpl-code">patch</span> keyword) are not arrays (you can declare arrays of them, but they won't be indexed per-vertex).
+</p><p>TCS's can read from any per-vertex or per-patch output, so each TCS invocation can read data written by other TCS invocations (assuming you <a href="/opengl/TCS_Synchronization" class="mw-redirect" title="TCS Synchronization">take steps to ensure that the other invocations have written to them</a>). But each TCS invocation represents a single vertex in the output patch. Therefore, a TCS invocation can only write to the per-vertex output index that corresponds to the vertex for which that invocation is executing. This means that the only expression in the array subscript that can be used when writing to a per-vertex output is <span class="tpl-code">gl_InvocationID</span>.
+</p>
+<h4><span class="mw-headline" id="Tessellation_evaluation_shader_inputs">Tessellation evaluation shader inputs</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Evaluation_Shader#Inputs" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader#Inputs</a><i></i></div>
+<p>Tessellation Evaluation Shader inputs are like TCS outputs: either per-vertex or per-patch (declared with the <span class="tpl-code">patch</span> keyword. Non-patch inputs are aggregated into arrays, where the length of the arrays is the number of vertex in the patch (from the TCS, or if there is no TCS, then the patch size given when rendering). Any TES invocation can read any per-vertex or per-patch input.
+</p>
+<h4><span class="mw-headline" id="Geometry_shader_inputs">Geometry shader inputs</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Geometry_Shader#Inputs" title="Geometry Shader">Geometry Shader#Inputs</a><i></i></div>
+<p>Geometry Shader inputs are aggregated into arrays, one per vertex in the primitive. The length of the array depends on the <a href="/opengl/Geometry_Shader_Primitive_Specification" class="mw-redirect" title="Geometry Shader Primitive Specification">input primitive type</a> used by the GS. Each array index represents a single vertex in the input primitive.
+</p>
+<h4><span class="mw-headline" id="Fragment_shader_outputs">Fragment shader outputs</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Fragment_Shader#Outputs" title="Fragment Shader">Fragment Shader#Outputs</a><i></i></div>
+<p>Fragment shader outputs cannot be matrices or boolean types. They must be vectors or scalars of single-precision floating-point or integer types. They may also be arrays of these types. Like vertex shader inputs, fragment shader outputs are assigned indices, either explicitly by the user or implicitly by the system.
+</p><p>Each fragment shader output's index corresponds to a draw buffer, as defined by the <a href="/opengl/Framebuffer_Draw_Buffer" class="mw-redirect" title="Framebuffer Draw Buffer">current draw framebuffer's draw-buffer setting</a>, set with the <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffers" title="GLAPI/glDrawBuffers">glDrawBuffers</a></span> command. The indices in the array passed to this function correspond to an output variable's assigned index. The value in the array at that index refers to a specific image in the current drawing framebuffer.
+</p><p>Output variables from the fragment shader do not have to be written. However, unwritten outputs will have undefined values. This is OK if the current <a href="/opengl/Framebuffer_Draw_Buffer" class="mw-redirect" title="Framebuffer Draw Buffer">Framebuffer Draw Buffer</a> setting would discard that value (by using <span class="tpl-enum">GL_NONE</span>).
+</p>
+<h4><span class="mw-headline" id="Interpolation_qualifiers">Interpolation qualifiers</span></h4>
+<p>Certain inputs and outputs can use interpolation qualifiers. These are for any values which could be interpolated as a result of rasterization. These include:
+</p>
+<ul><li>Vertex shader outputs</li>
+<li>Tessellation control shader inputs (to match with outputs from the VS)</li>
+<li>Tessellation evaluation shader outputs</li>
+<li>Geometry shader inputs (to match with outputs from the TES/VS) and outputs</li>
+<li>Fragment shader inputs</li></ul>
+<p>While interpolation qualifiers <i>can</i> be put on any of these variables, the only ones that actually have an effect are those on the fragment shader. The pre-GL 4.3 rules on matching interfaces mean you have to provide them on other stages, but interpolation is controlled entirely by the qualifiers on the fragment shader input variables.
+</p><p>Interpolation qualifiers control how interpolation of values happens across a triangle or other primitive. There are three basic interpolation qualifiers.
+</p>
+<dl><dt><span class="tpl-code">flat</span></dt>
+<dd>The value will not be interpolated. The value given to the fragment shader is the value from the <a href="/opengl/Provoking_Vertex" class="mw-redirect" title="Provoking Vertex">Provoking Vertex</a> for that primitive.</dd>
+<dt><span class="tpl-code">noperspective</span></dt>
+<dd>The value will be linearly interpolated in window-space. This is usually not what you want, but it can have its uses.</dd>
+<dt><span class="tpl-code">smooth</span></dt>
+<dd>The value will be interpolated in a perspective-correct fashion. This is the default if no qualifier is present.</dd></dl>
+<p>The <span class="tpl-code">centroid</span> and <span class="tpl-code">sample</span> (the latter requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader5.txt">ARB_gpu_shader5</a>) qualifiers affect interpolation, but they are somewhat special, grammatically speaking. Before OpenGL 4.2, these were considered part of the <span class="tpl-code">in/out</span> storage qualifier. So both had to be used together, like <span class="tpl-code">centroid in</span> or <span class="tpl-code">sample out</span>; no qualifiers could come between them. In 4.2 and above, they are considered auxiliary qualifiers, so they can be separated from the <span class="tpl-code">in/out</span> storage qualifier.
+</p><p>They may not technically be interpolation qualifiers, but they do control aspects of interpolation. They only have an effect when <a href="/opengl/Multisampling" title="Multisampling">Multisampling</a> is being used.
+</p><p>During multisampling, if <span class="tpl-code">centroid</span> is not present, then the written value can be interpolated to an arbitrary position within the pixel. This may be the pixel's center, one of the sample locations within the pixel, or an arbitrary location. Most importantly of all, this sample may lie <i>outside</i> of the actual primitive being rendered, since a primitive can cover only part of a pixel's area. If the implementation computes the sample based on the center of the pixel, and the primitive doesn't actually cover the pixel's center (remember: in multisampling, this can still produce a non-zero number of samples), then the interpolated value will be outside of the primitive's borders.
+</p><p>The <span class="tpl-code">centroid</span> qualifier is used to prevent this; the interpolation point must fall within both the pixel's area and the primitive's area. This is useful for parameters or computations that would have undefined values if they fell outside of the primitive's area. A square root is only defined for positive numbers, so if you are taking the square root of an interpolated value, you may need to use <span class="tpl-code">centroid</span> interpolation.
+</p><p>You should only use <span class="tpl-code">centroid</span> if there is a real problem like this. In many cases interpolating without centroid doesn't pose a problem.
+</p><p>The <span class="tpl-code">sample</span> qualifier forces OpenGL to interpolate this qualifier to the location of the particular sample for each generated fragment. This is only really useful with per-sample shading.
+</p>
+<h3><span class="mw-headline" id="Uniforms">Uniforms</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/GLSL_Uniform" class="mw-redirect" title="GLSL Uniform">GLSL Uniform</a><i></i></div>
+<p>Global variables and <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">Interface Blocks</a> can be declared with the <span class="tpl-code">uniform</span> qualifier. This means that the value does not change between multiple executions of a shader during the rendering of a primitive (ie: during a glDraw* call). These values are set by the user from the OpenGL API.
+</p><p>They are constant, but not <i>compile-time</i> constant (so not <span class="tpl-code">const</span>).
+</p>
+<h3><span class="mw-headline" id="Buffer">Buffer</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Object</a><i></i></div>
+<p>In OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a>, <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface blocks</a> can be qualified with the <span class="tpl-code">buffer</span> qualifier. This means that the storage for the contents of the block comes from a buffer object, similarly to <a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Objects</a> and uniform blocks. Unlike UBOs, storage blocks can be written to. They can also have an array with an unbounded size, who's size is determined by the size of the SSBO bound at render time.
+</p>
+<h3><span class="mw-headline" id="Interface_blocks">Interface blocks</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/GLSL_Interface_Blocks" class="mw-redirect" title="GLSL Interface Blocks">GLSL Interface Blocks</a><i></i></div>
+<p>Inputs, outputs, uniforms, and buffer variables for various stages can grouped into interface blocks.
+</p>
+<h3><span class="mw-headline" id="Shared">Shared</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Compute_Shader#Shared_variables" title="Compute Shader">Compute Shader#Shared variables</a><i></i></div>
+<p>Variables declared with the <span class="tpl-code">shared</span> qualifier are shared among several shader invocations. Such variables can only be used in <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>. Shared variables are shared among all invocations in a work group.
+</p>
+<h2><span class="mw-headline" id="Layout_qualifiers">Layout qualifiers</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout Qualifier (GLSL)</a><i></i></div>
+<p>There are a large number of layout qualifiers which can be applied to a variety of defined constructs, from <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface blocks</a> to shader stage inputs and outputs. These affect the storage location of their data and many other properties about where the variable's data comes from or other user-facing interfaces about the data.
+</p>
+<h2><span class="mw-headline" id="Precision_qualifiers">Precision qualifiers</span></h2>
+<div style="margin-left: 3em;">
+<b>Note:</b> Precision qualifiers in GLSL are supported for compatibility with <a href="/opengl/OpenGL_ES" title="OpenGL ES">OpenGL ES</a>. They use the same syntax as ES's qualifiers, but they have no functional effects. Do not use them unless you want your shaders to be ES compatible.</div>
+<p>There are three precision qualifiers: <span class="tpl-code">highp</span>, <span class="tpl-code">mediump</span>, and <span class="tpl-code">lowp</span>. They have no semantic meaning or functional effect. They can apply to any floating-point type (vector or matrix), or any integer type.
+</p>
+<h3><span class="mw-headline" id="Precision_statements">Precision statements</span></h3>
+<p>All variables of a certain type can be declared to have a precision by using the <span class="tpl-code">precision</span> statement. Its syntax is as follows:
+</p>
+<pre>precision <span class="tpl-param">precision-qualifier​</span> <span class="tpl-param">type​</span>;
+</pre>
+<p>In this case, <span class="tpl-param">type​</span> can only be <span class="tpl-code">float</span> or <span class="tpl-code">int</span>. This will affect all collections of that basic type. So <span class="tpl-code">float</span> will affect all floating-point scalars, vectors, and matrices. The <span class="tpl-code">int</span> type will affect all signed and unsigned integer scalars and vectors.
+</p>
+<h2><span class="mw-headline" id="Memory_qualifiers">Memory qualifiers</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Image Load/Store</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_image_load_store.txt">ARB_shader_image_load_store</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><span class="tpl-code">image</span> variables, <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage blocks</a>, and the variables within a shader storage block can have a number of memory qualifiers applied to them. These affect how they can be used and how values read from/written to them will be seen in other shader invocations. Multiple qualifiers can be used on the same variable.
+</p>
+<dl><dt><span class="tpl-code">coherent</span></dt>
+<dd>Normally, the compiler is free to assume that this shader invocation is the only invocation that modifies values read through this variable. It also can freely assume that other shader invocations may not see values written through this variable.</dd>
+<dd>Using this qualifier is required to allow dependent shader invocations to communicate with one another, as it <a href="/opengl/Memory_Model#Ensuring_visibility" title="Memory Model">enforces the coherency of memory accesses</a>. Using this requires the appropriate memory barriers to be executed, so that visibility can be achieved.</dd>
+<dd>When communicating between shader invocations for different rendering commands, <span class="tpl-code"><a href="/opengl/GLAPI/glMemoryBarrier" title="GLAPI/glMemoryBarrier">glMemoryBarrier</a></span> should be used <i>instead</i> of this qualifier.</dd>
+<dt><span class="tpl-code">volatile</span></dt>
+<dd>The compiler normally is free to assume that values accessed through variables will only change after memory barriers or other synchronization. With this qualifier, the compiler assumes that the contents of the storage represented by the variable could be changed at any time.</dd>
+<dt><span class="tpl-code">restrict</span></dt>
+<dd>Normally, the compiler must assume that you could access the same image/buffer object through separate variables in the same shader. Therefore, if you write to one variable, and read from a second, the compiler assumes that it is possible that you could be reading the value you just wrote. With this qualifier, you are telling the compiler that this particular variable is the only variable that can modify the memory visible through that variable within this shader invocation (other shader stages don't count here). This allows the compiler to optimize reads/writes better.</dd>
+<dd>You should use this wherever possible.</dd>
+<dt><span class="tpl-code">readonly</span></dt>
+<dd>Normally, the compiler allows you to read and write from variables as you wish. If you use this, the variable can only be used for reading operations (atomic operations are forbidden as they also count as writes).</dd>
+<dt><span class="tpl-code">writeonly</span></dt>
+<dd>Normally, the compiler allows you to read and write from variables as you wish. If you use this, the variable can only be used for writing operations (atomic operations are forbidden as they also count as reads).</dd></dl>
+<div style="margin-left: 3em;">
+<b>Note:</b> <span class="tpl-code">writeonly</span> and <span class="tpl-code">readonly</span> are not mutually exclusive. For variables tagged with both qualifiers, it is still possible to query information about the resource. For example, <span class="tpl-code">image</span> variables so qualified can still have the image's size looked up.</div>
+<p>These qualifiers can be used on function parameters of image types. If you pass an image to a function, the function parameter's qualifier list much match that of the image declaration. The parameter could have <i>more</i> qualifiers, but it cannot have fewer.
+</p>
+<h2><span class="mw-headline" id="Invariance_qualifiers">Invariance qualifiers</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Invariance#Shader" title="Invariance">Invariance#Shader</a><i></i></div>
+<p>There is a way to qualify certain output variables as being invariant. This allows different programs to compute the exact same answer, assuming certain conditions are met.
+</p><p>The <span class="tpl-code">invariant</span> qualifier can be applied to an existing declaration, as in this case:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">invariant</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span><span class="w"> </span><span class="c1">//Not redeclared; just uses invariant.</span>
+<span class="k">out</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">Color</span><span class="p">;</span>
+<span class="k">invariant</span><span class="w"> </span><span class="n">Color</span><span class="p">;</span><span class="w"> </span><span class="c1">//Again makes existing declaration invariant.</span>
+</pre></div>
+<p>Or you can use it at the declaration site.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">invariant</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">Color</span><span class="p">;</span>
+</pre></div>
+<p>Only input and output variables can be declared <span class="tpl-code">invariant</span>. However, for input variables, it has no meaning; it is only allowed for symmetry. Note that the <span class="tpl-code">invariant</span> qualifier <i>does not</i> participate in <a href="/opengl/Interface_Matching" class="mw-redirect" title="Interface Matching">interface matching</a>, so you do not have to use it at all on input variables from stages that declared that output as <span class="tpl-code">invariant</span>.
+</p>
+<h2><span class="mw-headline" id="Precise_qualifiers">Precise qualifiers</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">precise qualifier</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader5.txt">ARB_gpu_shader5</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The <span class="tpl-code">precise</span> qualifier allows shader computations to be carried out exactly as specified in the source code in order to avoid optimization-induced invariance issues. This is critical to avoid cracks in tessellation shaders, but also useful in many other scenarios where invariance is required.
+</p><p>Among other things, precise prevents the use of fused-multiply-add instructions to implement expressions of the form <span class="tpl-code">a * b + c</span>, but the fma intrinsic can still be used explicitly to allow specifying the order in which operations are combined. For further details see Section 4.9 in <a rel="nofollow" class="external free" href="https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.50.pdf">https://www.khronos.org/registry/OpenGL/specs/gl/GLSLangSpec.4.50.pdf</a> page 90.
+</p><p>The need for the <span class="tpl-code">precise</span> qualifier in the context of tessellation is also explained in Issue 9 of <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a>. 
+</p><p>An example of symmetric (watertight) cubic evaluation is available here: <a rel="nofollow" class="external free" href="http://www.ludicon.com/castano/blog/2010/09/precise/">http://www.ludicon.com/castano/blog/2010/09/precise/</a>
+</p>
+<h2><span class="mw-headline" id="Qualifier_order">Qualifier order</span></h2>
+<p>Unless you are in OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a>, qualifiers always come in a particular order. For non-parameter values, the order is always this:
+</p>
+<pre><i>invariant-qualifier</i> <i>interpolation-qualifier</i> <i>layout-qualifier</i> <i>other-storage-qualifier</i> <i>precision-qualifier</i>
+</pre>
+<p>The <span class="tpl-code">centroid</span> qualifier, if present, must immediately precede <span class="tpl-code">in</span> or <span class="tpl-code">out</span>. For the purpose of ordering, it is considered part of the <span class="tpl-code">in</span> or <span class="tpl-code">out</span> storage qualifier, not part of the interpolation qualifier.
+</p><p>OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a> removes the ordering restriction in most cases. <span class="tpl-code">centroid</span> still has to immediate precede <span class="tpl-code">in</span> or <span class="tpl-code">out</span>. It also allows multiple layout qualifiers, but you can still only use one qualifier from most other groups (there can be multiple memory qualifiers). Also, all qualifiers must still come before the <a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">type specifier</a>. The groups of qualifiers match the main headings above: storage, layout, precision, etc.
+</p>
+<h2><span class="mw-headline" id="Built-in_redeclaration">Built-in redeclaration</span></h2>
+<p>The GLSL defines a number of <a href="/opengl/GLSL_Predefined_Variables" class="mw-redirect" title="GLSL Predefined Variables">predefined variables</a> at the various shader stages. These pre-defined variables are defined with a particular set of qualifiers, as stated in the above article. If you wish to use pre-defined variables with a different qualifier, you can re-declare the variable, but the re-declaration must use the same type. Some variables cannot be redeclared with a new qualifier. For example: gl_Position in the vertex shader cannot use an interpolation qualifier at all.
+</p>
+<h2><span class="mw-headline" id="Removed_qualifiers">Removed qualifiers</span></h2>
+<p>The following qualifiers are deprecated as of GLSL 1.30 (OpenGL 3.0) and removed from GLSL 1.40 and above.
+</p><p>The <span class="tpl-code">attribute</span> qualifier is effectively equivalent to an input qualifier in vertex shaders. It cannot be used in any other shader stage. It cannot be used in interface blocks.
+</p><p>The <span class="tpl-code">varying</span> qualifier is equivalent to the input of a fragment shader or the output of a vertex shader. It cannot be used in any other shader stages. It cannot be used in interface blocks.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318164053
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.077 seconds
+Real time usage: 0.083 seconds
+Preprocessor visited node count: 2533/1000000
+Post‐expand include size: 24378/2097152 bytes
+Template argument size: 5538/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 2/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 1074/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   49.108      1 -total
+ 29.45%   14.460      1 Template:Shader_float
+ 26.08%   12.806      2 Template:Infobox_feature
+ 25.11%   12.330      1 Template:Shader_list
+ 24.27%   11.921      2 Template:Infobox2
+ 15.14%    7.435     22 Template:Pagelink
+  8.89%    4.365     20 Template:Infobox/longrow
+  8.59%    4.216     11 Template:Main
+  8.51%    4.180     65 Template:Code
+  6.51%    3.197     20 Template:Infobox/shortrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1641-0!canonical and timestamp 20260318164053 and revision id 14918. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Type_Qualifier_(GLSL)&amp;oldid=14918">https://wikis.khronos.org/opengl/index.php?title=Type_Qualifier_(GLSL)&amp;oldid=14918</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Type+Qualifier+%28GLSL%29" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Type_Qualifier_(GLSL)" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/opengl/Talk:Type_Qualifier_(GLSL)" rel="discussion" title="Discussion about the content page [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Type_Qualifier_(GLSL)"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Type_Qualifier_(GLSL)&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Type_Qualifier_(GLSL)&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Type_Qualifier_(GLSL)" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Type_Qualifier_(GLSL)" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Type_Qualifier_(GLSL)&amp;oldid=14918" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Type_Qualifier_(GLSL)&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Type_Qualifier_%28GLSL%29&amp;id=14918&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 11 November 2022, at 04:10.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":144,"wgPageParseReport":{"limitreport":{"cputime":"0.077","walltime":"0.083","ppvisitednodes":{"value":2533,"limit":1000000},"postexpandincludesize":{"value":24378,"limit":2097152},"templateargumentsize":{"value":5538,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":2,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":1074,"limit":5000000},"timingprofile":["100.00%   49.108      1 -total"," 29.45%   14.460      1 Template:Shader_float"," 26.08%   12.806      2 Template:Infobox_feature"," 25.11%   12.330      1 Template:Shader_list"," 24.27%   11.921      2 Template:Infobox2"," 15.14%    7.435     22 Template:Pagelink","  8.89%    4.365     20 Template:Infobox/longrow","  8.59%    4.216     11 Template:Main","  8.51%    4.180     65 Template:Code","  6.51%    3.197     20 Template:Infobox/shortrow"]},"cachereport":{"timestamp":"20260318164053","ttl":1209600,"transientcontent":false}}});});</script>
+</body>
+</html>

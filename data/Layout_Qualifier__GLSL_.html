@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Layout Qualifier (GLSL) - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"dc713e34b4d055f8e477d0ca","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Layout_Qualifier_(GLSL)","wgTitle":"Layout Qualifier (GLSL)","wgCurRevisionId":14683,"wgRevisionId":14683,"wgArticleId":3676,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Layout_Qualifier_(GLSL)","wgRelevantArticleId":3676,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Layout_Qualifier_GLSL rootpage-Layout_Qualifier_GLSL skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Layout Qualifier (GLSL)</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><b>Layout qualifiers</b></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p>A number of <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a> variables and definitions can have <b>layout qualifiers</b> associated with them. Layout qualifiers affect where the storage for a variable comes from, as well as other user-facing properties of a particular definition.
+</p><p>All layout qualifiers are defined with a common syntax:
+</p>
+<pre>layout(<span class="tpl-param">qualifier1​</span>, <span class="tpl-param">qualifier2​</span> = <i>value</i>, ...) <i>variable definition</i>
+</pre>
+<p>The <span class="tpl-param">qualifier​</span> values are specific to a particular use of layouts. The qualifiers are order-independent, unless otherwise noted. Some qualifiers can have values assigned to them, as with <span class="tpl-param">qualifier2​</span> in the above example.
+</p><p>In the above, <i>value</i> must be an integer literal, unless you are using OpenGL 4.4<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a>, in which case it may be an <a href="/opengl/Integral_Constant_Expression" class="mw-redirect" title="Integral Constant Expression">Integral Constant Expression</a> (aka: a compile-time constant).
+</p><p>Layout qualifiers are sometimes used to define <a href="#Shader_stage_options">various options for different shader stages</a>. These shader stage options apply to the input of the shader stage or the output. In these definitions, <i>variable definition</i> will just be <span class="tpl-code">in</span> or <span class="tpl-code">out</span>.
+</p><p>In OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a>, a definition can have multiple <span class="tpl-code">layout()</span> segments to qualify the definition, and the same <span class="tpl-param">qualifier​</span> can appear multiple times for the same definition. When this happens, the last defined value for mutually-exclusive qualifiers or for numeric qualifiers prevails.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Interface_layouts"><span class="tocnumber">1</span> <span class="toctext">Interface layouts</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Vertex_shader_attribute_index"><span class="tocnumber">1.1</span> <span class="toctext">Vertex shader attribute index</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Fragment_shader_buffer_output"><span class="tocnumber">1.2</span> <span class="toctext">Fragment shader buffer output</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Program_separation_linkage"><span class="tocnumber">1.3</span> <span class="toctext">Program separation linkage</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Block_member_locations"><span class="tocnumber">1.3.1</span> <span class="toctext">Block member locations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#Interface_components"><span class="tocnumber">1.4</span> <span class="toctext">Interface components</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Binding_points"><span class="tocnumber">2</span> <span class="toctext">Binding points</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Image_formats"><span class="tocnumber">3</span> <span class="toctext">Image formats</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Atomic_counter_storage"><span class="tocnumber">4</span> <span class="toctext">Atomic counter storage</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Interface_block_memory_layout"><span class="tocnumber">5</span> <span class="toctext">Interface block memory layout</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Explicit_uniform_location"><span class="tocnumber">6</span> <span class="toctext">Explicit uniform location</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Subroutine_qualifiers"><span class="tocnumber">7</span> <span class="toctext">Subroutine qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Transform_feedback_qualifiers"><span class="tocnumber">8</span> <span class="toctext">Transform feedback qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Shader_stage_options"><span class="tocnumber">9</span> <span class="toctext">Shader stage options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-15"><a href="#Tessellation_control_output_vertex_count"><span class="tocnumber">9.1</span> <span class="toctext">Tessellation control output vertex count</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Tessellation_evaluation_options"><span class="tocnumber">9.2</span> <span class="toctext">Tessellation evaluation options</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Geometry_shader_primitives"><span class="tocnumber">9.3</span> <span class="toctext">Geometry shader primitives</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Fragment_shader_coordinate_origin"><span class="tocnumber">9.4</span> <span class="toctext">Fragment shader coordinate origin</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Early_fragment_tests"><span class="tocnumber">9.5</span> <span class="toctext">Early fragment tests</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Interface_layouts">Interface layouts</span></h2>
+<p><a href="/opengl/Type_Qualifier#Shader_stage_inputs_and_outputs" class="mw-redirect" title="Type Qualifier">Shader stage input and output variables</a> define a shader stage's interface. Depending on the available feature set, these variables can have layout qualifiers that define what resources they use.
+</p>
+<h3><span class="mw-headline" id="Vertex_shader_attribute_index">Vertex shader attribute index</span></h3>
+<p><a href="/opengl/Vertex_Attributes" class="mw-redirect" title="Vertex Attributes">Vertex shader inputs</a> can specify the attribute index that the particular input uses. This is done with this syntax:
+</p>
+<pre>layout(location = <i>attribute index</i>) in vec3 position;
+</pre>
+<p>With this syntax, you can forgo the use of <span class="tpl-code"><a href="/opengl/GLAPI/glBindAttribLocation" title="GLAPI/glBindAttribLocation">glBindAttribLocation</a></span> entirely. If you try to combine the two and they conflict, the layout qualifier always wins.
+</p><p>Attributes that take up multiple attribute slots will be given a sequential block of that number of attributes in order starting with the given attribute. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="w"> </span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</pre></div>
+<p>This will allocate the attribute indices 2, 3, 4, and 5.
+</p>
+<h3><span class="mw-headline" id="Fragment_shader_buffer_output">Fragment shader buffer output</span></h3>
+<p><a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">Fragment shader outputs</a> can specify the buffer index that a particular output writes to. This uses the same syntax as vertex shader attributes:
+</p>
+<pre>layout(location = <i>output index</i>) out vec4 outColor;
+</pre>
+<p>As with vertex shader inputs, this allows the user to forgo the use of <span class="tpl-code"><a href="/opengl/GLAPI/glBindFragDataLocation" title="GLAPI/glBindFragDataLocation">glBindFragDataLocation</a></span>. Similarly, the values in the shader override the values provided by this function.
+</p><p>For <a href="/opengl/Dual_Source_Blending" class="mw-redirect" title="Dual Source Blending">dual source blending</a>, the syntax includes a second qualifier:
+</p>
+<pre>layout(location = <i>output index</i>, index = <i>dual output index</i>) out vec4 outColor;
+</pre>
+<p>Again, this allows one to forgo the use of <span class="tpl-code"><a href="/opengl/GLAPI/glBindFragDataLocationIndexed" title="GLAPI/glBindFragDataLocationIndexed">glBindFragDataLocationIndexed</a></span>.
+</p>
+<h3><span class="mw-headline" id="Program_separation_linkage">Program separation linkage</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Program Separation</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.1</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">ARB_separate_shader_objects</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>When dynamically using separate programs, the correspondence between the outputs of one program and the inputs of the next is important. This correspondence typically happens the same way as when doing dynamic linkage: inputs and outputs must match by name, type, and qualifiers exactly (with a few exceptions).
+</p><p>However, it is possible to tag variables with an index, such that they correspond by the index instead of by name. This <a href="/opengl/Separate_Program_Interface_Match" class="mw-redirect" title="Separate Program Interface Match">changes the interface matching process</a> a bit, allowing outputs that aren't consumed by the next stage and so forth.
+</p><p>This index is provided by <span class="tpl-code">location</span> qualifier. This applies to loose input/output variables. <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Input and output#Interface block variables</a> need <a href="#Block_member_locations">additional functionality</a> to use these.
+</p><p>For example, given a vertex shader that provides these outputs:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">texCoord</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">normal</span><span class="p">;</span>
+</pre></div>
+<p>This allows the consuming shader to use different names and even types:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">diffuseAlbedo</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">texCoord</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">cameraSpaceNormal</span><span class="p">;</span>
+</pre></div>
+<p>This still results in an interface match.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> The <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">ARB_separate_shader_objects</a> extension was released in a form where this kind of layout location linking outside of separate shaders did not work. That is, if you specified location indices, they were effectively ignored unless you were linking a separate program. The spec was changed to fix this, so that linkage would be the same whether separate or together; if location indices are specified, they are always used. However, AMD implemented the old behavior for a time, and it is not clear that their implementation was updated to fix this.</div>
+<p><b>Location sizes</b>: Interfaces between programs can be of various types, even user-defined structs and arrays. Some such types consume multiple locations. When a type that consumes multiple locations is used, they will consume locations sequentially. It is a compile/link-time error to have ranges of variables overlap their locations (unless they have different <a href="#Interface_components">components specifiers</a> and doesn't overlap their component usage).
+</p><p>Scalars and vector types that are not doubles all take up one location. The <span class="tpl-code">double</span> and <span class="tpl-code">dvec2</span> types also take one location, while <span class="tpl-code">dvec3</span> and <span class="tpl-code">dvec4</span> take up 2 locations. Structs take up locations based on their member types, in-order. Arrays also take up locations based on their array sizes.
+</p><p>Here are some examples:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">OutData</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">vec3</span><span class="w"> </span><span class="n">data1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dvec4</span><span class="w"> </span><span class="n">data2</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">val</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">vals</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w">    </span><span class="c1">// Consumes 4 locations</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">OutData</span><span class="w"> </span><span class="n">myOut</span><span class="p">;</span><span class="w">   </span><span class="c1">// Consumes 6 locations. dvec4 uses 2, and `val[3]` uses 3 total</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">texCoord</span><span class="p">;</span><span class="w">  </span><span class="c1">// Consumes 1 location</span>
+</pre></div>
+<p>The number of available locations is implementation-defined, and it cannot be queried. However, it will be at least one-fourth of <span class="tpl-enum">GL_MAX_VARYING_COMPONENTS</span>.
+</p>
+<h4><span class="mw-headline" id="Block_member_locations">Block member locations</span></h4>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Block member locations</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>With this feature, The <span class="tpl-code">location</span> qualifier can be used on input/output <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block definitions and members</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This feature <i>does not</i> exist to allow separate linking to work differently for interface blocks. So even if an interface block uses location qualifiers, the linking will <i>still</i> require an exact match between the blocks. This feature is here to support <a href="#Interface_components">component specifications and location aliasing</a>, which requires specifying an explicit location.</div>
+<p>The block as a whole can have a <span class="tpl-code">location</span> qualifier. This will allocate a sequential sets of locations, giving the first member the given location and incrementing from there. The size of the individual members is computed the same way as above.
+</p><p>A particular member of a block can have a <span class="tpl-code">location</span> qualifier. However, this only works if the block itself is qualified or if <i>all members</i> of the block have a qualifier.
+</p><p>If the block has a qualifier, then a member's qualifier overrides the block computed qualifier. It also resets the block's computed qualifier, so that subsequent unqualified members will be computed relative to the most recent explicit qualifier. Here is an example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">Block</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">first</span><span class="p">;</span><span class="w">                        </span><span class="c1">// Location 0.</span>
+<span class="w">  </span><span class="kt">dvec4</span><span class="w"> </span><span class="n">second</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span><span class="w">                   </span><span class="c1">// Location 1.</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">third</span><span class="p">;</span><span class="w">                        </span><span class="c1">// Location 7; dvec4 takes 2 each, and the prior one has 3 array members.</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">fourth</span><span class="p">;</span><span class="w"> </span><span class="c1">// Location 10.</span>
+<span class="w">  </span><span class="kt">dvec4</span><span class="w"> </span><span class="n">fifth</span><span class="p">;</span><span class="w">                       </span><span class="c1">// Location 11. Starts from the most recent explicit location.</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="kt">dvec3</span><span class="w"> </span><span class="n">sixth</span><span class="p">;</span><span class="w">  </span><span class="c1">// Location 8.</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">seventh</span><span class="p">;</span><span class="w">                      </span><span class="c1">// Location 10, overlaps with `fourth`, so causes an error.</span>
+<span class="p">};</span>
+</pre></div>
+<h3><span class="mw-headline" id="Interface_components">Interface components</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Interface components</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>There are limits on the locations of input and output variables (of all kinds). These limits are based on an implicit assumption in the API that the resources being passed around are done so as groups of 4-element vectors of data. This is why a <span class="tpl-code">mat2</span> takes up 2 locations, while a <span class="tpl-code">vec4</span> only takes up 1, even though they both are 4 floats in size. The <span class="tpl-code">mat2</span> is considered to be passed as two <span class="tpl-code">vec4</span>s; the last two components of each vector simply go unused.
+</p><p>It is possible to reclaim some of this unused space. To do this, you declare two (or more) variables that use the same location, but use different components within that location.
+</p><p>This is done using the <span class="tpl-code">component</span> layout qualifier. You <i>must</i> use a <span class="tpl-code">location</span> qualifier when using <span class="tpl-code">component</span>, even if the variable would have an implicitly assigned location from <a href="#Block_member_locations">an interface block declaration</a>. If a variable does not have an explicit <span class="tpl-code">component</span> qualifier, it is as through it were set to 0.
+</p><p>The <span class="tpl-code">component</span> qualifier specifies the starting component that the variable will use. It is illegal to set the component on a variable whose type would cause it to exceed the boundaries of a 4-element vector. So if you have a <span class="tpl-code">vec3</span>, the <span class="tpl-code">component</span> can only be 0 or 1.
+</p><p>If you set two interface variables to the same location, the variables must use components such that the used space in that location does not overlap. So you can't pack a <span class="tpl-code">vec3</span> in the same location with a <span class="tpl-code">vec2</span>, but you can pack two <span class="tpl-code">floats</span> with a <span class="tpl-code">vec2</span>.
+</p><p>Arrays (and arrays of arrays) can also have components assigned. This will assign the component to each location that the array covers. So it is possible to do the following:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">arr1</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">arr2</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span><span class="w"> </span><span class="c1">//Different sizes are fine.</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">val</span><span class="p">;</span><span class="w">    </span><span class="c1">//A non-array takes the last two fields from location 4.</span>
+</pre></div>
+<p>Two (or more) variables that share the same location must satisfy the following conditions:
+</p>
+<ul><li>Share the same base data type. So you can have alias locations for floating-point types, or integer types (signed and unsigned does not matter for this), but you cannot have a float sit alongside an integer.</li>
+<li>Use the same <a href="/opengl/Interpolation_qualifier" class="mw-redirect" title="Interpolation qualifier">interpolation qualifiers</a>.</li></ul>
+<p>The <span class="tpl-code">component</span> qualifier can be used for any shader stage input/output declaration. This includes interfaces between shaders, fragment shader outputs, tessellation <span class="tpl-code">patch</span> variables, and so forth. However, it may not be used on:
+</p>
+<ul><li>Variables of matrix types</li>
+<li>Variables of structs types</li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a> (this qualifier can be on members of a block, but not on the block itself)</li>
+<li>Arrays of types on this list (arrays of non-matrix basic types are fine).</li></ul>
+<p>For <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attributes</a> and <a href="/opengl/Fragment_Shader_Output" class="mw-redirect" title="Fragment Shader Output">Fragment Shader Outputs</a>, OpenGL still treats each location as though it were a single variable. So <span class="tpl-code"><a href="/opengl/GLAPI/glVertexAttribPointer" title="GLAPI/glVertexAttribPointer">glVertexAttribPointer</a></span> feeds data to all of the input variables for that location. Any components used by the shader that are not provided by the array are filled in as normal (with zeros, except for the last which gets a 1). And <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffers" title="GLAPI/glDrawBuffers">glDrawBuffers</a></span> pulls data from all of the output variables for that location.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Previously, it was stated that it is illegal for two interface variables to use the same location and overlap their components. That is not <i>entirely</i> true. It is legal to do so for vertex shader inputs and fragment shader outputs. But only so long as any particular vertex shader invocation cannot read from both of the overlapping inputs, and any particular fragment shader invocation does not write to both overlapping outputs. You are advised to forget that this is possible; there's not much point to it.</div>
+<h2><span class="mw-headline" id="Binding_points">Binding points</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Binding points</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><a href="/opengl/Interface_Block_(GLSL)#Buffer_backed" title="Interface Block (GLSL)">Buffer backed interface blocks</a> and all <a href="/opengl/Opaque_Type" class="mw-redirect" title="Opaque Type">opaque types</a> have a setting which represents an index in the GL context where a buffer or texture object is bound so that it can be accessed through that interface. These binding points, like input attribute indices and output data locations, can be set from within the shader. This is done by using the "binding" layout qualifier:
+</p><p><br style="clear: both" />
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">sampler2D</span><span class="w"> </span><span class="n">mainTexture</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">std140</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">MainBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p>The first line is the equivalent of getting the uniform location for "mainTexture" and setting its uniform value to "3". Similarly, the second line is the equivalent of getting the "MainBlock" block location and setting its block index to "1".
+</p><p>This capacity only sets the initial binding index. OpenGL code can later modify it if it wishes.
+</p>
+<h2><span class="mw-headline" id="Image_formats">Image formats</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Image variable formats</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_image_load_store.txt">ARB_shader_image_load_store</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><a href="/opengl/Image_Load_Store" title="Image Load Store">Image uniform variables</a> have qualifiers that define the format that all reading operations will convert the data into and all writing operations will convert the data from. They are grouped into 3 categories: floating-point, signed-integer, and unsigned-integer formats. These are the possible values:
+</p>
+<div class="column-count column-count-2" style="-moz-column-count: 2; -webkit-column-count: 2; column-count: 2;">
+<ul><li>Floating-point layout image formats:
+<ul><li>rgba32f</li>
+<li>rgba16f</li>
+<li>rg32f</li>
+<li>rg16f</li>
+<li>r11f_g11f_b10f</li>
+<li>r32f</li>
+<li>r16f</li>
+<li>rgba16</li>
+<li>rgb10_a2</li>
+<li>rgba8</li>
+<li>rg16</li>
+<li>rg8</li>
+<li>r16</li>
+<li>r8</li>
+<li>rgba16_snorm</li>
+<li>rgba8_snorm</li>
+<li>rg16_snorm</li>
+<li>rg8_snorm</li>
+<li>r16_snorm</li>
+<li>r8_snorm</li></ul></li>
+<li>Signed integer layout image formats:
+<ul><li>rgba32i</li>
+<li>rgba16i</li>
+<li>rgba8i</li>
+<li>rg32i</li>
+<li>rg16i</li>
+<li>rg8i</li>
+<li>r32i</li>
+<li>r16i</li>
+<li>r8i</li></ul></li>
+<li>Unsigned integer layout image formats:
+<ul><li>rgba32ui</li>
+<li>rgba16ui</li>
+<li>rgb10_a2ui</li>
+<li>rgba8ui</li>
+<li>rg32ui</li>
+<li>rg16ui</li>
+<li>rg8ui</li>
+<li>r32ui</li>
+<li>r16ui</li>
+<li>r8ui</li></ul></li></ul>
+</div>
+<h2><span class="mw-headline" id="Atomic_counter_storage">Atomic counter storage</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Atomic Counters</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counter</a><i></i></div>
+<p>Atomic Counter variables have special layout settings that define where within a buffer object a particular variable comes from. These are <i>required</i>; there are no alternate methods to set these fields.
+</p><p><br />
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Atomic_Counter/Layout_Parameters" title="Atomic Counter/Layout Parameters">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Atomic_Counter/Layout_Parameters&amp;action=edit">E</a></span></span></div>
+<p>Atomic counters use two layout qualifier parameters. The <span class="tpl-code">binding</span> defines which <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a> bound to the given index in the indexed target <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER​</span> will provide the storage for this atomic counter. The <span class="tpl-code">binding</span> parameter is <i>not</i> optional.
+</p><p>Atomic counters also have an optional <span class="tpl-code">offset</span> parameter. The offset is the byte offset from the beginning of the range bound to the target to the location where this variable gets its 32-bits of storage.
+</p><p>The <span class="tpl-code">offset</span> parameter is not required. If it is not specified, then the <span class="tpl-code">offset</span> will be 4 bytes larger than the offset previously used for that <span class="tpl-code">binding</span>, starting at 0 if none were previously specified. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">one</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">two</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">three</span><span class="p">;</span>
+
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">four</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">five</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">six</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">atomic_uint</span><span class="w"> </span><span class="n">seven</span><span class="p">;</span>
+</pre></div>
+<p>The offsets for these are as follows:
+</p>
+<ul><li><span class="tpl-code">one</span>: 12</li>
+<li><span class="tpl-code">two</span>: 16 (12 + 4)</li>
+<li><span class="tpl-code">three</span>: 4 (specified)</li>
+<li><span class="tpl-code">four</span>: 0 (unused bindings offsets always start with a default of 0).</li>
+<li><span class="tpl-code">five</span>: 4</li>
+<li><span class="tpl-code">six</span>: 20</li>
+<li><span class="tpl-code">seven</span>: 8 (the last value used for binding 0 was 4, so this one gets 8).</li></ul>
+<h2><span class="mw-headline" id="Interface_block_memory_layout">Interface block memory layout</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Interface_Block_(GLSL)#Memory_layout" title="Interface Block (GLSL)">Interface Block (GLSL)#Memory_layout</a><i></i></div>
+<p>Variables declared in interface blocks that get their storage from buffers (<a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">uniform blocks</a> or <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage blocks</a>) have a number of layout qualifiers to define the packing and ordering of the variables defined in the block.
+</p>
+<h2><span class="mw-headline" id="Explicit_uniform_location">Explicit uniform location</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Explicit Uniform Location</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/explicit_uniform_location.txt">ARB_explicit_uniform_location</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Uniform_(GLSL)/Explicit_Uniform_Location" title="Uniform (GLSL)/Explicit Uniform Location">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Uniform_(GLSL)/Explicit_Uniform_Location&amp;action=edit">E</a></span></span></div>
+<p>Uniforms defined outside of <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface Blocks</a> have a location. This location can be directly assigned in the shader, using this syntax:
+</p><p><br style="clear: both" />
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelToWorldMatrix</span><span class="p">;</span>
+</pre></div>
+<p>Calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetUniformLocation" title="GLAPI/glGetUniformLocation">glGetUniformLocation(prog, "modelToWorldMatrix")</a></span> is guaranteed to return 2. It is illegal to assign the same uniform location to two uniforms in the same shader <i>or</i> the same program. Even if those two uniforms have the same name and type, and are defined in different shader stages, it is not legal to explicitly assign them the same uniform location; a linker error will occur.
+</p><p>All non-array/struct types will be assigned a single location. Arrays and structs will be assigned sequentially increasing locations, starting with the given location. Given this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">some_mats</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+</pre></div>
+<p><span class="tpl-code">some_mats</span> will be assigned all of the uniform locations on the half-open range [2, 12). This will apply for nested types. Consider the following:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">Thingy</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">an_array</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">Thingy</span><span class="w"> </span><span class="n">some_thingies</span><span class="p">[</span><span class="mi">6</span><span class="p">];</span>
+</pre></div>
+<p>Each <span class="tpl-code">Thingy</span> takes up 4 uniform locations; the first three going to <span class="tpl-code">an_array</span> and the fourth going to <span class="tpl-code">foo</span>. Thus, <span class="tpl-code">some_thingies</span> takes up 24 uniform locations.
+</p><p>Uploading arrays of uniforms with one of the <span class="tpl-code"><a href="/opengl/GLAPI/glUniform" title="GLAPI/glUniform">glUniform*v</a></span> functions will work. For example, uniform location 2 represents the array `some_thingies[0].an_array`. As such, you can upload an array of <span class="tpl-code">vec4</span>s to this array with <span class="tpl-code"><a href="/opengl/GLAPI/glUniform" title="GLAPI/glUniform">glUniform4fv(2, 3, ...);</a></span>.
+</p><p>If two uniforms in a program are given the same explicit location, then they refer to the same uniform. This means they must also match in variable name, type, array-index, qualifiers, etc. The following would be illegal:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">some_mats</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">some_vecs</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</pre></div>
+<p><span class="tpl-code">some_mats</span> takes up 10 uniform locations, from [2, 12). But since <span class="tpl-code">some_vecs</span> starts at uniform location 6, it would have the same location as <span class="tpl-code">some_mats[4]</span>. But it wouldn't have the same name, or same type, or other characteristics. Even if <span class="tpl-code">some_vecs</span> was a <span class="tpl-code">mat4</span>, it would not be the same, since they don't have the same name or same array index.
+</p><p>The maximum number of available locations within a single program is <span class="tpl-enum">GL_MAX_UNIFORM_LOCATIONS</span>, which will be at least 1024 locations. You may not use a uniform location outside of the range [0, <span class="tpl-enum">GL_MAX_UNIFORM_LOCATIONS</span>), nor may the sequential assignment of uniform locations due to array/struct aggregation go outside of this range.
+</p>
+<h2><span class="mw-headline" id="Subroutine_qualifiers">Subroutine qualifiers</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Subroutine qualifiers</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/explicit_uniform_location.txt">ARB_explicit_uniform_location</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Shader_Subroutine" title="Shader Subroutine">Shader Subroutine</a><i></i></div>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Shader_Subroutine/Layout_Qualifier" title="Shader Subroutine/Layout Qualifier">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Shader_Subroutine/Layout_Qualifier&amp;action=edit">E</a></span></span></div>
+<p><a href="/opengl/Shader_Subroutine" title="Shader Subroutine">Shader Subroutines</a> use a number of resources that can be automatically assigned to each shader stage at link time. However, the user can explicitly define them within the shader text as well, to avoid having to <a href="/opengl/Program_Introspection#Subroutines" title="Program Introspection">query them</a>.
+</p><p>Subroutine functions each have a specific index that identifies that particular subroutine among all subroutines in a shader stage. This subroutine can be set from within a shader using the <span class="tpl-code">index</span> layout qualifier:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">subroutine</span><span class="p">(</span><span class="n">SubroutineTypeName</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w"> </span><span class="p">...;</span>
+</pre></div>
+<p>This sets the particular subroutine function definition to index 2. No two subroutine functions may have the same index. Also, this index is subject to the <a href="/opengl/Shader_Subroutine#Limitations" title="Shader Subroutine">limitations on the number of subroutines</a> in a shader stage.
+</p><p>Each subroutine uniform variable within a shader stage has a particular position in that stage's list of subroutine uniforms. This location in the array can be set using the <span class="tpl-code">location</span> layout qualifer:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">subroutine</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">SubroutineTypeName</span><span class="w"> </span><span class="n">subroutineVariableName</span><span class="p">;</span>
+</pre></div>
+<p>This means that array index 1 in the call to <span class="tpl-code"><a href="/opengl/GLAPI/glUniformSubroutines" title="GLAPI/glUniformSubroutines">glUniformSubroutines</a></span> refers to the variable <span class="tpl-code">subroutineVariableName</span>.
+</p><p>The number of active subroutine uniforms for this shader stage will be the largest location + 1. This means that some "active" uniform locations may be unused. If the above example were the only subroutine uniform, then the number of active subroutine uniforms will be considered to be 2, with location 0 going unusued.
+</p><p>Arrays of subroutine uniforms are always assigned consecutive uniform locations.
+</p><p>If some uniforms are user-assigned and some are linker-assigned, the linker will fill in the unused indices first, before increasing the number of active uniforms. So the number of active subroutine uniforms can be larger than this. The linker will never assign a subroutine uniform to a user-assigned subroutine uniform, even if the user-assigned one is not active.
+</p><p>The linking can fail if user-defined subroutine uniform assignments do not leave enough room for linker-assigned ones. Linker-assigned subroutine uniform locations for arrays must also be consecutively assigned, so if there is insufficient space to assign that many uniform locations, the linking will fail.
+</p>
+<h2><span class="mw-headline" id="Transform_feedback_qualifiers">Transform feedback qualifiers</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Transform feedback qualifiers</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Transform_Feedback/In_Shader_Specification" title="Transform Feedback/In Shader Specification">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Transform_Feedback/In_Shader_Specification&amp;action=edit">E</a></span></span></div>
+<p><b>Layout qualifiers</b> can be used to define which output variables are captured in <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> operations. When these qualifiers are set in a shader, they completely override any attempt to set the transform feedback outputs from OpenGL via <span class="tpl-code"><a href="/opengl/GLAPI/glTransformFeedbackVaryings" title="GLAPI/glTransformFeedbackVaryings">glTransformFeedbackVaryings</a></span>.
+</p><p>Any output variable or output <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block</a> declared with the <b><span class="tpl-code">xfb_offset</span></b> layout qualifier will be part of the transform feedback output. This qualifier must be specified with an integer byte offset. The offset is the number of bytes from the beginning of a vertex to be written to the current buffer to this particular output variable.
+</p><p>The offsets of contained values (whether in arrays, structs, or members of an interface block if the whole block has an offset) are computed, based on the sizes of prior components to pack them in the order specified. Any explicitly provided offsets are not allowed to violate alignment restrictions. So if a definition contains a double (either directly or indirectly), the offset must be 8-byte aligned.
+</p><p>Members of interface blocks can have their offsets specified directly on them, which overrides any computed offsets. Also, all members of an interface block are not required to be written to outputs (though that will happens if you set the <span class="tpl-code">xfb_offset</span> on the block itself). Stream assignments for a geometry shader are required to be the same for all members of a block, but offsets are not.
+</p><p>Different variables being captured are assigned to buffer binding indices. Offset assignments are separate for the separate buffers. It is a linker error for two variables captured by the same buffer to have overlapping byte offsets, whether automatically computed or explicitly assigned.
+</p><p>An explicit buffer assignment is made by using the <b><span class="tpl-code">xfb_buffer</span></b> qualifier on the same declaration as the offset qualifier. This takes an integer which defines the buffer binding index that the captured output(s) is/are associated with. The integer must be less than <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</span>.
+</p><p>Any offsets for global variables or interface blocks that do not specify a buffer explicitly will use the current buffer. The current buffer is set as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span>
+</pre></div>
+<p>All following offsets for globals that do not explicitly specify a buffer will use 1 as their buffer. The initial current buffer for a shader is 0.
+</p><p>Variables can have <span class="tpl-code">xfb_buffer</span> assigned to them without <span class="tpl-code">xfb_offset</span>. This does nothing and will be ignored.
+</p><p>Interface blocks have a special association with buffers. Each interface block is associated with a buffer, regardless of whether any of its members are captured. The buffer is either the current buffer as defined above or a buffer explicitly specified by <span class="tpl-code">xfb_buffer</span>.
+</p><p>As previously stated, all members of a block do not have to be captured. However, if any members of a block <i>are</i> captured, they <i>must</i> all be captured to the same buffer. Specifically, the buffer associated with that block. It is an error to use <span class="tpl-code">xfb_buffer</span> on a member if the buffer index you provide is different from the index used by the block.
+</p><p>As an example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span><span class="w"> </span><span class="c1">// Default buffer of 2.</span>
+
+<span class="k">out</span><span class="w"> </span><span class="n">OutputBlock1</span><span class="w">            </span><span class="c1">// Block buffer index is implicitly 2.</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">val1</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="n">first</span><span class="p">;</span><span class="w">  </span><span class="c1">// The provided index is the same as the block&#39;s index.</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="n">other</span><span class="p">;</span><span class="w">  </span><span class="c1">// Compile error, due to changing the buffer index for a block member.</span>
+<span class="p">};</span>
+</pre></div>
+<p>Each buffer has the concept of a stride. This represents the byte count from the beginning of one captured vertex to the beginning of the next. It is computed by taking the output with the highest <span class="tpl-code">xfb_offset</span> value, adding its size to that offset, and then aligning the computed value to the base alignment of the buffer. The buffer's alignment is 4, unless it captures any double-precision values in which case it is 8. This means you do not need to manually pad structures for alignment, as you did with <a href="/opengl/Feedback_With_Doubles" class="mw-redirect" title="Feedback With Doubles">outside shader setting</a>.
+</p><p>The stride for a buffer can also be explicitly set using the <b><span class="tpl-code">xfb_stride</span></b> layout qualifier. This allows you to add extra space at the end, perhaps to skip data that will not change. A compilation error will result if the stride you specify is:
+</p>
+<ul><li>Too small, given the offsets and computed sizes of the captured data for that buffer.</li>
+<li>Not properly aligned. It must be at least 4 byte aligned, and it must be 8 byte aligned if the buffer captures any double-precision values.</li></ul>
+<p>The stride for a buffer is set as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">xfb_stride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span><span class="w"> </span><span class="c1">// Sets stride of buffer 1 to 32. Also, sets buffer 1 to be current.</span>
+</pre></div>
+<p>Linking errors will result if any captured outputs within a buffer overlap in space or violate padding. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">Data</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">val1</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">val2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">val3</span><span class="p">;</span><span class="w">  </span><span class="c1">// Compiler error. val2 covers bytes on the range [4, 20).</span>
+<span class="p">};</span>
+</pre></div>
+<p>Compiler/linker errors will result if you are using <a href="/opengl/Geometry_Shader_Output_Stream" class="mw-redirect" title="Geometry Shader Output Stream">Geometry Shader output streams</a> and two outputs from different streams are routed to the same buffer.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> When using <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a> as an extension (on older hardware), if <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a> is not also available, you may only output to a single buffer. You can still use offsets to put space between vertex attribute data, but you cannot set <span class="tpl-code">xbf_buffer</span> to any value other than 0.</div>
+<h2><span class="mw-headline" id="Shader_stage_options">Shader stage options</span></h2>
+<p>Many <a href="/opengl/Shader" title="Shader">shader stages</a> have options that control some aspect of how they work. These are defined within the shader using layout qualifiers.
+</p>
+<h3><span class="mw-headline" id="Tessellation_control_output_vertex_count">Tessellation control output vertex count</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Tessellation Control Shader</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shaders</a> (TCS) output patches with a particular vertex count. This is defined by a layout qualifier:
+</p>
+<pre>layout(vertices = <span class="tpl-param">vertex_count​</span>) out;
+</pre>
+<p>The TCS will be invoked once for each vertex output.
+</p>
+<h3><span class="mw-headline" id="Tessellation_evaluation_options">Tessellation evaluation options</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Evaluation_Shader#Tessellation_options" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader#Tessellation options</a><i></i></div>
+<p>The Tessellation Evaluation Shader (requires GL 4.0 or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a>) has a large number of special layout qualifiers that control its behavior.
+</p>
+<h3><span class="mw-headline" id="Geometry_shader_primitives">Geometry shader primitives</span></h3>
+<p><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shaders</a> take a particular primitive type as input and return a particular primitive type as outputs. Also, geometry shaders have a defined maximum number of vertices that they can output. These specifications cannot be used on a variable definition; it can only be used on the qualifiers <span class="tpl-code">in</span> and <span class="tpl-code">out</span> as a whole.
+</p>
+<pre> layout(<span class="tpl-param">primitive type​</span>) in;
+ layout(<span class="tpl-param">primitive type​</span>, max_vertices = <i>integer value</i>) out;
+</pre>
+<p>For inputs, the <span class="tpl-param">primitive type​</span> can be any of the following:
+</p>
+<ul><li>points</li>
+<li>lines</li>
+<li>lines_adjacency</li>
+<li>triangles</li>
+<li>triangles_adjacency</li></ul>
+<p>For outputs, the <span class="tpl-param">primitive type​</span> can be any of the following:
+</p>
+<ul><li>points</li>
+<li>line_strip</li>
+<li>triangle_strip</li></ul>
+<p>The value of <span class="tpl-param">max_vertices​</span> defines the maximum number of vertices the geometry shader can every output in a single invocation.
+</p>
+<h3><span class="mw-headline" id="Fragment_shader_coordinate_origin">Fragment shader coordinate origin</span></h3>
+<p>The <span class="tpl-code">gl_FragCoord</span> <a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">built-in variable</a> represents the location of the fragment in window-space. There are two layout qualifiers that can affect this. These are specified by <a href="/opengl/Variable_Redeclaration" class="mw-redirect" title="Variable Redeclaration">redeclaring</a> the predefined variable.
+</p><p>The qualifier <span class="tpl-code">origin_upper_left</span> specifies that <span class="tpl-code">gl_FragCoord</span> will have the origin (0, 0) in the upper-left of the screen. The standard OpenGL convention is to have it in the lower-left. This does not change the Z or W of the <span class="tpl-code">gl_FragCoord</span> value.
+</p><p>The qualifier <span class="tpl-code">pixel_center_integer</span> specifies that the X and Y of <span class="tpl-code">gl_FragCoord</span> will be shifted by a half-pixel, so that the center of each pixel is an integer value. The standard OpenGL convention puts the integer values at the corner of the pixel.
+</p><p>These are used as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">layout</span><span class="p">(</span><span class="n">origin_upper_left</span><span class="p">)</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="n">vec4</span><span class="w"> </span><span class="n">gl_FragCoord</span><span class="p">;</span>
+</pre></div>
+<h3><span class="mw-headline" id="Early_fragment_tests">Early fragment tests</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Forced early fragment tests</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_image_load_store.txt">ARB_shader_image_load_store</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Early_Depth_Test#Explicit_specification" class="mw-redirect" title="Early Depth Test">Early Depth Test#Explicit specification</a><i></i></div>
+<p>By the OpenGL specification, the depth and stencil tests are performed after the fragment shader's execution (<a href="/opengl/Early_Depth_Test" class="mw-redirect" title="Early Depth Test">implementations can and will do it before the fragment shader</a>, but only if it won't affect the apparent output). However, with a fragment shader's ability to write to arbitrary images and buffers in OpenGL 4.2+, it is useful to be able to enforce early tests. This can be done in GL 4.2 (or with ARB_shader_image_load_store):
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">early_fragment_tests</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="p">;</span>
+</pre></div>
+<p>Any writes to <span class="tpl-code">gl_FragDepth</span> in a shader that defines this will be <i>ignored</i>.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318062048
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.212 seconds
+Real time usage: 0.229 seconds
+Preprocessor visited node count: 7469/1000000
+Post‐expand include size: 100917/2097152 bytes
+Template argument size: 17867/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 21/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 24895/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  159.928      1 -total
+ 48.31%   77.255     11 Template:Infobox_feature
+ 46.24%   73.947     11 Template:Infobox2
+ 16.68%   26.672      4 Template:Snippet
+ 16.49%   26.374    110 Template:Infobox/longrow
+ 14.54%   23.260    110 Template:Infobox/shortrow
+  8.11%   12.972      1 Template:Shader_float
+  6.81%   10.895      1 Template:Shader_list
+  4.77%    7.631     29 Template:Pagelink
+  4.18%    6.689     84 Template:Code
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:3676-0!canonical and timestamp 20260318062048 and revision id 14683. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Layout_Qualifier_(GLSL)&amp;oldid=14683">https://wikis.khronos.org/opengl/index.php?title=Layout_Qualifier_(GLSL)&amp;oldid=14683</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Layout+Qualifier+%28GLSL%29" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Layout_Qualifier_(GLSL)" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Layout_Qualifier_(GLSL)&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Layout_Qualifier_(GLSL)"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Layout_Qualifier_(GLSL)&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Layout_Qualifier_(GLSL)&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Layout_Qualifier_(GLSL)" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Layout_Qualifier_(GLSL)" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Layout_Qualifier_(GLSL)&amp;oldid=14683" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Layout_Qualifier_(GLSL)&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Layout_Qualifier_%28GLSL%29&amp;id=14683&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 14 July 2020, at 15:11.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":151,"wgPageParseReport":{"limitreport":{"cputime":"0.212","walltime":"0.229","ppvisitednodes":{"value":7469,"limit":1000000},"postexpandincludesize":{"value":100917,"limit":2097152},"templateargumentsize":{"value":17867,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":21,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":24895,"limit":5000000},"timingprofile":["100.00%  159.928      1 -total"," 48.31%   77.255     11 Template:Infobox_feature"," 46.24%   73.947     11 Template:Infobox2"," 16.68%   26.672      4 Template:Snippet"," 16.49%   26.374    110 Template:Infobox/longrow"," 14.54%   23.260    110 Template:Infobox/shortrow","  8.11%   12.972      1 Template:Shader_float","  6.81%   10.895      1 Template:Shader_list","  4.77%    7.631     29 Template:Pagelink","  4.18%    6.689     84 Template:Code"]},"cachereport":{"timestamp":"20260318062048","ttl":1209600,"transientcontent":false}}});});</script>
+</body>
+</html>

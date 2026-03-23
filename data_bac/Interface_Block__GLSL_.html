@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Interface Block (GLSL) - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"ebe9db0e0441f9cffbee94b2","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Interface_Block_(GLSL)","wgTitle":"Interface Block (GLSL)","wgCurRevisionId":14917,"wgRevisionId":14917,"wgArticleId":1646,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Interface_Block_(GLSL)","wgRelevantArticleId":1646,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Interface_Block_GLSL rootpage-Interface_Block_GLSL skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Interface Block (GLSL)</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Interface Block (GLSL)</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.1</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt">ARB_uniform_buffer_object</a>, <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><b>Interface blocks</b>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>An <b>Interface Block</b> is a group of <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> <a href="/opengl/Storage_Qualifier" class="mw-redirect" title="Storage Qualifier">input, output, uniform, or storage buffer variables</a>. These blocks have special syntax and semantics that can be applied to them.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Syntax"><span class="tocnumber">1</span> <span class="toctext">Syntax</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Valid_types"><span class="tocnumber">1.1</span> <span class="toctext">Valid types</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Qualifiers"><span class="tocnumber">1.2</span> <span class="toctext">Qualifiers</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Interface_matching"><span class="tocnumber">1.3</span> <span class="toctext">Interface matching</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Input_and_output"><span class="tocnumber">2</span> <span class="toctext">Input and output</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Buffer_backed"><span class="tocnumber">3</span> <span class="toctext">Buffer backed</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Matrix_storage_order"><span class="tocnumber">3.1</span> <span class="toctext">Matrix storage order</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Memory_layout"><span class="tocnumber">3.2</span> <span class="toctext">Memory layout</span></a>
+<ul>
+<li class="toclevel-3 tocsection-9"><a href="#Layout_query"><span class="tocnumber">3.2.1</span> <span class="toctext">Layout query</span></a></li>
+<li class="toclevel-3 tocsection-10"><a href="#Explicit_variable_layout"><span class="tocnumber">3.2.2</span> <span class="toctext">Explicit variable layout</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#Block_buffer_binding"><span class="tocnumber">3.3</span> <span class="toctext">Block buffer binding</span></a>
+<ul>
+<li class="toclevel-3 tocsection-12"><a href="#OpenGL_binding_index_setting"><span class="tocnumber">3.3.1</span> <span class="toctext">OpenGL binding index setting</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Shader_binding_index_setting"><span class="tocnumber">3.3.2</span> <span class="toctext">Shader binding index setting</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Uniform_blocks"><span class="tocnumber">3.4</span> <span class="toctext">Uniform blocks</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Shader_storage_blocks"><span class="tocnumber">3.5</span> <span class="toctext">Shader storage blocks</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Syntax">Syntax</span></h2>
+<p>Interface blocks have different meanings in their various uses, but they have the same <i>syntax</i> regardless of how they are used. Interface blocks are defined as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="n">storage_qualifier</span><span class="w"> </span><span class="n">block_name</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="o">&lt;</span><span class="n">define</span><span class="w"> </span><span class="n">members</span><span class="w"> </span><span class="n">here</span><span class="o">&gt;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">instance_name</span><span class="p">;</span>
+</pre></div>
+<p>This looks like a struct definition, but it is <i>not</i>.
+</p><p><span class="tpl-param">storage_qualifier​</span> can be one of the following <a href="/opengl/Storage_Qualifier" class="mw-redirect" title="Storage Qualifier">Storage Qualifiers</a>:
+</p>
+<ul><li><span class="tpl-code">uniform</span></li>
+<li><span class="tpl-code">in</span> or <span class="tpl-code">out</span> (requires OpenGL 3.2)</li>
+<li><span class="tpl-code">buffer</span> (requires OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a>)</li></ul>
+<p>The storage qualifier defines what kind of interface block is being created.
+</p><p><span class="tpl-param">block_name​</span> is the true name for the interface block. When the block is <a href="/opengl/Program_Introspection" title="Program Introspection">referenced in OpenGL code</a> or otherwise talked about in most contexts, this is the name that is used to refer to it. A shader cannot have multiple blocks that have the same block name <i>and</i> the same <span class="tpl-param">storage_qualifier​</span>.
+</p><p><span class="tpl-param">instance_name​</span> is a GLSL name for one or more instances of the block named <span class="tpl-param">block_name​</span>. It is optional; if it is present, then all GLSL variables defined within the block must be qualified with the instance name when referenced in GLSL code. For example, this defines a uniform block:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">matrices</span><span class="p">;</span>
+</pre></div>
+<p>To access the <span class="tpl-code">projection</span> member of this block, you must use <span class="tpl-code">matrices.projection</span>.
+</p><p>If it were defined as follows, without an interface name:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p>You simply use <span class="tpl-code">projection</span> to refer to it. So the interface name acts as a namespace qualifier. <i>At no time</i> can you use <span class="tpl-code">MatrixBlock.projection</span> in GLSL (though this is the name that it will <a href="/opengl/Interface_Block_Member_Name" class="mw-redirect" title="Interface Block Member Name">appear under when introspecting from OpenGL code</a>).
+</p><p>Because these names are defined globally, they can conflict with other names:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span><span class="w"> </span><span class="c1">// Redefining variable. Compile error.</span>
+</pre></div>
+<p>If <span class="tpl-code">MatrixBlock</span> had been qualified with an instance name, there would be no compiler error.
+</p><p>The instance name can also be used to define an array of blocks:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">matrices</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</pre></div>
+<p>This creates 3 separate interface blocks: <span class="tpl-code">matrices[0]</span>, <span class="tpl-code">matrices[1]</span>, and <span class="tpl-code">matrices[2]</span>. These can have separate binding locations (see below), so they can come from different buffer objects.
+</p><p>For uniform and shader storage blocks, the array index must be a <a href="/opengl/Dynamically_Uniform_Expression" class="mw-redirect" title="Dynamically Uniform Expression">dynamically-uniform integral expression</a>. For other kinds of blocks, they can be any arbitrary integral expression.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> The instance name is only used by GLSL. OpenGL always uses the actual block name. Thus, the name of the above block is "<span class="tpl-code">MatrixBlock[1]</span>", and the names of its members are "<span class="tpl-code">MatrixBlock.projection</span>" and so forth.</div>
+<p>Linking between shader stages allows multiple shaders to use the same block. Interface blocks match with each other based on the block name and the member field definitions. So the same block in different shader stages can have <i>different</i> instance names.
+</p>
+<h3><span class="mw-headline" id="Valid_types">Valid types</span></h3>
+<p>Interface blocks cannot contain <a href="/opengl/Opaque_Type" class="mw-redirect" title="Opaque Type">opaque types</a>. They also cannot contain nested structure definitions, though block members can contain structure members. Just not definitions of new structs. So define them first, then use them within the interface.
+</p>
+<h3><span class="mw-headline" id="Qualifiers">Qualifiers</span></h3>
+<p>Members of interface blocks can have <a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">type qualifiers</a> associated with them. Some of these may be <a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">layout qualifiers</a>. For the most part, the available type qualifiers are the set of the qualifiers that would be allowed for non-block variables of that type.
+</p><p>Qualifiers are applied to a block member as they normally would be for a global definition: listed before the variable name in-order:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="n">BlockName</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">flat</span><span class="w"> </span><span class="kt">ivec3</span><span class="w"> </span><span class="n">someInts</span><span class="p">;</span><span class="w"> </span><span class="c1">// Flat interpolation.</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w">          </span><span class="c1">// Default interpolation is smooth.</span>
+<span class="p">};</span>
+</pre></div>
+<p>In some cases, members of an interface block cannot use the qualifiers allowable to global definitions. And in some cases, interface block members have additional qualifiers, typically layout qualifiers to control aspects of the variable's layout within the block.
+</p>
+<h3><span class="mw-headline" id="Interface_matching">Interface matching</span></h3>
+<p>Sometimes, it is important for two or more interface block definitions to match with one another. The rules for matching blocks differ somewhat between buffer-backed blocks and input/output blocks.
+</p><p>For all kinds of blocks, two blocks can only match if the two block definitions have the same block name (not instance name).
+</p><p>For buffer-backed blocks, in addition to matching names, the two blocks must have the same block qualifiers (including layout qualifiers), define the exact same variables (type/array count and name), in the exact same order, and with the exact same qualifiers applied to those variables. Also, the two blocks must either both have an instance name or both <i>lack</i> an instance name. The instance name itself need not be the same, but they must still have one. Lastly, the blocks must agree on their block array count.
+</p><p>Matching blocks in different shader stages will, when linked into the same program, be <a href="/opengl/Program_Introspection" title="Program Introspection">presented as a single interface block</a>. So there will be only a single binding point for this block, even though two shader stages are consuming its data. This is a lot like how <a href="/opengl/Uniform" class="mw-redirect" title="Uniform">Uniforms</a> with the same names and types are merged into one between stages.
+</p><p>For input or output qualifiers, matching block definitions are important for <a href="/opengl/Interface_Matching" class="mw-redirect" title="Interface Matching">interface matching between shaders in the same pipeline</a>. The details of how matching definitions work are listed in the given link.
+</p>
+<h2><span class="mw-headline" id="Input_and_output">Input and output</span></h2>
+<p>Input and output blocks are designed to complement each other. Their primary utility is with <a href="/opengl/Geometry_Shader" title="Geometry Shader">geometry</a> or <a href="/opengl/Tessellation_Shader" class="mw-redirect" title="Tessellation Shader">tessellation shaders</a>, as these shaders often work with aggregates of input/output values. Blocks make it easy to organize this data.
+</p><p>Interface blocks for inputs/outputs can only be used to aggregate data interfaces <i>between shader stages</i>. Vertex shaders cannot declare an input interface block, and fragment shaders cannot declare an output interface block.
+</p><p>If a shader stage uses an input block and it is linked directly to its previous shader stage, then that stage must provide a <a href="#Interface_matching">matching output block, as defined above</a>. For example, a vertex shader can pass data to a geometry shader using these block definitions:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Vertex Shader</span>
+<span class="k">out</span><span class="w"> </span><span class="n">VertexData</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">texCoord</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">outData</span><span class="p">;</span>
+
+<span class="c1">// Geometry Shader</span>
+<span class="k">in</span><span class="w"> </span><span class="n">VertexData</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">color</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">texCoord</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">inData</span><span class="p">[];</span>
+</pre></div>
+<p>Notice that the geometry shader block is defined as an array in the geometry shader. It also uses a different instance name. These work perfectly fine; the GS will receive a number of vertices based on the primitive type it is designed to take.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Input/output interface blocks don't use <a href="/opengl/Layout_Separate_Program" class="mw-redirect" title="Layout Separate Program"><span class="tpl-code">location</span> names for interface matching</a>. So in separable programs, interfaces must match directly by name.</div>
+<p>The only types that are valid in input/output blocks are those which are valid as input/output variables.
+</p>
+<h2><span class="mw-headline" id="Buffer_backed">Buffer backed</span></h2>
+<p><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a> and <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage blocks</a> work in very similar ways, so this section will explain the features they have in common. Collectively, these are called "buffer-backed blocks" because the storage for their contents come from a <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a>.
+</p><p>Note that shader storage blocks require OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_objects.txt">ARB_shader_storage_buffer_objects</a>.
+</p>
+<h3><span class="mw-headline" id="Matrix_storage_order">Matrix storage order</span></h3>
+<p>Because the storage for these blocks comes from <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>, matrix ordering becomes important. Matrices can be stored in column or row-major ordering. Layout qualifiers are used to decide which is used on a per-variable basis.
+</p><p>Note that this <i>does not</i> change how GLSL works with them. GLSL matrices are <i>always</i> column-major. This specification only changes how GLSL fetches the data from the buffer.
+</p><p>Defaults can be set with this syntax:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="w"> </span><span class="k">layout</span><span class="p">(</span><span class="n">row_major</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="p">;</span>
+</pre></div>
+<p>From this point on, all matrices in uniform blocks are considered row-major. Shader storage blocks are not affected; they would need their own definition (<span class="tpl-code">layout(row_major) buffer;</span>).
+</p><p>A particular block can have a default set as well:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">row_major</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">matrices</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</pre></div>
+<p>All of the matrices are stored in row-major ordering.
+</p><p>Individual variables can be adjusted as well:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">row_major</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">column_major</span><span class="p">)</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">matrices</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</pre></div>
+<p><span class="tpl-code">MatrixBlock.projection</span> is row-major, but <span class="tpl-code">MatrixBlock.modelview</span> is column-major. The default is column-major.
+</p>
+<h3><span class="mw-headline" id="Memory_layout">Memory layout</span></h3>
+<p>The specific size of basic types used by members of buffer-backed blocks is defined by OpenGL. However, implementations are allowed some latitude when assigning padding <i>between</i> members, as well as reasonable freedom to optimize away unused members. How much freedom implementations are allowed for specific blocks can be changed.
+</p><p>There are four memory layout qualifiers: <span class="tpl-code">shared</span>, <span class="tpl-code">packed</span>, <span class="tpl-code">std140</span>, and <span class="tpl-code">std430</span>. Defaults can be set the same as for matrix ordering (eg: <span class="tpl-code">layout(packed) buffer;</span> sets all shader storage buffer blocks to use <span class="tpl-code">packed</span>). The default is <span class="tpl-code">shared</span>.
+</p><p><b><span class="tpl-code">packed</span></b>: This layout type means that the implementation determines everything about how the fields are laid out in the block. The OpenGL API must be used to query the layout for the members of a particular block. Each member of a block will have a particular byte offset, which you can use to determine how to upload its data. Also, members of a block can be optimized out if they are found by the implementation to not affect the result of the shader. Therefore, the active components of a block may not be all of the components it was defined with.
+</p><p><b><span class="tpl-code">shared</span></b>: This layout type works like <span class="tpl-code">packed</span>, with two exceptions. First, it guarantees that all of the variables defined in the block are considered active; this means nothing is optimized out. Second, it guarantees that the members of the block will have the same layout as a block definition in another program, so long as:
+</p>
+<ul><li>The blocks in different programs use the <i>exact same</i> block definition (ignoring differences in variable names and the block name itself). Be careful about specifying the <a href="#Matrix_storage_order">default matrix storage order</a>, as this can implicitly change the definition of blocks following them.</li>
+<li>All members of the block use explicit sizes for arrays.</li></ul>
+<p>Because of these guarantees, buffer-backed blocks declared <span class="tpl-code">shared</span> can be used with any program that defines a block with the same elements in the same order. This even works across different types of buffer-backed blocks. You can use a buffer as a uniform buffer at one point, then use it as a shader storage buffer in another. OpenGL guarantees that all of the offsets and alignments will match between two <span class="tpl-code">shared</span> blocks that define the same members in the same order. In short, it allows the user to <i>share</i> buffers between multiple programs.
+</p><p><b><span class="tpl-code">std140</span></b>: This layout alleviates the need to query the offsets for definitions. The rules of <span class="tpl-code">std140</span> layout explicitly state the layout arrangement of any interface block declared with this layout. This also means that such an interface block can be shared across programs, much like <b><span class="tpl-code">shared</span></b>. The only downside to this layout type is that the rules for packing elements into arrays/structs can introduce a lot of unnecessary padding.
+</p><p>The rules for <span class="tpl-code">std140</span> layout are covered quite well in the OpenGL specification (<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/doc/glspec45.core.pdf#page=159">OpenGL 4.5, Section 7.6.2.2, page 137</a>). Among the most important is the fact that arrays of types are <i>not</i> necessarily tightly packed. An array of <span class="tpl-code">float</span>s in such a block will not be the equivalent to an array of <span class="tpl-code">floats</span> in C/C++. The array stride (the bytes between array elements) is always rounded up to the size of a <span class="tpl-code">vec4</span> (ie: 16-bytes). So arrays will only match their C/C++ definitions if the type is a multiple of 16 bytes
+</p>
+<div style="margin-left: 3em;">
+<b>Warning:</b> Implementations sometimes get the <span class="tpl-code">std140</span> layout wrong for <span class="tpl-code">vec3</span> components. You are advised to manually pad your structures/arrays out and avoid using <span class="tpl-code">vec3</span> at all.</div>
+<p><b><span class="tpl-code">std430</span></b>: This layout works like <span class="tpl-code">std140</span>, except with a few optimizations in the alignment and strides for arrays and structs of scalars and vector elements (except for <span class="tpl-code">vec3</span> elements, which remain unchanged from <span class="tpl-code">std140</span>). Specifically, they are no longer rounded up to a multiple of 16 bytes. So an array of `float`s will match with a C++ array of `float`s.
+</p><p>Note that this layout can <i>only</i> be used with shader storage blocks, not uniform blocks.
+</p>
+<h4><span class="mw-headline" id="Layout_query">Layout query</span></h4>
+<p>The <span class="tpl-code">packed</span> and <span class="tpl-code">shared</span> layout types allow the implementation to decide what the layout will be. In those cases, <a href="/opengl/Program_Introspection" title="Program Introspection">Program Introspection</a> must be used to determine the specifics of the layout. Note that while <a href="/opengl/Uniform_Introspection" class="mw-redirect" title="Uniform Introspection">uniform blocks have an older API</a> for this, shader storage blocks rely on the <a href="/opengl/Program_Interface_Query" class="mw-redirect" title="Program Interface Query">Program Interface Query</a> API. The following explanation of these parameters will refer specifically to the interface query API, but the uniform-specific API has similar information.
+</p><p>Each active variable within the block has an offset, relative to the front of the block, queried through the <span class="tpl-code">GL_OFFSET</span> property. This is the number of bytes (more formally, "basic machine units") from the beginning of the buffer to the memory location for this variable.
+</p><p>For elements that are aggregated into arrays, there is the number of elements in the array, queried through the <span class="tpl-code">GL_ARRAY_SIZE</span> property. Arrays also have the notion of the array stride. This is the number of bytes from the start of one element in the array to the start of the next one. Array strides are queried through <span class="tpl-code">GL_ARRAY_STRIDE</span>.
+</p><p>Matrix types have a matrix stride (<span class="tpl-code">GL_MATRIX_STRIDE</span>), which represents the number of bytes from the start of one column/row vector to the next column/row (depending on whether the matrix is laid out as column-major or row-major). The column/row-major ordering can be queried through <span class="tpl-code">GL_IS_ROW_MAJOR</span>, which will be one for row-major ordering.
+</p>
+<h4><span class="mw-headline" id="Explicit_variable_layout">Explicit variable layout</span></h4>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Explicit Variable Layout</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Layout properties of buffer-backed storage block variables are usually specified using a layout scheme like <span class="tpl-code">std140</span>. However, specific variables in a block can be given some layout properties directly. These qualifiers can only be used if the block uses <span class="tpl-code">std140</span> or <span class="tpl-code">std430</span> layout.
+</p><p>The byte offset of a block member can be specified using the <span class="tpl-code">offset</span> <span class="tpl-code">layout</span> qualifier. The alignment of a block member can be specified using the <span class="tpl-code">align</span> <span class="tpl-code">layout</span> qualifier. Alignments must be powers of 2 and must be greater than 0.
+</p><p>The values of these qualifiers are <i>not</i> allowed to violate the default layout requirements. For example, <span class="tpl-code">std140</span> requires that struct members of a block have a base alignment of 16 bytes. If you set <span class="tpl-code">align</span> to a number smaller than 16, the <i>effective</i> alignment will be rounded up to 16. So the actual alignment of a block member is the larger of the two.
+</p><p>Similarly, you cannot provide an <span class="tpl-code">offset</span> which causes one member to overlap with another.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> These qualifiers can only be used on the direct members of a block. Members of a structure cannot use them, even if that struct is itself a member of a block.</div>
+<h3><span class="mw-headline" id="Block_buffer_binding">Block buffer binding</span></h3>
+<p>Buffer-backed interface blocks get their data from <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>. The association between a buffer object and an interface block works as follows. The GLSL <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">Program Object</a> does not store buffer objects directly. It works with them indirectly via the <a href="/opengl/OpenGL_Context" title="OpenGL Context">OpenGL Context</a>.
+</p><p>For each kind of buffer-backed interface block (uniform or shader storage), the OpenGL context has an <a href="/opengl/Buffer_Object#Binding_indexed_targets" title="Buffer Object">indexed target for buffer object binding</a>. For uniforms, the location is <span class="tpl-enum">GL_UNIFORM_BUFFER</span>; for shader storage,  it is <span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span>. Each indexed binding target has a maximum number of indices.
+</p><p>For each buffer-backed interface block in a program, the program object stores the index where this interface block gets its data. Two blocks cannot use the same index.
+</p><p>The index for a particular block can be specified from the OpenGL API. Alternatively, if OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a> is available, it can be set directly in the shader.
+</p>
+<h4><span class="mw-headline" id="OpenGL_binding_index_setting">OpenGL binding index setting</span></h4>
+<p>To set the binding index from OpenGL, you must first use <a href="/opengl/Program_Introspection" title="Program Introspection">Program Introspection</a> to fetch the interface block's index. This identifier is used to refer to the particular block. Individual blocks within a block array have different block indices; these block indicies need not be contiguous.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Please be aware of the terminology here. "<i>Block index</i>" is the number that refers to a specific interface block. "<i>Binding index</i>" is an index into an indexed buffer object target.</div>
+<p>The index for a particular block can be found using the <a href="/opengl/Program_Interface_Query" class="mw-redirect" title="Program Interface Query">Program Interface Query</a> API. This API is required for shader storage blocks:
+</p>
+<div class="funcdef">
+GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResourceIndex" title="GLAPI/glGetProgramResourceIndex">glGetProgramResourceIndex</a></span>( GLuint <span class="tpl-param">program​​</span>​, <span class="tpl-enum">GL_SHADER_STORAGE_BLOCK</span>​, const char *<span class="tpl-param">name​​</span>​ );</div>
+<p>Uniform blocks have an alternate way to access the block index. That is done via this function:
+</p>
+<div class="funcdef">
+GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetUniformBlockIndex" title="GLAPI/glGetUniformBlockIndex">glGetUniformBlockIndex</a></span>( GLuint <span class="tpl-param">program​​</span>, const char *<span class="tpl-param">name​​</span> );</div>
+<p>If <span class="tpl-param">name​</span> specifies a block that is inactive, or specifies a block that isn't defined in <span class="tpl-param">program​</span>, then <span class="tpl-enum">GL_INVALID_INDEX</span> is returned. The <span class="tpl-param">name​</span> is the block name (not the instance name), followed by an array subscript if it is an arrayed block.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Block indices for arrays of blocks are not necessarily contiguous. So you have to ask for each one individually.</div>
+<p>Once the index is retrieved, the binding index can be set for that buffer:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glUniformBlockBinding" title="GLAPI/glUniformBlockBinding">glUniformBlockBinding</a></span>(GLuint <span class="tpl-param">program​​</span>, GLuint <span class="tpl-param">uniformBlockIndex​​</span>, GLuint <span class="tpl-param">uniformBlockBinding​​</span>);
+</p>
+void <span class="tpl-code"><a href="/opengl/GLAPI/glShaderStorageBlockBinding" title="GLAPI/glShaderStorageBlockBinding">glShaderStorageBlockBinding</a></span>(GLuint <span class="tpl-param">program​​</span>, GLuint <span class="tpl-param">storageBlockIndex​​</span>, GLuint <span class="tpl-param">storageBlockBinding​​</span>);</div>
+<p>These two function operate for the two types of buffer-backed blocks. The third parameter is the index that the appropriate buffer object will be bound.
+</p>
+<h4><span class="mw-headline" id="Shader_binding_index_setting">Shader binding index setting</span></h4>
+<p>The block binding indices can be set directly from the shader:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p>Uniform and shader storage blocks have a different set of indices. Uniform block binding indices refer to blocks bound to indices in the <span class="tpl-enum">GL_UNIFORM_BUFFER</span> indexed target with <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>. Shader storage block binding indices refer to blocks bound to indices in the <span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span> target.
+</p><p>For arrays of blocks, the binding syntax sequentially allocates indices. So this definition:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">uniform</span><span class="w"> </span><span class="n">MatrixBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">projection</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">modelview</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">matrices</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</pre></div>
+<p>There will be 4 separate blocks, which use the binding indices 2, 3, 4, and 5.
+</p><p>Block bindings can also be set manually from OpenGL. The function to do this depends on whether it is a uniform block or a shader storage block. See their individual sections.
+</p><p>Once a binding is assigned, the storage can be bound to the OpenGL context with <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> (or <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferBase" title="GLAPI/glBindBufferBase">glBindBufferBase</a></span> for the whole buffer). Each type of buffer-backed block has its own target. Uniform blocks use <span class="tpl-enum">GL_UNIFORM_BUFFER</span>, and shader storage blocks use <span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span>.
+</p>
+<h3><span class="mw-headline" id="Uniform_blocks">Uniform blocks</span></h3>
+<p>Uniform blocks cannot use <span class="tpl-code">std430</span> layout.
+</p><p>In a relatively recent change, the rules in OpenGL 4.3 for aggregating uniform block definitions in different shaders have changed. If a uniform block (and <i>only</i> a uniform block. Not other forms of interface blocks) uses an instance name, then all references in the linked program to that uniform block name must also use an instance name. They don't have to use the <i>same</i> instance name, just some instance name. This way, all code that uses a uniform block in a particular program will scope their variables in the same way (though again, not necessarily with the same instance name).
+</p>
+<h3><span class="mw-headline" id="Shader_storage_blocks">Shader storage blocks</span></h3>
+<p>If the last member variable of a shader storage block is declared with an indeterminate array length (using <span class="tpl-code">[]</span>), then the size of this array is determined at the time the shader is executed. The size is basically the rest of the buffer object range that was attached to that binding point.
+</p><p>For example, consider the following:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">std430</span><span class="p">,</span><span class="w"> </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">buffer</span><span class="w"> </span><span class="n">MyBuffer</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">mat4</span><span class="w"> </span><span class="n">matrix</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">lotsOfFloats</span><span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+<p>The number of <span class="tpl-code">float</span> variables in <span class="tpl-code">lotsOfFloats</span> depends on the size of the buffer range that is attached to the binding point. <span class="tpl-code">matrix</span> will be 64 bytes in size, so the number of elements in <span class="tpl-code">lotsOfFloats</span> will be (size of the bound range minus 64) / 4. Thus, if we bind with this:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>(GL_SHADER_STORAGE_BUFFER, 2, buffer, 0, 128);
+</pre>
+<p>There will be (128 - 64) / 4, or 16 elements in <span class="tpl-code">lotsOfFloats</span>. Thus, <span class="tpl-code">lotsOfFloats.length()</span> will return 16. It will return a different value depending on the size of the bound range.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Normally, <span class="tpl-code">length</span> in GLSL is a <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expression</a>. However, in this specific case, it is not. It is a <a href="/opengl/Dynamically_Uniform_Expression" class="mw-redirect" title="Dynamically Uniform Expression">Dynamically Uniform Expression</a>.</div>
+<!-- 
+NewPP limit report
+Cached time: 20260318174334
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.131 seconds
+Real time usage: 0.139 seconds
+Preprocessor visited node count: 2644/1000000
+Post‐expand include size: 29658/2097152 bytes
+Template argument size: 12470/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 13/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 9961/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   84.407      1 -total
+ 39.80%   33.592      1 Template:Stack
+ 29.88%   25.221      2 Template:Infobox_feature
+ 27.36%   23.094      2 Template:Infobox2
+ 14.07%   11.873      1 Template:Shader_float
+ 12.19%   10.289      1 Template:Shader_list
+ 10.34%    8.729     20 Template:Infobox/longrow
+  8.71%    7.348     78 Template:Code
+  7.50%    6.334     22 Template:Pagelink
+  7.40%    6.250     20 Template:Infobox/shortrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1646-0!canonical and timestamp 20260318174334 and revision id 14917. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Interface_Block_(GLSL)&amp;oldid=14917">https://wikis.khronos.org/opengl/index.php?title=Interface_Block_(GLSL)&amp;oldid=14917</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Interface+Block+%28GLSL%29" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Interface_Block_(GLSL)" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Interface_Block_(GLSL)&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Interface_Block_(GLSL)"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Interface_Block_(GLSL)&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Interface_Block_(GLSL)&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Interface_Block_(GLSL)" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Interface_Block_(GLSL)" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Interface_Block_(GLSL)&amp;oldid=14917" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Interface_Block_(GLSL)&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Interface_Block_%28GLSL%29&amp;id=14917&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 10 November 2022, at 19:29.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":196,"wgPageParseReport":{"limitreport":{"cputime":"0.131","walltime":"0.139","ppvisitednodes":{"value":2644,"limit":1000000},"postexpandincludesize":{"value":29658,"limit":2097152},"templateargumentsize":{"value":12470,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":13,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":9961,"limit":5000000},"timingprofile":["100.00%   84.407      1 -total"," 39.80%   33.592      1 Template:Stack"," 29.88%   25.221      2 Template:Infobox_feature"," 27.36%   23.094      2 Template:Infobox2"," 14.07%   11.873      1 Template:Shader_float"," 12.19%   10.289      1 Template:Shader_list"," 10.34%    8.729     20 Template:Infobox/longrow","  8.71%    7.348     78 Template:Code","  7.50%    6.334     22 Template:Pagelink","  7.40%    6.250     20 Template:Infobox/shortrow"]},"cachereport":{"timestamp":"20260318174334","ttl":1209600,"transientcontent":false}}});});</script>
+</body>
+</html>

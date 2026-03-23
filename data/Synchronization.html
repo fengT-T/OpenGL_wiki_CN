@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Synchronization - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Synchronization rootpage-Synchronization skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Synchronization</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p><b>Synchronization</b> is the process of ensuring that the OpenGL rendering pipeline has fully issued or executed the commands that you have given it.
+</p><p>The OpenGL specification usually defines the behavior of commands such that they will execute in the order given, and that every subsequent command must behave as if all prior commands have completed and their contents are visible. However, it is important to keep in mind that this is how OpenGL is specified and behaves, not how it is implemented.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Asynchronous_action"><span class="tocnumber">1</span> <span class="toctext">Asynchronous action</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Command_state"><span class="tocnumber">1.1</span> <span class="toctext">Command state</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Synchronization_options"><span class="tocnumber">2</span> <span class="toctext">Synchronization options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Explicit_synchronization"><span class="tocnumber">2.1</span> <span class="toctext">Explicit synchronization</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Implicit_synchronization"><span class="tocnumber">2.2</span> <span class="toctext">Implicit synchronization</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Sync_Objects"><span class="tocnumber">2.3</span> <span class="toctext">Sync Objects</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Reference"><span class="tocnumber">3</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Asynchronous_action">Asynchronous action</span></h2>
+<p>OpenGL <a href="/opengl/Rendering_Command" class="mw-redirect" title="Rendering Command">Rendering Commands</a> are assumed to execute be asynchronous. If you call any of the <a href="/opengl/Vertex_Rendering" title="Vertex Rendering"><code>glDraw*</code> functions to initiate rendering</a>, it is not at all guaranteed that the rendering has finished by the time the call returns. Indeed, it is perfectly legitimate for rendering to not even have <i>started</i> when this function returns. The OpenGL specification allows implementations the freedom to get around to rendering commands whenever it is best for them.
+</p><p>This is not a weakness of OpenGL; it is a strength. It allows for many optimizations of the rendering command pathway. Issuing a command to the internal rendering command buffer can be a fairly slow process, due to a CPU transition (on x86 hardware) out of protected mode and into unprotected mode. This transition eats up a lot of cycles, so if the internal driver can store 30 rendering commands and then issue all of them with only one transition, this is faster than making one transition for each of the 30 rendering calls.
+</p><p>The OpenGL API however is defined to be synchronous; each command acts as if all prior commands had completed entirely. As such, the OpenGL API will appear synchronous even if it executes asynchronously. If you issue a command which depends on the results of a prior command, the implementation will prevent any execution overlap between those two commands.
+</p><p>There are several OpenGL functions that can pull data directly from client-side memory, or push data directly into client-side memory. Functions like <span class="tpl-code"><a href="/opengl/GLAPI/glTexSubImage2D" title="GLAPI/glTexSubImage2D">glTexSubImage2D</a></span>, <span class="tpl-code"><a href="/opengl/GLAPI/glReadPixels" title="GLAPI/glReadPixels">glReadPixels</a></span>, <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span> and so forth.
+</p><p>Because OpenGL is defined to be synchronous, when <i>any</i> of these functions have returned, they <i>must</i> have finished with the client memory. When <span class="tpl-code"><a href="/opengl/GLAPI/glReadPixels" title="GLAPI/glReadPixels">glReadPixels</a></span> returns, the pixel data is in your client memory (unless you are <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">reading into a buffer object</a>). When <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span> returns, you can immediately modify or delete whatever memory pointer you gave it, as OpenGL has already read as much as it wants.
+</p>
+<div style="margin-left: 3em;">
+<p><b>Legacy Note:</b> The only OpenGL functions that behave differently are functions that end in <span class="tpl-code">Pointer</span>. When these use client-side memory (which is no longer permitted in core OpenGL), the pointers are stored for a period of time. During that period, they must remain valid.
+</p><p>These are usually used for rendering calls; in which case, once the rendering call has returned, the memory to be read from client data <i>has</i> been read. Modifications to client memory after the rendering call will only affect <i>future</i> rendering calls, not those that have already passed.
+</p>
+This is generally why <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a> are better than using client memory for rendering. A rendering call with buffers does not have to handle the possibility of the user changing the memory later, so it can simply write a few tokens into the command stream. With client memory, it must copy all of the vertices out of the client-side arrays.</div>
+<p>All of this means that OpenGL is a very asynchronous renderer, even if it is defined synchronously.
+</p>
+<h3><span class="mw-headline" id="Command_state">Command state</span></h3>
+<p>An OpenGL <a href="/opengl/Rendering_Command" class="mw-redirect" title="Rendering Command">Rendering Command</a> can be in one of three conceptual states: unissued, issued but not complete, and complete.
+</p><p>A command is <i>unissued</i> if the command has been given to the OpenGL driver, but the driver has not yet given the command to the hardware to actually execute. When the rendering hardware starts running out of actually issued commands to process, the OpenGL driver can take some of the unissued commands and issue them.
+</p><p>An <i>issued but not complete</i> command is one that has been given to the hardware, but the full results of the command are not yet ready. The hardware has a queue of these commands; unless there is a hardware fault of some kind, the hardware will execute all of the commands in that queue.
+</p><p>A command is <i>complete</i> when it is out of the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">pipeline</a> entirely. For rendering commands, this means that its effects have been written to the <a href="/opengl/Framebuffer" title="Framebuffer">Framebuffer</a>, <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> buffers, or other outputs, as appropriate to the current state. For pixel transfers to buffer objects, this means that the pixel data is now stored in the buffer object as requested. For pixel transfers from buffer objects, this means that the pixel data is now stored in the texture object that was uploaded to. And so forth.
+</p>
+<h2><span class="mw-headline" id="Synchronization_options">Synchronization options</span></h2>
+<p>Asynchronous rendering is nice. However, it is often useful to synchronize your actions with OpenGL. And OpenGL provides several alternatives for doing so.
+</p>
+<h3><span class="mw-headline" id="Explicit_synchronization">Explicit synchronization</span></h3>
+<p>OpenGL provides two simple mechanisms for explicit synchronization: <span class="tpl-code"><a href="/opengl/GLAPI/glFinish" title="GLAPI/glFinish">glFinish</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span>.
+</p><p>The simplest to understand is <span class="tpl-code"><a href="/opengl/GLAPI/glFinish" title="GLAPI/glFinish">glFinish</a></span>. It will not return, stopping the current CPU thread, until all rendering commands that have been sent have <i>completed</i>.
+</p><p>The behavior of <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span> is less simple to define.
+</p><p>Conceptually, the GPU has something called a "command queue". This is a list of commands written by the OpenGL driver at the behest of the user. Just about every OpenGL function will map to one or more commands that will be added to the command queue. Any command that is placed in the command queue will be read by the GPU and executed.
+</p><p>However, the command queue has a finite length. If you add too many commands in a short space of time, the driver cannot write them all to the GPU's command queue. What the driver <i>can</i> do is write them to internal memory. These commands are in the "unissued" state. Sometime later, the unissued commands are added to the GPU's queue. <i>When</i> the driver does this is the question.
+</p><p>The driver may set up some kind of asynchronous message that tells it when the GPU's queue is nearly empty so that it can add more if possible. However, this is generally not the case. OpenGL allows the driver to have the freedom to not make this check until you actually execute an OpenGL call. And even then, not all calls will make this check.
+</p><p>What this means is that it is theoretically possible for OpenGL to be sitting there, with lots of unissued commands in the driver's buffer, but with the GPU command queue being totally empty. The driver knows that there is work, but if you don't execute another OpenGL command (any command) for a while, it can never verify this check.
+</p><p>Normally this isn't a problem. But imagine this circumstance. You render a lot of stuff, all in a short space of time. You sort your data to achieve maximum efficiency, so submitting the data takes less time than rendering it.
+</p><p>Because you add a lot of commands in a short space of time, the driver has to buffer many of these commands. But if you don't make <i>any</i> OpenGL calls after you have submitted all of the data (because you're off doing non-OpenGL stuff), then the driver never has the chance to push these buffered commands into the command queue. Obviously, you will be issuing commands next frame, but you'd probably rather not wait that long for the GPU to start rendering.
+</p><p>The purpose of <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span> is to tell OpenGL to sit there and wait, halting the current CPU thread, until all commands have been added to the GPU's command queue. This won't take as long as <span class="tpl-code"><a href="/opengl/GLAPI/glFinish" title="GLAPI/glFinish">glFinish</a></span>, but it can still be time consuming.
+</p>
+<h3><span class="mw-headline" id="Implicit_synchronization">Implicit synchronization</span></h3>
+<p>Some operations implicitly force a full <span class="tpl-code"><a href="/opengl/GLAPI/glFinish" title="GLAPI/glFinish">glFinish</a></span> synchronization, while others force the user to halt until all commands up to a certain point have completed. And some force a <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span>.
+</p><p>Swapping the back and front buffers on the <a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a> <i>may</i> cause some form of synchronization (though the actual moment of synchronization event may be delayed until later GL commands), if there are still commands affecting the default framebuffer that have not yet completed. Swapping buffers only technically needs to sync to the last command that affects the default framebuffer, but it may perform a full <span class="tpl-code">glFinish</span>.
+</p><p>Any attempt to read from a framebuffer to CPU memory (not to a <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">buffer object</a>) will halt until all rendering commands affecting that framebuffer have completed. Most attempts to write to a <a href="/opengl/Buffer_Objects" class="mw-redirect" title="Buffer Objects">buffer object</a>, either with <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span> or mapping, will halt until all rendering commands using that part of the buffer object have completed. However, if you <a href="/opengl/Buffer_Invalidation" class="mw-redirect" title="Buffer Invalidation">invalidate the buffer object</a> before uploading to it, the implementation will be able to allocate new storage for the buffer and simply orphan the old one (deleting it later when it is no longer used). This will allow the buffer object to be immediately available for uploading new data. For more details, see <a href="/opengl/Buffer_Object_Streaming#Buffer_re-specification" title="Buffer Object Streaming">this page on buffer streaming.</a>
+</p><p>If you use the <span class="tpl-enum">GL_MAP_UNSYNCHRONIZED_BIT</span> flag with <span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapBufferRange</a></span>, OpenGL will forgo <i>any</i> synchronization operations; you are on your own however as to the consequences of modifying any parts of that buffer that may be in use.
+</p><p>Similarly, attempts to change texture data from CPU memory with commands like <span class="tpl-code"><a href="/opengl/GLAPI/glTexSubImage2D" title="GLAPI/glTexSubImage2D">glTexSubImage2D</a></span> can block until commands that use that texture have finished. They may not block, as some implementations will just allocate some CPU memory and copy the user's pixel data into that. They will do the DMA directly to the texture some time later. Modifying texture data with <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a> will not force a synchronization; the transfer from the buffer to the texture will simply be deferred until the texture is no longer in use.
+</p><p>There may be a few commands that, on some implementations, cause a synchronization to some point in the command stream. OpenGL does not require these commands to do so, but implementations are free to do so if they deem it necessary. <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer object</a> binding and rendering may cause a sync to the last command that affected the previously bound framebuffer object.
+</p>
+<h3><span class="mw-headline" id="Sync_Objects">Sync Objects</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Sync_Objects" class="mw-redirect" title="Sync Objects">Sync Objects</a><i></i></div>
+<p><code>glFinish</code> is a decent start on synchronization. However, it is often useful to be able to do the kind of synchronization that OpenGL itself does implicitly. That is, being able to sync to a specific point in the command stream.
+</p><p>You do this by creating a <i>fence</i> object. This is a token in the command stream that you can test to see if it has been completed. Since the stream is an ordered list, if the fence has completed, then every command issued before that fence was issued has also completed.
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Synchronization" title="Category:Core API Ref Synchronization">Category:Core API Ref Synchronization</a>: Function documentation for all synchronization functions.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260317214000
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.041 seconds
+Real time usage: 0.044 seconds
+Preprocessor visited node count: 329/1000000
+Post‐expand include size: 4248/2097152 bytes
+Template argument size: 2801/2097152 bytes
+Highest expansion depth: 7/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   18.741      1 -total
+ 38.70%    7.253     16 Template:Apifunc
+ 28.15%    5.276      1 Template:Legacy_note
+ 20.34%    3.812     18 Template:Code
+ 15.67%    2.936      1 Template:Main
+ 10.34%    1.938      1 Template:Note_style
+  7.50%    1.406      1 Template:Enum
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1537-0!canonical and timestamp 20260317214000 and revision id 14848. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Synchronization&amp;oldid=14848">https://wikis.khronos.org/opengl/index.php?title=Synchronization&amp;oldid=14848</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:Synchronization" title="Category:Synchronization">Synchronization</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

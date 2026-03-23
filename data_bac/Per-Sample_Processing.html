@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Per-Sample Processing - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"5adf848b8724201151f317c3","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Per-Sample_Processing","wgTitle":"Per-Sample Processing","wgCurRevisionId":14508,"wgRevisionId":14508,"wgArticleId":2263,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["General OpenGL","Sample Writing"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Per-Sample_Processing","wgRelevantArticleId":2263,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=skins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Per-Sample_Processing rootpage-Per-Sample_Processing skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Per-Sample Processing</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><b>Per-Sample Processing</b>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+<p><b>Per-Sample Processing</b> is a stage of the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">OpenGL rendering pipeline</a>, where <a href="/opengl/Fragment" title="Fragment">Fragments</a> output from a <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> are processed, and their resulting data are written to various buffers.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Early_operations"><span class="tocnumber">1</span> <span class="toctext">Early operations</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Pixel_ownership_test"><span class="tocnumber">2</span> <span class="toctext">Pixel ownership test</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Scissor_test"><span class="tocnumber">3</span> <span class="toctext">Scissor test</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Multisample_operations"><span class="tocnumber">4</span> <span class="toctext">Multisample operations</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Stencil_test"><span class="tocnumber">5</span> <span class="toctext">Stencil test</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Depth_test"><span class="tocnumber">6</span> <span class="toctext">Depth test</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Occlusion_query_updating"><span class="tocnumber">7</span> <span class="toctext">Occlusion query updating</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Blending"><span class="tocnumber">8</span> <span class="toctext">Blending</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#sRGB_conversion"><span class="tocnumber">9</span> <span class="toctext">sRGB conversion</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Dithering"><span class="tocnumber">10</span> <span class="toctext">Dithering</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Logic_operations"><span class="tocnumber">11</span> <span class="toctext">Logic operations</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Write_mask"><span class="tocnumber">12</span> <span class="toctext">Write mask</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Early_operations">Early operations</span></h2>
+<p>The specification states that the per-sample processing operations take place after the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> has executed. However, it is possible for these to be performed <a href="/opengl/Early_Fragment_Test" title="Early Fragment Test">before the fragment shader</a>. The following operations are able to be performed before the fragment shader, under certain circumstances (and in the following order):
+</p>
+<ul><li><a href="#Pixel_ownership_test">The pixel ownership test</a></li>
+<li><a href="#Scissor_test">The scissor test</a></li>
+<li><a href="#Stencil_test">The stencil test</a></li>
+<li><a href="#Depth_test">The depth test</a></li>
+<li><a href="#Occlusion_query_updating">Occlusion query updating</a></li></ul>
+<p>There are two circumstances when these operations can be performed before the fragment shader. It can happen as an implicit optimization, if OpenGL detects that the <a href="/opengl/Early_Fragment_Test#Limitations" title="Early Fragment Test">fragment shader's execution will not interfere with these tests</a>. Or it can happen if the <a href="/opengl/Force_Early_Test" class="mw-redirect" title="Force Early Test">fragment shader explicitly requests it</a>.
+</p><p>If it happens by explicit request of the fragment shader, then all of these operations will happen first. Also, all <b>writes</b> to these buffers will happen first. Therefore, operations done in the fragment shader that affect such writes will be effectively ignored. For example, executing a <span class="tpl-code">discard</span> in an early-test fragment shader will not stop the depth or stencil values from being <i>updated</i> (the update is considered part of the test, <a href="#Write_mask">write masks notwithstanding</a>), nor will it stop the occlusion query counter from being bumped.
+</p><p>OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_image_load_store.txt">ARB_shader_image_load_store</a> explicitly requires the pixel ownership test and scissor test to always be performed early, no matter what. Granted, earlier hardware probably did them early anyway, but without <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> functionality, you would never be able to tell the difference (outside of improved performance).
+</p><p>All operations are processed in the following order, for each fragment generated by the fragment shader:
+</p>
+<h2><span class="mw-headline" id="Pixel_ownership_test">Pixel ownership test</span></h2>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Per-Sample_Processing/Pixel_ownership_test" title="Per-Sample Processing/Pixel ownership test">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Per-Sample_Processing/Pixel_ownership_test&amp;action=edit">E</a></span></span></div>
+<p>Because the <a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a> is owned by a resource external to OpenGL, it is possible that particular pixels of the default framebuffer are not owned by OpenGL. And therefore, OpenGL cannot write to those pixels. Fragments aimed at such pixels are therefore discarded at this stage of the pipeline.
+</p><p>Generally speaking, if the window you are rendering to is partially obscured by another window, the pixels covered by the other window are no longer owned by OpenGL and thus fail the ownership test. Any fragments that cover those pixels will be discarded. This also includes <a href="/opengl/Framebuffer_Clearing" class="mw-redirect" title="Framebuffer Clearing">framebuffer clearing</a> operations.
+</p><p>Note that this test <i>only</i> affects rendering to the default framebuffer. When rendering to a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Object</a>, all fragments pass this test.
+</p>
+<h2><span class="mw-headline" id="Scissor_test">Scissor test</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a><i></i></div>
+<p>A rectangular area of the destination framebuffer can be designated as the only valid area for rendering to. All fragments aimed at pixels outside of this rectangle will be discarded at this stage.
+</p>
+<h2><span class="mw-headline" id="Multisample_operations">Multisample operations</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Multisampling" title="Multisampling">Multisampling</a><i></i></div>
+<h2><span class="mw-headline" id="Stencil_test">Stencil test</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a><i></i></div>
+<p>The stencil test, when enabled, can cause a fragment to be discarded based on a bitwise operation between the fragment's stencil value and the stencil value stored in the current <a href="/opengl/Stencil_Buffer" class="mw-redirect" title="Stencil Buffer">Stencil Buffer</a> at that fragment's sample position. This allows the user to lay down stencil values in one rendering pass, then conditionally cull fragments based on this pattern.
+</p>
+<h2><span class="mw-headline" id="Depth_test">Depth test</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a><i></i></div>
+<p>The depth test, when enabled, allows a fragment to be culled based on a conditional test between the fragment's depth value and the depth value stored in the current <a href="/opengl/Depth_Buffer" class="mw-redirect" title="Depth Buffer">Depth Buffer</a> at that fragment's sample position. This is useful to cause geometry to be hidden behind other geometry. The closer geometry lays down depth values that mask the rendering of any fragments behind them, using the proper depth test condition.
+</p>
+<h2><span class="mw-headline" id="Occlusion_query_updating">Occlusion query updating</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Occlusion_Query" class="mw-redirect" title="Occlusion Query">Occlusion Query</a><i></i></div>
+<p>If the fragment passed the depth test (and only passing the depth test is checked), then at this point, an active occlusion query will be considered to have had a fragment pass. Therefore, if the query is a <span class="tpl-enum">GL_SAMPLES_PASSED</span> query, the counter will be incremented. If it is one of the boolean queries, the boolean value will be set to true.
+</p><p>Note that reaching this point does not guarantee that any particular value will actually be written to any particular buffer. The <a href="#Write_masks">write masks below</a> can turn off writing to particular buffers. The <a href="/opengl/Framebuffer_Draw_Buffer" class="mw-redirect" title="Framebuffer Draw Buffer">framebuffer's draw buffer</a> settings can effectively ignore one or more fragment values. Indeed, a <a href="/opengl/Empty_FBO" class="mw-redirect" title="Empty FBO">framebuffer object may be empty entirely</a>, with no images attached at all.
+</p>
+<h2><span class="mw-headline" id="Blending">Blending</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Blending" title="Blending">Blending</a><i></i></div>
+<p>Each of the colors in the fragment can be combined with the corresponding pixel color in the buffer that the fragment will be written to. The result of this blending operation is what will be written.
+</p><p>If the image being read from is in the sRGB colorspace <i>and</i> <a href="/opengl/Framebuffer_Colorspace" class="mw-redirect" title="Framebuffer Colorspace"><span class="tpl-enum">GL_FRAMEBUFFER_SRGB</span> is currently enabled</a>, then the color read for the blending operation will be converted to linear RGB before blending with the fragment color.
+</p>
+<h2><span class="mw-headline" id="sRGB_conversion">sRGB conversion</span></h2>
+<p>If <a href="/opengl/Framebuffer_Colorspace" class="mw-redirect" title="Framebuffer Colorspace"><span class="tpl-enum">GL_FRAMEBUFFER_SRGB</span> is currently enabled</a>, then for each fragment color that is being written to an image with an <a href="/opengl/SRGB_Image_Format" class="mw-redirect" title="SRGB Image Format">sRGB colorspace image format</a>, the RGB components of the color are converted from linear to sRGB.
+</p>
+<h2><span class="mw-headline" id="Dithering">Dithering</span></h2>
+<p>When a color is being written to a framebuffer image, the image may have less precision than the incoming value. This only matters when writing floating-point values to <a href="/opengl/Normalized_Integer" title="Normalized Integer">Normalized Integer</a> <a href="/opengl/Image_Format" title="Image Format">Image Formats</a>. For a given image format precision and a given color value, there will be at most two colors that could be used for that color: the one from rounding up and one from rounding down.
+</p><p>When dithering is disabled, which color is chosen is implementation-defined, but it is not allowed to depend on the fragment's position in the window. For low-precision image formats, a subtle gradation in floating-point values is rendered as several sharp and distinct bands.
+</p><p><a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Dither">Dithering</a> can be used to avoid this banding. Dithering algorithms essentially fake a smooth gradient by varying which color is selected based on the position of the fragment. Therefore, if the color value is half-way between the two representable colors, then half of the pixels will be one color and half the other.
+</p><p>Dithering is enabled by enabling <span class="tpl-enum">GL_DITHER</span>. Dithering is enabled by default.
+</p>
+<h2><span class="mw-headline" id="Logic_operations">Logic operations</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a><i></i></div>
+<p>Fragment colors can be conditionally combined with the corresponding value in the framebuffer by performing boolean operations on them. This overrides <a href="/opengl/Blending" title="Blending">Blending</a>, and it only works for colors that are writing to integer (<a href="/opengl/Normalized_Integer" title="Normalized Integer">normalized</a> or not) <a href="/opengl/Image_Format" title="Image Format">Image Formats</a> that are not using sRGB writing to sRGB images.
+</p>
+<h2><span class="mw-headline" id="Write_mask">Write mask</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a><i></i></div>
+<p>Writes to particular buffers can be masked off. This also allows masking off of particular components of those writes, such that you can only update the red color component if you want. Each output buffer can have its own mask.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318123350
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.064 seconds
+Real time usage: 0.069 seconds
+Preprocessor visited node count: 713/1000000
+Post‐expand include size: 6995/2097152 bytes
+Template argument size: 1273/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   34.780      1 -total
+ 32.48%   11.295      1 Template:Pipeline_float
+ 26.88%    9.350      1 Template:Pipeline_list
+ 20.53%    7.141      8 Template:Main
+ 20.05%    6.975      1 Template:Snippet
+ 18.08%    6.288     22 Template:Pagelink
+ 10.87%    3.780      1 Template:Require
+  8.55%    2.975      1 Per-Sample_Processing/Pixel_ownership_test
+  5.67%    1.973      1 Template:View_talk_edit
+  5.67%    1.972      1 Template:Code
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2263-0!canonical and timestamp 20260318123350 and revision id 14508. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Per-Sample_Processing&amp;oldid=14508">https://wikis.khronos.org/opengl/index.php?title=Per-Sample_Processing&amp;oldid=14508</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li><li><a href="/opengl/Category:Sample_Writing" title="Category:Sample Writing">Sample Writing</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Per-Sample+Processing" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Per-Sample_Processing" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Per-Sample_Processing&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Per-Sample_Processing"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Per-Sample_Processing&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Per-Sample_Processing&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Per-Sample_Processing" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Per-Sample_Processing" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Per-Sample_Processing&amp;oldid=14508" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Per-Sample_Processing&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Per-Sample_Processing&amp;id=14508&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 3 April 2019, at 16:52.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":158,"wgPageParseReport":{"limitreport":{"cputime":"0.064","walltime":"0.069","ppvisitednodes":{"value":713,"limit":1000000},"postexpandincludesize":{"value":6995,"limit":2097152},"templateargumentsize":{"value":1273,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   34.780      1 -total"," 32.48%   11.295      1 Template:Pipeline_float"," 26.88%    9.350      1 Template:Pipeline_list"," 20.53%    7.141      8 Template:Main"," 20.05%    6.975      1 Template:Snippet"," 18.08%    6.288     22 Template:Pagelink"," 10.87%    3.780      1 Template:Require","  8.55%    2.975      1 Per-Sample_Processing/Pixel_ownership_test","  5.67%    1.973      1 Template:View_talk_edit","  5.67%    1.972      1 Template:Code"]},"cachereport":{"timestamp":"20260318123350","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6cfff900a3d1',t:'MTc3NDIzNzM0Mg=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

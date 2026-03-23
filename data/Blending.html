@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Blending - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Blending rootpage-Blending skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Blending</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><b>Blending</b></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+<p><b>Blending</b> is the stage of <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">OpenGL rendering pipeline</a> that takes the fragment color outputs from the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> and combines them with the colors in the color buffers that these outputs map to. Blending parameters can allow the source and destination colors for each output to be combined in various ways.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Transparency"><span class="tocnumber">1</span> <span class="toctext">Transparency</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Fragment_Outputs"><span class="tocnumber">2</span> <span class="toctext">Fragment Outputs</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Draw_Buffers_Blend"><span class="tocnumber">3</span> <span class="toctext">Draw Buffers Blend</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Source,_Destination,_and_the_buffer"><span class="tocnumber">4</span> <span class="toctext">Source, Destination, and the buffer</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Blend_enabling"><span class="tocnumber">5</span> <span class="toctext">Blend enabling</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Blend_Equations"><span class="tocnumber">6</span> <span class="toctext">Blend Equations</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Blending_Parameters"><span class="tocnumber">7</span> <span class="toctext">Blending Parameters</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Constant_Values"><span class="tocnumber">7.1</span> <span class="toctext">Constant Values</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Colors"><span class="tocnumber">7.2</span> <span class="toctext">Colors</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Blend_Color"><span class="tocnumber">7.3</span> <span class="toctext">Blend Color</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Dual_Source_Blending"><span class="tocnumber">7.4</span> <span class="toctext">Dual Source Blending</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Transparency">Transparency</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Transparency_Sorting" title="Transparency Sorting">Transparency Sorting</a><i></i></div>
+<p>Blending can be used to make objects appear transparent. This is not its only use, but it is one of its main uses. Doing this requires that you take certain steps, some of them quite difficult to deal with. See the <a href="/opengl/Transparency_Sorting" title="Transparency Sorting">linked page for details</a>.
+</p>
+<h2><span class="mw-headline" id="Fragment_Outputs">Fragment Outputs</span></h2>
+<p>The result of the fragment processing stage of the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">OpenGL Pipeline</a>, whether using <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a> or not, are zero or more color values. There are other outputs from fragment processing, but blending only deals with colors.
+</p><p>These colors must be written to zero or more of the <a href="/opengl/Framebuffer_Draw_Buffer" class="mw-redirect" title="Framebuffer Draw Buffer">color buffers in the current framebuffer</a>. Each fragment output color is matched up with a particular buffer (or discarded) via a call to <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffers" title="GLAPI/glDrawBuffers">glDrawBuffers</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffer" title="GLAPI/glDrawBuffer">glDrawBuffer</a></span>. Once the matching is arranged, the color can be written to that buffer.
+</p><p>When blending is active, the input colors from the fragment processor does not merely overwrite the corresponding value currently in the output buffer, but instead the two colors are combined together based on a function.
+</p>
+<h2><span class="mw-headline" id="Draw_Buffers_Blend">Draw Buffers Blend</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Draw Buffers Blend</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/draw_buffers_blend.txt">ARB_draw_buffers_blend</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Given the availability of this feature, the user can specify different blending parameters or equations for each buffer.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> All AMD/ATI 3.x-class hardware, the HD2000, 3000, and 4000 series, implement <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/draw_buffers_blend.txt">ARB_draw_buffers_blend</a>. No pre-4.0 hardware from NVIDIA implements this.</div>
+<p>If this functionality is available, for every function described below, there is an equivalent function that has an "i" at the end of the name ("iARB" for the extension version). This function takes one additional parameter at the beginning, an unsigned integer representing the draw buffer index whose blending data this function call is intended to change. So, given the function <span class="tpl-code"><a href="/opengl/GLAPI/glBlendFuncSeparate" title="GLAPI/glBlendFuncSeparate">glBlendFuncSeparate</a></span>, there is a <span class="tpl-code"><a href="/opengl/GLAPI/glBlendFuncSeparatei" class="mw-redirect" title="GLAPI/glBlendFuncSeparatei">glBlendFuncSeparatei</a></span> whose first parameter is a draw buffer index.
+</p><p>Note that the <span class="tpl-code"><a href="/opengl/GLAPI/glEnablei" class="mw-redirect" title="GLAPI/glEnablei">glEnablei/glDisablei</a></span> functions are not part of this functionality. The ability to enable/disable blending to specific buffers is core 3.0 functionality. Whereas draw buffers blend is about the ability to specify different blend parameters for different buffers.
+</p>
+<h2><span id="Source.2C_Destination.2C_and_the_buffer"></span><span class="mw-headline" id="Source,_Destination,_and_the_buffer">Source, Destination, and the buffer</span></h2>
+<p>The Fragment Shader can <a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">write a number of colors</a>. These colors are <a href="/opengl/Framebuffer_Draw_Buffer" class="mw-redirect" title="Framebuffer Draw Buffer">mapped to particular images in the Framebuffer</a> via <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffers" title="GLAPI/glDrawBuffers">glDrawBuffers</a></span>. Blending happens independently on each fragment shader output value.
+</p><p>Blending operations take place between a <i>source color</i> and a <i>destination color</i>. The <i>source color</i> is the value written by the fragment shader. The <i>destination color</i> is the color from the image in the framebuffer. When discussing the source and dest colors, <b>boldface type</b> will be used to represent colors. The color <b>S</b> is the source color; the color <b>D</b> is the destination color; the color <b>O</b> is the output color that is written to the buffer.
+</p><p>The <b>S</b>, <b>D</b>, and so forth represent all of the components of that color. <b>Srgb</b> represents only the RGB components of the source color. <b>Da</b> represents the alpha component of the destination color.
+</p><p>All addition and multiplication is component-wise. Scalar multiplies against colors are also component-wise multiplies.
+</p><p>The source color <b>S</b> output from the fragment shader will be clamped to [0, 1] if the <a href="/opengl/Image_Format" title="Image Format">image format</a> of the destination buffer that it is destined for is a normalized integer format. Otherwise, it will be used as given.
+</p><p>The destination color <b>D</b> read from the buffer can undergo changes as well. If the buffer in question uses an <a href="/opengl/SRGB_Image_Format" class="mw-redirect" title="SRGB Image Format">sRGB image format</a>, <i>and</i> <a href="/opengl/Framebuffer_Colorspace" class="mw-redirect" title="Framebuffer Colorspace"><span class="tpl-enum">GL_FRAMEBUFFER_SRGB</span> is currently enabled</a>, then the value being read will be linearized, converting from the sRGB colorspace to a linear one. This happens before blending.
+</p><p>If the buffer that <b>D</b> comes from contains an integral format (actual, non-normalized integers), then blending for that buffer is skipped entirely. <b>S</b> will be written directly to <b>O</b>.
+</p>
+<h2><span class="mw-headline" id="Blend_enabling">Blend enabling</span></h2>
+<p>Blending must be enabled with a call to <span class="tpl-code"><a href="/opengl/GLAPI/glEnablei" class="mw-redirect" title="GLAPI/glEnablei">glEnablei(GL_BLEND, i)</a></span>, where <span class="tpl-param">i​</span> is an integer representing the buffer to enable blending on. Each buffer being written to by a fragment shader can have blending separately enabled and disabled. <span class="tpl-code"><a href="/opengl/GLAPI/glDisablei" class="mw-redirect" title="GLAPI/glDisablei">glDisablei</a></span> can be used to disable blending.
+</p><p>Blending on all buffers can be enabled or disabled with <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable and glDisable</a></span>.
+</p><p>When blending is disabled to a buffer, the color from the fragment shader will be written directly to that buffer. When blending is enabled, one of the following blend equations will be used to determine the color written to that buffer.
+</p><p>Note that blending only works for a particular buffer if the <a href="/opengl/Image_Format" title="Image Format">Image Format</a> is some form of floating point. Either regular floats or <a href="/opengl/Normalized_Integer" title="Normalized Integer">Normalized Integers</a>. If it is an unnormalized integer, blending for that buffer behaves as if it is disabled.
+</p>
+<h2><span class="mw-headline" id="Blend_Equations">Blend Equations</span></h2>
+<p>Blending state for a buffer has two components. The first defines the basic equation used for blending. This equation defines the basic math operation that relates the source color and the dest color. The second blending component are parameters. Each equation has a number of parameters; these parameters can be used to modify the basic math computation used.
+</p><p>When computing the output color, two equations are used: one for the RGB portion of the output color, and one for the alpha of the output color. This is useful if you want to do something like blend the source and dest colors but take the source alpha as the fragment output produced it.
+</p><p>The two equations are set with this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glBlendEquationSeparate" title="GLAPI/glBlendEquationSeparate">glBlendEquationSeparate</a></span>(GLenum <span class="tpl-param">modeRGB​</span>, GLenum <span class="tpl-param">modeAlpha​</span>);
+</pre>
+<p>The <span class="tpl-param">modeRGB​</span> is the equation to use for the RGB portion of the output color, and <span class="tpl-param">modeAlpha​</span> is the equation to use for the alpha portion.
+</p><p>The possible equations are as follows:
+</p>
+<ul><li><span class="tpl-enum">GL_FUNC_ADD</span>: The source and destination colors are added to each other. <b>O</b> = <b>sS</b> + <b>dD</b>. The The <b>s</b> and <b>d</b> are blending parameters that are multiplied into each of <b>S</b> and <b>D</b> before the addition.</li>
+<li><span class="tpl-enum">GL_FUNC_SUBTRACT</span>: Subtracts the destination from the source. <b>O</b> = <b>sS</b> - <b>dD</b>. The source and dest are multiplied by blending parameters.</li>
+<li><span class="tpl-enum">GL_FUNC_REVERSE_SUBTRACT</span>: Subtracts the source from the destination. <b>O</b> = <b>dD</b> - <b>sS</b>. The source and dest are multiplied by blending parameters.</li>
+<li><span class="tpl-enum">GL_MIN</span>: The output color is the component-wise minimum value of the source and dest colors. So performing GL_MIN in the RGB equation means that <b>Or</b> = min(<b>Sr</b>, <b>Dr</b>), <b>Og</b> = min(<b>Sg</b>, <b>Dg</b>), and so forth. The parameters <b>s</b> and <b>d</b> are ignored for this equation.</li>
+<li><span class="tpl-enum">GL_MAX</span>: The output color is the component-wise maximum value of the source and dest colors. The parameters <b>s</b> and <b>d</b> are ignored for this equation.</li></ul>
+<h2><span class="mw-headline" id="Blending_Parameters">Blending Parameters</span></h2>
+<p>Three of the blending equations modify the source and destination colors by parameters. These equations can be broken down into two separate equations:
+</p>
+<pre>* <b>Orgb</b> = <b>srgb</b> * <b>Srgb</b> + <b>drgb</b> * <b>Drgb</b>
+* <b>Oa</b> = <b>sa</b> * <b>Sa</b> + <b>da</b> * <b>Da</b>
+</pre>
+<p>The same goes for the two subtraction equations. This separates the RGB component computation from the alpha computation. So there are 4 possible blending parameters.
+</p><p>These parameters are specified by this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glBlendFuncSeparate" title="GLAPI/glBlendFuncSeparate">glBlendFuncSeparate</a></span>(GLenum <span class="tpl-param">srcRGB​</span>, GLenum <span class="tpl-param">dstRGB​</span>, GLenum <span class="tpl-param">srcAlpha​</span>, GLenum <span class="tpl-param">dstAlpha​</span>)
+</pre>
+<p>The <span class="tpl-param">srcRGB​</span> value specifies the <b>srgb</b> parameter. <span class="tpl-param">dstRGB​</span> specifies <b>drgb</b>. <span class="tpl-param">srcAlpha​</span> is for <b>sa</b>, while <span class="tpl-param">dstAlpha​</span> specifies <b>da</b>.
+</p><p>For blend equations that do not use parameters (<span class="tpl-enum">GL_MIN</span> and <span class="tpl-enum">GL_MAX</span>), the parameter values are meaningless. They do not affect the output values, and you do not have to set them.
+</p><p>The values that the parameters can take is as follows.
+</p>
+<h3><span class="mw-headline" id="Constant_Values">Constant Values</span></h3>
+<p>The parameters <span class="tpl-enum">GL_ONE</span> and <span class="tpl-enum">GL_ZERO</span> are constant values. <span class="tpl-enum">GL_ONE</span> means 1.0, and <span class="tpl-enum">GL_ZERO</span> means 0.0.
+</p><p>If you want to do straight addition, <b>O</b> = <b>S</b> + <b>D</b>, then setting both the source and dest to <span class="tpl-enum">GL_ONE</span> is necessary, as well as using the <span class="tpl-enum">GL_FUNC_ADD</span> function.
+</p>
+<h3><span class="mw-headline" id="Colors">Colors</span></h3>
+<p>There are a number of parameters that are derived from source and destination colors, or components thereof.
+</p><p><span class="tpl-enum">GL_SRC_COLOR</span> and <span class="tpl-enum">GL_DST_COLOR</span> represent <b>S</b> and <b>D</b> themselves, as appropriate for the particular equation. So setting <span class="tpl-enum">GL_SRC_COLOR</span> in the RGB equation means getting <b>Srgb</b>; setting it in the alpha equation means getting <b>Sa</b>.
+</p><p>For example, if the blending you want is a straight multiplication of the source and destination colors, <b>O</b> = <b>S</b> * <b>D</b>, then you should set the <span class="tpl-enum">GL_FUNC_ADD</span> function. Then set the source parameter for that equation to <span class="tpl-enum">GL_DST_COLOR</span>, and set the destination parameter to <span class="tpl-enum">GL_ZERO</span> (we don't want to do addition, so null out the additive term). This will give <b>O</b> = <b>D</b> * <b>S</b> + <b>0</b> * <b>D</b>.
+</p><p>There are also <span class="tpl-enum">GL_ONE_MINUS_SRC_COLOR</span> and <span class="tpl-enum">GL_ONE_MINUS_DST_COLOR</span>. These are exactly what they say: 1.0 - the value of those colors. This is a component-wise subtraction. Note that source and dest are not limited to the [0, 1] range if the destination buffer is a floating-point buffer.
+</p><p>It is also possible to get the alpha component alone. <span class="tpl-enum">GL_SRC_ALPHA</span> and <span class="tpl-enum">GL_DST_ALPHA</span> represent <b>Sa</b> and <b>Da</b>, regardless of which equation is being used. There are also <span class="tpl-enum">GL_ONE_MINUS_SRC_ALPHA</span> and <span class="tpl-enum">GL_ONE_MINUS_DST_ALPHA</span>, which work as above. <b>Sa</b> and <b>Da</b> are scalars, so their multiplication with the source and destination colors is component-wise.
+</p><p>The traditional alpha blend equations are set up as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBlendEquationSeparate</span><span class="p">(</span><span class="n">GL_FUNC_ADD</span><span class="p">,</span><span class="w"> </span><span class="n">GL_FUNC_ADD</span><span class="p">);</span>
+<span class="n">glBlendFuncSeparate</span><span class="p">(</span><span class="n">GL_SRC_ALPHA</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ZERO</span><span class="p">);</span>
+</pre></div>
+<p>This performs linear interpolation between the source and destination colors based on the source alpha. The alpha function and parameters simply write the source alpha to the output. If the source alpha needs to be blended with the destination alpha, then these blend parameters may be used instead:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBlendFuncSeparate</span><span class="p">(</span><span class="n">GL_SRC_ALPHA</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">);</span>
+</pre></div>
+<p>This performs linear interpolation on both the color and the source alpha. The source alpha's parameter is <span class="tpl-enum">GL_ONE</span> rather than <span class="tpl-enum">GL_SRC_ALPHA</span> because it is being multiplied by the source alpha already.
+</p><p>It is often useful to perform <b>premultiplied alpha blending</b>, a slight modification of standard linear interpolation. Premultiplication is so named because the RGB source color has already been multiplied by the alpha. This usually is done by image editing software when generating the texture, but it can also be done as a <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> operation or even with per-vertex color data passed into the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>. However it happens, the value output by the fragment shader has effectively already been multiplied by the alpha component, so the blend equation must take that into account.
+</p><p>The setup for this is as follows. Note that the alpha settings are unchanged, and that compositing semi-transparent layers on top of each other will eventually make the output opaque.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBlendEquationSeparate</span><span class="p">(</span><span class="n">GL_FUNC_ADD</span><span class="p">,</span><span class="w"> </span><span class="n">GL_FUNC_ADD</span><span class="p">);</span>
+<span class="n">glBlendFuncSeparate</span><span class="p">(</span><span class="n">GL_ONE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ONE_MINUS_SRC_ALPHA</span><span class="p">);</span>
+</pre></div>
+<h3><span class="mw-headline" id="Blend_Color">Blend Color</span></h3>
+<p>You may set a constant color that you can use for blending. This is called the blend color. It is set with this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glBlendColor" title="GLAPI/glBlendColor">glBlendColor</a></span>(GLclampf <span class="tpl-param">red​</span>, GLclampf <span class="tpl-param">green​</span>, GLclampf <span class="tpl-param">blue​</span>, GLclampf <span class="tpl-param">alpha​</span>);
+</pre>
+<p>The blend color is a state value, like the blend equations and blend parameters. Therefore, it cannot change within a single draw call; fragment shaders cannot write to, modify, or even access the blend color. All buffers share the same blend color.
+</p><p>The blend color is accessed only as parameters. The enumerators for these are <span class="tpl-enum">GL_CONSTANT_COLOR</span>, <span class="tpl-enum">GL_ONE_MINUS_CONSTANT_COLOR</span>, <span class="tpl-enum">GL_CONSTANT_ALPHA</span>, and <span class="tpl-enum">GL_ONE_MINUS_CONSTANT_ALPHA</span>.
+</p>
+<h3><span class="mw-headline" id="Dual_Source_Blending">Dual Source Blending</span></h3>
+<p>Dual source blending refers to a blending mode, where the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> outputs two colors to the same output buffer. To do this, the two outputs must both point to the same buffer index, but with a special parameter that refers to whether it is color 0 or color 1. This can be done in GLSL using the layout qualifier:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">vec4</span><span class="w"> </span><span class="n">outputColor0</span><span class="p">;</span>
+<span class="n">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="n">out</span><span class="w"> </span><span class="n">vec4</span><span class="w"> </span><span class="n">outputColor1</span><span class="p">;</span>
+</pre></div>
+<p>This has <i>outputColor0</i> writing to color 0 of buffer 0, while <i>outputColor1</i> goes to color 1 of buffer 0. Each buffer can have its own set of two colors.
+</p><p>Alternatively, you can use this function to bind the output before the program object is linked:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glBindFragDataLocationIndexed" title="GLAPI/glBindFragDataLocationIndexed">glBindFragDataLocationIndexed</a></span>(uint <span class="tpl-param">program​</span>, uint <span class="tpl-param">colorNumber​</span>, uint <span class="tpl-param">index​</span>, const char * <span class="tpl-param">name​</span>);
+</pre>
+<p><span class="tpl-param">program​</span> is the program object, <span class="tpl-param">colorNumber​</span> is the buffer index, <span class="tpl-param">index​</span> is the color number (0 or 1), and <span class="tpl-param">name​</span> is the string name of the output variable.
+</p><p>Dual source blending is activated in a fragment shader by designating (via either method above) that at least one of the output values is going to color 1 of one of the destination buffers. When dual source blending is active for a shader, the number of color buffers that can be written to is no longer <span class="tpl-enum">GL_MAX_DRAW_BUFFERS</span>, but <span class="tpl-enum">GL_MAX_DUAL_SOURCE_DRAW_BUFFERS</span>. This implementation-dependent constant represents the number of draw buffers that a fragment shader can output to when using dual-source blending.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> In virtually every OpenGL implementation and hardware, <span class="tpl-enum">GL_MAX_DUAL_SOURCE_DRAW_BUFFERS</span> is 1. This applies to 3.x and 4.x hardware alike. For all practical purposes, if you use dual-source blending, you can only write to <i>one</i> buffer.</div>
+<p>The source color <b>S</b> in blending equations is <i>always</i> color 0. Color 1 can only be used as a parameter. The parameters that use color 1 are <span class="tpl-enum">GL_SRC1_COLOR</span>, <span class="tpl-enum">GL_SRC1_ALPHA</span>, <span class="tpl-enum">GL_ONE_MINUS_SRC1_COLOR</span>, and <span class="tpl-enum">GL_ONE_MINUS_SRC1_ALPHA</span>.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318062020
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.086 seconds
+Real time usage: 0.091 seconds
+Preprocessor visited node count: 1592/1000000
+Post‐expand include size: 13599/2097152 bytes
+Template argument size: 4143/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 4/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 3303/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   53.805      1 -total
+ 31.35%   16.866      1 Template:Infobox_feature
+ 28.09%   15.116      1 Template:Infobox2
+ 21.12%   11.366      1 Template:Pipeline_float
+ 17.27%    9.291      1 Template:Pipeline_list
+ 10.59%    5.698     20 Template:Pagelink
+ 10.40%    5.598     10 Template:Infobox/shortrow
+  9.76%    5.249     13 Template:Apifunc
+  8.46%    4.550     10 Template:Infobox/longrow
+  6.19%    3.332     39 Template:Enum
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1521-0!canonical and timestamp 20260318062020 and revision id 13925. Rendering was triggered because: diff-page
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Blending&amp;oldid=13925">https://wikis.khronos.org/opengl/index.php?title=Blending&amp;oldid=13925</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:Sample_Writing" title="Category:Sample Writing">Sample Writing</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

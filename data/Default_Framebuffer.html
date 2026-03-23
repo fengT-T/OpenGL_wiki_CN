@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Default Framebuffer - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Default_Framebuffer rootpage-Default_Framebuffer skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Default Framebuffer</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>The <b>Default Framebuffer</b> is the <a href="/opengl/Framebuffer" title="Framebuffer">Framebuffer</a> that OpenGL is created with. It is created along with the OpenGL Context. Like <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a>, the default framebuffer is a series of images. Unlike FBOs, one of these images usually represents what you actually see on some part of your screen.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Creation"><span class="tocnumber">1</span> <span class="toctext">Creation</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Color_buffers"><span class="tocnumber">2</span> <span class="toctext">Color buffers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Multiple_buffer_aliases"><span class="tocnumber">2.1</span> <span class="toctext">Multiple buffer aliases</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Double_buffering"><span class="tocnumber">2.2</span> <span class="toctext">Double buffering</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Depth_buffer"><span class="tocnumber">3</span> <span class="toctext">Depth buffer</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Stencil_buffer"><span class="tocnumber">4</span> <span class="toctext">Stencil buffer</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Pixel_ownership_test"><span class="tocnumber">5</span> <span class="toctext">Pixel ownership test</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Multisample_framebuffer"><span class="tocnumber">6</span> <span class="toctext">Multisample framebuffer</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Removed_buffer_images"><span class="tocnumber">7</span> <span class="toctext">Removed buffer images</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Creation">Creation</span></h2>
+<p>The default framebuffer is created at the time the <a href="/opengl/OpenGL_Context" title="OpenGL Context">OpenGL Context</a> is constructed. The desired properties of the default framebuffer are given to the context creation functions, which will take these into consideration when creating the context. The construction of a context is platform-specific, so exactly how you specify your desired properties is platform-specific.
+</p><p>The default framebuffer contains a number of images, based on how it was created. All default framebuffer images are automatically resized to the size of the output window, as it is resized.
+</p>
+<h2><span class="mw-headline" id="Color_buffers">Color buffers</span></h2>
+<p>The default framebuffer contains up to 4 color buffers, named <span class="tpl-enum">GL_FRONT_LEFT</span>, <span class="tpl-enum">GL_BACK_LEFT</span>, <span class="tpl-enum">GL_FRONT_RIGHT</span>, and <span class="tpl-enum">GL_BACK_RIGHT</span>. The left and right buffers are used for <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Stereoscopy">stereoscopic rendering</a>. Most consumer graphics cards cannot use these for doing stereoscopic 3D visualization.
+</p><p>If stereo rendering is not being done, then only the left buffers will be active. Attempts to read from or draw to the right buffers would fail.
+</p>
+<h3><span class="mw-headline" id="Multiple_buffer_aliases">Multiple buffer aliases</span></h3>
+<p>The default framebuffer's set of 4 color images have certain aliases that represent multiple buffers. These names are <span class="tpl-enum">GL_LEFT</span>, <span class="tpl-enum">GL_RIGHT</span>, <span class="tpl-enum">GL_FRONT</span>, <span class="tpl-enum">GL_BACK</span>, and <span class="tpl-enum">GL_FRONT_AND_BACK</span>; they represent the left, right, front, back, or all four buffers. These are only allowed in <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffer" title="GLAPI/glDrawBuffer">glDrawBuffer</a></span> (not <span class="tpl-code"><a href="/opengl/GLAPI/glDrawBuffers" title="GLAPI/glDrawBuffers">glDrawBuffers</a></span>; note the "s") and <span class="tpl-code"><a href="/opengl/GLAPI/glReadBuffer" title="GLAPI/glReadBuffer">glReadBuffer</a></span>.
+</p><p>When used for rendering outputs, multiple buffer aliases mean that all of the specified buffers get the same colors. When used for reading operations, the multiple buffer aliases specify a single buffer. The rule is that it specifies the frontmost, leftmost buffer of the ones that it covers. In tabular form:
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>Alias
+</th>
+<th>Real Image
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_LEFT</span>
+</td>
+<td><span class="tpl-enum">GL_FRONT_LEFT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_RIGHT</span>
+</td>
+<td><span class="tpl-enum">GL_FRONT_RIGHT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_FRONT</span>
+</td>
+<td><span class="tpl-enum">GL_FRONT_LEFT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_BACK</span>
+</td>
+<td><span class="tpl-enum">GL_BACK_LEFT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_FRONT_AND_BACK</span>
+</td>
+<td><span class="tpl-enum">GL_FRONT_LEFT</span>
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Double_buffering">Double buffering</span></h3>
+<p>The front and back buffers represent a double-buffered framebuffer. The front buffer is, more or less, what you see on the screen. The back buffer is the image that is typically rendered to. When the user wants the rendered image to become visible, they call a platform-specific buffer swapping command. This effectively transfers the back buffer data into the front buffer.
+</p><p>Rendering into, or reading from, the front buffer is not advisable.
+</p><p>The buffer swap does not have to be a true swap. In a true swap, the back buffer becomes the front buffer and vice-versa. If you were to read from the back buffer after a true swap, it would hold the <i>previous</i> contents of the front buffer.
+</p><p>That being said, OpenGL does not <i>require</i> true swapping. All that is required is that the contents of the back buffer find their way into the front buffer. This could be via a true swap, or it could be via a copy from the back buffer into the front.
+</p><p>Stereo rendering has two back buffers and two front buffers. Swapping performs the switch on both.
+</p>
+<h2><span class="mw-headline" id="Depth_buffer">Depth buffer</span></h2>
+<p>The default framebuffer can have a <a href="/opengl/Depth_Buffer" class="mw-redirect" title="Depth Buffer">Depth Buffer</a>, which can be used for depth testing. The precision of the depth buffer is generally one of the parameters passed to the context creation functions. The name of the default framebuffer's depth buffer (for query purposes) is <span class="tpl-enum">GL_DEPTH</span>.
+</p><p>Stereo rendering still uses <i>one</i> depth buffer. It must be shared among the left and right buffers, so a clear may need to be issued between rendering to the left and right buffers.
+</p>
+<h2><span class="mw-headline" id="Stencil_buffer">Stencil buffer</span></h2>
+<p>The default framebuffer can have a <a href="/opengl/Stencil_Test" title="Stencil Test">stencil buffer for doing stencil tests.</a> The number of stencil bits is generally one of the parameters passed to context creation functions. The name of the default framebuffer's stencil buffer (for query purposes) is <span class="tpl-enum">GL_STENCIL</span>.
+</p><p>Stereo rendering still uses <i>one</i> stencil buffer. It must be shared among the left and right buffers, so a clear may need to be issued between rendering to the left and right buffers.
+</p>
+<h2><span class="mw-headline" id="Pixel_ownership_test">Pixel ownership test</span></h2>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Per-Sample_Processing/Pixel_ownership_test" title="Per-Sample Processing/Pixel ownership test">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Per-Sample_Processing/Pixel_ownership_test&amp;action=edit">E</a></span></span></div>
+<p>Because the <b>Default Framebuffer</b> is owned by a resource external to OpenGL, it is possible that particular pixels of the default framebuffer are not owned by OpenGL. And therefore, OpenGL cannot write to those pixels. Fragments aimed at such pixels are therefore discarded at this stage of the pipeline.
+</p><p>Generally speaking, if the window you are rendering to is partially obscured by another window, the pixels covered by the other window are no longer owned by OpenGL and thus fail the ownership test. Any fragments that cover those pixels will be discarded. This also includes <a href="/opengl/Framebuffer_Clearing" class="mw-redirect" title="Framebuffer Clearing">framebuffer clearing</a> operations.
+</p><p>Note that this test <i>only</i> affects rendering to the default framebuffer. When rendering to a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Object</a>, all fragments pass this test.
+</p>
+<h2><span class="mw-headline" id="Multisample_framebuffer">Multisample framebuffer</span></h2>
+<p>The default framebuffer can be <a href="/opengl/Multisample" class="mw-redirect" title="Multisample">multisampled</a> as well. Again, the number of samples is usually specified as a context creation parameter.
+</p>
+<h2><span class="mw-headline" id="Removed_buffer_images">Removed buffer images</span></h2>
+<table class="metadata plainlinks stub" style="background: #FA8; border: 1px solid black;"><tbody><tr>
+<td><b>Warning:</b> This section describes <a href="/opengl/Legacy_OpenGL" title="Legacy OpenGL">legacy OpenGL APIs</a> that have been removed from <a href="/opengl/Core_And_Compatibility_in_Contexts" class="mw-redirect" title="Core And Compatibility in Contexts">core OpenGL 3.1 and above</a> (they are only <a href="/opengl/Deprecation" title="Deprecation">deprecated</a> in OpenGL 3.0). It is recommended that you not use this functionality in your programs.</td></tr></tbody></table>
+<p>In compatibility contexts or OpenGL 3.0 and below, the default framebuffer can contain a plethora of other image buffers. It can contain a number of auxiliary color images; these are simply off-screen color buffers of the same size as the window. They can be rendered to and blitted from just like any other image. These are named <span class="tpl-enum">GL_AUX<i>i</i></span>, where <i>i</i> is a number from 0 to the number of auxiliary buffers.
+</p><p>The default framebuffer can also contain an accumulation buffer, which can be used to perform certain computations when rendering.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318114351
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.038 seconds
+Real time usage: 0.042 seconds
+Preprocessor visited node count: 323/1000000
+Post‐expand include size: 4847/2097152 bytes
+Template argument size: 1020/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   22.014      1 -total
+ 40.13%    8.833      1 Template:Snippet
+ 17.73%    3.903      1 Template:View_talk_edit
+ 16.57%    3.647      1 Template:Deprecated
+ 16.13%    3.551      3 Template:Apifunc
+ 15.96%    3.513     22 Template:Enum
+ 12.97%    2.854      1 Per-Sample_Processing/Pixel_ownership_test
+ 10.28%    2.264      2 Template:Pagelink
+  7.56%    1.665      3 Template:Code
+  7.14%    1.571      1 Template:Alertbox
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1519-0!canonical and timestamp 20260318114351 and revision id 14498. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Default_Framebuffer&amp;oldid=14498">https://wikis.khronos.org/opengl/index.php?title=Default_Framebuffer&amp;oldid=14498</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:Framebuffer" title="Category:Framebuffer">Framebuffer</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

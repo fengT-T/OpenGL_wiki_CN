@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Legacy OpenGL - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Legacy_OpenGL rootpage-Legacy_OpenGL skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Legacy OpenGL</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>In 2008, version 3.0 of the OpenGL specification was released. With this revision, the <a href="/opengl/Fixed_Function_Pipeline" title="Fixed Function Pipeline">Fixed Function Pipeline</a> as well as most of the related OpenGL functions and constants were declared <a href="/opengl/Deprecation" title="Deprecation">deprecated</a>. These deprecated elements and concepts are now commonly referred to as <i>legacy OpenGL</i>. Legacy OpenGL is still supported by certain implementations that support core OpenGL 3.1 or higher and the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compatibility.txt">GL_ARB_compatibility</a> extension. Implementations that do not expose this extension do only offer features defined in the core OpenGL specification the implementation is based upon.
+</p><p><b>Note</b>: There is a distinction between the above extension and the corresponding <a href="/opengl/Core_And_Compatibility_in_Contexts" class="mw-redirect" title="Core And Compatibility in Contexts">profile</a> which was introduced with OpenGL 3.2.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Implementations_of_compatibility_contexts"><span class="tocnumber">1</span> <span class="toctext">Implementations of compatibility contexts</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Detecting_legacy_OpenGL"><span class="tocnumber">2</span> <span class="toctext">Detecting legacy OpenGL</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Removed_functionality"><span class="tocnumber">3</span> <span class="toctext">Removed functionality</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Reasons_to_avoid_legacy_OpenGL"><span class="tocnumber">4</span> <span class="toctext">Reasons to avoid legacy OpenGL</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Performance"><span class="tocnumber">4.1</span> <span class="toctext">Performance</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Flexibility_using_shaders"><span class="tocnumber">4.2</span> <span class="toctext">Flexibility using shaders</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Compatibility"><span class="tocnumber">4.3</span> <span class="toctext">Compatibility</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Using_the_most_recent_OpenGL_version"><span class="tocnumber">5</span> <span class="toctext">Using the most recent OpenGL version</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Implementations_of_compatibility_contexts">Implementations of compatibility contexts</span></h2>
+<p>Both AMD and NVIDIA provide backwards-compatible implementations at least on Windows and Linux. Apple does only provide an implementation of the core profile and supports core OpenGL 3.2 on Mac OSX. Intel provides an implementation for Windows up to OpenGL 3.1 with Sandy Bridge CPUs and OpenGL 4.0 with Ivy Bridge CPUs. However, Intel's Linux open-source driver developers have recently stated that they will not provide backward-compatibility on Linux.
+</p>
+<h2><span class="mw-headline" id="Detecting_legacy_OpenGL">Detecting legacy OpenGL</span></h2>
+<p>Although by no means exhaustive, the following examples are common in most legacy OpenGL applications. 
+</p><p>One typical sign that code is using Legacy OpenGL is immediate mode vertex attribute specification starting with a call to <span class="tpl-code">glBegin</span> ending with a call to <span class="tpl-code">glEnd</span>. This concept is based on a procedural method, where vertex attributes are provided vertex by vertex and attribute by attribute. For instance
+</p>
+<ul><li>setting the object-space position with <span class="tpl-code">glVertex*</span></li>
+<li>setting the current vertex color with <span class="tpl-code">glColor*</span></li>
+<li>setting the current direction interpreted as the vertex normal with <span class="tpl-code">glNormal*</span></li></ul>
+<p>Other regularly employed facilities are the matrix stack and matrix manipulation commands:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glMatrixMode</span><span class="p">(</span><span class="n">GL_MODELVIEW</span><span class="p">);</span>
+<span class="n">glLoadIdentity</span><span class="p">();</span>
+<span class="n">glRotatef</span><span class="p">(</span><span class="mf">90.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">);</span>
+<span class="n">glTranslatef</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="mf">-5.0</span><span class="p">);</span>
+</pre></div>
+<p>Fixed-Function lighting is found in most legacy applications as well. For that purpose, command such as:
+</p>
+<ul><li><span class="tpl-code">glLight*</span> for setting certain parameters of a specific light source</li>
+<li><span class="tpl-code">glLightModel</span> for determining the shading algorithm</li>
+<li><span class="tpl-code">glMaterial</span> for setting material properties that influence said shading algorithm</li></ul>
+<p>are used to coarsely approximate real-world lighting with either flat shading or Gouraud shading.
+</p>
+<h2><span class="mw-headline" id="Removed_functionality">Removed functionality</span></h2>
+<p>A comprehensive list of all functionality removed from core OpenGL 3.1 and higher can be found <a rel="nofollow" class="external text" href="https://www.opengl.org/registry/doc/glspec30.20080923.pdf#page=421">in <i>Appendix E</i> of the OpenGL 3.0 specification</a>. The following enumeration shows some important areas that are affected by removal.
+</p>
+<ul><li>Fixed-function vertex and fragment processing. These stages of the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">rendering pipeline</a> are now the developers responsibility and can be fully programmed using shaders.</li>
+<li>Immediate-mode vertex attribute specification, client-side vertex arrays. <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attributes</a> must be stored in one or more <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>, or <a href="/opengl/Vertex_Specification#Non-array_attribute_values" title="Vertex Specification">be specified explicitly</a> using <span class="tpl-code"><a href="/opengl/GLAPI/glVertexAttrib" title="GLAPI/glVertexAttrib">glVertexAttrib*()</a></span>. Since OpenGL 3.2 using <a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a> is mandatory.</li>
+<li>The <span class="tpl-enum">GL_QUAD</span> and <span class="tpl-enum">GL_POLYGON</span> <a href="/opengl/Primitive" title="Primitive">primitive</a> types.</li>
+<li>The matrix stack and related matrix manipulation functions. This includes projection, model-view and texture matrices. Corresponding built-in GLSL functions have also been removed. Managing matrices and sending data to shaders is now the developers responsibility. See <a href="/opengl/Related_toolkits_and_APIs#Math_Libraries" title="Related toolkits and APIs">this page</a> for libraries designed for that purpose.</li>
+<li>Fixed-function lighting, materials and color materials, fixed-function shadow mapping and bump mapping. Everything possible with functions corresponding to these areas can easily be emulated with shaders.</li>
+<li>Accumulation and auxiliary buffers. If additional buffers are needed <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a> can be used.</li>
+<li>Versions 1.10 and 1.20 of the GLSL.</li></ul>
+<h2><span class="mw-headline" id="Reasons_to_avoid_legacy_OpenGL">Reasons to avoid legacy OpenGL</span></h2>
+<p>Much of the functionality that was promoted to core OpenGL 3.0 was available as extensions before the specification was released. However, most of the features already moved away from legacy concepts like immediate mode vertex attribute specification and offered advantages in one or more of the following fields.
+</p>
+<h3><span class="mw-headline" id="Performance">Performance</span></h3>
+<p>Vertex attribute data can be transferred once to the GPU, and rendered many times. With immediate-mode concepts this was not the case. Vertex attributes would have been transferred every frame - even when using client-side vertex arrays. Immediate-mode attribute specification has two major drawbacks:
+</p>
+<ul><li>it incurs a lot of API call, e.g. four calls for four different vertex attributes via <span class="tpl-code">glVertex*</span>, <span class="tpl-code">glNormal*</span>, <span class="tpl-code">glColor*</span> and <span class="tpl-code">glTexCoord*</span></li>
+<li>data has to transferred to the GPU after specification, even with completely static geometry that does not change its appearance in any way</li></ul>
+<p>Depending on the number of vertices the geometry to be drawn is made up of, this will lead to a vast number of commands just to specify the vertex attributes. Client-side vertex arrays eliminate the CPU overhead by providing a way to large chunks of attributes with only a few API calls. However, they do not eliminate the need to transfer data to the GPU every time <span class="tpl-code"><a href="/opengl/GLAPI/glDrawArrays" title="GLAPI/glDrawArrays">glDrawArrays</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glDrawElements" title="GLAPI/glDrawElements">glDrawElements</a></span> are called. 
+</p><p><a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">Vertex Buffer Objects</a> use fewer API calls while storing all attributes in GPU memory, eliminating both above mentioned drawbacks. <a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a> offer even more facilities to reduce the number of API calls, yielding, if all prerequisites are met, only two function calls are needed for geometry of arbitrary complexity (though vertex throughput performance is more complicated than simply the number of API function calls).
+</p>
+<h3><span class="mw-headline" id="Flexibility_using_shaders">Flexibility using shaders</span></h3>
+<p>As already mentioned above, shading programs allow for replacement of formerly fixed-function processing stages. Indisputably, shaders offer flexibility which is unmatched by the fixed-function pipeline and there is no point in arguing against them, since programmable shading is a direct reflection of the capabilities of the underlying hardware. Among countless examples depicting the effects possible with shaders, here are just a few which are noteworthy:
+</p>
+<dl><dt>Complex Lighting Models</dt></dl>
+<p>Fixed-function OpenGL provides only two local lighting models which actually attempt to simulate real-world lighting: flat shading, which produces values for a whole primitive and Gouraud shading which produces values at vertices which are then interpolated across the primitive. With shaders, the lighting model can be arbitrary, albeit still local. For instance, implementing per-pixel Phong shading in GLSL is a very common use-case.
+</p>
+<dl><dt>Shadow Mapping</dt></dl>
+<p>Although supported by extensions as fixed functionality, shadow mapping using a render-to-texture approach and doing the mathematics involved directly in shaders is much more flexible and much less tedious. GLSL also offers dedicated functions to ease shadow-map lookups.
+</p>
+<dl><dt>Non-Photorealistic Rendering</dt></dl>
+<p>Among effects in this category are <i>toon shading</i> and <i>cel shading.</i>
+</p>
+<dl><dt>Hardware Geometry Instancing</dt></dl>
+<p>Moved to core in OpenGL 3.1, dedicated draw calls and corresponding GLSL 1.40 built-ins make this technique easy to use. Using legacy OpenGL, the developer had to either use the matrix stack and render an geometry multiple times, possibly using immediate-mode functions, or use arrays of object-to-world transformation matrices and also render geometry multiple times to achieve the same effect.
+</p>
+<dl><dt>Animation</dt></dl>
+<p>There are many ways to animate geometry. It can be as simple as a translation or rotation but it can also be a fully fledged character animation system. It can also mean doing no transformation of geometry at all, e.g. when transforming only texture coordinates to achieve certain effect with textures. Legacy application would often employ the matrix stack to achieve this. All of the above can be implemented using shaders and, depending on the algorithm, without much or any intervention from the application.
+</p><p>All of the above can also be combined into multiple permutations of shading programs yielding even more effects.
+</p>
+<h3><span class="mw-headline" id="Compatibility">Compatibility</span></h3>
+<p>OpenGL ES 2 and 3 don't support immediate mode. If the application is supposed to portable or compatible with mobile devices, the legacy options is not available. Also, although a new application which is supposed to work on more than one platform, e.g. Windows <i>and</i> Linux, drivers might not expose the compatibility extension and thus only support OpenGL 3.0 or higher core features. If so, the application will not work if only a legacy code path exists. Furthermore, if vendors should decide to drop the compatibility extension at some point, i.e. publish drivers only implementing the core profile, the same problem will arise. Writing applications that use only OpenGL 3.0 or higher core features have the advantage of being not only conforming to version 3.0 but also all other versions up to 4.3 and currently there are no known plans to deprecate more features. This means that applications are future proof regarding driver support on all major platforms until explicitly stated otherwise by hardware vendors.
+</p>
+<h2><span class="mw-headline" id="Using_the_most_recent_OpenGL_version">Using the most recent OpenGL version</span></h2>
+<p>Remember: OpenGL is not a library, it is a specification. Like TCP/IP isn't a library; TCP and IP simply define communication protocols, which libraries can implement.
+</p><p>You should always use the latest <i>driver</i> version. But <i>OpenGL versions</i> correspond in part to hardware facilities. The major version numbers for OpenGL generally represent tiers of hardware. For example, OpenGL 3.x is roughly equivalent to Direct3D 10-level hardware. OpenGL 4.x is roughly equivalent to Direct3D 11-level hardware.
+</p><p>So to use OpenGL 4.x features (hardware-based features that is. There are <a href="/opengl/OpenGL_Extension#Targeting_OpenGL_3.3" title="OpenGL Extension">several features of 4.x that are available in 3.x hardware as extensions</a>) means to confine your program to only running on 4.x hardware.
+</p><p>GL 3.x hardware is widely available these days, though 4.x hardware has been around for several years now and will only become more widely available. Which you choose is up to you and your needs.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260317184948
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.031 seconds
+Real time usage: 0.033 seconds
+Preprocessor visited node count: 197/1000000
+Post‐expand include size: 971/2097152 bytes
+Template argument size: 321/2097152 bytes
+Highest expansion depth: 5/100
+Expensive parser function count: 1/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 933/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%    9.138      1 -total
+ 32.18%    2.940     15 Template:Code
+ 24.96%    2.281      3 Template:Apifunc
+ 16.22%    1.482      2 Template:Enum
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2218-0!canonical and timestamp 20260317184948 and revision id 13721. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Legacy_OpenGL&amp;oldid=13721">https://wikis.khronos.org/opengl/index.php?title=Legacy_OpenGL&amp;oldid=13721</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

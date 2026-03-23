@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Core Language (GLSL) - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"77774dfe69361952ceddf6bc","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Core_Language_(GLSL)","wgTitle":"Core Language (GLSL)","wgCurRevisionId":14946,"wgRevisionId":14946,"wgArticleId":1639,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Core_Language_(GLSL)","wgRelevantArticleId":1639,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Core_Language_GLSL rootpage-Core_Language_GLSL skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Core Language (GLSL)</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><b>The core language</b></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p>The <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a> is a C-style language, so it covers most of the features you would expect with such a language. Control structures (for-loops, if-else statements, etc) exist in GLSL, including the <code>switch</code> statement. This section will not cover the entire language in detail; the <a rel="nofollow" class="external text" href="https://www.opengl.org/registry/doc/GLSLangSpec.4.50.pdf">GLSL specification</a> can handle that. This Wiki page will note the differences between GLSL and C.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Compilation_settings"><span class="tocnumber">1</span> <span class="toctext">Compilation settings</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Version"><span class="tocnumber">1.1</span> <span class="toctext">Version</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#OpenGL_and_GLSL_versions"><span class="tocnumber">1.1.1</span> <span class="toctext">OpenGL and GLSL versions</span></a></li>
+<li class="toclevel-3 tocsection-4"><a href="#Extensions"><span class="tocnumber">1.1.2</span> <span class="toctext">Extensions</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Preprocessor_directives"><span class="tocnumber">2</span> <span class="toctext">Preprocessor directives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="##line_directive"><span class="tocnumber">2.1</span> <span class="toctext">#line directive</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Standard_macros"><span class="tocnumber">2.2</span> <span class="toctext">Standard macros</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Reserved_names"><span class="tocnumber">3</span> <span class="toctext">Reserved names</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Types"><span class="tocnumber">4</span> <span class="toctext">Types</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Qualifiers"><span class="tocnumber">5</span> <span class="toctext">Qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Expressions"><span class="tocnumber">6</span> <span class="toctext">Expressions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Constant_expression"><span class="tocnumber">6.1</span> <span class="toctext">Constant expression</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Integral_constant_expression"><span class="tocnumber">6.1.1</span> <span class="toctext">Integral constant expression</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Dynamically_uniform_expression"><span class="tocnumber">6.2</span> <span class="toctext">Dynamically uniform expression</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Invocation_group"><span class="tocnumber">6.2.1</span> <span class="toctext">Invocation group</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Uses"><span class="tocnumber">6.2.2</span> <span class="toctext">Uses</span></a></li>
+<li class="toclevel-3 tocsection-17"><a href="#Examples"><span class="tocnumber">6.2.3</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-18"><a href="#Functions"><span class="tocnumber">7</span> <span class="toctext">Functions</span></a>
+<ul>
+<li class="toclevel-2 tocsection-19"><a href="#Recursion"><span class="tocnumber">7.1</span> <span class="toctext">Recursion</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Parameters"><span class="tocnumber">7.2</span> <span class="toctext">Parameters</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Control_flow"><span class="tocnumber">8</span> <span class="toctext">Control flow</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Compilation_settings">Compilation settings</span></h2>
+<p>The OpenGL Shading Language requires certain information to be presented early in a <a href="/opengl/GLSL_Object" title="GLSL Object">shader object's compilation</a>. In a command-line-based compiler, these would be command-line compiler options. GLSL's compilation model instead requires them to be part of the language.
+</p><p>These should be in the first lines of the first string associated with a shader object. If you want to globally apply these, then you should put them in a string that is first in the array of strings passed to the shader object with <span class="tpl-code"><a href="/opengl/GLAPI/glShaderSource" title="GLAPI/glShaderSource">glShaderSource</a></span>, or to <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgram" title="GLAPI/glCreateShaderProgram">glCreateShaderProgram</a></span>.
+</p>
+<h3><span class="mw-headline" id="Version">Version</span></h3>
+<p>The OpenGL Shading Language has gone through a number of revisions, some of them quite substantial. As part of the <a href="/opengl/OpenGL_Specification" title="OpenGL Specification">OpenGL Specification</a>, each version of OpenGL is required to support specific versions of GLSL; it may optionally support more.
+</p><p>To specify which version of GLSL should be used to compile/link a shader, use this directive:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="w">  </span><span class="cp">#version 150</span>
+</pre></div>
+<p>This would tell the compiler to compile for version 1.50, or error if that version is not available.
+</p><p>The version number can be followed by the <a href="/opengl/Core_And_Compatibility_in_Contexts" class="mw-redirect" title="Core And Compatibility in Contexts">profile name</a>. This can be <span class="tpl-code">core</span> or <span class="tpl-code">compatibility</span>. If a profile name is not specified, the default is <span class="tpl-code">core</span>.
+</p><p>The <span class="tpl-code">#version</span> directive must appear before anything else in a shader, save for whitespace and comments. If a <span class="tpl-code">#version</span> directive does not appear at the top, then it assumes 1.10, which is almost certainly not what you want.
+</p>
+<h4><span class="mw-headline" id="OpenGL_and_GLSL_versions">OpenGL and GLSL versions</span></h4>
+<p>Every OpenGL version since 2.0 has been released with a corresponding GLSL version. However, the GLSL version numbers were not always in sync with the GL version. Here is a table:
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>OpenGL Version
+</th>
+<th>GLSL Version
+</th></tr>
+<tr>
+<td>2.0
+</td>
+<td>1.10
+</td></tr>
+<tr>
+<td>2.1
+</td>
+<td>1.20
+</td></tr>
+<tr>
+<td>3.0
+</td>
+<td>1.30
+</td></tr>
+<tr>
+<td>3.1
+</td>
+<td>1.40
+</td></tr>
+<tr>
+<td>3.2
+</td>
+<td>1.50
+</td></tr>
+</tbody></table>
+<p>For all versions of OpenGL 3.3 and above, the corresponding GLSL version matches the OpenGL version. So GL 4.1 uses GLSL 4.10.
+</p>
+<h4><span class="mw-headline" id="Extensions">Extensions</span></h4>
+<p>Many <a href="/opengl/index.php?title=OpenGL_Extensions&amp;action=edit&amp;redlink=1" class="new" title="OpenGL Extensions (page does not exist)">OpenGL Extensions</a> modify GLSL's behavior and functionality as well. Unlike regular OpenGL, where extensions are implicitly always there whether you use it or not, GLSL extensions must explicitly be specified in the particular shader string being compiled.
+</p><p>Similar to the #version directive, the user can activate specific extensions with the "#extension" directive. You should put these definitions before any other language features, but <i>after</i> the version declaration. The syntax is as follows:
+</p>
+<pre> #extension <span class="tpl-param">extension_name​</span>&#160;: <span class="tpl-param">behavior​</span>
+</pre>
+<p>The <span class="tpl-param">extension_name​</span> can also be the string <span class="tpl-code">all</span>. This means it works for all extensions. The available behaviors are:
+</p>
+<ul><li><span class="tpl-code">enable</span>: Causes the named extension to work; if the implementation does not support the extension, it only gives a warning. Fails if used with <span class="tpl-code">all</span>.</li>
+<li><span class="tpl-code">require</span>: Causes the named extension to work; if the implementation does not support the extension, it fails. It also fails if used with <span class="tpl-code">all</span>.</li>
+<li><span class="tpl-code">warn</span>: Causes the named extension to work; however, using the extension will emit warnings. If used with <span class="tpl-code">all</span>, then the use of any extensions will emit warnings.</li>
+<li><span class="tpl-code">disable</span>: Prevents the named extension from working at all. Thus, any use of it will be seen as undefined syntax and cause an error. If used with <span class="tpl-code">all</span>, then this prevents any extensions from working.</li></ul>
+<h2><span class="mw-headline" id="Preprocessor_directives">Preprocessor directives</span></h2>
+<p>All of the keywords beginning with # are preprocessor directives, much like with C, although <code>#line</code> is different. GLSL provides most of the standard C set of preprocessor directives (#define, #if, etc), in addition to the ones listed above. The most notable omission is #include.
+</p><p>Macro expansion does not work on #version and #extension directives.
+</p>
+<h3><span id=".23line_directive"></span><span class="mw-headline" id="#line_directive">#line directive</span></h3>
+<p>The <code>#line</code> directive allows you to change the current <code>__FILE__</code> and <code>__LINE__</code> values, and is different from C. It has the forms:
+</p>
+<pre>#line <i>line</i>
+#line <i>line</i> <i>source-string-number</i>
+</pre>
+<p>The line after the <code>#line</code> directive in the source will be set to the given line number. For example, if you have "#line 4" on one line and "error" on the next, then "error" will be on line 4 if it is an error. The <code>#line</code> directive does not support source files as in C.
+</p>
+<h3><span class="mw-headline" id="Standard_macros">Standard macros</span></h3>
+<p>GLSL defines a number of macros. <code>__FILE__</code> is not a filename; it is a decimal integer representing which string in the list of strings given to the shader. <code>__LINE__</code> is the line number. <code>__VERSION__</code> is a decimal integer representing the GLSL version being compiled. If the version is 3.30, then <code>__VERSION__</code> will be "330" (as an integer).
+</p><p>The macro <code>GL_core_profile</code> is always defined to be "1". The macro <code>GL_compatibility_profile</code> is only defined to be "1" if the version for this shader was set to be <code>compatibility</code>.
+</p>
+<h2><span class="mw-headline" id="Reserved_names">Reserved names</span></h2>
+<p>GLSL reserves any name beginning with "gl_"; attempts to define variables or functions that begin with this string will result in an error. Also, GLSL has a number of keywords, which cannot be used as identifiers in any context.
+</p>
+<h2><span class="mw-headline" id="Types">Types</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Data Type (GLSL)</a><i></i></div>
+<p>The GLSL defines a number of types. Some of them are familiar to C/C++ users, while others are quite different.
+</p>
+<h2><span class="mw-headline" id="Qualifiers">Qualifiers</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type Qualifier (GLSL)</a><i></i></div>
+<p>Variables declared at global and local scope can have a number of qualifiers associated with them. Most of these are unique to shading languages.
+</p>
+<h2><span class="mw-headline" id="Expressions">Expressions</span></h2>
+<p>GLSL has some unique expression definitions.
+</p>
+<h3><span class="mw-headline" id="Constant_expression">Constant expression</span></h3>
+<p>Constant expressions are expressions that can be evaluated at compile time. Constant expressions in GLSL are expressions that consist of:
+</p>
+<ul><li>A literal value.</li>
+<li>A <a href="/opengl/Type_Qualifier_(GLSL)#Constant_qualifier" title="Type Qualifier (GLSL)"><span class="tpl-code">const</span>-qualified variable</a> (not a <a href="#Parameters">function parameter</a>) with an explicit initializer, but only if the initializer is itself one of the following:
+<ul><li>A constant expression.</li>
+<li>An <a href="/opengl/Initializer_List" class="mw-redirect" title="Initializer List">Initializer List</a>, whose components are themselves constant expressions. Initializer lists are not expressions themselves.</li></ul></li>
+<li>The result of <a href="/opengl/GLSL_Array" class="mw-redirect" title="GLSL Array">the <span class="tpl-code">length()</span> function of an array</a>, but <i>only</i> if the array has an explicit size (who's size must be a constant expression).</li>
+<li>The result of most operators, so long as all the operands are themselves constant expressions. The operators not on this list are any assignment operators (+= and so forth), and the comma operator.</li>
+<li>The result of a <a href="/opengl/Data_Initialization_(GLSL)" class="mw-redirect" title="Data Initialization (GLSL)">constructor for a type</a>, but only if all of the arguments to the constructor are themselves constant expressions.</li>
+<li>The return value of any <a href="/opengl/Built-in_Function_(GLSL)" title="Built-in Function (GLSL)">built-in function</a>, but only if all of the arguments to the function are themselves constant expressions. <a href="/opengl/Opaque_Type" class="mw-redirect" title="Opaque Type">Opaque Types</a> are never constant expressions. Note that the functions <span class="tpl-code">dFdx</span>, <span class="tpl-code">dFdy</span>, <span class="tpl-code">fwidth</span>, and their <span class="tpl-code">Coarse</span> and <span class="tpl-code">Fine</span> variations will return 0, when given a constant expression as an argument.</li></ul>
+<h4><span class="mw-headline" id="Integral_constant_expression">Integral constant expression</span></h4>
+<p>These are <a href="#Constant_expressions">constant expressions</a> that result in an integer, signed or unsigned.
+</p>
+<h3><span class="mw-headline" id="Dynamically_uniform_expression">Dynamically uniform expression</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Dynamically Uniform Expression</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>A dynamically uniform expression is a <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> expression in which all <a href="/opengl/Shader_Invocation" class="mw-redirect" title="Shader Invocation">invocations</a> of that shader within a particular <a href="#Invocation_group">set of invocations</a>  will have the same value.
+</p><p>Only GLSL 4.00 and above makes a distinction about dynamically uniform expressions. Any restrictions you see that require a "dynamically uniform expression" will, in older GLSL versions require a "constant expression".
+</p><p>An expression in a GLSL shader is said to be dynamically uniform if, and <i>only</i> if, every shader invocation within the same invocation group will have the same value, in the same order. Whether an expression is dynamically uniform depends on the values provided; it cannot always be a priori determined from a shader's code.
+</p><p>Some expressions are always dynamically uniform, by the rules of the language. These include:
+</p>
+<ul><li><a href="#Constant_expression">Constant expressions</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform values</a></li>
+<li>Any expression, which does not involve a user-defined function call, <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> or <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">SSBO</a> operations, who's input values are all dynamically uniform</li>
+<li>The <span class="tpl-code">gl_DrawID</span> input to the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li></ul>
+<p>Other expressions may or may not be dynamically uniform. For example, a shader stage input value will usually not be dynamically uniform. However, if every shader in the rendering command is given the exact same input value, then it will be dynamically uniform. It is the value of the expression which must be uniform; every shader invocation must get the same value, even if that same value is being read from different memory location.
+</p><p><span class="tpl-code">gl_InstanceID</span> is an example. If you render only a single instance, then <span class="tpl-code">gl_InstanceID</span> will be dynamically uniform <i>for that rendering command</i>. However, if you render <a href="/opengl/Instanced_Rendering" class="mw-redirect" title="Instanced Rendering">multiple instances</a> in the same command, it will not. The same goes for <a href="/opengl/Instanced_Array" class="mw-redirect" title="Instanced Array">Instanced Array</a> input values.
+</p><p>Most important of all, if you execute a loop over values, where the initializing expression, offset, and test condition all use dynamically uniform expressions, then the loop counter <i>itself</i> will be dynamically uniform.
+</p><p>While <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">accessing textures</a> is guaranteed to be dynamically uniform if the texture coordinates are dynamically uniform, accessing <a href="/opengl/Image_Load_Store" title="Image Load Store">image variables</a> or <a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a> is not necessarily so. These are modifiable memory, so each invocation may not get the same value. If the image variable is read-only, then accessing it is dynamically uniform if the image coordinates and so forth are dynamically uniform.
+</p>
+<h4><span class="mw-headline" id="Invocation_group">Invocation group</span></h4>
+<p>Dynamically uniform expressions are based on shader invocations "within the same invocation group." The definition of "invocation group" depends on the shader stage in question. For <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>, the scope is all invocations within a work group. For shaders launched through <a href="/opengl/Rendering_Command" class="mw-redirect" title="Rendering Command">Rendering Commands</a>, this gets more complex.
+</p><p>Rendering scope extends to all invocations of all shader stages created to service a single drawing command. This means that, for <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a>, two distinct primitives in a rendering command are considered part of the same scope. This means that <span class="tpl-code">gl_PrimitiveID</span> is not dynamically uniform (unless you render only one primitive). This is also why <span class="tpl-code">gl_InstanceID</span> is only dynamically uniform when rendering a single instance; instanced rendering is considered a single drawing command.
+</p><p>However, there are drawing commands that create multiple scopes. The <a href="/opengl/Multidraw_Rendering" class="mw-redirect" title="Multidraw Rendering">Multidraw Rendering</a> commands, including the <a href="/opengl/Indirect_Rendering" class="mw-redirect" title="Indirect Rendering">indirect versions</a>, have separate scopes for their separate drawing sub-commands. So while doing instanced rendering in a draw command places all instances in a single scope, rendering multiple times with a multidraw command with a base instance creates multiple scopes, one per internal draw.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> The above information in this section is based on GLSL 4.60. As such, this may not be entirely correct for earlier versions; they defined the idea of "dynamically uniform", but didn't really go into explicit details. However, since they are based mainly on the hardware rather than the compiler, and this definition is really about the behavior of the hardware, it is not unreasonable to assume that they apply to older GLSL versions as well.</div>
+<h4><span class="mw-headline" id="Uses">Uses</span></h4>
+<p>There are places where GLSL requires the expression to be dynamically uniform. All of the following must use a dynamically uniform expression:
+</p>
+<ul><li>The array index for <a href="/opengl/Opaque_Array" class="mw-redirect" title="Opaque Array">arrays of opaque types</a>.</li>
+<li>The index to <a href="/opengl/Buffer_Backed_Interface_Block" class="mw-redirect" title="Buffer Backed Interface Block">buffer-backed interface block arrays</a>. Note that arrays <i>within</i> blocks do not have this restriction. It only applies to a block which is arrayed.</li>
+<li>In <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>, the expressions leading to the execution of a <span class="tpl-code">barrier()</span> call. So if there is a loop or a conditional statement or somesuch, all of these conditions must be dynamically uniform expressions, so that every compute shader invocation in the same workgroup encounters every <span class="tpl-code">barrier()</span> statement in the same sequence and the same number of times.</li></ul>
+<h4><span class="mw-headline" id="Examples">Examples</span></h4>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/Dynamically_Uniform_Expression" title="Example/Dynamically Uniform Expression">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/Dynamically_Uniform_Expression&amp;action=edit">E</a></span></span></div>
+<p>This example code shows what are and are not dynamically uniform expressions.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">fromPrevious</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">uvec2</span><span class="w"> </span><span class="n">fromRange</span><span class="p">;</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="k">const</span><span class="w"> </span><span class="kt">uvec2</span><span class="w"> </span><span class="n">range</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">uvec2</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="k">uniform</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">pairs</span><span class="p">;</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="n">sampler2d</span><span class="w"> </span><span class="n">tex</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">foo</span><span class="p">;</span><span class="w"> </span><span class="c1">// constant expressions are dynamically uniform.</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kt">uint</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">21</span><span class="p">;</span><span class="w"> </span><span class="c1">// &#39;value&#39; is dynamically uniform.</span>
+<span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="c1">// still dynamically uniform.</span>
+<span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">fromRange</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="c1">// not dynamically uniform; current contents come from a non-dynamically uniform source.</span>
+<span class="w">  </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span><span class="w"> </span><span class="c1">// dynamically uniform again.</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fromPrevious</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mf">3.14</span><span class="p">)</span>
+<span class="w">    </span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">12</span><span class="p">;</span>
+<span class="w">  </span><span class="n">value</span><span class="p">;</span><span class="w"> </span><span class="c1">// NOT dynamically uniform. Current contents depend on &#39;fromPrevious&#39;, an input variable.</span>
+
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">abs</span><span class="p">(</span><span class="n">pairs</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// &#39;number&#39; is dynamically uniform.</span>
+<span class="w">  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">pairs</span><span class="p">.</span><span class="n">y</span><span class="p">);</span><span class="w"> </span><span class="c1">// still dynamically uniform.</span>
+<span class="w">  </span><span class="n">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="n">fromPrevious</span><span class="p">.</span><span class="n">x</span><span class="p">);</span><span class="w"> </span><span class="c1">// not dynamically uniform.</span>
+
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture</span><span class="p">(</span><span class="n">tex</span><span class="p">,</span><span class="w"> </span><span class="n">pairs</span><span class="p">.</span><span class="n">xy</span><span class="p">);</span><span class="w"> </span><span class="c1">// dynamically uniform, even though it comes from a texture.</span>
+<span class="w">                                        </span><span class="c1">// It uses the same texture coordinate, thus getting the same texel every time.</span>
+<span class="w">  </span><span class="n">colors</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture</span><span class="p">(</span><span class="n">tex</span><span class="p">,</span><span class="w"> </span><span class="n">fromPrevious</span><span class="p">.</span><span class="n">xy</span><span class="p">);</span><span class="w"> </span><span class="c1">// not dynamically uniform.</span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">range</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">       </span><span class="c1">// loop initialized with, compared against, and incremented by dynamically uniform expressions.</span>
+<span class="w">    </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// Therefore, &#39;i&#39; is dynamically uniform, even though it changes.</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">fromRange</span><span class="p">.</span><span class="n">x</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">fromRange</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">i</span><span class="p">;</span><span class="w"> </span><span class="c1">// &#39;i&#39; is not dynamically uniform; &#39;fromRange&#39; is not dynamically uniform.</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Functions">Functions</span></h2>
+<p>Functions can be defined in GLSL. Function declarations and definitions work similarly in GLSL compared to C/C++, but there are a few gotchas here.
+</p><p>Just like in C/C++, execution of a shader begins with the function <code>main</code>. This function takes no parameters and returns no values.
+</p><p>User-defined functions can be declared and defined. GLSL even allows user-defined functions to use function overloading; the same function name can be defined multiple times with different parameter lists.
+</p>
+<h3><span class="mw-headline" id="Recursion">Recursion</span></h3>
+<p>The C/C++ function model allows functions to be recursive. That is, function A can call function B, which itself calls function A. Indeed, function A can call <i>itself</i>. Obviously, there has to be some condition to prevent infinite recursion, but C/C++ allows this to work.
+</p><p>GLSL <b>does not.</b> The GLSL memory model does not allow for recursive function calls. This allows GLSL to execute on hardware that simply doesn't allow for recursion. It allows GLSL to function when there is no ability to write arbitrarily to memory, which is true of most shader hardware (though it is becoming less true with time).
+</p><p>So, no recursion in GLSL. Of any kind.
+</p>
+<h3><span class="mw-headline" id="Parameters">Parameters</span></h3>
+<p>GLSL functions are declared and defined similarly to C/C++ functions. A function declaration in GLSL looks like this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">MyFunction</span><span class="p">(</span><span class="k">in</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">inputValue</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">outputValue</span><span class="p">,</span><span class="w"> </span><span class="k">inout</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">inAndOutValue</span><span class="p">);</span>
+</pre></div>
+<p>Functions in GLSL use a calling convention called "value-return." This means that values passed to functions are copied into parameters when the function is called, and outputs are copied out when the function returns.
+</p><p>The <code>in</code>, <code>out</code>, and <code>inout</code> qualifiers are not the same as <a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">type qualifiers</a>, even though some of them are named the same. These are parameter qualifiers, and they have a different meaning here.
+</p><p>A parameter declared as <code>in</code> means that the value given to that parameter will be copied into the parameter when the function is called. The function may then modify that parameter as they see fit, but those changes will not affect the calling code.
+</p><p>A parameter declared as <code>out</code> will not have its value initialized by the caller. The function will modify the parameter, and after the function's execution is complete, the value of the parameter will be copied out into the variable that the user specified when calling the function. Note that the initial value of the parameter at the start of the function being called is <i>undefined</i>, just as if one had simply created a local variable.
+</p><p>The <code>inout</code> declaration combines both. The parameter's value will be initialized by the value supplied by the user, and its final value will be output 
+</p><p>The default if no qualifier is specific is <code>in</code>.
+</p><p>Consider the following:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">MyFunction</span><span class="p">(</span><span class="k">in</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">inputValue</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">outputValue</span><span class="p">,</span><span class="w"> </span><span class="k">inout</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">inAndOutValue</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">inputValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">outputValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">inAndOutValue</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">inputValue</span><span class="p">);</span>
+<span class="w">  </span><span class="n">inAndOutValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">in1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.5</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">out1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">out2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10.0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">MyFunction</span><span class="p">(</span><span class="n">in1</span><span class="p">,</span><span class="w"> </span><span class="n">out1</span><span class="p">,</span><span class="w"> </span><span class="n">out2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<p><code>MyFunction</code> will receive a 10.5, an undefined value, and a 10.0 as parameters. After the function is called, the values in main are:
+</p>
+<table class="wikitable">
+
+<tbody><tr>
+<td>in1
+</td>
+<td>10.5
+</td></tr>
+<tr>
+<td>out1
+</td>
+<td>10
+</td></tr>
+<tr>
+<td>out2
+</td>
+<td>3.0
+</td></tr></tbody></table>
+<p>Notice that the value of <code>in1</code> does not change.
+</p><p>For parameters declared as <code>out</code> or <code>inout</code>, the caller must pass an <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Value_%28computer_science%29">l-value</a>. To put it simply, it must be a variable that can be set. So it cannot be an expression (calling <code>MyFunction(in1, 2+4, out2)</code> is an error). They also cannot be called on a value that is unsettable. This includes shader inputs (global variables declared with the <code>in</code> qualifier), <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniforms</a>, or <code>const</code>-qualified values.
+</p><p>Functions can have return values just like C/C++. But the <code>out</code> and <code>inout</code> qualifiers allow functions to return multiple values.
+</p><p>Input parameters can be defined with <code>const</code>; this means that they cannot be changed. The <code>const</code> qualifier must come before the <code>in</code> qualifier.
+</p>
+<h2><span class="mw-headline" id="Control_flow">Control flow</span></h2>
+<p>GLSL uses the standard C/C++ set of statements. It has selection statements (<span class="tpl-code">if-else</span> and <span class="tpl-code">switch-case</span>), iteration statements (<span class="tpl-code">for</span>, <span class="tpl-code">while</span>, and <span class="tpl-code">do-while</span>), and Jump statments (<span class="tpl-code">break</span>, <span class="tpl-code">continue</span>, and <span class="tpl-code">return</span>). These statements work essentially as C++ defines them (you can declare variables in a <span class="tpl-code">for</span> statement, for example), though there are some limitations. For example, you can declare variables in <span class="tpl-code">if</span> conditions in C++, but not in GLSL.
+</p><p>Notice that <span class="tpl-code">goto</span> is absent from the list of jump statements. GLSL has no <span class="tpl-code">goto</span> construct.
+</p><p>It does have a new jump command (effectively): <span class="tpl-code">discard</span>. This keyword can only be used in <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a>. It causes the fragment shader's results to be discarded and ignored by the rest of the pipeline. That fragment's value(s) will not be written to the framebuffer.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This does not mean that fragment shaders actually stop processing once the <code>discard</code> command is reached. In general, fragment shaders are grouped into blocks of four; so long as one of them is running, they all must be running and executing the same code. Because of that, only discarding from all four fragments will cause processing to stop.</div>
+<p>Using <span class="tpl-code">discard</span> is different from <span class="tpl-code">return</span> from main. Executing return still means that the values written to the shader outputs will be used by the rest of the pipeline. Executing <span class="tpl-code">discard</span> means that they will not. Also, returning before writing outputs to all of the outputs yields undefined behavior for the unwritten outputs, whereas <span class="tpl-code">discard</span> has defined behavior for unwritten outputs.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318172835
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.105 seconds
+Real time usage: 0.112 seconds
+Preprocessor visited node count: 1449/1000000
+Post‐expand include size: 13260/2097152 bytes
+Template argument size: 3976/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 4/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 11888/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   57.930      1 -total
+ 33.16%   19.210      1 Template:Infobox_feature
+ 29.61%   17.153      1 Template:Infobox2
+ 22.08%   12.792      1 Template:Shader_float
+ 18.50%   10.715      1 Template:Shader_list
+ 11.76%    6.811     23 Template:Pagelink
+ 10.62%    6.151     10 Template:Infobox/longrow
+  9.83%    5.697      1 Template:Snippet
+  7.62%    4.414     47 Template:Code
+  7.27%    4.210     10 Template:Infobox/shortrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1639-0!canonical and timestamp 20260318172835 and revision id 14946. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Core_Language_(GLSL)&amp;oldid=14946">https://wikis.khronos.org/opengl/index.php?title=Core_Language_(GLSL)&amp;oldid=14946</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Core+Language+%28GLSL%29" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Core_Language_(GLSL)" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Core_Language_(GLSL)&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Core_Language_(GLSL)"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Core_Language_(GLSL)&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Core_Language_(GLSL)&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Core_Language_(GLSL)" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Core_Language_(GLSL)" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Core_Language_(GLSL)&amp;oldid=14946" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Core_Language_(GLSL)&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Core_Language_%28GLSL%29&amp;id=14946&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 14 February 2024, at 15:06.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":197,"wgPageParseReport":{"limitreport":{"cputime":"0.105","walltime":"0.112","ppvisitednodes":{"value":1449,"limit":1000000},"postexpandincludesize":{"value":13260,"limit":2097152},"templateargumentsize":{"value":3976,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":4,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":11888,"limit":5000000},"timingprofile":["100.00%   57.930      1 -total"," 33.16%   19.210      1 Template:Infobox_feature"," 29.61%   17.153      1 Template:Infobox2"," 22.08%   12.792      1 Template:Shader_float"," 18.50%   10.715      1 Template:Shader_list"," 11.76%    6.811     23 Template:Pagelink"," 10.62%    6.151     10 Template:Infobox/longrow","  9.83%    5.697      1 Template:Snippet","  7.62%    4.414     47 Template:Code","  7.27%    4.210     10 Template:Infobox/shortrow"]},"cachereport":{"timestamp":"20260318172835","ttl":1209600,"transientcontent":false}}});});</script>
+</body>
+</html>

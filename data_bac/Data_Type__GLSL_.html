@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Data Type (GLSL) - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"95859da6073bdfedd5283c49","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Data_Type_(GLSL)","wgTitle":"Data Type (GLSL)","wgCurRevisionId":14919,"wgRevisionId":14919,"wgArticleId":1640,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Data_Type_(GLSL)","wgRelevantArticleId":1640,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Data_Type_GLSL rootpage-Data_Type_GLSL skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Data Type (GLSL)</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><b>Variable types</b>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p>The <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a> defines a number of <b>data types</b>. It also defines the means by which users can define types.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Basic_types"><span class="tocnumber">1</span> <span class="toctext">Basic types</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Scalars"><span class="tocnumber">1.1</span> <span class="toctext">Scalars</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Vectors"><span class="tocnumber">1.2</span> <span class="toctext">Vectors</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Swizzling"><span class="tocnumber">1.2.1</span> <span class="toctext">Swizzling</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-5"><a href="#Matrices"><span class="tocnumber">1.3</span> <span class="toctext">Matrices</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Opaque_types"><span class="tocnumber">1.4</span> <span class="toctext">Opaque types</span></a>
+<ul>
+<li class="toclevel-3 tocsection-7"><a href="#Samplers"><span class="tocnumber">1.4.1</span> <span class="toctext">Samplers</span></a></li>
+<li class="toclevel-3 tocsection-8"><a href="#Images"><span class="tocnumber">1.4.2</span> <span class="toctext">Images</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Atomic_counters"><span class="tocnumber">1.4.3</span> <span class="toctext">Atomic counters</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-10"><a href="#Implicit_conversion"><span class="tocnumber">1.5</span> <span class="toctext">Implicit conversion</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Arrays"><span class="tocnumber">2</span> <span class="toctext">Arrays</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Opaque_arrays"><span class="tocnumber">2.1</span> <span class="toctext">Opaque arrays</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Arrays_of_arrays"><span class="tocnumber">2.2</span> <span class="toctext">Arrays of arrays</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-14"><a href="#Structs"><span class="tocnumber">3</span> <span class="toctext">Structs</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Constructors_and_initializers"><span class="tocnumber">4</span> <span class="toctext">Constructors and initializers</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Literals"><span class="tocnumber">4.1</span> <span class="toctext">Literals</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Constructors"><span class="tocnumber">4.2</span> <span class="toctext">Constructors</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Conversion_constructors"><span class="tocnumber">4.3</span> <span class="toctext">Conversion constructors</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Vector_constructors"><span class="tocnumber">4.4</span> <span class="toctext">Vector constructors</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#Matrix_constructors"><span class="tocnumber">4.5</span> <span class="toctext">Matrix constructors</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Array_constructors"><span class="tocnumber">4.6</span> <span class="toctext">Array constructors</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Struct_constructors"><span class="tocnumber">4.7</span> <span class="toctext">Struct constructors</span></a></li>
+<li class="toclevel-2 tocsection-23"><a href="#Initializer_lists"><span class="tocnumber">4.8</span> <span class="toctext">Initializer lists</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-24"><a href="#Interface_blocks"><span class="tocnumber">5</span> <span class="toctext">Interface blocks</span></a></li>
+<li class="toclevel-1 tocsection-25"><a href="#See_also"><span class="tocnumber">6</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Basic_types">Basic types</span></h2>
+<p>Basic types in GLSL are the most fundamental types. Non-basic types are aggregates of these fundamental types.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This document will mention double-precision types. These are only available on OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader_fp64.txt">ARB_gpu_shader_fp64</a>.</div>
+<h3><span class="mw-headline" id="Scalars">Scalars</span></h3>
+<p>The basic non-vector types are:
+</p>
+<ul><li><span class="tpl-code">bool</span>: conditional type, values may be either <code>true</code> or <code>false</code></li>
+<li><span class="tpl-code">int</span>: a signed, <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Two%27s_complement">two's complement</a>, 32-bit integer</li>
+<li><span class="tpl-code">uint</span>: an unsigned 32-bit integer</li>
+<li><span class="tpl-code">float</span>: an <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/IEEE_floating_point">IEEE-754</a> single-precision floating point number</li>
+<li><span class="tpl-code">double</span>: an IEEE-754 double-precision floating-point number</li></ul>
+<div style="margin-left: 3em;">
+<b>Warning:</b> The specific sizes and formats for integers and floats in GLSL are only for GLSL 1.30 and above. Lower versions of GLSL may not use these exact specifications.</div>
+<h3><span class="mw-headline" id="Vectors">Vectors</span></h3>
+<p>Each of the scalar types, including booleans, have 2, 3, and 4-component vector equivalents. The <i>n</i> digit below can be 2, 3, or 4:
+</p>
+<ul><li><span class="tpl-code">bvec<i>n</i></span>: a vector of booleans</li>
+<li><span class="tpl-code">ivec<i>n</i></span>: a vector of signed integers</li>
+<li><span class="tpl-code">uvec<i>n</i></span>: a vector of unsigned integers</li>
+<li><span class="tpl-code">vec<i>n</i></span>: a vector of single-precision floating-point numbers</li>
+<li><span class="tpl-code">dvec<i>n</i></span>: a vector of double-precision floating-point numbers</li></ul>
+<p>Vector values can have the same math operators applied to them that scalar values do. These all perform the component-wise operations on each component. However, in order for these operators to work on vectors, the two vectors must have the same number of components.
+</p>
+<h4><span class="mw-headline" id="Swizzling">Swizzling</span></h4>
+<p>You can access the components of vectors using the following syntax:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">vec4</span><span class="w"> </span><span class="n">someVec</span><span class="p">;</span>
+<span class="n">someVec</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">someVec</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+</pre></div>
+<p>This is called <i>swizzling</i>. You can use x, y, z, or w, referring to the first, second, third, and fourth components, respectively.
+</p><p>The reason it has that name "swizzling" is because the following syntax is entirely valid:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">vec2</span><span class="w"> </span><span class="n">someVec</span><span class="p">;</span>
+<span class="kt">vec4</span><span class="w"> </span><span class="n">otherVec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">someVec</span><span class="p">.</span><span class="n">xyxx</span><span class="p">;</span>
+<span class="kt">vec3</span><span class="w"> </span><span class="n">thirdVec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">otherVec</span><span class="p">.</span><span class="n">zyy</span><span class="p">;</span>
+</pre></div>
+<p>You can use any combination of up to 4 of the letters to create a vector (of the same basic type) of that length. So <code>otherVec.zyy</code> is a vec3, which is how we can initialize a vec3 value with it. Any combination of up to 4 letters is acceptable, so long as the source vector actually has those components. Attempting to access the 'w' component of a vec3 for example is a compile-time error.
+</p><p>Swizzling also works on l-values:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">vec4</span><span class="w"> </span><span class="n">someVec</span><span class="p">;</span>
+<span class="n">someVec</span><span class="p">.</span><span class="n">wzyx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Reverses the order.</span>
+<span class="n">someVec</span><span class="p">.</span><span class="n">zx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">5.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sets the 3rd component of someVec to 3.0 and the 1st component to 5.0</span>
+</pre></div>
+<p>However, when you use a swizzle as a way of setting component values, you <i>cannot</i> use the same swizzle component twice. So <span class="tpl-code">someVec.xx = vec2(4.0, 4.0);</span> is not allowed.
+</p><p>Additionally, there are 3 sets of swizzle masks. You can use <b>xyzw</b>, <b>rgba</b> (for colors), or <b>stpq</b> (for texture coordinates). These three sets have no actual difference; they're just syntactic sugar. You cannot combine names from different sets in a single swizzle operation. So ".xrs" is not a valid swizzle mask.
+</p><p>In OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a>, scalars can be swizzled as well. They obviously only have one source component, but it is legal to do this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">float</span><span class="w"> </span><span class="n">aFloat</span><span class="p">;</span>
+<span class="kt">vec4</span><span class="w"> </span><span class="n">someVec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">aFloat</span><span class="p">.</span><span class="n">xxxx</span><span class="p">;</span>
+</pre></div>
+<h3><span class="mw-headline" id="Matrices">Matrices</span></h3>
+<p>In addition to vectors, there are also matrix types. All matrix types are floating-point, either single-precision or double-precision. Matrix types are as follows, where <i>n</i> and <i>m</i> can be the numbers 2, 3, or 4:
+</p>
+<ul><li><span class="tpl-code">mat<i>n</i>x<i>m</i></span>: A matrix with <i>n</i> columns and <i>m</i> rows (examples: <span class="tpl-code">mat2x2</span>, <span class="tpl-code">mat4x3</span>). Note that this is backward from convention in mathematics!</li>
+<li><span class="tpl-code">mat<i>n</i></span>: Common shorthand for <span class="tpl-code">mat<i>n</i>x<i>n</i></span>: a square matrix with <i>n</i> columns and <i>n</i> rows.</li></ul>
+<p>Double-precision matrices (GL 4.0 and above) can be declared with a <span class="tpl-code"><i>dmat</i></span> instead of <span class="tpl-code">mat</span> (example: <span class="tpl-code">dmat4x4</span>).
+</p><p>OpenGL stores matrices in <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Row-_and_column-major_order">column-major format</a>—that is, elements are stored contiguously in columns.
+</p><p>Swizzling does not work with matrices. You can instead access a matrix's fields with array syntax:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">mat3</span><span class="w"> </span><span class="n">theMatrix</span><span class="p">;</span>
+<span class="n">theMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">);</span><span class="w"> </span><span class="c1">// Sets the second column to all 3.0s</span>
+<span class="n">theMatrix</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mo">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">16.0</span><span class="p">;</span><span class="w"> </span><span class="c1">// Sets the first entry of the third column to 16.0.</span>
+</pre></div>
+<p>However, the result of the first array accessor is a vector, so you <i>can</i> swizzle that:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">mat3</span><span class="w"> </span><span class="n">theMatrix</span><span class="p">;</span>
+<span class="n">theMatrix</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">yzx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">);</span>
+</pre></div>
+<h3><span class="mw-headline" id="Opaque_types">Opaque types</span></h3>
+<p>Opaque types represent some external object which the shader references in some fashion. Opaque variables do not have "values" in the same way as regular types; they are markers that reference the real data. As such, they can only be used as parameters to functions. These functions return/modify the actual referenced data.
+</p><p>Variables of opaque types can only be declared in one of two ways. They can be declared at global scope, as a <span class="tpl-code">uniform</span> variables. Such variables can be arrays of the opaque type. They can be declared as members of a struct, but if so, then the struct can only be used to declare a <span class="tpl-code">uniform</span> variable (or to declare a member of a struct/array that itself a uniform variable). They cannot be part of a <a href="/opengl/GLSL_Interface_Blocks#Buffer_backed" class="mw-redirect" title="GLSL Interface Blocks">buffer-backed interface block</a> or an input/output variable, either directly or indirectly.
+</p><p>Opaque type variables can also be declared as <span class="tpl-code">in</span>-qualified function parameters. This allows you to pass opaque types to user-defined functions.
+</p><p>Opaque types cannot be l-values. Non-array opaque types can only be passed to a function that takes this type as a parameter; they cannot be used as any other part of an expression. Opaque types that are arrayed can use array-index and structure field selection (for <span class="tpl-code">.length()</span>).
+</p>
+<h4><span class="mw-headline" id="Samplers">Samplers</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler (GLSL)</a><i></i></div>
+<p><a href="/opengl/Texture" title="Texture">Texture access</a> is not as simple as reading a value from a memory address. Filtering and other processes are applied to textures, and how texture coordinates are interpreted can be part of the texture access operation. For these reason, texture access is somewhat complicated.
+</p><p>The sampler type is an opaque GLSL type that represents a texture bound to the OpenGL context. There are many sampler types, one for each type of texture (2D, 2D_ARRAY, etc). Samplers can only access textures of the proper type.
+</p>
+<h4><span class="mw-headline" id="Images">Images</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a><i></i></div>
+<p>Image variables refer to an image, of a particular type, stored within a texture. These are used for arbitrary loading/storing of values within shaders.
+</p>
+<h4><span class="mw-headline" id="Atomic_counters">Atomic counters</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counter</a><i></i></div>
+<p>Atomic variables represent a memory location within a <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a> upon which atomic operations can take place.
+</p>
+<h3><span class="mw-headline" id="Implicit_conversion">Implicit conversion</span></h3>
+<p>Certain values can be implicitly converted to certain types. This means that an explicit construction operation is not necessary.
+</p><p>Signed integers can be implicitly converted to unsigned integers, but the reverse is not true. Either integer type can be converted into floats, and integers and floats can be converted into doubles.
+</p><p>Vector and matrix values are implicitly converted if the basic type they contain is implicitly convertible.
+</p>
+<h2><span class="mw-headline" id="Arrays">Arrays</span></h2>
+<p>Basic types can be grouped into sequences of those elements, called arrays. This generally works like in C/C++, but there are some limitations. First and foremost is that arrays cannot be multidimensional (unless OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/arrays_of_arrays.txt">ARB_arrays_of_arrays</a> is available, <a href="#Arrays_of_arrays">as shown below</a>).
+</p><p>Arrays usually must be declared with a size which must be initialized with a <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expression</a>. Input arrays to <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry</a>, <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control</a>, and <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shaders</a> do not need a size, nor do output arrays for <a href="/opengl/TCS_Output" class="mw-redirect" title="TCS Output">non-<span class="tpl-code">patch</span> outputs</a> for Tessellation Control Shaders. Global variables can be declared without a size, but only if they are later redeclared with a size. An array in a <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage interface block</a> may be declared without a size, but only if it is the last variable in the block.
+</p><p>In all cases, the array size must be a compile-time integral <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expression</a>.
+</p><p>With a few exceptions, arrays can be used for variables of all <a href="/opengl/Storage_Qualifier" class="mw-redirect" title="Storage Qualifier">Storage Qualifier</a> types: inputs, outputs, uniforms, constants, etc.
+</p><p>The length of an array variable can be computed with the <span class="tpl-code">.length()</span> function. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">myValues</span><span class="p">[</span><span class="mi">12</span><span class="p">];</span>
+
+<span class="p">...</span>
+
+<span class="n">myValues</span><span class="p">.</span><span class="n">length</span><span class="p">();</span><span class="w">    </span><span class="c1">// Returns 12.</span>
+</pre></div>
+<p>Invoking the <span class="tpl-code">length()</span> function results in a <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expression</a>, except when the variable is an unsized array that is the last member of a storage block.
+</p><p>Arrays can be accessed with arbitrary numeric expressions. They do not have to be compile-time constants (though there are a few exceptions to this rule; for example, the very next section).
+</p>
+<h3><span class="mw-headline" id="Opaque_arrays">Opaque arrays</span></h3>
+<p>When an array indexing expression, including struct field member accesses, results in an <a href="#Opaque_types">opaque types</a>, the standard has special requirements on those array indices. Under GLSL version 3.30, <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler</a> arrays (the only opaque type 3.30 provides) can be declared, but they can only be accessed by compile-time integral <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">Constant Expressions</a>. So you cannot loop over an array of samplers, no matter what the array initializer, offset and comparison expressions are.
+</p><p>Under GLSL 4.00 and above, array indices leading to an opaque value can be accessed by non-compile-time constants, but these index values must be <a href="/opengl/Dynamically_Uniform_Expression" class="mw-redirect" title="Dynamically Uniform Expression">dynamically uniform</a>. The value of those indices must be the same value, in the same execution order, regardless of any non-uniform parameter values, for all shader invocations in the invocation group.
+</p><p>For example, in 4.00, it is legal to loop over an array of samplers, so long as the loop index is based on constants and uniforms. So this is legal:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">sampler</span><span class="w"> </span><span class="n">images</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="k">uniform</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">imageCount</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">accum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="mf">0.0</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">imageCount</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">accum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">texture</span><span class="p">(</span><span class="n">images</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="p">...);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>This would add up all of the values in the textures, up to <i>imageCount</i> in size. Note that this is not legal in GLSL 3.30.
+</p>
+<h3><span class="mw-headline" id="Arrays_of_arrays">Arrays of arrays</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Arrays of arrays</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/arrays_of_arrays.txt">ARB_arrays_of_arrays</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Given the presence of this feature, arrays can be declared multidimensionally in GLSL:
+<br style="clear: both" />
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">multidim</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">2</span><span class="p">];</span>
+</pre></div>
+<p><span class="tpl-code">multidim</span> is an array of 5 elements, where each element is an array of 2 <span class="tpl-code">vec3</span> elements. So <span class="tpl-code">multidim.length()</span> is 5, while <span class="tpl-code">multidim[0].length()</span> is 2.
+</p><p>Arrays can also be declared like this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">multidim</span><span class="p">;</span>
+</pre></div>
+<p>This may make things more clear.
+</p><p>You can combine these:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">multidim1</span><span class="p">;</span>
+<span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="n">multidim2</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</pre></div>
+<p>Interpreting this split declaration is complex, because it is no longer read strictly left-to-right. The arrays on the variable name are read left-to-right, then the arrays on the type name are read left-to-right. So <span class="tpl-code">multidim1</span> is a 5-element array of 2 element arrays of <span class="tpl-code">vec3</span>. By contrast, <span class="tpl-code">multidim2</span> is a 2 element array of 5 element arrays of <span class="tpl-code">vec3</span>s.
+</p><p>If an array can be specified without a size (such as <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">the last member of a shader storage block</a>), only the first array index can be unsized.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">std430</span><span class="p">)</span><span class="w"> </span><span class="k">buffer</span><span class="w"> </span><span class="n">Buffer1</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">vec3</span><span class="p">[][</span><span class="mi">2</span><span class="p">]</span><span class="w"> </span><span class="n">multidim</span><span class="p">;</span><span class="w"> </span><span class="c1">// legal</span>
+<span class="p">};</span>
+
+<span class="k">layout</span><span class="p">(</span><span class="n">std430</span><span class="p">)</span><span class="w"> </span><span class="k">buffer</span><span class="w"> </span><span class="n">Buffer2</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">vec3</span><span class="p">[</span><span class="mi">5</span><span class="p">][]</span><span class="w"> </span><span class="n">multidim</span><span class="p">;</span><span class="w"> </span><span class="c1">// not legal</span>
+<span class="p">};</span>
+
+<span class="k">layout</span><span class="p">(</span><span class="n">std430</span><span class="p">)</span><span class="w"> </span><span class="k">buffer</span><span class="w"> </span><span class="n">Buffer3</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">vec3</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="n">multidim</span><span class="p">[];</span><span class="w"> </span><span class="c1">// legal: arrays on the variable come first.</span>
+<span class="p">};</span>
+</pre></div>
+<p>Here, for the legal <span class="tpl-code">multidim</span> definitions, <span class="tpl-code">multidim.length()</span> will be computed based on the block of memory attached to this variable. While <span class="tpl-code">multidim[0].length()</span> will be 2.
+</p>
+<h2><span class="mw-headline" id="Structs">Structs</span></h2>
+<p>Structs are defined much like C++ (note: the C-style <span class="tpl-code">typedef struct *{} </span> syntax is <i>not</i> supported). GLSL does not support anonymous structures (ie: structs without a type name), and structs must have at least one member declaration. Structs cannot be defined within another struct, but one struct can use another previously defined struct as a member.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">Light</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">eyePosOrDir</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isDirectional</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">intensity</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">attenuation</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">variableName</span><span class="p">;</span>
+</pre></div>
+<p>The above definition not only defines a struct type <span class="tpl-code">Light</span>, it also creates a variable of that type called <span class="tpl-code">variableName</span>. As in C/C++, the variable name can be omitted.
+</p><p>Structs can contain <a href="#Opaque_types">opaque types</a>, but such structs can only be used in the ways that opaque types can be used (declared as uniforms or function input variables). Furthermore, if a struct contains an opaque type, arrays of such structs, when used to fetch a member of an opaque type, have to use array indices which conform to the rules on <a href="/opengl/Opaque_Array" class="mw-redirect" title="Opaque Array">Opaque Arrays</a>.
+</p><p>There are limits on the <a href="/opengl/Storage_Qualifier" class="mw-redirect" title="Storage Qualifier">storage type qualifiers</a> that variables of struct types can be defined with. Specifically, structs cannot be used as input/output variables. They can be used in all other contexts, including global variables, local variables, uniforms, <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block definitions</a> (as long as they aren't input/output blocks), <a href="/opengl/Function_Parameter" class="mw-redirect" title="Function Parameter">function parameters and return values</a>, and so forth.
+</p><p>Struct fields are accessed using the standard "." syntax from C/C++.
+</p>
+<h2><span class="mw-headline" id="Constructors_and_initializers">Constructors and initializers</span></h2>
+<p>Variables of almost any type can be initialized with an initial value. The exceptions are:
+</p>
+<ul><li>Input or output qualified variables.</li>
+<li>Any variable of a <a href="#Opaque_types">opaque type</a> type.</li>
+<li>Variables declared in an <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">Interface Block</a>.</li></ul>
+<p>For basic types, the variable can be initialized by setting it equal to a literal value:
+</p>
+<pre> uniform int aValue = 5;
+</pre>
+<p>Note that initializing a uniform only sets that variable at the moment that the <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">Program Object</a> is successfully <a href="/opengl/Shader_Compilation" title="Shader Compilation">compiled and linked</a>. The user can override this value by manually setting that uniform value.
+</p>
+<h3><span class="mw-headline" id="Literals">Literals</span></h3>
+<p>A literal is a value written into the shader. Literals are always basic types, and they can be used to initialize the value of a basic type. They can also be used wherever a constant basic value is needed.
+</p><p>Literals are typed. There are two literals of <span class="tpl-code">bool</span> type: <span class="tpl-code">true</span> and <code>false</code>.
+</p><p>Any integer value is by default of type <span class="tpl-code">int</span> (a signed integer). To create an integer literal of unsigned type, use the suffix <span class="tpl-code">u</span> or <span class="tpl-code">U</span>.
+</p><p>Integer literals can be defined in base 8 or base 16 using the standard C/C++ conventions (prefix with 0 for base 8 or 0x for base 16).
+</p><p>A numeric literal that uses a decimal is by default of type <span class="tpl-code">float</span>. To create a float literal from an integer value, use the suffix <span class="tpl-code">f</span> or <span class="tpl-code">F</span> as in C/C++.
+</p><p>Floats can also be defined using exponential notation, using the <span class="tpl-code">e</span> or <span class="tpl-code">E</span> to separate the base from the exponent. The exponent is always base-10.
+</p><p>In GLSL 4.00 and above, double-precision floats are available. By default, all floating-point literals are of type <i>float</i>. To create a double-precision float, use the <span class="tpl-code">lf</span> or <span class="tpl-code">LF</span> suffixes. This will force it to the <i>double</i> type.
+</p>
+<h3><span class="mw-headline" id="Constructors">Constructors</span></h3>
+<p>Types more complex than the base types are initialized with constructors. All constructors take the form:
+</p>
+<pre> <span class="tpl-param">typename​</span>(<span class="tpl-param">value1​</span>, <span class="tpl-param">value2​</span>, ...)
+</pre>
+<p>The <span class="tpl-param">typename​</span> is the name of the type to construct. The values can be literals, previously-defined variables, and other constructors.
+</p><p>Some constructors have special syntax.
+</p>
+<h3><span class="mw-headline" id="Conversion_constructors">Conversion constructors</span></h3>
+<p>The basic scalar type constructors can be used to convert values from one type to another. What you get depends on the kind of conversion.
+</p>
+<dl><dt>from <span class="tpl-code">bool</span></dt>
+<dd>If it is <span class="tpl-code">false</span>, then you get 0, in whatever the output type is (floating-point types get 0.0). If it is <span class="tpl-code">true</span>, then you get 1, in whatever the output type is.</dd>
+<dt>to <span class="tpl-code">bool</span></dt>
+<dd>A value equal to 0 or 0.0 becomes <span class="tpl-code">false</span>; anything else is <span class="tpl-code">true</span>.</dd>
+<dt>between <span class="tpl-code">int</span> and <span class="tpl-code">uint</span></dt>
+<dd>Conversion between these types is guaranteed to preserve the bit pattern, which can change the sign of the value.</dd>
+<dd><div style="margin-left: 3em;"></div></dd></dl>
+<p><b>Note:</b> This is only true for GLSL 1.30 and above; older version of GLSL did not guarantee this.
+</p><h3><span class="mw-headline" id="Vector_constructors">Vector constructors</span></h3>
+<p>Vector constructors take the number of values that they store. So a <i>vec3</i> takes 3 values. However, all vectors can be constructed from a single value; this results in a vector where all of the values are the value given to the constructor. So:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</pre></div>
+<p>Vectors can also be constructed from other vectors, or a combination of vectors and scalars. The values in the output vector are filled in, right to left, by the values in the input scalars and vectors. There must be enough values, counting scalars and vectors, to fill in all of the elements of the output vector. Here are some examples:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">vec4</span><span class="p">(</span><span class="kt">vec2</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="mf">11.0</span><span class="p">),</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.5</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="mf">10.0</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">11.0</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">),</span><span class="w"> </span><span class="mf">3.5</span><span class="p">);</span>
+<span class="kt">vec3</span><span class="p">(</span><span class="kt">vec4</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="p">))</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">);</span>
+<span class="kt">vec4</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">));</span><span class="w"> </span><span class="c1">// error. Not enough components.</span>
+<span class="kt">vec2</span><span class="p">(</span><span class="kt">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">3.0</span><span class="p">));</span><span class="w"> </span><span class="c1">// OK</span>
+</pre></div>
+<h3><span class="mw-headline" id="Matrix_constructors">Matrix constructors</span></h3>
+<p>For matrices, construction is rather more complicated.
+</p><p>If a matrix is constructed with a single scalar value, then that value is used to initialize all the values along the <i>diagonal</i> of the matrix; the rest are given zeros. Therefore, <span class="tpl-code">mat4(1.0)</span> is a 4x4 identity matrix.
+</p><p>For multiple values, matrices are filled in in column-major order. That is, the first X values are the first column, the second X values are the next column, and so forth. Examples:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">mat2</span><span class="p">(</span>
+<span class="w">  </span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">,</span><span class="w">   </span><span class="c1">// first column</span>
+<span class="w">  </span><span class="kt">float</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">);</span><span class="w">  </span><span class="c1">// second column</span>
+
+<span class="kt">mat4</span><span class="p">(</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="p">,</span><span class="w">           </span><span class="c1">// first column</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="p">,</span><span class="w">           </span><span class="c1">// second column</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="p">,</span><span class="w">           </span><span class="c1">// third column</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="p">);</span><span class="w">          </span><span class="c1">// fourth column</span>
+
+<span class="kt">mat3</span><span class="p">(</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">,</span><span class="w">    </span><span class="c1">// first column</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">,</span><span class="w">    </span><span class="c1">// second column</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="p">);</span><span class="w">   </span><span class="c1">// third column</span>
+</pre></div>
+<p>A matrix can be constructed from another matrix A matrix can only be constructed from a single other matrix. The column and row values from the input matrix are copied to their corresponding values in the output; any values of the output not filled in are filled with the identity matrix.
+</p><p>Therefore:
+</p>
+<pre> mat3 diagMatrix = mat3(5.0);  // Diagonal matrix with 5.0 on the diagonal.
+ mat4 otherMatrix = mat4(diagMatrix);
+</pre>
+<p>The <i>otherMatrix</i> is a diagonal matrix, where the first 3 values are 5.0, and the last diagonal value is 1.0.
+</p><p>There are no restrictions on size when doing matrix construction from another matrix. So you can construct a 4x2 matrix from a 2x4 matrix; only the corresponding elements are copied.
+</p>
+<h3><span class="mw-headline" id="Array_constructors">Array constructors</span></h3>
+<p>Arrays can be constructed using array constructor syntax. In this case, the type also contains the [] array notation:
+</p>
+<pre> const float array[3] = float[3](2.5, 7.0, 1.5);
+</pre>
+<p>The size is not necessary for array constructors, as the size is implicitly specified by the number of arguments to the constructor.
+</p>
+<h3><span class="mw-headline" id="Struct_constructors">Struct constructors</span></h3>
+<p>Structs are constructed by filling in their values in the order in which they are defined. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">Data</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">second</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="n">Data</span><span class="w"> </span><span class="n">dataValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="p">(</span><span class="mf">1.4</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">16.0</span><span class="p">,</span><span class="w"> </span><span class="mf">22.5</span><span class="p">));</span>
+</pre></div>
+<p>Notice the vector constructor in the middle of the struct constructor. Constructors can be nested. So if you have an array of structs of the above type, you can construct it as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="n">Data</span><span class="w"> </span><span class="n">dataArray</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="p">[</span><span class="mi">3</span><span class="p">](</span>
+<span class="w">  </span><span class="n">Data</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="o">-</span><span class="mf">19.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Data</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">2.718</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Data</span><span class="p">(</span><span class="mf">29.5</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">3.142</span><span class="p">,</span><span class="w"> </span><span class="mf">3.333</span><span class="p">)));</span>
+</pre></div>
+<h3><span class="mw-headline" id="Initializer_lists">Initializer lists</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Initializer Lists</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">ARB_shading_language_420pack</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>While the above initialization rules exist, they are somewhat verbose. Consider the above initializer:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="n">Data</span><span class="w"> </span><span class="n">dataArray</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Data</span><span class="p">[</span><span class="mi">3</span><span class="p">](</span>
+<span class="w">  </span><span class="n">Data</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="o">-</span><span class="mf">19.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Data</span><span class="p">(</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">2.718</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">)),</span>
+<span class="w">  </span><span class="n">Data</span><span class="p">(</span><span class="mf">29.5</span><span class="p">,</span><span class="w"> </span><span class="kt">vec2</span><span class="p">(</span><span class="mf">3.142</span><span class="p">,</span><span class="w"> </span><span class="mf">3.333</span><span class="p">)));</span>
+</pre></div>
+<p>This requires the user to specify the same thing multiple times. The array typename <span class="tpl-code">Data[3]</span> must be specified twice, and if you get it wrong once, you get a compiler error. For each item in the array, the type of that item <span class="tpl-code">Data</span> must be specified, and if you get it wrong in one place, you get a compiler error. While these are compiler errors rather than runtime issues, it's not like the compiler doesn't already know what type has to go there.
+</p><p>Therefore, GLSL takes a feature from C++11 and allows the initialization of any type by using an initializer list. An initializer list is a list of initializers (which themselves could be initializer lists) that are used to initialize a variable. Initializer lists are bounded by curly braces ("{" and "}").
+</p><p>Initializer lists do not require specifying the type name; the compiler will deduce it correctly. And this deduction extends down the hierarchy of objects in aggregates (structs/arrays). For example, the above code could be initialized with the following initializer list:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="n">Data</span><span class="w"> </span><span class="n">dataArray</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="o">-</span><span class="mf">19.0</span><span class="p">,</span><span class="w"> </span><span class="mf">4.5</span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="o">-</span><span class="mf">3.0</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">2.718</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<span class="w">  </span><span class="p">{</span><span class="mf">29.5</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="mf">3.142</span><span class="p">,</span><span class="w"> </span><span class="mf">3.333</span><span class="p">}</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+<p>The compiler automatically deduces that the second element of each <span class="tpl-code">Data</span> member is an <span class="tpl-code">vec2</span>. This is based on the definition of <span class="tpl-code">Data</span>.
+</p><p>Initializer list initialization is subject to all of the restraints and privileges of constructor initialization. So <span class="tpl-code">vec2(...)</span> is always equivalent to <span class="tpl-code">{...} </span>, when the latter is used to initialize a <span class="tpl-code">vec2</span>.
+</p><p>An initializer list is (itself) not an expression. So you cannot do <span class="tpl-code">{...} + {...} </span> and get a reasonable result.
+</p><p>Initializer lists can be used to initialize anything, even scalar values (bool val = {true};).
+</p><p>When initializing aggregates with initializer lists (aggregates being arrays or structs), the number of initializer values in the list must exactly match the number of items in the aggregate.
+</p>
+<h2><span class="mw-headline" id="Interface_blocks">Interface blocks</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface Block (GLSL)</a><i></i></div>
+<p>Groups of variables that use the input, output, or uniform <a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">type qualifiers</a> can be grouped into named blocks. These have special syntax, and appear similar to a struct definition. However, they are not equivalent to structs.
+</p>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type Qualifier (GLSL)</a></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in Variable (GLSL)</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260317161835
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.168 seconds
+Real time usage: 0.349 seconds
+Preprocessor visited node count: 2423/1000000
+Post‐expand include size: 19978/2097152 bytes
+Template argument size: 4667/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 20/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 22395/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  248.226      1 -total
+  8.58%   21.287      2 Template:Infobox_feature
+  7.86%   19.501      2 Template:Infobox2
+  5.32%   13.197      1 Template:Shader_float
+  4.49%   11.144      1 Template:Shader_list
+  2.94%    7.287      2 Template:Note
+  2.76%    6.857     20 Template:Infobox/longrow
+  2.68%    6.661     22 Template:Pagelink
+  2.33%    5.784      3 Template:Note_style
+  2.26%    5.610     20 Template:Infobox/shortrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1640-0!canonical and timestamp 20260317161835 and revision id 14919. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Data_Type_(GLSL)&amp;oldid=14919">https://wikis.khronos.org/opengl/index.php?title=Data_Type_(GLSL)&amp;oldid=14919</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Data+Type+%28GLSL%29" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Data_Type_(GLSL)" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/opengl/Talk:Data_Type_(GLSL)" rel="discussion" title="Discussion about the content page [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Data_Type_(GLSL)"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Data_Type_(GLSL)&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Data_Type_(GLSL)&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Data_Type_(GLSL)" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Data_Type_(GLSL)" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Data_Type_(GLSL)&amp;oldid=14919" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Data_Type_(GLSL)&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Data_Type_%28GLSL%29&amp;id=14919&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 11 November 2022, at 06:17.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":199,"wgPageParseReport":{"limitreport":{"cputime":"0.168","walltime":"0.349","ppvisitednodes":{"value":2423,"limit":1000000},"postexpandincludesize":{"value":19978,"limit":2097152},"templateargumentsize":{"value":4667,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":20,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":22395,"limit":5000000},"timingprofile":["100.00%  248.226      1 -total","  8.58%   21.287      2 Template:Infobox_feature","  7.86%   19.501      2 Template:Infobox2","  5.32%   13.197      1 Template:Shader_float","  4.49%   11.144      1 Template:Shader_list","  2.94%    7.287      2 Template:Note","  2.76%    6.857     20 Template:Infobox/longrow","  2.68%    6.661     22 Template:Pagelink","  2.33%    5.784      3 Template:Note_style","  2.26%    5.610     20 Template:Infobox/shortrow"]},"cachereport":{"timestamp":"20260317161835","ttl":1209600,"transientcontent":false}}});});</script>
+</body>
+</html>

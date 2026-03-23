@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Framebuffer Object - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Framebuffer_Object rootpage-Framebuffer_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Framebuffer Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Framebuffer Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/framebuffer_object.txt">GL_ARB_framebuffer_object</a></td></tr>
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">EXT extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/framebuffer_object.txt">GL_EXT_framebuffer_object</a>, <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/framebuffer_blit.txt">GL_EXT_framebuffer_blit</a>, <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/framebuffer_multisample.txt">GL_EXT_framebuffer_multisample</a>, <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/packed_depth_stencil.txt">GL_EXT_packed_depth_stencil</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><b>Framebuffer Objects</b> are <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Objects</a>, which allow for the creation of user-defined <a href="/opengl/Framebuffer" title="Framebuffer">Framebuffers</a>. With them, one can render to non-<a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a> locations, and thus render without disturbing the main screen.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Semantics"><span class="tocnumber">1</span> <span class="toctext">Semantics</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Framebuffer_Object_Structure"><span class="tocnumber">2</span> <span class="toctext">Framebuffer Object Structure</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Attaching_Images"><span class="tocnumber">3</span> <span class="toctext">Attaching Images</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Layered_Images"><span class="tocnumber">3.1</span> <span class="toctext">Layered Images</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Empty_framebuffers"><span class="tocnumber">4</span> <span class="toctext">Empty framebuffers</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Framebuffer_Completeness"><span class="tocnumber">5</span> <span class="toctext">Framebuffer Completeness</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Attachment_Completeness"><span class="tocnumber">5.1</span> <span class="toctext">Attachment Completeness</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Completeness_Rules"><span class="tocnumber">5.2</span> <span class="toctext">Completeness Rules</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Feedback_Loops"><span class="tocnumber">6</span> <span class="toctext">Feedback Loops</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Pseudo_Implementation"><span class="tocnumber">7</span> <span class="toctext">Pseudo Implementation</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#EXT_Framebuffer_object"><span class="tocnumber">8</span> <span class="toctext">EXT_Framebuffer_object</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#See_Also"><span class="tocnumber">9</span> <span class="toctext">See Also</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Reference"><span class="tocnumber">10</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Semantics">Semantics</span></h2>
+<p>Framebuffer objects are a collection of attachments. To help explain lets explicitly define certain terminology.
+</p>
+<dl><dt>Image</dt>
+<dd>For the purposes of this article, an image is a single 2D array of pixels. It has a <a href="/opengl/Image_Format" title="Image Format">specific format</a> for these pixels.</dd>
+<dt>Layered Image</dt>
+<dd>For the purposes of this article, a layered image is a sequence of <i>images</i> of a particular size and format. Layered images come from single mipmap levels of certain <a href="/opengl/Texture" title="Texture">Texture</a> types.</dd>
+<dt><a href="/opengl/Texture" title="Texture">Texture</a></dt>
+<dd>For the purposes of this article, a texture is an object that contains some number of <i>images</i>, as defined above. All of the images have the same format, but they do not have to have the same size (different <a href="/opengl/Mip-map" class="mw-redirect" title="Mip-map">mip-maps</a>, for example). Textures can be accessed from <a href="/opengl/Shader" title="Shader">Shaders</a> via various methods.</dd>
+<dt><a href="/opengl/Renderbuffer_Objects" class="mw-redirect" title="Renderbuffer Objects">Renderbuffer</a></dt>
+<dd>A renderbuffer is an object that contains a single image. Renderbuffers cannot be accessed by <a href="/opengl/Shader" title="Shader">Shaders</a> in any way. The only way to work with a renderbuffer, besides creating it, is to put it into an FBO.</dd>
+<dt>Attach</dt>
+<dd>To connect one <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">object</a> to another. This term is used across all of OpenGL, but FBOs make the most use of the concept. Attachment is different from binding. Objects are <i>bound</i> to the <a href="/opengl/OpenGL_Context" title="OpenGL Context">context</a>; objects are <i>attached</i> to one another.</dd>
+<dt>Attachment point</dt>
+<dd>A named location within a framebuffer object that a framebuffer-attachable image or layered image can be attached to. Attachment points restrict the general kind of <a href="/opengl/Image_Format" title="Image Format">Image Format</a> for images attached to them.</dd>
+<dt>Framebuffer-attachable image</dt>
+<dd>Any image, as previously described, that can be attached to a framebuffer object.</dd>
+<dt>Framebuffer-attachable layered image</dt>
+<dd>Any layered image, as previously described, that can be attached to a framebuffer object.</dd></dl>
+<h2><span class="mw-headline" id="Framebuffer_Object_Structure">Framebuffer Object Structure</span></h2>
+<p>As standard <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">OpenGL Objects</a>, FBOs have the usual <span class="tpl-code"><a href="/opengl/GLAPI/glGenFramebuffers" title="GLAPI/glGenFramebuffers">glGenFramebuffers</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteFramebuffers" title="GLAPI/glDeleteFramebuffers">glDeleteFramebuffers</a></span> functions. As expected, it also has the usual <span class="tpl-code"><a href="/opengl/GLAPI/glBindFramebuffer" title="GLAPI/glBindFramebuffer">glBindFramebuffer</a></span> function, to bind an FBO to the context.
+</p><p>The <span class="tpl-param">target​</span> parameter for this object can take one of 3 values: <span class="tpl-enum">GL_FRAMEBUFFER</span>, <span class="tpl-enum">GL_READ_FRAMEBUFFER</span>, or <span class="tpl-enum">GL_DRAW_FRAMEBUFFER</span>. The last two allow you to bind an FBO so that reading commands (<span class="tpl-code"><a href="/opengl/GLAPI/glReadPixels" title="GLAPI/glReadPixels">glReadPixels</a></span>, etc) and writing commands (all <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">rendering commands</a>) can happen to two different framebuffers. The <span class="tpl-enum">GL_FRAMEBUFFER</span> binding target simply sets both the read and the write to the same FBO.
+</p><p>The default framebuffer has buffer names like <span class="tpl-enum">GL_FRONT</span>, <span class="tpl-enum">GL_BACK</span>, <span class="tpl-enum">GL_AUXi</span>, <span class="tpl-enum">GL_ACCUM</span>, and so forth. FBOs do not use these.
+</p><p>Instead, FBOs have a different set of image names. Each FBO image represents an attachment point, a location in the FBO where an image can be attached. FBOs have the following attachment points:
+</p>
+<ul><li><span class="tpl-enum">GL_COLOR_ATTACHMENT<i>i</i></span>: These are an implementation-dependent number of attachment points. You can query <span class="tpl-enum">GL_MAX_COLOR_ATTACHMENTS</span> to determine the number of color attachments that an implementation will allow. The minimum value for this is 8, so you are guaranteed to be able to have at least color attachments 0-7. These attachment points can only have images bound to them with color-renderable formats. All <a href="/opengl/Image_Formats#Compressed_formats" class="mw-redirect" title="Image Formats">compressed image formats</a> are not color-renderable, and thus cannot be attached to an FBO.</li>
+<li><span class="tpl-enum">GL_DEPTH_ATTACHMENT</span>: This attachment point can only have images with depth formats bound to it. The image attached becomes the <a href="/opengl/Depth_Buffer" class="mw-redirect" title="Depth Buffer">Depth Buffer</a> for the FBO. Note that if no depth image is attached, <a href="/opengl/Depth_Test" title="Depth Test">Depth Testing</a> will be disabled when rendering to this FBO.</li>
+<li><span class="tpl-enum">GL_STENCIL_ATTACHMENT</span>: This attachment point can only have images with stencil formats bound to it. The image attached becomes the <a href="/opengl/Stencil_Test" title="Stencil Test">stencil buffer</a> for the FBO.</li>
+<li><span class="tpl-enum">GL_DEPTH_STENCIL_ATTACHMENT</span>: This is shorthand for "both depth and stencil". The image attached becomes both the depth and stencil buffers.</li></ul>
+<dl><dd><b>Note:</b> If you use <span class="tpl-enum">GL_DEPTH_STENCIL_ATTACHMENT</span>, you should use a packed depth-stencil <a href="/opengl/Image_Format" title="Image Format">internal format</a> for the texture or renderbuffer you are attaching.</dd></dl>
+<h2><span class="mw-headline" id="Attaching_Images">Attaching Images</span></h2>
+<p>Now that we know where images can be attached to FBOs, we can start talking about how to actually attach images to these. In order to attach images to an FBO, we must first bind the FBO to the context with <span class="tpl-code"><a href="/opengl/GLAPI/glBindFramebuffer" title="GLAPI/glBindFramebuffer">glBindFramebuffer</a></span>.
+</p><p>You can attach images from most texture types to the framebuffer object. However, framebuffers are designed for 2D rendering. So there is a need to consider how different texture types map to framebuffer images. Remember that textures are a set of images. Textures can have mipmaps, and individual mipmap levels could contain one or more images.
+</p><p>The way different texture types map to framebuffer images is as follows:
+</p>
+<ul><li>Images in a 1D texture are considered 2D images with a vertical height of 1. Each individual image can be uniquely identified by a mipmap <span class="tpl-param">level​</span>.</li>
+<li>Images in a 2D texture are taken as normal. Each individual image can be uniquely identified by a mipmap <span class="tpl-param">level​</span>.</li>
+<li>A mipmap level of a 3D texture is considered to be a set of 2D images, with the number of these images being the extent of the Z coordinate for that mipmap level. Each integer value for the Z of a 3D texture mipmap level is a separate 2D layer. So each image in a 3D texture is uniquely identified by a <span class="tpl-param">layer​</span> and a mipmap <span class="tpl-param">level​</span>. Recall that different mipmap levels in a 3D texture will have different counts of Z coordinates.</li>
+<li><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a> contain a single 2D image, which is identified by a <span class="tpl-param">level​</span> of 0.</li>
+<li><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a> contain 6 2D images per mipmap. Thus, each image in a cubemap texture can be uniquely identified by a face <span class="tpl-param">target​</span> and a mipmap <span class="tpl-param">level​</span>. However, in some API functions, individual faces in a mipmap level are identified by a <span class="tpl-param">layer​</span> index instead of a <span class="tpl-param">target​</span>.</li>
+<li>Each mipmap level of 1D or 2D <a href="/opengl/Array_Texture" title="Array Texture">Array Textures</a> contains a number of images, equal to the count images in the array. Thus, each individual image is uniquely identified by a <span class="tpl-param">layer​</span> (the array index) and a mipmap <span class="tpl-param">level​</span>. For 1D array textures, each image has a height of 1. Unlike 3D textures, the <span class="tpl-param">layer​</span> doesn't change when going down the mipmap hierarchy.</li>
+<li><a href="/opengl/Cubemap_Array_Texture" class="mw-redirect" title="Cubemap Array Texture">Cubemap Array Textures</a> work like 2D array textures, only with an image count 6 times the number of its layers. A 2D image in the cubemap array is identified by the layer-face index <span class="tpl-param">layer​</span> and a mipmap <span class="tpl-param">level​</span>.</li>
+<li><a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a> cannot be attached to framebuffers.</li></ul>
+<p>The words <span class="tpl-param">level​</span>, <span class="tpl-param">layer​</span>, and <span class="tpl-param">target​</span> above are significant, as they match the parameters of the following functions used for attaching textures:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTexture" title="GLAPI/glFramebufferTexture">glFramebufferTexture1D</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">attachment​</span>, GLenum <span class="tpl-param">textarget​</span>, GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTexture" title="GLAPI/glFramebufferTexture">glFramebufferTexture2D</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">attachment​</span>, GLenum <span class="tpl-param">textarget​</span>, GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>);
+</p>
+void <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTextureLayer" title="GLAPI/glFramebufferTextureLayer">glFramebufferTextureLayer</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">attachment​</span>, GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">layer​</span>);</div>
+<p><br />
+The <span class="tpl-param">target​</span> parameter here is the same as the one for bind. However, <span class="tpl-enum">GL_FRAMEBUFFER</span> doesn't mean both read and draw (as that would make no sense); instead, it is the same as <span class="tpl-enum">GL_DRAW_FRAMEBUFFER</span>. The <span class="tpl-param">attachment​</span> parameter is one of the above attachment points.
+</p><p>The <span class="tpl-param">texture​</span> argument is the texture object name you want to attach from. If you pass zero as <span class="tpl-param">texture​</span>, this has the effect of clearing the attachment for this <span class="tpl-param">attachment​</span>, regardless of what kind of image was attached there.
+</p><p>Because texture objects can hold multiple images, you must specify exactly which image to attach to this attachment point. The parameters match their above definitions, with the exception of <span class="tpl-param">textarget​</span>.
+</p><p>When attaching a non-cubemap, <span class="tpl-param">textarget​</span> should be the proper texture type: <span class="tpl-enum">GL_TEXTURE_1D</span>, <span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE</span>, etc. When attaching a (non-array) cubemap, you must use the Texture2D function, and the <span class="tpl-param">textarget​</span> must be one of the 6 targets for <a href="/opengl/Cubemap_Textures" class="mw-redirect" title="Cubemap Textures">cubemap binding</a>. When attaching an image from a <a href="/opengl/Cubemap_Array_Texture" class="mw-redirect" title="Cubemap Array Texture">cubemap array</a>, you must use TextureLayer, with the <span class="tpl-param">layer​</span> being a layer-face.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> If OpenGL 4.5<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/direct_state_access.txt">ARB_direct_state_access</a> is available, then <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTextureLayer" title="GLAPI/glFramebufferTextureLayer">glFramebufferTextureLayer</a></span> may take non-array cubemap textures. They are treated as though they were an array cubemap with one layer (so 6 layer-faces). This means that you never need to use the <span class="tpl-param">Texture2D​</span> or <span class="tpl-param">Texture1D​</span> functions for anything.</div>
+<div style="margin-left: 3em;">
+<b>Legacy Note:</b> There is a function, <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTexture" title="GLAPI/glFramebufferTexture">glFramebufferTexture3D</a></span>, specifically for 3D textures. However, you shouldn't bother with it, as the TextureLayer function can do everything it can and more.</div>
+<p><a href="/opengl/Renderbuffer_Objects" class="mw-redirect" title="Renderbuffer Objects">Renderbuffers</a> can also be attached to FBOs. Indeed, this is the only way to use them besides just creating the storage for them.
+</p><p>Once you have created a renderbuffer object and made storage for it (given a size and format), you can attach it to an FBO with this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferRenderbuffer" title="GLAPI/glFramebufferRenderbuffer">glFramebufferRenderbuffer</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">attachment​</span>, GLenum <span class="tpl-param">renderbuffertarget​</span>, GLuint <span class="tpl-param">renderbuffer​</span>);</div>
+<p>The parameters work mostly the same as with texture attachment. The <span class="tpl-param">renderbuffertarget​</span> param must be <span class="tpl-enum">GL_RENDERBUFFER</span>. The <span class="tpl-param">renderbuffer​</span> parameter is the renderbuffer object's name.
+</p>
+<h3><span class="mw-headline" id="Layered_Images">Layered Images</span></h3>
+<p>A layered image, as previously defined, is an ordered sequence of images of a particular size. A number of different kinds of textures can be considered layered. Layered images are used with <a href="/opengl/Layered_Rendering" class="mw-redirect" title="Layered Rendering">Layered Rendering</a>, which sends different primitives to different layers within the framebuffer.
+</p><p>A single mipmap level of a 1D or 2D <a href="/opengl/Array_Texture" title="Array Texture">Array Texture</a> can be attached as a layered image, where the number of layers is the array size. A single mipmap level of a 3D texture likewise can be attached as a layered image, where the number of layers is the depth of that particular mipmap level. Also, a mipmap level of a <a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Texture</a> can be attached as a layered image. For cubemaps, you get exactly 6 layers, one for each face. And the order of the faces is the same as the order of the enumerators:
+</p>
+<table class="wikitable" border="1">
+
+<tbody><tr>
+<th>Layer number
+</th>
+<th>Cubemap face
+</th></tr>
+<tr>
+<td>0
+</td>
+<td>GL_TEXTURE_CUBE_MAP_POSITIVE_X
+</td></tr>
+<tr>
+<td>1
+</td>
+<td>GL_TEXTURE_CUBE_MAP_NEGATIVE_X
+</td></tr>
+<tr>
+<td>2
+</td>
+<td>GL_TEXTURE_CUBE_MAP_POSITIVE_Y
+</td></tr>
+<tr>
+<td>3
+</td>
+<td>GL_TEXTURE_CUBE_MAP_NEGATIVE_Y
+</td></tr>
+<tr>
+<td>4
+</td>
+<td>GL_TEXTURE_CUBE_MAP_POSITIVE_Z
+</td></tr>
+<tr>
+<td>5
+</td>
+<td>GL_TEXTURE_CUBE_MAP_NEGATIVE_Z
+</td></tr></tbody></table>
+<p>For <a href="/opengl/Cubemap_Array_Texture" class="mw-redirect" title="Cubemap Array Texture">cubemap arrays</a>, the value that <span class="tpl-code">gl_Layer</span> represents is the layer-face index. Thus it is the face within a layer, ordered as above. So if you want to render to the 3rd layer, +z face, you would set <span class="tpl-code">gl_Layer</span> to (2 * 6) + 4, or 16.
+</p><p>Each mipmap level, when can be attached as a layered image, has a specific number of layers. For 1D and 2D array textures, it is the number of layers in the texture as a whole. For 3D textures, this is the depth of that particular mipmap level. For cubemaps, this is always exactly 6 layers: one per face. Cubemap arrays have 6 * the number of layers, which is the number of layer-faces.
+</p><p>To attach a mipmap level of a texture as a layered image, use the following command:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTexture" title="GLAPI/glFramebufferTexture">glFramebufferTexture</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">attachment​</span>, GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>);</div>
+<p>The parameters have the same meaning as above. Indeed, this function can replace many of the uses for <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferTexture" title="GLAPI/glFramebufferTexture">glFramebufferTexture1D, 2D, or Layer</a></span>, as long as you do not intend to attach specific layers of array textures, cubemaps, or 3D textures as regular, non-layered images. If the <span class="tpl-param">texture​</span> is one of these kinds of textures, then the given mipmap <span class="tpl-param">level​</span> will be attached as a layered image with the number of layers that the given texture has.
+</p>
+<h2><span class="mw-headline" id="Empty_framebuffers">Empty framebuffers</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Empty Framebuffers</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/framebuffer_no_attachments.txt">ARB_framebuffer_no_attachments</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>It is possible to render to a framebuffer object that has no attachments. Obviously none of the fragment shader outputs will be written to anywhere in this case, but rendering can otherwise proceed as normal. This is useful for using <a href="/opengl/Image_Load_Store" title="Image Load Store">arbitrary reading and writing of image data</a> from shaders, rather than writing to a bound framebuffer.
+</p><p>However, the rasterization of primitives is always based on the area and characteristics of the bound framebuffer. These characteristics (size, number of samples for <a href="/opengl/Multisample" class="mw-redirect" title="Multisample">multisample rendering</a>, etc) would normally be defined by the attached images. If no images are attached, these characteristics must be defined in some other fashion.
+</p><p>The characteristics for an FBO with no attachments can be set with this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glFramebufferParameter" title="GLAPI/glFramebufferParameter">glFramebufferParameteri</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">pname​</span>, GLint <span class="tpl-param">param​</span>);
+</pre>
+<p><span class="tpl-param">target​</span> is the location where the framebuffer object is bound. To set the width, set <span class="tpl-param">pname​</span> to <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_WIDTH</span>; to set the height, use <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_HEIGHT</span>.
+</p><p>Layered framebuffers can be simulated by setting <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_LAYERS</span> to a layer count other than 0. Multisample framebuffers can be simulated by setting <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_SAMPLES</span> to a number of samples other than 0. Fixed multisample location can similarly be simulated by setting <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_FIXED_SAMPLE_LOCATIONS</span> to a non-zero value.
+</p><p>Note that rendering is <i>only</i> limited to these parameters if no images are attached to the FBO. If images are attached, then these parameters are ignored. You should only set these values if you intend to use the FBO without images.
+</p>
+<h2><span class="mw-headline" id="Framebuffer_Completeness">Framebuffer Completeness</span></h2>
+<p>Each attachment point in a FBO has specific restrictions on the format of images that can be attached to it. However, it is not an immediate <a href="/opengl/OpenGL_Error" title="OpenGL Error">GL error</a> to attach an image to an attachment point that doesn't support that format. It is an error to try to <i>use</i> an FBO that has been improperly set up. There are also a number of other issues with regard to sizes of images and so forth that must be detected in order to be able to safely use the FBO.
+</p><p>An FBO that is valid for use is said to be "framebuffer complete". To test framebuffer completeness, call this function:
+</p>
+<pre> GLenum <span class="tpl-code"><a href="/opengl/GLAPI/glCheckFramebufferStatus" title="GLAPI/glCheckFramebufferStatus">glCheckFramebufferStatus</a></span>(GLenum <span class="tpl-param">target​</span>);
+</pre>
+<p>You are not required to call this manually. However, using an incomplete FBO is an error, so it's always a good idea to check.
+</p><p>The return value is <span class="tpl-enum">GL_FRAMEBUFFER_COMPLETE</span> if the FBO can be used. If it is something else, then there is a problem. Below are the rules for completeness and the associated return values you will receive if they are not followed.
+</p>
+<h3><span class="mw-headline" id="Attachment_Completeness">Attachment Completeness</span></h3>
+<p>Each attachment point itself must be complete according to these rules. Empty attachments (attachments with no image attached) are complete by default. If an image is attached, it must adhere to the following rules:
+</p>
+<ul><li>The source object for the image still exists and has the same type it was attached with.</li>
+<li>The image has a non-zero width and height (the height of a 1D image is assumed to be 1). The width/height must also be less than <span class="tpl-enum">GL_MAX_FRAMEBUFFER_WIDTH</span> and <span class="tpl-enum">GL_MAX_FRAMEBUFFER_HEIGHT</span> respectively (if GL 4.3/ARB_framebuffer_no_attachments).</li>
+<li>The layer for 3D or array textures attachments is less than the depth of the texture. It must also be less than <span class="tpl-enum">GL_MAX_FRAMEBUFFER_LAYERS</span> (if GL 4.3/ARB_framebuffer_no_attachments).</li>
+<li>The number of samples must be less than <span class="tpl-enum">GL_MAX_FRAMEBUFFER_SAMPLES</span> (if GL 4.3/ARB_framebuffer_no_attachments).</li>
+<li>The image's format must match the attachment point's requirements, as defined above. Color-renderable formats for color attachments, etc.</li></ul>
+<h3><span class="mw-headline" id="Completeness_Rules">Completeness Rules</span></h3>
+<p>These are the rules for framebuffer completeness. The order of these rules matters.
+</p>
+<ol><li>If the <span class="tpl-param">target​</span> of <span class="tpl-code"><a href="/opengl/GLAPI/glCheckFramebufferStatus" title="GLAPI/glCheckFramebufferStatus">glCheckFramebufferStatus</a></span> references the <a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a> (ie: FBO object number 0 is bound), and the default framebuffer does not exist, then you will get <span class="tpl-enum">GL_FRAMEBUFFER_UNDEFINED</span>. If the default framebuffer exists, then you always get <span class="tpl-enum">GL_FRAMEBUFFER_COMPLETE</span>. The rest of the rules apply when an FBO is bound.</li>
+<li>All attachments must be <a href="#Attachment_Completeness">attachment complete</a>. (<span class="tpl-enum">GL_FRAMEBUFFER_INCOMPLETE_ATTACHMENT</span> when false).</li>
+<li>There must be at least one image attached to the FBO, or if OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/framebuffer_no_attachments.txt">ARB_framebuffer_no_attachments</a> is available, <a href="#Empty_framebuffers">the <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_WIDTH</span> and <span class="tpl-enum">GL_FRAMEBUFFER_DEFAULT_HEIGHT</span> parameters</a> of the framebuffer must both be non-zero. (<span class="tpl-enum">GL_FRAMEBUFFER_INCOMPLETE_MISSING_ATTACHMENT</span> when false).</li>
+<li>Each <a href="/opengl/Framebuffer_Draw_Buffer" class="mw-redirect" title="Framebuffer Draw Buffer">draw buffer</a> must either specify color attachment points that have images attached or must be <span class="tpl-enum">GL_NONE</span>. (<span class="tpl-enum">GL_FRAMEBUFFER_INCOMPLETE_DRAW_BUFFER</span> when false). Note that this test is not performed if OpenGL 4.1<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/ES2_compatibility.txt">ARB_ES2_compatibility</a> is available.</li>
+<li>If the <a href="/opengl/Framebuffer_Read_Buffer" class="mw-redirect" title="Framebuffer Read Buffer">read buffer</a> is set, then it must specify an attachment point that has an image attached. (<span class="tpl-enum">GL_FRAMEBUFFER_INCOMPLETE_READ_BUFFER</span> when false). Note that this test is not performed if OpenGL 4.1<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/ES2_compatibility.txt">ARB_ES2_compatibility</a> is available.</li>
+<li>All images must have the same number of <a href="/opengl/Multisampling" title="Multisampling">multisample samples</a>. All images must also use the same fixed sample layout setting. (<span class="tpl-enum">GL_FRAMEBUFFER_INCOMPLETE_MULTISAMPLE</span> when false).</li>
+<li>If a layered image is attached to one attachment, then all attachments must be layered attachments. The attached layers do not have to have the same number of layers, nor do the layers have to come from the same kind of texture (a cubemap color texture can be paired with an array depth texture) (<span class="tpl-enum">GL_FRAMEBUFFER_INCOMPLETE_LAYER_TARGETS</span> when false).</li></ol>
+<p>Notice that there is no restriction based on size. The effective size of the FBO is the intersection of all of the sizes of the bound images (ie: the smallest in each dimension).
+</p><p>These rules are all code-based. If you ever get any of these values from <span class="tpl-code"><a href="/opengl/GLAPI/glCheckFramebufferStatus" title="GLAPI/glCheckFramebufferStatus">glCheckFramebufferStatus</a></span>, it is because your program has done something wrong in setting up the FBO. Each one has a specific remedy for it.
+</p><p>There's one more rule that can trip you up:
+</p>
+<ul><li>The implementation likes your combination of attached image formats. (<span class="tpl-enum">GL_FRAMEBUFFER_UNSUPPORTED</span> when false).</li></ul>
+<p>OpenGL allows implementations to state that they do not support some combination of image formats for the attached images; they do this by returning <span class="tpl-enum">GL_FRAMEBUFFER_UNSUPPORTED</span> when you attempt to use an unsupported format combination.
+</p><p>However, the OpenGL specification also requires that implementations support certain format combinations; if you use these, implementations are forbidden to return <span class="tpl-enum">GL_FRAMEBUFFER_UNSUPPORTED</span>. Implementations must allow any combination of color formats, so long as all of those color formats come from the <a href="/opengl/Required_Image_Format" class="mw-redirect" title="Required Image Format">required set of color formats</a>.
+</p><p>These color formats can be combined with a depth attachment with any of the required depth formats. Stencil attachments can also be used, again with the required stencil formats, as well as the combined depth/stencil formats. However, implementations are only required to support both a depth and stencil attachment simultaneously <b>if</b> both attachments refer to the same image.
+</p><p>This means that if you want stencil with no depth, you can use one of the required stencil formats. If you want depth with no stencil, you can use one of the required depth formats. But if you want depth and stencil, you must use a depth/stencil format and the same image in that texture must be attached to both the depth and stencil attachments.
+</p><p>Staying within these limits means you won't see <span class="tpl-enum">GL_FRAMEBUFFER_UNSUPPORTED</span>. Going outside of these limits makes it entirely possible to get this incompleteness.
+</p>
+<div style="margin-left: 3em;">
+<b>Legacy Note:</b> <span class="tpl-enum">GL_FRAMEBUFFER_UNSUPPORTED</span> was, in the days of <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/framebuffer_object.txt">EXT_framebuffer_object</a>, much less forgiving. The specification didn't have a list of required image formats. Indeed, the only guarantee that the EXT_FBO spec made was that there was at least <i>one</i> combination of formats that implementations supported; it provided no hints as to what that combination might be. The core extension <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/framebuffer_object.txt">ARB_framebuffer_object</a> does differ from the core specification in one crucial way: it uses the EXT wording for <span class="tpl-enum">GL_FRAMEBUFFER_UNSUPPORTED</span>. So if you're using 3.0, just use the required formats as above. If you're using ARB_framebuffer_object, then you should be concerned and do appropriate testing.</div>
+<h2><span class="mw-headline" id="Feedback_Loops">Feedback Loops</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Memory_Model#Framebuffer_objects" title="Memory Model">Memory Model#Framebuffer objects</a><i></i></div>
+<p>It is possible to bind a texture to an FBO, bind that same texture to a shader, and then try to render with it at the same time.
+</p><p>It is perfectly valid to bind one <i>image</i> from a texture to an FBO and then render with that texture, as long as you prevent yourself from <i>sampling</i> from that image. If you do try to read and write to the same image, you get undefined results. Meaning it may do what you want, the sampler may get old data, the sampler may get <i>half</i> old and half new data, or it may get garbage data. Any of these are possible outcomes.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> "image" here refers essentially to a mipmap level. So separate "images" within a single mipmap level of an array texture do not count as separate, so you will get UB if you try to write to one while reading from another. <a href="/opengl/View_texture" class="mw-redirect" title="View texture">View textures</a> can help resolve this, as you can get an array layer to count as a separate image.</div>
+<p>Do not do this. What you will get is undefined behavior.
+</p><p>OpenGL OpenGL 4.5<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_barrier.txt">ARB_texture_barrier</a> reduces the cases of feedback loops to <a href="/opengl/Texture_Barrier" class="mw-redirect" title="Texture Barrier">just reading/writing from the same pixels, and even allows a limited ability to read/write the same pixels</a>.
+</p>
+<h2><span class="mw-headline" id="Pseudo_Implementation">Pseudo Implementation</span></h2>
+<p>A <b>pseudo</b> implementation will make framebuffers much easier to understand. 
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">Framebuffer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">map</span><span class="o">&lt;</span><span class="n">GLenum</span><span class="p">,</span><span class="w"> </span><span class="n">Attachment</span><span class="o">&gt;</span><span class="w"> </span><span class="n">attachments</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GLenum</span><span class="w"> </span><span class="n">draw_buffers</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">GL_COLOR_ATTACHMENT0</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NONE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NONE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NONE</span><span class="p">,</span><span class="w"> </span><span class="p">....</span><span class="w"> </span><span class="p">};</span>
+<span class="w">  </span><span class="n">GLenum</span><span class="w"> </span><span class="n">read_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GL_COLOR_ATTACHMENT0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>Where Attachment can be one of
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">TextureAttachment</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Attachment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">texture_id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GLenum</span><span class="w"> </span><span class="n">texture_target</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">mip_level</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">layer</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="nc">RenderbufferAttachment</span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">Attachment</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">renderbuffer_id</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Glenum</span><span class="w"> </span><span class="n">renderbuffer_target</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p>Binding a framebuffer conceptually works like this
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">GLContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">read_framebuffer_binding</span><span class="p">;</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">draw_framebuffer_binding</span><span class="o">:</span>
+<span class="p">}</span>
+
+<span class="n">GLContext</span><span class="w"> </span><span class="n">currentContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+
+<span class="n">glBindFramebuffer</span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">framebuffer_id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">GL_READ_FRAMEBUFFER</span><span class="p">:</span>
+<span class="w">      </span><span class="n">currentContext</span><span class="p">.</span><span class="n">read_framebuffer_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">framebuffer_id</span><span class="p">;</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">GL_DRAW_FRAMEBUFFER</span><span class="p">:</span>
+<span class="w">      </span><span class="n">currentContext</span><span class="p">.</span><span class="n">draw_framebuffer_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">framebuffer_id</span><span class="p">;</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">GL_FRAMEBUFFER</span><span class="p">:</span>
+<span class="w">      </span><span class="n">currentContext</span><span class="p">.</span><span class="n">read_framebuffer_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">framebuffer_id</span><span class="p">;</span>
+<span class="w">      </span><span class="n">currentContext</span><span class="p">.</span><span class="n">draw_framebuffer_binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">framebuffer_id</span><span class="p">;</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p>Attaching a texture or renderbuffer works like this
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Pseudo code</span>
+<span class="n">Framebuffer</span><span class="w"> </span><span class="nf">getFramebufferByTarget</span><span class="p">(</span><span class="n">GLenum</span><span class="w"> </span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">GLuint</span><span class="w"> </span><span class="n">framebuffer_id</span><span class="p">;</span>
+<span class="w">  </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">target</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">GL_READ_FRAMEBUFFER</span><span class="p">:</span>
+<span class="w">      </span><span class="n">framebuffer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentContext</span><span class="p">.</span><span class="n">read_framebuffer_binding</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">GL_DRAW_FRAMEBUFFER</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">GL_FRAMEBUFFER</span><span class="p">:</span>
+<span class="w">      </span><span class="n">framebuffer_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">currentContext</span><span class="p">.</span><span class="n">draw_framebuffer_binding</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">framebuffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFramebufferById</span><span class="p">(</span><span class="n">framebuffer_id</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">framebuffer</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">glFramebufferTexture2D</span><span class="p">(</span><span class="n">GLenum</span><span class="w"> </span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">attachmentPoint</span><span class="p">,</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">textarget</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLuint</span><span class="w"> </span><span class="n">texture</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLint</span><span class="w"> </span><span class="n">mip_level</span><span class="err">​</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">frame_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFramebufferByTarget</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+<span class="w">  </span><span class="n">frame_buffer</span><span class="p">.</span><span class="n">attachments</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">attachmentPoint</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TextureAttachment</span><span class="p">(</span><span class="n">textarget</span><span class="p">,</span><span class="w"> </span><span class="n">texture</span><span class="p">,</span><span class="w"> </span><span class="n">mip_level</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="n">glFramebufferTextureLayer</span><span class="p">(</span><span class="n">GLenum</span><span class="w"> </span><span class="n">target</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">attachment</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLuint</span><span class="w"> </span><span class="n">texture</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLint</span><span class="w"> </span><span class="n">mip_level</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLint</span><span class="w"> </span><span class="n">layer</span><span class="err">​</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">frame_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFramebufferByTarget</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+<span class="w">  </span><span class="n">frame_buffer</span><span class="p">.</span><span class="n">attachments</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">TextureAttachment</span><span class="p">(</span><span class="n">getTextureTargetFromTexture</span><span class="p">(</span><span class="n">texture</span><span class="p">),</span><span class="w"> </span><span class="n">texture</span><span class="p">,</span><span class="w"> </span><span class="n">mip_level</span><span class="p">,</span><span class="w"> </span><span class="n">layer</span><span class="p">));</span>
+<span class="p">}</span>
+
+<span class="n">glFramebufferRenderbuffer</span><span class="p">(</span><span class="n">GLenum</span><span class="w"> </span><span class="n">target</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">attachment</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">renderbuffertarget</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLuint</span><span class="w"> </span><span class="n">renderbuffer</span><span class="err">​</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">frame_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFramebufferByTarget</span><span class="p">(</span><span class="n">target</span><span class="p">);</span>
+<span class="w">  </span><span class="n">frame_buffer</span><span class="p">.</span><span class="n">attachments</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="n">attachment</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RenderbufferAttachment</span><span class="p">(</span><span class="n">renderbuffertarget</span><span class="p">,</span><span class="w"> </span><span class="n">renderbuffer</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+<p>Setting the draw buffers and read buffer settings works like this
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Pseudo code</span>
+<span class="n">glDrawBuffers</span><span class="p">(</span><span class="n">GLsizei</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="o">*</span><span class="n">bufs</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">frame_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFramebufferByTarget</span><span class="p">(</span><span class="n">GL_DRAW_FRAMEBUFFER</span><span class="p">);</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">GLsizei</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">frame_buffer</span><span class="p">.</span><span class="n">draw_buffers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bufs</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">GLsizei</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">max_draw_buffers</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">frame_buffer</span><span class="p">.</span><span class="n">draw_buffers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GL_NONE</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">glReadBuffer</span><span class="p">(</span><span class="n">GLenum</span><span class="w"> </span><span class="n">mode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Framebuffer</span><span class="w"> </span><span class="n">frame_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getFramebufferByTarget</span><span class="p">(</span><span class="n">GL_READ_FRAMEBUFFER</span><span class="p">);</span>
+<span class="w">  </span><span class="n">frame_buffer</span><span class="p">.</span><span class="n">read_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mode</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p>Conceptually it's super easy.
+</p>
+<h2><span class="mw-headline" id="EXT_Framebuffer_object">EXT_Framebuffer_object</span></h2>
+<table class="metadata plainlinks stub" style="background: #FA8; border: 1px solid black;"><tbody><tr>
+<td><b>Warning:</b> This section describes <a href="/opengl/Legacy_OpenGL" title="Legacy OpenGL">legacy OpenGL APIs</a> that have been removed from <a href="/opengl/Core_And_Compatibility_in_Contexts" class="mw-redirect" title="Core And Compatibility in Contexts">core OpenGL 3.1 and above</a> (they are only <a href="/opengl/Deprecation" title="Deprecation">deprecated</a> in OpenGL 3.0). It is recommended that you not use this functionality in your programs.</td></tr></tbody></table>
+<p>The original form of FBOs was this extension. It lacked quite a bit of the above functionality, which later extensions granted. The biggest difference is that it has more hard-coded restrictions on framebuffer completeness. All of the images have to be the same size in the EXT spec, for example. Some of these limitations were hardware-based. So there may be hardware that supports EXT_FBO and not ARB_FBO, even thought they support things like EXT_FBO_blit and other parts of ARB_FBO.
+</p>
+<h2><span class="mw-headline" id="See_Also">See Also</span></h2>
+<ul><li><a href="/opengl/Framebuffer_Object_Extension_Examples" title="Framebuffer Object Extension Examples">Framebuffer Object Extension Examples</a> Note that these examples use the (old) syntax for the extension, not the core functionality.</li></ul>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Framebuffer_Objects" title="Category:Core API Ref Framebuffer Objects">Category:Core API Ref Framebuffer Objects</a>: Reference documentation for functions that deal with framebuffer objects and renderbuffer objects.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318175539
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.126 seconds
+Real time usage: 0.133 seconds
+Preprocessor visited node count: 2535/1000000
+Post‐expand include size: 30277/2097152 bytes
+Template argument size: 12900/2097152 bytes
+Highest expansion depth: 10/100
+Expensive parser function count: 5/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 17810/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   70.850      1 -total
+ 36.56%   25.903      2 Template:Infobox_feature
+ 33.13%   23.471      2 Template:Infobox2
+ 11.98%    8.487     20 Template:Infobox/longrow
+  9.21%    6.523     20 Template:Infobox/shortrow
+  8.69%    6.159      2 Template:Note
+  8.56%    6.063      3 Template:Funcdef
+  8.32%    5.898      4 Template:Note_style
+  8.09%    5.728     17 Template:Apifunc
+  6.53%    4.626     63 Template:Param
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1511-0!canonical and timestamp 20260318175539 and revision id 14961. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Framebuffer_Object&amp;oldid=14961">https://wikis.khronos.org/opengl/index.php?title=Framebuffer_Object&amp;oldid=14961</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li><li><a href="/opengl/Category:Framebuffer" title="Category:Framebuffer">Framebuffer</a></li><li><a href="/opengl/Category:Missing_DSA" title="Category:Missing DSA">Missing DSA</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

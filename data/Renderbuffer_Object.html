@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Renderbuffer Object - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Renderbuffer_Object rootpage-Renderbuffer_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Renderbuffer Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p><b>Renderbuffer Objects</b> are <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">OpenGL Objects</a> that contain images. They are created and used specifically with <a href="/opengl/Framebuffer_Objects" class="mw-redirect" title="Framebuffer Objects">Framebuffer Objects</a>. They are optimized for use as render targets, while <a href="/opengl/Textures" class="mw-redirect" title="Textures">Textures</a> may not be, and are the logical choice when you <i>do not need to sample</i> (i.e. in a post-pass shader) from the produced image. If you need to resample (such as when reading depth back in a second shader pass), use <a href="/opengl/Textures" class="mw-redirect" title="Textures">Textures</a> instead. Renderbuffer objects also natively accommodate <a href="/opengl/Multisampling" title="Multisampling">Multisampling</a> (MSAA).
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Creation"><span class="tocnumber">1</span> <span class="toctext">Creation</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Uses"><span class="tocnumber">2</span> <span class="toctext">Uses</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#See_also"><span class="tocnumber">3</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Reference"><span class="tocnumber">4</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Creation">Creation</span></h2>
+<p>Renderbuffer objects are standard OpenGL objects. So they have the usual <span class="tpl-code"><a href="/opengl/GLAPI/glGenRenderbuffers" title="GLAPI/glGenRenderbuffers">glGenRenderbuffers/glDeleteRenderbuffers</a></span> creation and destruction functions. They also have the usual <span class="tpl-code"><a href="/opengl/GLAPI/glBindRenderbuffer" title="GLAPI/glBindRenderbuffer">glBindRenderbuffer</a></span> function to bind them. It takes a target parameter, but the only viable target is <span class="tpl-enum">GL_RENDERBUFFER</span>.
+</p><p>Similar to <a href="/opengl/Textures" class="mw-redirect" title="Textures">Texture objects</a>, renderbuffers are empty at initialization. Before you can bind them to a <a href="/opengl/Framebuffer_Objects" class="mw-redirect" title="Framebuffer Objects">Framebuffer Object</a>, you must allocate storage for the renderbuffer. To do this, simply call:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glRenderbufferStorage" title="GLAPI/glRenderbufferStorage">glRenderbufferStorage</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>);
+</pre>
+<p>The <span class="tpl-param">target​</span> must be <span class="tpl-code">GL_RENDERBUFFER</span>, the same target you bound the renderbuffer object to. The <span class="tpl-param">internalformat​</span> should be an internal format used for images. The article on <a href="/opengl/Image_Formats" class="mw-redirect" title="Image Formats">Image Formats</a> elaborates in detail on the meaning of these formats. The <span class="tpl-param">width​</span> and <span class="tpl-param">height​</span> are the width and height of the renderbuffer.
+</p><p>If you wish to create a <a href="/opengl/Multisampling" title="Multisampling">multisample</a> renderbuffer, you use a slightly different function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glRenderbufferStorageMultisample" title="GLAPI/glRenderbufferStorageMultisample">glRenderbufferStorageMultisample</a></span>(GLenum <span class="tpl-param">target​</span>, GLsizei <span class="tpl-param">samples​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>);
+</pre>
+<p>This works exactly like the original except for the <span class="tpl-param">samples​</span> parameter. Indeed, it works <i>exactly</i> like the original if you pass 0 for <span class="tpl-param">samples​</span>. The <span class="tpl-param">samples​</span> parameter is the number of samples in the buffer. It must be less than <span class="tpl-enum">GL_MAX_SAMPLES</span>.
+</p><p>Similar to <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage2D" title="GLAPI/glTexImage2D">glTexImage2D</a></span>, calling this function on a renderbuffer that has already had this function called on it will cause it to deallocate any resources associated with the previous call and allocate new storage.
+</p>
+<dl><dd><b>Note:</b> You are <i>strongly</i> advised not to do this. If you need a new renderbuffer, just delete the old object and create a new one. Recreating a renderbuffer with the same object name can cause completeness problems, particularly if it is attached to another object at the time.</dd></dl>
+<h2><span class="mw-headline" id="Uses">Uses</span></h2>
+<p>You may have noticed that, unlike <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage2D" title="GLAPI/glTexImage2D">glTexImage2D</a></span>, there are no parameters in these creation functions to actually <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">initialize the data</a>. The contents of the renderbuffer are undefined (it could be holding old data, or zeroed out, or anything) There is also no function to upload data to the renderbuffer like <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage2D" title="GLAPI/glTexImage2D">glTexImage2D</a></span>.
+</p><p>No, the only way to use a renderbuffer object is to attach it to a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Object</a>. After you bind that FBO to the context, and set up the draw or read buffers appropriately, you can use <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">pixel transfer</a> operations to read and write to it. Of course, you can also render to it. The standard <span class="tpl-code"><a href="/opengl/GLAPI/glClear" title="GLAPI/glClear">glClear</a></span> function and its friends like <span class="tpl-code"><a href="/opengl/GLAPI/glClearBuffer" title="GLAPI/glClearBuffer">glClearBuffer</a></span> will also clear the appropriate buffer.
+</p>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li><a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Object</a></li></ul>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Framebuffer_Objects" title="Category:Core API Ref Framebuffer Objects">Category:Core API Ref Framebuffer Objects</a>: Reference documentation for functions that manage renderbuffers and framebuffer objects.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260319032437
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.029 seconds
+Real time usage: 0.031 seconds
+Preprocessor visited node count: 304/1000000
+Post‐expand include size: 2189/2097152 bytes
+Template argument size: 888/2097152 bytes
+Highest expansion depth: 5/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   13.425      1 -total
+ 44.82%    6.017      9 Template:Apifunc
+ 21.38%    2.871     16 Template:Param
+ 21.20%    2.847     10 Template:Code
+ 11.73%    1.575      2 Template:Enum
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1517-0!canonical and timestamp 20260319032437 and revision id 14965. Rendering was triggered because: diff-page
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Renderbuffer_Object&amp;oldid=14965">https://wikis.khronos.org/opengl/index.php?title=Renderbuffer_Object&amp;oldid=14965</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:Framebuffer" title="Category:Framebuffer">Framebuffer</a></li><li><a href="/opengl/Category:Missing_DSA" title="Category:Missing DSA">Missing DSA</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

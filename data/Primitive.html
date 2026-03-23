@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Primitive - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Primitive rootpage-Primitive skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Primitive</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><b>Primitive</b></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+<p>The term <b>Primitive</b> in OpenGL is used to refer to two similar but separate concepts. The first meaning of "Primitive" refers to the interpretation scheme used by OpenGL to determine what a stream of vertices represents when being rendered e.g. "GL_POINTS". Such sequences of vertices can be arbitrarily long.
+</p><p>The other meaning of "Primitive", also referred to as a "base primitive", refers to the <i>result</i> of the interpretation of a vertex stream, as part of <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>. Therefore, processing a vertex stream by one of these primitive interpretations results in an ordered sequence of primitives. The individual primitives are sometimes called "base primitives".
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Vertex_stream"><span class="tocnumber">1</span> <span class="toctext">Vertex stream</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Point_primitives"><span class="tocnumber">2</span> <span class="toctext">Point primitives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Point_fragment_inputs"><span class="tocnumber">2.1</span> <span class="toctext">Point fragment inputs</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Multisampling_and_fading"><span class="tocnumber">2.2</span> <span class="toctext">Multisampling and fading</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Line_primitives"><span class="tocnumber">3</span> <span class="toctext">Line primitives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Line_width"><span class="tocnumber">3.1</span> <span class="toctext">Line width</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Triangle_primitives"><span class="tocnumber">4</span> <span class="toctext">Triangle primitives</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Triangle_facing"><span class="tocnumber">4.1</span> <span class="toctext">Triangle facing</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Quads"><span class="tocnumber">5</span> <span class="toctext">Quads</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#Adjacency_primitives"><span class="tocnumber">6</span> <span class="toctext">Adjacency primitives</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Patches"><span class="tocnumber">7</span> <span class="toctext">Patches</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Provoking_vertex"><span class="tocnumber">8</span> <span class="toctext">Provoking vertex</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Primitive_restart"><span class="tocnumber">9</span> <span class="toctext">Primitive restart</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#See_Also"><span class="tocnumber">10</span> <span class="toctext">See Also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Vertex_stream">Vertex stream</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a><i></i></div>
+<p>A vertex stream is an ordered list of vertices. Where this stream comes from depends on when <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a> is taking place and which stages of the rendering pipeline are involved. Vertex streams can come from:
+</p>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a> commands, defined via <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a> and processed by a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>. The primitive type is the type specified by the rendering command.</li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a>, after the execution of the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a>. The primitive type is defined by the <a href="/opengl/Tessellation#Abstract_patch" title="Tessellation">abstract patch type</a>, specified in the TES.</li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> primitive outputs. The primitive type is <a href="/opengl/Geometry_Shader#Primitive_in.2Fout_specification" title="Geometry Shader">specified by the GS</a>.</li></ul>
+<p>The primitive associated with the stream defines how that stream is broken down into an ordered sequence of base primitives: points, lines, or triangles.
+</p>
+<h2><span class="mw-headline" id="Point_primitives">Point primitives</span></h2>
+<p>There is only one kind of point primitive: <span class="tpl-enum">GL_POINTS</span>. This will cause OpenGL to interpret each individual vertex in the stream as a point. Points that have a <a href="/opengl/Texture" title="Texture">Texture</a> mapped onto them are often called "point sprites".
+</p><p>Points are rasterized as screen-aligned squares of a given window-space size. The size can be given in two methods: by the <a href="/opengl/Vertex_Processing" title="Vertex Processing">last active vertex processing shader stage</a> or by the context's state. To set the point size from a shader, enable the <a href="/opengl/GLAPI/glEnable#(GL_PROGRAM_POINT_SIZE)" title="GLAPI/glEnable">glEnable with argument <span class="tpl-enum">(GL_PROGRAM_POINT_SIZE)</span></a> to set the point size from the program. If <span class="tpl-enum">GL_PROGRAM_POINT_SIZE</span> is enabled, then the point size comes from the output variable <span class="tpl-code">float gl_PointSize</span>. If it is disabled, the point size is constant for all points in a primitive, and is set by the <span class="tpl-code"><a href="/opengl/GLAPI/glPointSize" title="GLAPI/glPointSize">glPointSize</a></span> function.
+</p><p>The size defines the number of window pixels that each side of the point's square takes up. The point's position defines the <i>center</i> of that square.
+</p><p>Regardless of how the point size is defined, it must be greater than 0, or else undefined behavior results. There is an implementation-defined range for point sizes, and the size given by either method is clamped to that range. You can query the range with <span class="tpl-enum">GL_POINT_SIZE_RANGE</span> (returns 2 floats). There is also a point granularity that you can query with <span class="tpl-enum">GL_POINT_SIZE_GRANULARITY</span>; the implementation will clamp sizes to the nearest multiple of the granularity.
+</p>
+<h3><span class="mw-headline" id="Point_fragment_inputs">Point fragment inputs</span></h3>
+<p>Points are defined by only a single vertex. Therefore, every <a href="/opengl/Fragment" title="Fragment">Fragment</a> generated by rasterizing that point is given the same user-defined input values. However, it is useful to know exactly where within the point a particular <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> invocation is. While the specific position of the fragment, <span class="tpl-code">gl_FragCoord</span> will change, per the fragment's location, it would be more useful to know where one is relative to the point primitive itself.
+</p><p>To assist in this, the fragment shader can use the <a href="/opengl/Fragment_Shader#System_inputs" title="Fragment Shader">built-in input</a> <span class="tpl-code">vec2 gl_PointCoord</span>. This gives coordinates on the range [0, 1]. The location of (0, 0) depends on the point parameter setting for <span class="tpl-enum">GL_POINT_SPRITE_COORD_ORIGIN</span>: if it is set to <span class="tpl-enum">GL_LOWER_LEFT</span>, then (0, 0) is the bottom-left coordinate. While if it is <span class="tpl-enum">GL_UPPER_LEFT</span>, then (0, 0) is the top-left coordinate. The default is <span class="tpl-enum">GL_UPPER_LEFT</span>, which fits with OpenGL's usual right-handed coordinate systems.
+</p>
+<h3><span class="mw-headline" id="Multisampling_and_fading">Multisampling and fading</span></h3>
+<table class="metadata plainlinks stub" style="background: #CCF; border: 1px solid black;"><tbody><tr>
+<td>TODO: This section needs to be filled in.</td></tr></tbody></table>
+<p>When using <a href="/opengl/Multisample" class="mw-redirect" title="Multisample">Multisample</a> rendering and drawing points, the <a href="/opengl/Fragment_Shader_Output" class="mw-redirect" title="Fragment Shader Output">fragment shader output</a> variables can have their alphas adjusted to represent the point "fading" away.
+</p>
+<h2><span class="mw-headline" id="Line_primitives">Line primitives</span></h2>
+<p>There are 3 kinds of line primitives, based on different interpretations of a vertex stream.
+</p>
+<ul><li><span class="tpl-enum">GL_LINES</span>: Vertices 0 and 1 are considered a line. Vertices 2 and 3 are considered a line. And so on. If the user specifies a non-even number of vertices, then the extra vertex is ignored.</li>
+<li><span class="tpl-enum">GL_LINE_STRIP</span>: The adjacent vertices are considered lines. Thus, if you pass <i>n</i> vertices, you will get <i>n</i>-1 lines. If the user only specifies 1 vertex, the drawing command is ignored.</li>
+<li><span class="tpl-enum">GL_LINE_LOOP</span>: As line strips, except that the first and last vertices are also used as a line. Thus, you get <i>n</i> lines for <i>n</i> input vertices. If the user only specifies 1 vertex, the drawing command is ignored. The line between the first and last vertices happens after all of the previous lines in the sequence.</li></ul>
+<h3><span class="mw-headline" id="Line_width">Line width</span></h3>
+<table class="metadata plainlinks stub" style="background: #CCF; border: 1px solid black;"><tbody><tr>
+<td>TODO: This section needs to be filled in.</td></tr></tbody></table>
+<p>Lines are rasterized as a screen-aligned quad of uniform width.
+</p>
+<h2><span class="mw-headline" id="Triangle_primitives">Triangle primitives</span></h2>
+<p>A triangle is a primitive formed by 3 vertices. It is the 2D shape with the smallest number of vertices, so renderers are typically designed to render them. Since it is created from only 3 vertices, it is also guaranteed to be planar.
+</p><p>There are 3 kinds of triangle primitives, based again on different interpretations of the vertex stream:
+</p>
+<ul><li><span class="tpl-enum">GL_TRIANGLES</span>: Vertices 0, 1, and 2 form a triangle. Vertices 3, 4, and 5 form a triangle. And so on.</li>
+<li><span class="tpl-enum">GL_TRIANGLE_STRIP</span>: Every group of 3 adjacent vertices forms a triangle. The <a href="/opengl/Face_Culling" title="Face Culling">face direction</a> of the strip is determined by the winding of the first triangle. Each successive triangle will have its effective face order reversed, so the system compensates for that by testing it in the opposite way. A vertex stream of <i>n</i> length will generate <i>n</i>-2 triangles.</li>
+<li><span class="tpl-enum">GL_TRIANGLE_FAN</span>: The first vertex is always held fixed. From there on, every group of 2 adjacent vertices form a triangle with the first. So with a vertex stream, you get a list of triangles like so: (0, 1, 2) (0, 2, 3), (0, 3, 4), etc. A vertex stream of <i>n</i> length will generate <i>n</i>-2 triangles.</li></ul>
+<p>Any incomplete primitives will be ignored. For example, using <span class="tpl-enum">GL_TRIANGLES</span> with a number of vertices not divisible by 3 will ignore the incomplete primitive at the end. Rendering with less than 3 vertices will result in nothing rendering.
+</p><p>Here are some examples that can be more illustrative:
+</p><p><span class="tpl-enum">GL_TRIANGLES</span>:
+</p>
+<pre>Indices:     0 1 2 3 4 5 ...
+Triangles:  {0 1 2}
+                  {3 4 5}
+</pre>
+<p><span class="tpl-enum">GL_TRIANGLE_STRIP</span>:
+</p>
+<pre>Indices:     0 1 2 3 4 5 ...
+Triangles:  {0 1 2}
+              {1 2 3}  drawing order is (2 1 3) to maintain proper winding
+                {2 3 4}
+                  {3 4 5}  drawing order is (4 3 5) to maintain proper winding
+</pre>
+<p><span class="tpl-enum">GL_TRIANGLE_FAN</span>:
+</p>
+<pre>Indices:     0 1 2 3 4 5 ...
+Triangles:  {0 1 2}
+            {0} {2 3}
+            {0}   {3 4}
+            {0}     {4 5}
+</pre>
+<h3><span class="mw-headline" id="Triangle_facing">Triangle facing</span></h3>
+<p>The <a href="/opengl/Winding_Order" class="mw-redirect" title="Winding Order">Winding Order</a> determines the facing of a triangle. The triangle's facing can be used to <a href="/opengl/Face_Culling" title="Face Culling">cull faces based on whether it is the front or back face</a>. Even if face culling is not used, the triangle's face can be used in <a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Tests</a>, and part of a <a href="/opengl/Fragment" title="Fragment">Fragment</a>'s data is a boolean value that says whether the fragment was generated from the front or back face of the triangle. This allows the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> to do different processing based on the triangle's facing.
+</p><p>Facing only matters for triangle primitive rasterization. All non-triangle primitive types are considered to rasterize the front face, and face culling only works on triangles.
+</p>
+<h2><span class="mw-headline" id="Quads">Quads</span></h2>
+<table class="metadata plainlinks stub" style="background: #FA8; border: 1px solid black;"><tbody><tr>
+<td><b>Warning:</b> This section describes <a href="/opengl/Legacy_OpenGL" title="Legacy OpenGL">legacy OpenGL APIs</a> that have been removed from <a href="/opengl/Core_And_Compatibility_in_Contexts" class="mw-redirect" title="Core And Compatibility in Contexts">core OpenGL 3.1 and above</a> (they are only <a href="/opengl/Deprecation" title="Deprecation">deprecated</a> in OpenGL 3.0). It is recommended that you not use this functionality in your programs.</td></tr></tbody></table>
+<p>A quad is a 4 vertex quadrilateral primitive. The four vertices are expected to be coplanar; failure to do so can lead to undefined results.
+</p><p>A quad is typically rasterized as a pair of triangles. This is not defined by the GL spec, but it is allowed by it. This can lead to some artifacts due to how vertex/geometry shader outputs are interpolated over the 2 generated triangles.
+</p>
+<ul><li><span class="tpl-enum">GL_QUADS</span>: Vertices 0-3 form a quad, vertices 4-7 form another, and so on. The vertex stream must be a number of vertices divisible by 4 to work.</li>
+<li><span class="tpl-enum">GL_QUAD_STRIP</span>: Similar to triangle strips, a quad strip uses adjacent edges to form the next quad. In the case of quads, the third and fourth vertices of one quad are used as the edge of the next quad. So vertices 0-3 are a quad, 2-5 are a quad, and so on. A vertex stream of <i>n</i> length will generate (<i>n</i> - 2) / 2 quads. As with triangle strips, the winding order of quads is changed for every other quad.</li></ul>
+<h2><span class="mw-headline" id="Adjacency_primitives">Adjacency primitives</span></h2>
+<table class="metadata plainlinks stub" style="background: #CCF; border: 1px solid black;"><tbody><tr>
+<td>TODO: This section needs to be filled in.</td></tr></tbody></table>
+<p>These are special primitives that are expected to be used specifically with <a href="/opengl/Geometry_Shaders" class="mw-redirect" title="Geometry Shaders">Geometry Shaders</a> (GS). These primitives give the geometry shader more vertices to work with for each input primitive. Normally, when using any of the above primitives, the GS gets merely one of the base type. If you use a GS with a <span class="tpl-enum">GL_TRIANGLE_STRIP</span>, each execution of the GS will only see the 3 vertices of one particular triangle. These special primitive modes allow the GS to access vertex data for adjacent triangles.
+</p>
+<h2><span class="mw-headline" id="Patches">Patches</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation#Patches" title="Tessellation">Tessellation#Patches</a><i></i></div>
+<p>The <span class="tpl-enum">GL_PATCHES</span> primitive type can only be used when <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> is active. It is a primitive with a user-defined number of vertices, which is then tessellated based on the <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">control</a> and <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">evaluation shaders</a> into regular points, lines, or triangles, depending on the TES's settings.
+</p><p>The number of vertices per patch is defined by calling <span class="tpl-code"><a href="/opengl/GLAPI/glPatchParameter" title="GLAPI/glPatchParameter">glPatchParameteri</a></span> with <span class="tpl-enum">GL_PATCH_VERTICES</span> and some number of vertices, which must be less than <span class="tpl-enum">GL_MAX_PATCH_VERTICES</span>. If the number of vertices in a patch is <span class="tpl-param">v​</span>, then the system will interpret every <span class="tpl-param">v​</span> vertices as a separate patch, much like <span class="tpl-enum">GL_LINES</span> and <span class="tpl-enum">GL_TRIANGLES</span>. So if you want strip-like behavior, you will need to use indices.
+</p><p>As with other primitive types that take multiple values from the stream, incomplete patches are ignored. So if you render with a number of vertices not divisible by <span class="tpl-param">v​</span>, then those last vertices are ignored.
+</p>
+<h2><span class="mw-headline" id="Provoking_vertex">Provoking vertex</span></h2>
+<p>One of the vertices in an output primitive is designated the "provoking vertex". This vertex has special meanings for the primitive. For example, when using <a href="/opengl/Interpolation_qualifier" class="mw-redirect" title="Interpolation qualifier">flat-shading on output variables</a>, only outputs from the provoking vertex are used; every fragment generated by that primitive gets it's input from the output of the provoking vertex.
+</p><p>Each primitive type defines which index in the vertex stream defines the provoking vertex for a particular output primitive. There is a way to change the provoking vertex convention (primarily for <a href="/opengl/D3D_Compatibility" class="mw-redirect" title="D3D Compatibility">D3D Compatibility</a>):
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glProvokingVertex" title="GLAPI/glProvokingVertex">glProvokingVertex</a></span>(GLenum <span class="tpl-param">provokeMode​</span>);
+</pre>
+<p><span class="tpl-param">provokeMode​</span> can be one of the two enumerators listed in the following table; the default is <span class="tpl-enum">GL_LAST_VERTEX_CONVENTION</span>. This table defines which vertex index (using <b>one-based indices</b>) is the provoking vertex for a particular primitive type. The <span class="tpl-param">i​</span> represents the <b>one-based index</b> of the primitive being drawn. For example, if you draw <span class="tpl-enum">GL_TRIANGLE_FANS</span> with 5 vertices, that will yield 3 primitives, so <span class="tpl-param">i​</span> will range over [1, 3]. Thus, when using last vertex conventions, the provoking vertex of primitive index 2 will be the vertex index 4 (the zero-based index for the vertex is 3).
+</p><p><b>Again, this table uses <i>one-based indices</i>.</b>
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>Primitive type
+</th>
+<th><span class="tpl-enum">GL_FIRST_VERTEX_CONVENTION</span>
+</th>
+<th><span class="tpl-enum">GL_LAST_VERTEX_CONVENTION</span>
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_POINTS</span>
+</td>
+<td><span class="tpl-param">i​</span>
+</td>
+<td><span class="tpl-param">i​</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINES</span>
+</td>
+<td>2<span class="tpl-param">i​</span> - 1
+</td>
+<td>2<span class="tpl-param">i​</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINE_LOOP</span>
+</td>
+<td><span class="tpl-param">i​</span>
+</td>
+<td><span class="tpl-param">i​</span> + 1, if <span class="tpl-param">i​</span> &lt; the number of vertices.
+<p>1 if <span class="tpl-param">i​</span> is equal to the number of vertices.
+</p>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINE_STRIP</span>
+</td>
+<td><span class="tpl-param">i​</span>
+</td>
+<td><span class="tpl-param">i​</span> + 1
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TRIANGLES</span>
+</td>
+<td>3<span class="tpl-param">i​</span> - 2
+</td>
+<td>3<span class="tpl-param">i​</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TRIANGLE_STRIP</span>
+</td>
+<td><span class="tpl-param">i​</span>
+</td>
+<td><span class="tpl-param">i​</span> + 2
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TRIANGLE_FAN</span>
+</td>
+<td><span class="tpl-param">i​</span> + 1
+</td>
+<td><span class="tpl-param">i​</span> + 2
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINES_ADJACENCY</span>
+</td>
+<td>4<span class="tpl-param">i​</span> - 2
+</td>
+<td>4<span class="tpl-param">i​</span> - 1
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_LINE_STRIP_ADJACENCY</span>
+</td>
+<td><span class="tpl-param">i​</span> + 1
+</td>
+<td><span class="tpl-param">i​</span> + 2
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TRIANGLES_ADJACENCY</span>
+</td>
+<td>6<span class="tpl-param">i​</span> - 5
+</td>
+<td>6<span class="tpl-param">i​</span> - 1
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TRIANGLE_STRIP_ADJACENCY</span>
+</td>
+<td>2<span class="tpl-param">i​</span> - 1
+</td>
+<td>2<span class="tpl-param">i​</span> + 3
+</td></tr></tbody></table>
+<p>Patches do not have a provoking vertex, since <span class="tpl-enum">GL_PATCHES</span> can only be used with <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a>. This process transforms path primitives into other kinds of primitives, so by the time the rasterizer sees it, it will not be a patch anymore. The output primitives from the TES do have provoking vertices, but which vertex is the provoking one for a particular line/triangle is implementation-defined, and therefore cannot be relied upon. So using tessellation with <span class="tpl-code">flat</span> interpolation is a dubious prospect if different primitives need different values.
+</p>
+<h2><span class="mw-headline" id="Primitive_restart">Primitive restart</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Rendering#Primitive_Restart" title="Vertex Rendering">Vertex Rendering#Primitive Restart</a><i></i></div>
+<p>Setting a primitive restart index will cause the interpretation of the primitive to be reset when that index is reached in the vertex stream. The vertex data at that index will <i>not</i> be processed, nor will a vertex be inserted into the vertex stream for that index value.
+</p>
+<h2><span class="mw-headline" id="See_Also">See Also</span></h2>
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li></ul></li>
+<li><a href="/opengl/index.php?title=Point_Rasterization&amp;action=edit&amp;redlink=1" class="new" title="Point Rasterization (page does not exist)">Point Rasterization</a></li>
+<li><a href="/opengl/index.php?title=Line_Rasterization&amp;action=edit&amp;redlink=1" class="new" title="Line Rasterization (page does not exist)">Line Rasterization</a></li>
+<li><a href="/opengl/index.php?title=Triangle_Rasterization&amp;action=edit&amp;redlink=1" class="new" title="Triangle Rasterization (page does not exist)">Triangle Rasterization</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318162333
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.086 seconds
+Real time usage: 0.092 seconds
+Preprocessor visited node count: 1163/1000000
+Post‐expand include size: 8282/2097152 bytes
+Template argument size: 2131/2097152 bytes
+Highest expansion depth: 8/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   48.130      1 -total
+ 24.83%   11.949      1 Template:Pipeline_float
+ 20.21%    9.725      1 Template:Pipeline_list
+ 12.47%    6.000     20 Template:Pagelink
+ 10.08%    4.853     43 Template:Enum
+  9.20%    4.428      3 Template:Main
+  8.27%    3.981     31 Template:Param
+  8.00%    3.850      1 Template:Enumapifunc
+  7.79%    3.751      3 Template:Todo
+  6.06%    2.915      1 Template:Deprecated
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1533-0!canonical and timestamp 20260318162333 and revision id 14684. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Primitive&amp;oldid=14684">https://wikis.khronos.org/opengl/index.php?title=Primitive&amp;oldid=14684</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:Vertex_Specification" title="Category:Vertex Specification">Vertex Specification</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Shader Compilation - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"63175036ae183c8432358127","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Shader_Compilation","wgTitle":"Shader Compilation","wgCurRevisionId":14912,"wgRevisionId":14912,"wgArticleId":2537,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","Shaders","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Shader_Compilation","wgRelevantArticleId":2537,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Shader_Compilation rootpage-Shader_Compilation skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Shader Compilation</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><b>Compilation</b></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p><b>Shader Compilation</b> is the term used to describe the process by which <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a> scripts are loaded into OpenGL to be used as <a href="/opengl/Shader" title="Shader"> shaders</a>.  OpenGL has three ways to compile shader text into usable OpenGL objects.  All of these forms of compilation produce a <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">Program Object</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This article contains references to OpenGL 4.x features, such as <a href="/opengl/Tessellation" title="Tessellation">tessellation shaders</a> and <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>. If you are using OpenGL 3.x, you can ignore such references.</div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Shader_and_program_objects"><span class="tocnumber">1</span> <span class="toctext">Shader and program objects</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Shader_object_compilation"><span class="tocnumber">1.1</span> <span class="toctext">Shader object compilation</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Shader_error_handling"><span class="tocnumber">1.2</span> <span class="toctext">Shader error handling</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Program_setup"><span class="tocnumber">1.3</span> <span class="toctext">Program setup</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Before_linking"><span class="tocnumber">1.4</span> <span class="toctext">Before linking</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Program_linking"><span class="tocnumber">1.5</span> <span class="toctext">Program linking</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Linking_and_variables"><span class="tocnumber">1.6</span> <span class="toctext">Linking and variables</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Cleanup"><span class="tocnumber">1.7</span> <span class="toctext">Cleanup</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Example"><span class="tocnumber">1.8</span> <span class="toctext">Example</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Separate_programs"><span class="tocnumber">2</span> <span class="toctext">Separate programs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-11"><a href="#Program_pipelines"><span class="tocnumber">2.1</span> <span class="toctext">Program pipelines</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Rendering"><span class="tocnumber">2.2</span> <span class="toctext">Rendering</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Uniforms_and_pipelines"><span class="tocnumber">2.3</span> <span class="toctext">Uniforms and pipelines</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Examples_of_separate_programs"><span class="tocnumber">2.4</span> <span class="toctext">Examples of separate programs</span></a>
+<ul>
+<li class="toclevel-3 tocsection-15"><a href="#Two_separate_programs_for_vertex_and_fragment_shading"><span class="tocnumber">2.4.1</span> <span class="toctext">Two separate programs for vertex and fragment shading</span></a></li>
+<li class="toclevel-3 tocsection-16"><a href="#Mixing_a_single-_and_a_multi-stage_program"><span class="tocnumber">2.4.2</span> <span class="toctext">Mixing a single- and a multi-stage program</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-17"><a href="#Binary_upload"><span class="tocnumber">3</span> <span class="toctext">Binary upload</span></a>
+<ul>
+<li class="toclevel-2 tocsection-18"><a href="#State_of_the_program"><span class="tocnumber">3.1</span> <span class="toctext">State of the program</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Binary_limitations"><span class="tocnumber">3.2</span> <span class="toctext">Binary limitations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-20"><a href="#SPIR-V_compilation"><span class="tocnumber">4</span> <span class="toctext">SPIR-V compilation</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Entry_points_and_specialization"><span class="tocnumber">4.1</span> <span class="toctext">Entry points and specialization</span></a></li>
+<li class="toclevel-2"><a href="#Linking_SPIR-V"><span class="tocnumber">4.2</span> <span class="toctext">Linking SPIR-V</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-21"><a href="#Error_handling"><span class="tocnumber">5</span> <span class="toctext">Error handling</span></a></li>
+<li class="toclevel-1 tocsection-22"><a href="#Interface_matching"><span class="tocnumber">6</span> <span class="toctext">Interface matching</span></a>
+<ul>
+<li class="toclevel-2 tocsection-23"><a href="#Qualifier_matching"><span class="tocnumber">6.1</span> <span class="toctext">Qualifier matching</span></a></li>
+<li class="toclevel-2 tocsection-24"><a href="#Array_interfaces_and_shader_stages"><span class="tocnumber">6.2</span> <span class="toctext">Array interfaces and shader stages</span></a></li>
+<li class="toclevel-2 tocsection-25"><a href="#Separate_program_matching"><span class="tocnumber">6.3</span> <span class="toctext">Separate program matching</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-26"><a href="#Validation"><span class="tocnumber">7</span> <span class="toctext">Validation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-27"><a href="#Pipeline_validation"><span class="tocnumber">7.1</span> <span class="toctext">Pipeline validation</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Shader_and_program_objects">Shader and program objects</span></h2>
+<p>A <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">Program Object</a> can contain the executable code for all of the <a href="/opengl/Shader" title="Shader">Shader</a> stages, such that all that is needed to render is to bind one program object. Building programs that contain multiple shader stages requires a two-stage compilation process.
+</p><p>This two-stage compilation process mirrors the standard compile/link setup for C and C++ source code. C/C++ text is first fed through a compiler, thus producing an object file. To get the executable code, one or more object files must be linked together.
+</p><p>With this method of program creation, shader text is first fed through a compiler, thus producing a <i>shader object</i>. To get the executable program object, one or more shader objects must be linked together.
+</p>
+<h3><span class="mw-headline" id="Shader_object_compilation">Shader object compilation</span></h3>
+<p>The first step is to create shader objects for each shader that you intend to use and compile them. To create a shader object, you call this function:
+</p>
+<pre>GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShader" title="GLAPI/glCreateShader">glCreateShader</a></span>(GLenum <span class="tpl-param">shaderType​</span>);
+</pre>
+<p>This creates an empty shader object for the shader stage given by given <span class="tpl-param">shaderType​</span>. The shader type must be one of <span class="tpl-enum">GL_VERTEX_SHADER</span>, <span class="tpl-enum">GL_TESS_CONTROL_SHADER</span>, <span class="tpl-enum">GL_TESS_EVALUATION_SHADER</span>, <span class="tpl-enum">GL_GEOMETRY_SHADER</span>, <span class="tpl-enum">GL_FRAGMENT_SHADER</span>, or <span class="tpl-enum">GL_COMPUTE_SHADER</span>. Note that the control and evaluation shaders require GL 4.0 (or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a>), and the compute shader requires GL 4.3 (or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a>).
+</p><p>Once you have a shader object, you will need to give it the actual text string representing the <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> source code. That is done via this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glShaderSource" title="GLAPI/glShaderSource">glShaderSource</a></span>(GLuint <span class="tpl-param">shader​</span>, GLsizei <span class="tpl-param">count​</span>, const GLchar **<span class="tpl-param">string​</span>, const GLint *<span class="tpl-param">length​</span>);
+</pre>
+<p>This function takes the array of strings, given by <span class="tpl-param">string​</span> and stores it into <span class="tpl-param">shader​</span>. Any previously stored strings are removed. <span class="tpl-param">count​</span> is the number of individual strings. OpenGL will copy these strings into internal memory.
+</p><p>When the shader is compiled, it will be compiled as if all of the given strings were concatenated end-to-end. This makes it easy for the user to load most of a shader from a file, but to have a standardized preamble that is prepended to some group of shaders.
+</p><p>The <span class="tpl-param">length​</span> can be either NULL or an array of <span class="tpl-param">count​</span> integers. These are the lengths of the corresponding strings in the <span class="tpl-param">string​</span> array. This allows you to use non-NULL-terminated strings. If you pass NULL, then OpenGL will assume all of the strings are NULL-terminated and will therefore compute the length in the usual way.
+</p><p>Once shader strings have been set into a shader object, it can be compiled with this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glCompileShader" title="GLAPI/glCompileShader">glCompileShader</a></span>(GLuint <span class="tpl-param">shader​</span>);
+</pre>
+<p>It compiles the given shader.
+</p>
+<h3><span class="mw-headline" id="Shader_error_handling">Shader error handling</span></h3>
+<p>Compilation may or may not succeed. Shader compilation failure is not an <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Error</a>; you need to check for it specifically. This is done with a particular call to <span class="tpl-code"><a href="/opengl/GLAPI/glGetShader" title="GLAPI/glGetShader">glGetShaderiv</a></span>:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLint</span><span class="w"> </span><span class="n">success</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">success</span><span class="p">);</span>
+</pre></div>
+<p>If <span class="tpl-param">success​</span> is <span class="tpl-enum">GL_FALSE</span>, then the most recent compilation failed. Otherwise, it succeeded.
+</p><p>Shader compilation is pass/fail, but it is often useful to know why. This, like in most languages, is provided as text messages. OpenGL allows you to query a log containing this information. First, you must use <span class="tpl-code"><a href="/opengl/GLAPI/glGetShader" title="GLAPI/glGetShader">glGetShaderiv</a></span> to query the log's length:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLint</span><span class="w"> </span><span class="n">logSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">logSize</span><span class="p">);</span>
+</pre></div>
+<p>This tells you how many bytes to allocate; the length includes the NULL terminator. Once you have the length and have allocated sufficient memory, you can use this function to get the log:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glGetShaderInfoLog" title="GLAPI/glGetShaderInfoLog">glGetShaderInfoLog</a></span>(GLuint <span class="tpl-param">shader​</span>, GLsizei <span class="tpl-param">maxLength​</span>, GLsizei *<span class="tpl-param">length​</span>, GLchar *<span class="tpl-param">infoLog​</span>);
+</pre>
+<p><span class="tpl-param">maxLength​</span> is the size of <span class="tpl-param">infoLog​</span>; this tells OpenGL how many bytes at maximum it will write into <span class="tpl-param">infoLog​</span>. <span class="tpl-param">length​</span> is a return value, specifying how many bytes it actually wrote into <span class="tpl-param">infoLog​</span>; you may pass NULL if you don't care.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/GLSL_Shader_Compile_Error_Testing" title="Example/GLSL Shader Compile Error Testing">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/GLSL_Shader_Compile_Error_Testing&amp;action=edit">E</a></span></span></div>
+<p>Shader compilation error checking.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLuint</span><span class="w"> </span><span class="n">shader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(...);</span>
+
+<span class="c1">// Get strings for glShaderSource.</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">shader</span><span class="p">);</span>
+
+<span class="n">GLint</span><span class="w"> </span><span class="n">isCompiled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">errorLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">shader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">errorLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="c1">// Provide the infolog in whatever manor you deem best.</span>
+<span class="w">	</span><span class="c1">// Exit with failure.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">shader</span><span class="p">);</span><span class="w"> </span><span class="c1">// Don&#39;t leak the shader.</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Shader compilation is successful.</span>
+</pre></div>
+<p><br />
+</p>
+<h3><span class="mw-headline" id="Program_setup">Program setup</span></h3>
+<p>Once you have successfully compiled the shader objects of interest, you can link them into a program. This begins by creating a program object via this command:
+</p>
+<pre>GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glCreateProgram" title="GLAPI/glCreateProgram">glCreateProgram</a></span>();
+</pre>
+<p>The function takes no parameters.
+</p><p>After creating a program, the shader objects you wish to link to it must be attached to the program. This is done via this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glAttachShader" title="GLAPI/glAttachShader">glAttachShader</a></span>(GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">shader​</span>);
+</pre>
+<p>This can be called multiple times with different <span class="tpl-param">shader​</span> objects.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> It is possible to attach multiple shader objects for the <i><a href="/opengl/Shader" title="Shader">same shader stage</a></i> to a program. This is perfectly legal. When linking them, all of the code will be combined. However, only one of those shader objects can have a <span class="tpl-code">main</span> function. Linking like this will work very much like linking multiple object files in a C/C++ program: one .cpp file can call code in another .cpp file if it has forward declarations of functions. So you can have "libraries" of functions that individual shaders can choose to use.</div>
+<div style="margin-left: 3em;">
+<b>Recommendation:</b> That being said, while this power is available, it is best not to use it. It <i>usually</i> works, but because most OpenGL applications don't do this, it doesn't get as thoroughly tested as other parts of the OpenGL API. So you're likely to run into more driver bugs this way. Generally stick to having one shader object per shader stage.</div>
+<h3><span class="mw-headline" id="Before_linking">Before linking</span></h3>
+<p>A number of parameters can be set up that will affect the linking process. This generally involves interfaces with the program. These include:
+</p>
+<ul><li><a href="/opengl/Vertex_Attributes" class="mw-redirect" title="Vertex Attributes">Vertex shader input attribute locations.</a></li>
+<li><a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">Fragment shader output color numbers.</a></li>
+<li><a href="/opengl/Shader_Feedback_Setup" class="mw-redirect" title="Shader Feedback Setup">Transform feedback output capturing.</a></li>
+<li><a href="#Separate_programs">Program separation.</a></li></ul>
+<p>You cannot change these values after linking; if you don't set them before linking, you can't set them at all.
+</p>
+<h3><span class="mw-headline" id="Program_linking">Program linking</span></h3>
+<p>Linking can fail for many reasons, including but not limited to:
+</p>
+<ul><li><a href="#Interface_matching">Invalid matching between two shader stages in this program</a>.</li>
+<li>Violation of various shader stage limitations. Some of these can be caught at compile-time, but others must wait until link time.</li>
+<li>Two or more <a href="#Linking_and_variables">global definitions of certain types</a> have the same name in different shader stages, but different definitions.</li>
+<li>References to declared functions that are not defined.</li></ul>
+<p>Program link failure can be <a href="#Error_handling">detected and responded to</a>, in a similar way to shader compilation failure.
+</p><p>Once the program has been successfully linked, it can be used.
+</p>
+<h3><span class="mw-headline" id="Linking_and_variables">Linking and variables</span></h3>
+<p>Normally, shader objects for different shader stages don't interact. Each shader stage's code is separate from others. They have their own global variables, their own functions, etc.
+</p><p>This is not the case entirely. Certain definitions are considered shared between shader stages. Specifically, these include <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniforms</a>, <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">buffer variables</a>, and buffer-backed interface blocks.
+</p><p>If one of these is defined in one stage, another stage can define the same object with the same name and the <i>exact same definition</i>. If this happens, then there will only be one uniform/buffer variable/interface block visible from the <a href="/opengl/Program_Introspection" title="Program Introspection">introspection API</a>. So shader stages in the same program can share uniform variables, allowing the same value to be set into both stages with one <span class="tpl-code"><a href="/opengl/GLAPI/glUniform" title="GLAPI/glUniform">glUniform</a></span> call.
+</p><p>For this to work however, the definitions must be <i>exactly the same</i>. This includes the order of the members, any user-defined data structures they use, array counts, <i>everything</i>. If two definitions in different stages have the same name, but different definitions, then there will be a linker error.
+</p>
+<h3><span class="mw-headline" id="Cleanup">Cleanup</span></h3>
+<p>After linking (whether successfully or not), it is a good idea to detach all shader objects from the program. This is done via this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glDetachShader" title="GLAPI/glDetachShader">glDetachShader</a></span>(GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">shader​</span>);
+</pre>
+<p><span class="tpl-param">shader​</span> must have been previously attached to <span class="tpl-param">program​</span>.
+</p><p>If you do not intend to use this particular shader object in the linking of another program, you may delete it. This is done via <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteShader" title="GLAPI/glDeleteShader">glDeleteShader</a></span>. Note that the deletion of a shader is deferred until the shader object is no longer attached to a program. Therefore, it is a good idea to detach shaders after linking.
+</p>
+<h3><span class="mw-headline" id="Example">Example</span></h3>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/GLSL_Full_Compile_Linking" title="Example/GLSL Full Compile Linking">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/GLSL_Full_Compile_Linking&amp;action=edit">E</a></span></span></div>
+<p>Full compile/link of a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex</a> and <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a>.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Read our shaders into the appropriate buffers</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">vertexSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// Get source code for vertex shader.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fragmentSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// Get source code for fragment shader.</span>
+
+<span class="c1">// Create an empty vertex shader handle</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">vertexShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_VERTEX_SHADER</span><span class="p">);</span>
+
+<span class="c1">// Send the vertex shader source code to GL</span>
+<span class="c1">// Note that std::string&#39;s .c_str is NULL character terminated.</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="w"> </span><span class="o">*</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">vertexSource</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Compile the vertex shader</span>
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="n">GLint</span><span class="w"> </span><span class="n">isCompiled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the shader anymore.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Create an empty fragment shader handle</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">fragmentShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">);</span>
+
+<span class="c1">// Send the fragment shader source code to GL</span>
+<span class="c1">// Note that std::string&#39;s .c_str is NULL character terminated.</span>
+<span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">fragmentSource</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Compile the fragment shader</span>
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the shader anymore.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Either of them. Don&#39;t leak shaders.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Vertex and fragment shaders are successfully compiled.</span>
+<span class="c1">// Now time to link them together into a program.</span>
+<span class="c1">// Get a program object.</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateProgram</span><span class="p">();</span>
+
+<span class="c1">// Attach our shaders to our program</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="c1">// Link our program</span>
+<span class="n">glLinkProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+
+<span class="c1">// Note the different functions here: glGetProgram* instead of glGetShader*.</span>
+<span class="n">GLint</span><span class="w"> </span><span class="n">isLinked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LINK_STATUS</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">isLinked</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isLinked</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetProgramInfoLog</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the program anymore.</span>
+<span class="w">	</span><span class="n">glDeleteProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Don&#39;t leak shaders either.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Always detach shaders after a successful link.</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentShader</span><span class="p">);</span>
+</pre></div>
+<h2><span class="mw-headline" id="Separate_programs">Separate programs</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Separate Shader Stages</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.1</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">ARB_separate_shader_objects</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>A program object can contain the code for multiple shader stages. The <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram</a></span> function only takes a single program, so you can only use a single program at a time for rendering. Therefore, you cannot mix-and-match code for different shader stages dynamically post-linking. Shader objects are not programs; they only hold compiled fragments of code, not fully useful programs.
+</p><p>There is a way to do this. This involves two alterations to the model presented above. The first is how the program is created; the second is in how it gets used.
+</p><p>To allow the use of multiple programs, where each program only provides some of the shader stage code, we must first create our programs specially. To signal that a program object is intended to be used with this separate program model, we must <a href="#Before_linking">set a parameter on the program <i>before linking</i></a>. This is done as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glProgramParameter</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_PROGRAM_SEPARABLE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TRUE</span><span class="p">);</span>
+</pre></div>
+<div style="margin-left: 3em;">
+<b>Note:</b> Again, this must done be before the program is linked.</div>
+<p>There is an alternative method for creating separable programs. This represents a common use case: creating a program from a single set of shader source which provides the code for a single shader stage. The function to do this is:
+</p>
+<pre>GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgram" title="GLAPI/glCreateShaderProgram">glCreateShaderProgramv</a></span>(GLenum <span class="tpl-param">type​</span>, GLsizei <span class="tpl-param">count​</span>, const char **<span class="tpl-param">strings​</span>);
+</pre>
+<p>This works exactly as if you took <span class="tpl-param">count​</span> and <span class="tpl-param">strings​</span> strings, created a shader object from them of the <span class="tpl-param">type​</span> shader type, and then linked that shader object into a program with the <span class="tpl-enum">GL_PROGRAM_SEPARABLE</span> parameter. And then detaching and deleting the shader object.
+</p><p>This process can fail, just as compilation or linking can fail. The program infolog can thus contain compile errors as well as linking errors.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgramv" class="mw-redirect" title="GLAPI/glCreateShaderProgramv">glCreateShaderProgramv</a></span> will return either the name of a program object or zero - independent of which errors might occur during shader compilation or linkage! A return value of zero simply states that either the shader object or program object could not be created. If a non-zero value is returned, you will still need to check the program info logs to make sure compilation and linkage succeeded! Also, the function itself may generate an error under certain conditions which will also result in zero being returned.</div>
+<div style="margin-left: 3em;">
+<b>Warning:</b> When linking shaders with separable programs, your shaders <b>must</b> redeclare <a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">the gl_PerVertex interface block</a> if you attempt to use any of the variables defined within it.</div>
+<p>Separable programs are allowed to have shaders from more than one stage linked into them. While it is best to only use shaders from one stage (since the main point of using separable programs is the ability to mix-and-match freely), you do not have to. However, if two stages are linked together in the same program, you will be unable to insert another program <i>between</i> those two stages, due to <a href="#Validation">pipeline validation rules</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgram" title="GLAPI/glCreateShaderProgram">glCreateShaderProgramv</a></span> is a very useful tool, but it does have one major drawback. You cannot set any <a href="#Before_linking">pre-linking parameters</a> into the resulting program. Most pre-link parameters can be set directly in the shader, but transform feedback parameters could not be set in shaders for several versions since separate programs were allowed. <a href="/opengl/Feedback_In_Shader_Binding" class="mw-redirect" title="Feedback In Shader Binding">This ability was eventually added to core GL</a>, but unless you are using OpenGL 4.4<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a>, if you need separate programs and transform feedback, you will have to use the usual two-stage shader compilation process.</div>
+<h3><span class="mw-headline" id="Program_pipelines">Program pipelines</span></h3>
+<p>Creating a separable program is just the first step. The other thing you must do is change how the program is used.
+</p><p>To use multiple separable programs, they must first be assembled into an <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a> type called a program pipeline. Unlike program or shader objects, these follow the standard <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a> mode. Therefore, there is a <span class="tpl-code"><a href="/opengl/GLAPI/glGenProgramPipelines" title="GLAPI/glGenProgramPipelines">glGenProgramPipelines</a></span> function to create new pipeline names, a <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteProgramPipelines" title="GLAPI/glDeleteProgramPipelines">glDeleteProgramPipelines</a></span> to delete them, and a <span class="tpl-code"><a href="/opengl/GLAPI/glBindProgramPipeline" title="GLAPI/glBindProgramPipeline">glBindProgramPipeline</a></span> to bind it to the context. Program pipeline objects do not have targets, so the last function only takes the pipeline to be bound.
+</p><p>Similar to <a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a>, program pipeline objects should only be bound when you intend to render with them (or set uniforms through them, <a href="#Uniforms_and_pipelines">as described below</a>). The only state in program pipeline objects are the list of programs that contain the code for the various shader stages. This state is set by this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgramStages" title="GLAPI/glUseProgramStages">glUseProgramStages</a></span>(GLuint <span class="tpl-param">pipeline​</span>, GLbitfield <span class="tpl-param">stages​</span>, GLuint <span class="tpl-param">program​</span>);
+</pre>
+<p>The given <span class="tpl-param">pipeline​</span> will get the shader code for the shader stages defined by the bitfield <span class="tpl-param">stages​</span> from the given <span class="tpl-param">program​</span>. The <span class="tpl-param">stages​</span> bitfield determines which shader stages in <span class="tpl-param">program​</span> will provide code for those shader stages in the pipeline. These bits can be a combination of <span class="tpl-enum">GL_VERTEX_SHADER_BIT</span>, <span class="tpl-enum">GL_TESS_CONTROL_SHADER_BIT</span>, <span class="tpl-enum">GL_TESS_EVALUATION_SHADER_BIT</span>, <span class="tpl-enum">GL_GEOMETRY_SHADER_BIT</span>, <span class="tpl-enum">GL_FRAGMENT_SHADER_BIT</span> and <span class="tpl-enum">GL_COMPUTE_SHADER_BIT</span>. The bitfield can also be <span class="tpl-enum">GL_ALL_SHADER_BITS</span>, which is equivalent to all of the above. If the <span class="tpl-param">program​</span> has an active code for each stage mentioned in <span class="tpl-param">stages​</span>, then that code will be used by the pipeline. If <span class="tpl-param">program​</span> is 0, then the given stages are cleared from the pipeline.
+</p><p><span class="tpl-param">program​</span> must either be 0 or a separable program.
+</p><p>Program pipeline objects are <a href="/opengl/OpenGL_Object#Container_object" title="OpenGL Object">container objects</a>. As such, they cannot be <a href="/opengl/Object_Sharing" class="mw-redirect" title="Object Sharing">shared across multiple OpenGL contexts.</a>
+</p>
+<h3><span class="mw-headline" id="Rendering">Rendering</span></h3>
+<p>Once you have a functioning program pipeline with all of the separate stages you would like to use, you can render with it. To do that, you must first bind the program pipeline with <span class="tpl-code"><a href="/opengl/GLAPI/glBindProgramPipeline" title="GLAPI/glBindProgramPipeline">glBindProgramPipeline</a></span>.
+</p>
+<div style="margin-left: 3em;">
+<b>Warning:</b> <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram</a></span> <b>overrides</b> <span class="tpl-code"><a href="/opengl/GLAPI/glBindProgramPipeline" title="GLAPI/glBindProgramPipeline">glBindProgramPipeline</a></span>. That is, if you have a program in use and a program pipeline bound, all rendering will use the program that is in use, <i>not</i> the pipeline programs. So make sure that <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram(0)</a></span> has been called.</div>
+<p>After binding a pipeline, you can then <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">render with those stages as normal</a>, or <a href="/opengl/Compute_Dispatch" class="mw-redirect" title="Compute Dispatch">dispatch compute work</a>. Program pipelines can also be <a href="#Validation">validated</a>.
+</p>
+<h3><span class="mw-headline" id="Uniforms_and_pipelines">Uniforms and pipelines</span></h3>
+<div style="margin-left: 3em;">
+<b>Recommendation:</b> The following explains a highly convoluted way to use <span class="tpl-code"><a href="/opengl/GLAPI/glBindProgramPipeline" title="GLAPI/glBindProgramPipeline">glBindProgramPipeline</a></span> to allow the user to set uniform state for one of the programs within a pipeline. You are <i>strongly</i> advised to ignore this section. Instead, when writing new code, use <span class="tpl-code"><a href="/opengl/GLAPI/glProgramUniform" title="GLAPI/glProgramUniform">glProgramUniform</a></span> to set uniforms directly into programs without having to bind or use the program. Only use the following mechanism if you <i>absolutely must</i> remain backwards compatible with some functions that set uniforms on a program that is bound to the context.</div>
+<p><span class="tpl-code"><a href="/opengl/GLAPI/glUniform" title="GLAPI/glUniform">glUniform</a></span> changes uniform state on the currently used program. However, with separate programs and program pipelines, the definition of "currently used program" is much more complicated. It works as follows.
+</p><p>OpenGL first checks the program currently set by <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram</a></span> (you can bind separable programs with this function). If a program is bound through this function, then that is the currently used program. If no program is set by this function (ie: if you execute <span class="tpl-code">glUseProgram(0)</span>), then the next step occurs.
+</p><p>The currently bound program pipeline is checked. Program pipelines have the concept of an active program. The active program of a program pipeline object is the "currently used program" (again, only if a program isn't in use by <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram</a></span>).
+</p><p>The active program for a pipeline is set by this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glActiveShaderProgram" title="GLAPI/glActiveShaderProgram">glActiveShaderProgram</a></span>(GLuint <span class="tpl-param">pipeline​</span>, GLuint <span class="tpl-param">program​</span>);
+</pre>
+<p><span class="tpl-param">program​</span> must be a valid, successfully linked program object. It <i>may not be zero</i>; you cannot unset an active program once you set it onto the pipeline object.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Silly though it may seem, <span class="tpl-param">program​</span> <i>does not</i> have to be attached to <span class="tpl-param">pipeline​</span> for this to work. A pipeline can have a completely unrelated program as its active program.</div>
+<h3><span class="mw-headline" id="Examples_of_separate_programs">Examples of separate programs</span></h3>
+<p>The following examples depict multiple possible scenarios when using separable programs. The first example aims at showing the simplicity inherent in using <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgramv" class="mw-redirect" title="GLAPI/glCreateShaderProgramv">glCreateShaderProgramv</a></span>. The second shows how to deal with multi-stage programs and doing some pre-linking work not possible when creating single-stage, separable programs.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> For simplicity, the following code assumes that source strings result in successful compilation and linking and all resources involved are created successfully. However, it is a very good idea to do some error checking in real code and get the shader/program/pipeline logs! As a minimum, you should do as shown in the previous example for monolithic prorams.</div>
+<h4><span class="mw-headline" id="Two_separate_programs_for_vertex_and_fragment_shading">Two separate programs for vertex and fragment shading</span></h4>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/GLSL_Separate_Program_Basics" title="Example/GLSL Separate Program Basics">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/GLSL_Separate_Program_Basics&amp;action=edit">E</a></span></span></div>
+<p>Creating two separable programs, one with a vertex shader and one with a fragment shader.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Create two separable program objects from a </span>
+<span class="c1">// single source string respectively (vertSrc and fragSrc)</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">vertProg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShaderProgramv</span><span class="p">(</span><span class="n">GL_VERTEX_SHADER</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vertSrc</span><span class="p">);</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">fragProg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShaderProgramv</span><span class="p">(</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">fragSrc</span><span class="p">);</span>
+
+<span class="c1">// CHECK FOR ERRORS HERE!.</span>
+
+<span class="c1">// Generate a program pipeline and attach the programs to their respective stages</span>
+<span class="n">glGenProgramPipelines</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pipeline</span><span class="p">);</span>
+<span class="n">glUseProgramStages</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span><span class="w"> </span><span class="n">GL_VERTEX_SHADER_BIT</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">vertProg</span><span class="p">);</span>
+<span class="n">glUseProgramStages</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span><span class="w"> </span><span class="n">GL_FRAGMENT_SHADER_BIT</span><span class="p">,</span><span class="w"> </span><span class="n">fragProg</span><span class="p">);</span>
+
+<span class="c1">// Query and set any uniforms</span>
+<span class="n">GLint</span><span class="w"> </span><span class="n">colorLoc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glGetUniformLocation</span><span class="p">(</span><span class="n">fragProg</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Color&quot;</span><span class="p">);</span>
+<span class="n">glProgramUniform4f</span><span class="p">(</span><span class="n">fragProg</span><span class="p">,</span><span class="w"> </span><span class="n">colorLoc</span><span class="p">,</span><span class="w"> </span><span class="mf">1.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.f</span><span class="p">);</span>
+</pre></div>
+<p><br />
+</p>
+<h4><span class="mw-headline" id="Mixing_a_single-_and_a_multi-stage_program">Mixing a single- and a multi-stage program</span></h4>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/GLSL_Separate_Program_Multi_Stage" title="Example/GLSL Separate Program Multi Stage">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/GLSL_Separate_Program_Multi_Stage&amp;action=edit">E</a></span></span></div>
+<p>Creates a separate program, where some of the stages are directly linked together.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Create two programs. One with just the vertex shader, and </span>
+<span class="c1">// one with both geometry and fragment stages.</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">vertexProgram</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateProgram</span><span class="p">();</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">geomFragProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateProgram</span><span class="p">();</span>
+
+<span class="c1">// Declare that programs are separable - this is crucial!</span>
+<span class="n">glProgramParameteri</span><span class="p">(</span><span class="n">vertexProgram</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">GL_PROGRAM_SEPARABLE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TRUE</span><span class="p">);</span>
+<span class="n">glProgramParameteri</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">,</span><span class="w"> </span><span class="n">GL_PROGRAM_SEPARABLE</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TRUE</span><span class="p">);</span>
+
+<span class="c1">// Generate and compile shader objects, as normal.</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">vertShader</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_VERTEX_SHADER</span><span class="p">);</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">geomShader</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_GEOMETRY_SHADER</span><span class="p">);</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">fragShader</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">);</span>
+
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">vertShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vertSrc</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">geomShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">geomSrc</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">fragShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">fragSrc</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">);</span>
+
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">vertShader</span><span class="p">);</span>
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">geomShader</span><span class="p">);</span>
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">fragShader</span><span class="p">);</span>
+
+<span class="c1">// Attach the shaders to their respective programs</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">vertexProgram</span><span class="w">  </span><span class="p">,</span><span class="w"> </span><span class="n">vertShader</span><span class="p">);</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">,</span><span class="w"> </span><span class="n">geomShader</span><span class="p">);</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">,</span><span class="w"> </span><span class="n">fragShader</span><span class="p">);</span>
+
+<span class="c1">// Perform any pre-linking steps.</span>
+<span class="n">glBindAttribLocation</span><span class="p">(</span><span class="n">vertexProgram</span><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Position&quot;</span><span class="p">);</span>
+<span class="n">glBindFragDataLocation</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;FragColor&quot;</span><span class="p">);</span>
+
+<span class="c1">// Link the programs</span>
+<span class="n">glLinkProgram</span><span class="p">(</span><span class="n">vertexProgram</span><span class="p">);</span>
+<span class="n">glLinkProgram</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">);</span>
+
+<span class="c1">// Detach and delete the shader objects</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">vertexProgram</span><span class="p">,</span><span class="w"> </span><span class="n">vertShader</span><span class="p">);</span>
+<span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertShader</span><span class="p">);</span>
+
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">,</span><span class="w"> </span><span class="n">geomShader</span><span class="p">);</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">geomFragProgram</span><span class="p">,</span><span class="w"> </span><span class="n">fragShader</span><span class="p">);</span>
+<span class="n">glDeleteShader</span><span class="p">(</span><span class="n">geomShader</span><span class="p">);</span>
+<span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragShader</span><span class="p">);</span>
+
+<span class="c1">// Generate a program pipeline</span>
+<span class="n">glGenProgramPipelines</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pipeline</span><span class="p">);</span>
+
+<span class="c1">// Attach the first program to the vertex stage, and the second program</span>
+<span class="c1">// to the geometry and fragment stages</span>
+<span class="n">glUseProgramStages</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span><span class="w"> </span><span class="n">GL_VERTEX_SHADER_BIT</span><span class="p">,</span><span class="w"> </span><span class="n">vertexProgram</span><span class="p">);</span>
+<span class="n">glUseProgramStages</span><span class="p">(</span><span class="n">pipeline</span><span class="p">,</span><span class="w"> </span><span class="n">GL_GEOMETRY_SHADER_BIT</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">GL_FRAGMENT_SHADER_BIT</span><span class="p">,</span><span class="w"> </span><span class="n">geomFragProgram</span><span class="p">);</span>
+</pre></div>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Binary_upload">Binary upload</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Program Binary</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.1</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/get_program_binary.txt">ARB_get_program_binary</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Compiling and linking shaders, regardless of which method you use, can take a long time. The more shaders you have, the longer this process takes. It is often useful to be able to cache the result of program linking, so that this cached program can be reloaded much faster.
+</p><p>This is done via a set of calls. Given a successfully linked program, the user can fetch a block of binary data, in a certain format, that represents this program. The first step of this process is to get the length of this data by calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgram</a></span> with <span class="tpl-enum">GL_PROGRAM_BINARY_LENGTH</span> on the program. Armed with this length, the actual binary can be obtained with this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramBinary" title="GLAPI/glGetProgramBinary">glGetProgramBinary</a></span>(GLuint <span class="tpl-param">program​</span>, GLsizei <span class="tpl-param">bufsize​</span>, GLsizei *<span class="tpl-param">length​</span>, GLenum *<span class="tpl-param">binaryFormat​</span>, void *<span class="tpl-param">binary​</span>);
+</pre>
+<p><span class="tpl-param">bufsize​</span> is the maximum number of bytes available in <span class="tpl-param">binary​</span>. <span class="tpl-param">length​</span> is an output value that states how many bytes were copied into <span class="tpl-param">binary​</span>; it is optional and may be NULL. <span class="tpl-param">binaryFormat​</span> is an output value that specifies the format of the binary data. It is <i>not</i> optional, and it must be stored alongside the actual binary data.
+</p><p>Given the format and the binary data, a new program object can be created with this binary data. This is done via this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glProgramBinary" title="GLAPI/glProgramBinary">glProgramBinary</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">binaryFormat​</span>, const void *<span class="tpl-param">binary​</span>, GLsizei <span class="tpl-param">length​</span>);
+</pre>
+<p>This function will upload the <span class="tpl-param">binary​</span> data (who's <span class="tpl-param">length​</span> is as given), which is in the given <span class="tpl-param">binaryFormat​</span>, into the <span class="tpl-param">program​</span>. If the upload is successful, then <span class="tpl-param">program​</span> has effectively had a successful link call performed on it.
+</p><p>This function can fail if <span class="tpl-param">binaryFormat​</span> is not a supported format. You can query the allowed formats with <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetIntegerv</a></span>, using <span class="tpl-enum">GL_NUM_PROGRAM_BINARY_FORMATS</span> to get the count, and <span class="tpl-enum">GL_PROGRAM_BINARY_FORMATS</span> to get the formats. It can also fail for other reasons; you cannot <a href="#Binary_limitations">guarantee that a binary can be loaded</a>.
+</p>
+<h3><span class="mw-headline" id="State_of_the_program">State of the program</span></h3>
+<p>Program objects contain certain state. The program binary only encapsulates the state of the program at the moment linking was successful. This means that all uniforms are reset to their default values (either specified in-shader or 0). Vertex attributes and fragment shader outputs will have the values assigned, as well as transform feedback data, interface block bindings, and so forth.
+</p><p>If <span class="tpl-code"><a href="/opengl/GLAPI/glProgramBinary" title="GLAPI/glProgramBinary">glProgramBinary</a></span> is successful, it should result in a program object that is identical to the original program object as it was immediately after linking.
+</p><p>If the original program was <a href="#Separate_programs">separable</a>, then the program built from the binary will also be separable. And vice-versa.
+</p>
+<h3><span class="mw-headline" id="Binary_limitations">Binary limitations</span></h3>
+<p>Program binary formats are <i>not</i> intended to be transmitted. It is not reasonable to expect different hardware vendors to accept the same binary formats. It is not reasonable to expect different hardware from the <i>same</i> vendor to accept the same binary formats.
+</p><p>Indeed, you cannot expect the cached version to work even <i>on the same machine</i>. Driver updates between when the data was cached and when it is reloaded can change the acceptable binary formats. Therefore, <span class="tpl-code"><a href="/opengl/GLAPI/glProgramBinary" title="GLAPI/glProgramBinary">glProgramBinary</a></span> can fail frequently. If you use this functionality, you <i>must</i> have a fallback for creating your shaders if the binary is rejected.
+</p>
+<h2><span class="mw-headline" id="SPIR-V_compilation">SPIR-V compilation</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">SPIR-V</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/spirv_extensions.txt">ARB_spirv_extensions</a></td></tr>
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gl_spirv.txt">ARB_gl_spirv</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/SPIR-V/Compilation" title="SPIR-V/Compilation">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=SPIR-V/Compilation&amp;action=edit">E</a></span></span></div>
+<p><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a>'s compilation model looks similar to that <b>of GLSL</b>, but it does have some unique characteristics.
+</p><p>As with GLSL, SPIR-V makes use of shader and program objects. Because SPIR-V is a binary format, SPIR-V shaders are loaded into shader objects via the use of the shader binary API:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glShaderBinary" title="GLAPI/glShaderBinary">glShaderBinary</a></span>(GLsizei <span class="tpl-param">count​</span>, const GLuint *<span class="tpl-param">shaders​</span>, GLenum <span class="tpl-param">binaryFormat​</span>, const void *<span class="tpl-param">binary​</span>, GLsizei <span class="tpl-param">length​</span>);</div>
+<p><span class="tpl-param">shaders​</span> is an array of <span class="tpl-param">count​</span> length of previously created shader objects that the SPIR-V data will be loaded into. So this function can load the same SPIR-V source code into multiple shader objects.
+</p><p>SPIR-V has a specific <span class="tpl-param">binaryFormat​</span>: the enumerator <span class="tpl-enum">GL_SHADER_BINARY_FORMAT_SPIR_V</span>. The <span class="tpl-param">binary​</span> is the loaded SPIR-V itself, with a byte length of <span class="tpl-param">length​</span>. This must include the entire SPIR-V, as defined by the specification, including header information.
+</p><p>The use of this function will replace the shaders specified by previous calls to <span class="tpl-code"><a href="/opengl/GLAPI/glShaderSource" title="GLAPI/glShaderSource">glShaderSource</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glShaderBinary" title="GLAPI/glShaderBinary">glShaderBinary</a></span>. Loading a non-SPIR-V binary or loading GLSL source strings into the program will make it no longer contain SPIR-V code.
+</p><p>While a shader object has a SPIR-V binary loaded into it, the object becomes slightly different. <span class="tpl-code"><a href="/opengl/GLAPI/glGetShader" title="GLAPI/glGetShader">glGetShaderiv(shader, GL_SPIR_V_BINARY)</a></span> will return <span class="tpl-enum">GL_TRUE</span>.
+</p>
+<h3><span class="mw-headline" id="Entry_points_and_specialization">Entry points and specialization</span></h3>
+<p>SPIR-V is similar to GLSL, but it has some differences. Two differences are particularly relevant.
+</p>
+<ol><li>A single SPIR-V file can have function entry-points for multiple shader stages, even of different types.</li>
+<li>SPIR-V has the concept of "specialization constants": parameters which the user can provide before the SPIR-V is compiled into its final form.</li></ol>
+<p>Before a SPIR-V shader object can be used, you must specify which entry-point to use and provide values for any specialization constants used by that entry-point. This is done through a single function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glSpecializeShader&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glSpecializeShader (page does not exist)">glSpecializeShader</a></span>(GLuint <span class="tpl-param">shader​</span>, const GLchar *<span class="tpl-param">pEntryPoint​</span>, GLuint <span class="tpl-param">numSpecializationConstants​</span>, const GLuint *<span class="tpl-param">pConstantIndex​</span>, const GLuint *<span class="tpl-param">pConstantValue​</span>);</div>
+<p><span class="tpl-param">pEntryPoint​</span> is the string name of the entry-point that this SPIR-V shader object will use. <span class="tpl-param">pConstantIndex​</span> and <span class="tpl-param">pConstantValue​</span> are arrays containing the index of each specialization constant and the corresponding values that will be used. These arrays are <span class="tpl-param">numSpecializationConstants​</span> in length. Specialization constants not referenced by <span class="tpl-param">pConstantIndex​</span> use the default values specified in the SPIR-V shader.
+</p><p>Specializing a SPIR-V shader is analogous to compiling a GLSL shader. So if this function completes successfully, the shader object's compile status is <span class="tpl-enum">GL_TRUE</span>. If specialization fails, then the shader infolog has information explaining why and an <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Error</a> is generated.
+</p><p><span class="tpl-param">pEntryPoint​</span> must name a valid entry point. Also, the entry point's "execution model" (SPIR-V speak for "<a href="/opengl/Shader_Stage" class="mw-redirect" title="Shader Stage">Shader Stage</a>") must match the stage the shader object was created with. Specialization can also fail if <span class="tpl-param">pConstantIndex​</span> references a specialization constant index that the SPIR-V binary does not use. If specialization fails, the shader's info log is updated appropriately.
+</p><p>Once specialized, SPIR-V shaders cannot be re-specialized. However, you can reload the SPIR-V binary data into them, which will allow them to be specialized again.
+</p>
+<h3><span class="mw-headline" id="Linking_SPIR-V">Linking SPIR-V</span></h3>
+<p>SPIR-V shader objects that have been specialized can be used to link programs (separable or otherwise). If you link multiple shader objects in the same program, then either all of them must be SPIR-V shaders or <i>none</i> of them may be SPIR-V shaders. You cannot link SPIR-V to non-SPIR-V shaders in a program.
+</p><p>Also, note that SPIR-V shaders must have an entry-point. So SPIR-V modules for the same stage cannot be linked together. Each SPIR-V shader object must provide all of the code for its module.
+</p><p>You can use separable programs built from SPIR-V shaders in the same pipeline object as non-SPIR-V shaders.
+</p>
+<h2><span class="mw-headline" id="Error_handling">Error handling</span></h2>
+<p>Program linking can fail for various reasons. Linking happens when creating a <a href="#Separate_programs">separate program</a> as well as when loading a <a href="#Binary_upload">program binary</a> into a program object. All of these processes can fail.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Using <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgram" title="GLAPI/glCreateShaderProgram">glCreateShaderProgram</a></span> is considered equivalent to both a shader compilation and a program linking operation. Since it performs both at the same time, compiler or linker errors can be encountered. However, since this function only returns a program object, compiler-type errors will be reported as linker errors through the following API.</div>
+<p>To determine if linking has failed, call <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgramiv</a></span>:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLint</span><span class="w"> </span><span class="n">isLinked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LINK_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isLinked</span><span class="p">);</span>
+</pre></div>
+<p>If <span class="tpl-code">isLinked</span> is <span class="tpl-enum">GL_FALSE</span> (aka: zero), then the most recent linking operation on that program failed (or the program has never been linked). Otherwise it succeeded.
+</p><p>Program linking is pass/fail, but it is often useful to know why it failed. Like in most languages, linker errors are provided as text messages. OpenGL allows you to query a log containing these errors. To do so, you must first query the log's length using <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgramiv</a></span> again:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+</pre></div>
+<p>This tells you how many bytes to allocate; the length includes the NULL terminator. Once you have the length and have allocated sufficient memory, you can use this function to get the log:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramInfoLog" title="GLAPI/glGetProgramInfoLog">glGetProgramInfoLog</a></span>(GLuint <span class="tpl-param">program​</span>, GLsizei <span class="tpl-param">maxLength​</span>, GLsizei *<span class="tpl-param">length​</span>, GLchar *<span class="tpl-param">infoLog​</span>);</div>
+<p><span class="tpl-param">maxLength​</span> is the size of <span class="tpl-param">infoLog​</span>; this tells OpenGL how many bytes at maximum it can write into <span class="tpl-param">infoLog​</span>. <span class="tpl-param">length​</span> is a return value, specifying how many bytes it actually wrote into <span class="tpl-param">infoLog​</span>; you may pass NULL if you don't care.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/GLSL_Program_Link_Error_Testing" title="Example/GLSL Program Link Error Testing">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/GLSL_Program_Link_Error_Testing&amp;action=edit">E</a></span></span></div>
+<p>Program Linking error checking.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLuint</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateProgram</span><span class="p">();</span>
+
+<span class="c1">// Attach shaders as necessary.</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+<span class="p">...</span>
+
+<span class="c1">// Link the program.</span>
+<span class="n">glLinkProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+
+<span class="n">GLint</span><span class="w"> </span><span class="n">isLinked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LINK_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isLinked</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isLinked</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetProgramInfoLog</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="w">	</span><span class="c1">// The program is useless now. So delete it.</span>
+<span class="w">	</span><span class="n">glDeleteProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Provide the infolog in whatever manner you deem best.</span>
+<span class="w">	</span><span class="c1">// Exit with failure.</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Interface_matching">Interface matching</span></h2>
+<p>Shaders in stages have inputs and outputs. Most values output by shaders directly feed subsequent shader stage input variables. There are rules for how these must match.
+</p><p>When linking multiple shader stages together, these rules are checked at program linking time. Therefore, mismatching interfaces between stages are linker errors. However, the interface between separable programs in a pipeline can only be checked at runtime, when the pipeline is used.
+</p><p>Directly linking multiple shader stages together requires that <i>all</i> outputs from one stage are consumed by inputs from the next active stage and vice versa. Failure to do this results in a linker error. However, separable programs do not have exactly match between the separate programs. The results of an inexact match are <a href="#Separate_program_matching">described below</a>.
+</p><p>Outputs and inputs can either be in an <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">Interface Block</a> or as loose output/input variables. The rules for matching differ between them.
+</p><p>An output interface block matches an input interface block if:
+</p>
+<ul><li>The interface block names match. Remember: the block name is different from the <i>instance name</i>. The block name is the one at the top; the instance name is the one at the bottom. Instance names can be different between stages.</li>
+<li>The output block has the same members as the input block. This means that each block contains members that:
+<ul><li>Are declared in the same order.</li>
+<li>Have the same names.</li>
+<li>Have types which match exactly. If they are arrays, the element counts must match.</li>
+<li>Have type qualifiers which match, as <a href="#Qualifier_matching">described below</a>.</li></ul></li></ul>
+<p>For loose variables, an output matches with an input if:
+</p>
+<ul><li>The two variables represent the same interface. This is determined by checking the following, in order (the first overrides the second):
+<ul><li>If both of the variables are given a <span class="tpl-code">layout(location)</span> setting that is equivalent.</li>
+<li>If both variables have the same name (<i>and</i> neither variable has a <span class="tpl-code">layout(location)</span> qualifier).</li></ul></li>
+<li>The two variables have types which match (<a href="#Separate_program_matching">separate program</a> allow for some slight mismatching). If they are arrays, the element counts must match.</li>
+<li>Have type qualifiers which match, as <a href="#Qualifier_matching">described below</a>.</li></ul>
+<h3><span class="mw-headline" id="Qualifier_matching">Qualifier matching</span></h3>
+<p><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a> between output variables in one stage and input variables with the same name in the consuming stage must match. These matches are required to be exact, <i><b>except</b></i> for these cases:
+</p>
+<ul><li>Obviously, the exact storage qualifier (<span class="tpl-code">in/out</span>) will not match.</li>
+<li><a href="/opengl/Type_Qualifier_(GLSL)#Precision_qualifiers" title="Type Qualifier (GLSL)">Precision qualifiers</a></li>
+<li><a href="/opengl/Invariance_Qualifier" class="mw-redirect" title="Invariance Qualifier">the <span class="tpl-code">invariant</span> qualifier</a></li>
+<li><a href="/opengl/Precise_Qualifier" class="mw-redirect" title="Precise Qualifier">the <span class="tpl-code">precise</span> qualifier</a></li>
+<li>If GLSL 4.30 or later is available, then the <a href="/opengl/Interpolation_qualifiers" class="mw-redirect" title="Interpolation qualifiers">interpolation qualifiers</a> (including <span class="tpl-code">centroid</span> and <span class="tpl-code">sample</span>) do not need to match. Interpolation in GLSL 4.30 is determined <i>solely</i> by the qualifier specified by the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> (even if no qualifier is specified in the FS, which means the default will be used).</li></ul>
+<p>All other qualifiers must match for variables with the same names.
+</p>
+<h3><span class="mw-headline" id="Array_interfaces_and_shader_stages">Array interfaces and shader stages</span></h3>
+<p>Certain shader stages automatically aggregate their inputs or outputs into arrays. For example, <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shaders</a> take an array of elements, where each array index represents a vertex. <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shaders</a> take an array of inputs and writes to arrays of outputs, with each index representing a vertex.
+</p><p>For the purpose of determining an interface match, such aggregate inputs or outputs are considered not to be arrays (or if the interface variable is <a href="/opengl/Arrays_Of_Arrays" class="mw-redirect" title="Arrays Of Arrays">an array that itself contains arrays</a>, the first array dimention is ignored). <span class="tpl-code">patch</span> qualified outputs/inputs for Tessellation Control/Evaluation Shaders are not aggregated in arrays, so they don't count here. If you make a <span class="tpl-code">patch</span> variable that is an array, the array index must match between the control and evaluation shaders.
+</p>
+<h3><span class="mw-headline" id="Separate_program_matching">Separate program matching</span></h3>
+<p>Separate programs are allowed to have matches that are not exact (ie: where every output is not consumed by every input).
+</p><p>However, a mismatch can only lead to defined behavior if loose variables are used <i>and</i> those variables use <span class="tpl-code">layout(location)</span> qualifiers. <i>All other input variables</i> will have undefined values on an non-exact match. This includes input variables that match under the regular rules that don't use the <span class="tpl-code">layout(location)</span> qualifier. If the match is not exact, then <i>only</i> those matching using <span class="tpl-code">layout(location)</span> qualifiers will work.
+</p><p>Therefore:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">//Output shader</span>
+<span class="k">out</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">one</span><span class="p">;</span>
+<span class="k">out</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">two</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">three</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">four</span><span class="p">;</span>
+<span class="k">out</span><span class="w"> </span><span class="n">OutBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">five</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">//Input shader 1</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">val1</span><span class="p">;</span><span class="w"> </span><span class="c1">//Matches with `three`.</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">ivec4</span><span class="w"> </span><span class="n">one</span><span class="p">;</span><span class="w"> </span><span class="c1">//Mismatch due to type. UNDEFINED VALUE.</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">two</span><span class="p">;</span><span class="w"> </span><span class="c1">//UNDEFINED VALUE, due to other mismatch.</span>
+<span class="k">in</span><span class="w"> </span><span class="n">OutBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">five</span><span class="p">;</span><span class="w"> </span><span class="c1">//Also UNDEFINED VALUE, due to other mismatch.</span>
+<span class="p">};</span>
+</pre></div>
+<p>Also, when using <span class="tpl-code">layout(location)</span> qualifiers, the types do not have to <i>exactly</i> match. If the output is a vector type that has more components than the corresponding input (again, correspondence by <span class="tpl-code">layout(location)</span> rather than name), and the two types match in basic component type (<span class="tpl-code">ivec3</span> has the basic <span class="tpl-code">int</span> type), and that basic type is <i>not</i> <span class="tpl-code">double</span>, then the two are considered to match. The extra components written by the output are ignored. So it is possible for the following to match:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">//output shader</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">vals</span><span class="p">;</span>
+
+<span class="c1">//input shader</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span><span class="w"> </span><span class="c1">//Gets the .x component from `vals`</span>
+</pre></div>
+<h2><span class="mw-headline" id="Validation">Validation</span></h2>
+<table class="metadata plainlinks stub" style="background: #CCF; border: 1px solid black;"><tbody><tr>
+<td>TODO: This section needs to be filled in.</td></tr></tbody></table>
+<p>A program object, or program pipeline object, must be valid to be used in rendering operations. As much of this validity is checked at link-time as possible; however, some of it references the current OpenGL state. Therefore, some of it must be tested at runtime. For program pipelines, some validity that would have been checked at link-time for non-separable programs (such as interface matching) must be checked at runtime.
+</p><p>The validity of a program or pipeline object can be checked at any time using these functions:
+</p><p><br />
+</p><p>Here are the rules of program object validation:
+</p>
+<ul><li class="mw-empty-elt"></li></ul>
+<h3><span class="mw-headline" id="Pipeline_validation">Pipeline validation</span></h3>
+<p>Pipeline object validation must also check the following:
+</p>
+<ul><li class="mw-empty-elt"></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318080442
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.213 seconds
+Real time usage: 0.229 seconds
+Preprocessor visited node count: 4395/1000000
+Post‐expand include size: 63524/2097152 bytes
+Template argument size: 20846/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 12/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 39520/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  124.219      1 -total
+ 22.89%   28.433      6 Template:Snippet
+ 22.71%   28.209      3 Template:Infobox_feature
+ 21.29%   26.451      3 Template:Infobox2
+ 11.17%   13.876      1 Template:Shader_float
+  9.40%   11.675     45 Template:Apifunc
+  9.13%   11.341      1 Template:Shader_list
+  7.62%    9.461     30 Template:Infobox/longrow
+  6.65%    8.255     30 Template:Infobox/shortrow
+  6.32%    7.844     30 Template:Pagelink
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2537-0!canonical and timestamp 20260318080442 and revision id 14912. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Shader_Compilation&amp;oldid=14912">https://wikis.khronos.org/opengl/index.php?title=Shader_Compilation&amp;oldid=14912</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Shader+Compilation" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Shader_Compilation" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/opengl/Talk:Shader_Compilation" rel="discussion" title="Discussion about the content page [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Shader_Compilation"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Shader_Compilation&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Shader_Compilation&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Shader_Compilation" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Shader_Compilation" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Shader_Compilation&amp;oldid=14912" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Shader_Compilation&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Shader_Compilation&amp;id=14912&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 11 October 2022, at 11:35.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":180,"wgPageParseReport":{"limitreport":{"cputime":"0.213","walltime":"0.229","ppvisitednodes":{"value":4395,"limit":1000000},"postexpandincludesize":{"value":63524,"limit":2097152},"templateargumentsize":{"value":20846,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":12,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":39520,"limit":5000000},"timingprofile":["100.00%  124.219      1 -total"," 22.89%   28.433      6 Template:Snippet"," 22.71%   28.209      3 Template:Infobox_feature"," 21.29%   26.451      3 Template:Infobox2"," 11.17%   13.876      1 Template:Shader_float","  9.40%   11.675     45 Template:Apifunc","  9.13%   11.341      1 Template:Shader_list","  7.62%    9.461     30 Template:Infobox/longrow","  6.65%    8.255     30 Template:Infobox/shortrow","  6.32%    7.844     30 Template:Pagelink"]},"cachereport":{"timestamp":"20260318080442","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6d368b20a3d1',t:'MTc3NDIzNzM1MQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

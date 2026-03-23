@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>OpenGL Context - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-OpenGL_Context rootpage-OpenGL_Context skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">OpenGL Context</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><span class="mw-redirectedfrom">(Redirected from <a href="/opengl/index.php?title=Core_And_Compatibility_in_Contexts&amp;redirect=no" class="mw-redirect" title="Core And Compatibility in Contexts">Core And Compatibility in Contexts</a>)</span></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>An <b>OpenGL context</b> represents many things. A context stores all of the state associated with this instance of OpenGL. It represents the (potentially visible) <a href="/opengl/Default_Framebuffer" title="Default Framebuffer">default framebuffer</a> that rendering commands will draw to when not drawing to a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">framebuffer object</a>. Think of a context as an object that holds all of OpenGL; when a context is destroyed, OpenGL is destroyed.
+</p><p>Contexts are localized within a particular process of execution (an application, more or less) on an operating system. A process can create multiple OpenGL contexts. Each context can represent a separate viewable surface, like a window in an application.
+</p><p>Each context has its own set of <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Objects</a>, which are independent of those from other contexts. A context's objects can be shared with other contexts. Most OpenGL objects are sharable, including <a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a> and <a href="/opengl/GLSL_Object" title="GLSL Object">GLSL Objects</a>. <a href="/opengl/Container_Object" class="mw-redirect" title="Container Object">Container Objects</a> are not sharable, nor are <a href="/opengl/Query_Object" title="Query Object">Query Objects</a>.
+</p><p>Any object sharing must be made explicitly, either as the context is created or before a newly created context creates any objects. However, contexts do not <i>have</i> to share objects; they can remain completely separate from one another.
+</p><p>In order for any OpenGL commands to work, a context must be <i>current</i>; all OpenGL commands affect the state of whichever context is current. The current context is a thread-local variable, so a single process can have several threads, each of which has its own current context. However, a single context cannot be current in multiple threads at the same time.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Context_types"><span class="tocnumber">1</span> <span class="toctext">Context types</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#OpenGL_3.1_and_ARB_compatibility"><span class="tocnumber">1.1</span> <span class="toctext">OpenGL 3.1 and ARB_compatibility</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#OpenGL_3.2_and_Profiles"><span class="tocnumber">1.2</span> <span class="toctext">OpenGL 3.2 and Profiles</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Forward_compatibility"><span class="tocnumber">1.3</span> <span class="toctext">Forward compatibility</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Debug_contexts"><span class="tocnumber">1.4</span> <span class="toctext">Debug contexts</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#No_error_contexts"><span class="tocnumber">1.5</span> <span class="toctext">No error contexts</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Robust_access_context"><span class="tocnumber">1.6</span> <span class="toctext">Robust access context</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Context_information_queries"><span class="tocnumber">2</span> <span class="toctext">Context information queries</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#OpenGL_version_number"><span class="tocnumber">2.1</span> <span class="toctext">OpenGL version number</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Vendor_string"><span class="tocnumber">2.2</span> <span class="toctext">Vendor string</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Renderer_name"><span class="tocnumber">2.3</span> <span class="toctext">Renderer name</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Extension_list"><span class="tocnumber">2.4</span> <span class="toctext">Extension list</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Legacy_extension_list"><span class="tocnumber">2.4.1</span> <span class="toctext">Legacy extension list</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Context_flags"><span class="tocnumber">2.5</span> <span class="toctext">Context flags</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Shading_language_version"><span class="tocnumber">2.6</span> <span class="toctext">Shading language version</span></a>
+<ul>
+<li class="toclevel-3 tocsection-16"><a href="#Supported_GLSL_versions"><span class="tocnumber">2.6.1</span> <span class="toctext">Supported GLSL versions</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Context_types">Context types</span></h2>
+<p>Until version 3.0, all versions of OpenGL were fully backwards compatible with earlier ones. Code written against OpenGL 1.1 could execute just fine on OpenGL 2.1 implementations.
+</p><p>OpenGL version 3.0 introduced the idea of deprecating functionality. Many OpenGL functions were declared deprecated, which means that users should avoid using them because they may be removed from later API versions. OpenGL 3.1 removed almost all of the functionality deprecated in OpenGL 3.0. This includes the <a href="/opengl/Fixed_Function_Pipeline" title="Fixed Function Pipeline">Fixed Function Pipeline</a>.
+</p><p>However, since many implementations support the deprecated and removed features anyway, some implementations want to be able to provide a way for users of higher GL versions to gain access to the old APIs. Several techniques were tried, and it has settled down into a division between <b>Core</b> and <b>Compatibility</b> contexts.
+</p><p>There are other context variations as well.
+</p>
+<h3><span class="mw-headline" id="OpenGL_3.1_and_ARB_compatibility">OpenGL 3.1 and ARB_compatibility</span></h3>
+<p>A new extension, <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compatibility.txt">ARB_compatibility</a>, was introduced when OpenGL 3.1 was revealed. The presence of this extension is a signal to the user that deprecated or removed features are still available through the original entrypoints and enumerations. The behavior of such implementations is defined with a separate, much larger, <a href="/opengl/OpenGL_Specification" title="OpenGL Specification">OpenGL Specification</a>. Thus, there was a backwards-compatible specification and a non-backwards compatible specification.
+</p>
+<h3><span class="mw-headline" id="OpenGL_3.2_and_Profiles">OpenGL 3.2 and Profiles</span></h3>
+<p>When OpenGL 3.0 was introduced, a new context creation mechanism was introduced as well. Since later versions could remove functionality, it was important that the user be able to ask for a specific version of OpenGL, one that they had written their code against.
+</p><p>However, the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compatibility.txt">ARB_compatibility</a> extension posed a problem: the implementation decided whether to define it or not. A user could not request to deactivate <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compatibility.txt">ARB_compatibility</a>; it was forced on them. This also meant that the core specification had to be a proper subset of the compatibility specification; the core specification couldn't provide functionality that the compatibility one did not provide.
+</p><p>Thus, another change was made to context creation.
+</p><p>The 3.0 form of context creation did not have the concept of profiles. There was only one form of OpenGL: the core specification. In 3.2, OpenGL was effectively split into two profiles, core and compatibility. An implementation was only <i>required</i> to define core, so compatibility is not guaranteed to be available. However, on most implementations, the compatibility profile will be available.
+</p>
+<div style="margin-left: 3em;">
+<b>Platform Issue (MacOSX):</b> When MacOSX 10.7 introduced support for OpenGL beyond 2.1, they also introduced the core/compatibility dichotomy. However, they did not introduce support for the compatibility profile itself. Instead, MacOSX gives you a choice: core profile for versions 3.2 or higher, or just version 2.1. There is no way to get access to features after 2.1 and still access the <a href="/opengl/Fixed_Function_Pipeline" title="Fixed Function Pipeline">Fixed Function Pipeline</a>.</div>
+<p>The 3.2 wording also changed what kind of contexts can be returned, allowing 3.0 and higher versions to be given when not directly asked so long as they support <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compatibility.txt">ARB_compatibility</a> or are the compatibility profile of that version of OpenGL. So if you ask for 2.1, the implementation is free to give you 3.2 compatibility; it was not previously free to do this.
+</p><p>Because of the change in wording, the way to detect the changed functionality is to check the extension string. If WGL_ARB_create_context_profile is present, then it uses the 3.2 wording. Otherwise it uses the 3.0/3.1 wording.
+</p>
+<h3><span class="mw-headline" id="Forward_compatibility">Forward compatibility</span></h3>
+<p>A context, of version 3.0 or greater, can be created with the "forward compatibility" bit set. This will cause, for the given profile, all functionality marked "deprecated" to be removed. You can combine the forward compatibility bit with core and compatibility contexts.
+</p><p>For 3.0, this means that all deprecated functionality will no longer be available. This simulates the 3.1 experience.
+</p><p>For 3.1, this means that any <i>remaining</i> deprecated functionality (things deprecated in 3.0 but <i>not</i> removed in 3.1) will be removed. Basically, wide-lines. Also, you're not likely to see implementations offer ARB_compatibility if you pass forward compatibility.
+</p><p>For 3.2+ compatibility, it should mean nothing at all. Since no functionality is marked deprecated in the compatibility profile, the forward compatibility bit removes nothing.
+</p><p>For 3.2+ core, it again means that all functionality that is still deprecated (wide-lines) will be removed.
+</p>
+<div style="margin-left: 3em;">
+<b>Recommendation:</b> You should use the forward compatibility bit only if you need compatibility with MacOS. That API requires the forward compatibility bit to create any core profile context.</div>
+<h3><span class="mw-headline" id="Debug_contexts">Debug contexts</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Debug_Output" title="Debug Output">Debug Output</a><i></i></div>
+<p>A context can be created in debug mode. This allows, among other things, debug output functionality to work more effectively.
+</p>
+<h3><span class="mw-headline" id="No_error_contexts">No error contexts</span></h3>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/OpenGL_Error/No_Error_Context" title="OpenGL Error/No Error Context">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=OpenGL_Error/No_Error_Context&amp;action=edit">E</a></span></span></div>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">No Error Context</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/KHR/no_error.txt">KHR_no_error</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>An <a class="mw-selflink selflink">OpenGL Context</a> can be created which does not report <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Errors</a>. If the context bit <span class="tpl-enum">GL_CONTEXT_FLAG_NO_ERROR_BIT</span> is set to true, then the context will not report most errors. It will still report <span class="tpl-enum">GL_OUT_OF_MEMORY_ERROR</span> where appropriate, but this can be delayed from the point where the error actually happens. No other errors will be reported.
+</p><p>This also means that the implementation will not <i>check</i> for errors either. So if you provide incorrect parameters to a function that would have provoked an error, you will get undefined behavior instead. This <i>includes</i> the possibility of application termination.
+</p><p>Contexts cannot have the no error bit <i>and</i> the robustsness or debug bits.
+</p>
+<h3><span class="mw-headline" id="Robust_access_context">Robust access context</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/index.php?title=Robust_Memory_Access&amp;action=edit&amp;redlink=1" class="new" title="Robust Memory Access (page does not exist)">Robust Memory Access</a><i></i></div>
+<p>Normally, many <a href="/opengl/Buffer_Object" title="Buffer Object">buffer memory access operations</a> that access data outside of the bound range of storage have undefined results (potentially including program termination). However, if the program doesn't crash, this can lead to being able to read values that were written by other applications, which is a security concern.
+</p><p>Robust access means that out-of-bounds reads will provide well-defined results (usually zero). And such accesses will never cause program termination. It provides better process isolation.
+</p>
+<h2><span class="mw-headline" id="Context_information_queries">Context information queries</span></h2>
+<p>There is a lot of information about an OpenGL context that can be queried.
+</p>
+<h3><span class="mw-headline" id="OpenGL_version_number">OpenGL version number</span></h3>
+<p>To get the OpenGL major and minor version numbers, you can call these functions:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetIntegerv" class="mw-redirect" title="GLAPI/glGetIntegerv">glGetIntegerv</a></span>(<span class="tpl-enum">GL_MAJOR_VERSION</span>, *);
+<span class="tpl-code"><a href="/opengl/GLAPI/glGetIntegerv" class="mw-redirect" title="GLAPI/glGetIntegerv">glGetIntegerv</a></span>(<span class="tpl-enum">GL_MINOR_VERSION</span>, *);
+</pre>
+<p>These are available on OpenGL version 3.0 and above contexts. If those are not available, you can use this instead:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetString</a></span>(<span class="tpl-enum">GL_VERSION</span>);
+</pre>
+<p>The string returned starts with "&lt;major version&gt;.&lt;minor version&gt;". Following the minor version, there can be another '.', then a vendor-specific build number. The string may have more content, which is completely vendor-specific (thus not a part of  the OpenGL standard).
+</p><p>For example, the returned string may be like "2.0.6914 WinXP  SSE/SSE2/SSE3/3DNow!". 2.0 is the actual version number of GL supported. 6914 is a driver build number. WinXP is the OS. SSE/SSE2/SSE3/3DNow! are CPU features that the driver can use.
+</p><p>Sometimes <span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetString(GL_VERSION)</a></span> also returns also the bus type used, such as AGP or PCI or PCIEx.
+</p>
+<h3><span class="mw-headline" id="Vendor_string">Vendor string</span></h3>
+<p>The OpenGL implementations have a vendor string associated with it that is used for identifying the maker of the implementation.
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetString</a></span>(<span class="tpl-enum">GL_VENDOR</span>);
+</pre>
+<p>It could be "ATI Technologies", "NVIDIA Corporation", "INTEL" and so on. Note that there's no guarantee that the string for a specific vendor will remain the same in future implementations. On Windows, if it says "Microsoft" then you are using the Windows software renderer or the Windows Direct3D wrapper. You probably haven't installed the graphics drivers yet in that case.
+</p>
+<h3><span class="mw-headline" id="Renderer_name">Renderer name</span></h3>
+<p>This names the renderer used by the implementation.
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetString</a></span>(<span class="tpl-enum">GL_RENDERER</span>);
+</pre>
+<p>This string is often the name of the GPU. In the case of Mesa3d, it would be i.e "Gallium 0.4 on NVA8". It might even say "Direct3D" if the Windows Direct3D wrapper is being used.
+</p>
+<h3><span class="mw-headline" id="Extension_list">Extension list</span></h3>
+<p>Extensions can be queried one by one. To do this, first use <span class="tpl-code"><a href="/opengl/GLAPI/glGetIntegerv" class="mw-redirect" title="GLAPI/glGetIntegerv">glGetIntegerv(GL_NUM_EXTENSIONS, *)</a></span> to get the number of extensions supported by the implementation. Then iterate over each one with this:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetStringi</a></span>(<span class="tpl-enum">GL_EXTENSIONS</span>, k);
+</pre>
+<p>Where <span class="tpl-param">k​</span> is less than the <span class="tpl-enum">GL_NUM_EXTENSIONS</span> value.
+</p>
+<h4><span class="mw-headline" id="Legacy_extension_list">Legacy extension list</span></h4>
+<table class="metadata plainlinks stub" style="background: #FA8; border: 1px solid black;"><tbody><tr>
+<td><b>Warning:</b> This section describes <a href="/opengl/Legacy_OpenGL" title="Legacy OpenGL">legacy OpenGL APIs</a> that have been removed from <a href="/opengl/Core_And_Compatibility_in_Contexts" class="mw-redirect" title="Core And Compatibility in Contexts">core OpenGL 3.1 and above</a> (they are only <a href="/opengl/Deprecation" title="Deprecation">deprecated</a> in OpenGL 3.0). It is recommended that you not use this functionality in your programs.</td></tr></tbody></table>
+<p>A string containing a space-separated list of extension names can be queried as follows:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetString</a></span>(<span class="tpl-enum">GL_EXTENSIONS</span>);
+</pre>
+<h3><span class="mw-headline" id="Context_flags">Context flags</span></h3>
+<p>There are <a href="#Context_types">multiple kinds of OpenGL contexts</a>.
+</p><p>You can detect which profile the context supports with this query:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetIntegerv</a></span>(<span class="tpl-enum">GL_CONTEXT_PROFILE_MASK</span>, *);
+</pre>
+<p>This can contain the bits <span class="tpl-enum">GL_CONTEXT_CORE_PROFILE_BIT</span> or <span class="tpl-enum">GL_CONTEXT_COMPATIBILITY_PROFILE_BIT</span>, but not both at the same time.
+</p><p>Other features of contexts can be detected via context flags:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetIntegerv</a></span>(<span class="tpl-enum">GL_CONTEXT_FLAGS</span>, *);
+</pre>
+<p>The available context flags are:
+</p>
+<dl><dt><span class="tpl-enum">GL_CONTEXT_FLAG_FORWARD_COMPATIBLE_BIT</span></dt>
+<dd>The context is a forward compatible context.</dd>
+<dt><span class="tpl-enum">GL_CONTEXT_FLAG_DEBUG_BIT</span></dt>
+<dd>The context is a debug context.</dd>
+<dt><span class="tpl-enum">GL_CONTEXT_FLAG_ROBUST_ACCESS_BIT</span></dt>
+<dd>The context supports robust memory access functionality.</dd>
+<dt><span class="tpl-enum">GL_CONTEXT_FLAG_NO_ERROR_BIT</span></dt>
+<dd>The context does not report OpenGL errors.</dd></dl>
+<h3><span class="mw-headline" id="Shading_language_version">Shading language version</span></h3>
+<p>The primary version of GLSL supported by the implementation can be queried:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetString</a></span>(<span class="tpl-enum">GL_SHADING_LANGUAGE_VERSION​</span>);
+</pre>
+<p>The version string has almost the same format as the context version string. The difference is that the minor version always has two digits.
+</p>
+<h4><span class="mw-headline" id="Supported_GLSL_versions">Supported GLSL versions</span></h4>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Supported GLSL versions</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Support for specific versions of GLSL can be queried via an indexed get. The number of supported GLSL versions is queried with <span class="tpl-code"><a href="/opengl/GLAPI/glGetIntegerv" class="mw-redirect" title="GLAPI/glGetIntegerv">glGetIntegerv(GL_NUM_SHADING_LANGUAGE_VERSIONS, *)​</a></span>. Each individual version can be queried from an indexed string:
+<br style="clear: both" />
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetString" title="GLAPI/glGetString">glGetStringi</a></span>(<span class="tpl-enum">GL_SHADING_LANGUAGE_VERSION​</span>, k);
+</pre>
+<p>Where <span class="tpl-param">k​</span> is on the range 0 to <span class="tpl-enum">GL_NUM_SHADING_LANGUAGE_VERSIONS</span> - 1.
+</p><p>These strings use the formatting of GLSL's <a href="/opengl/Version_Declaration" class="mw-redirect" title="Version Declaration"><span class="tpl-code">#version</span> declaration</a>. This has the following forms:
+</p>
+<pre> <span class="tpl-param">number​</span>
+</pre>
+<p>or
+</p>
+<pre> <span class="tpl-param">number​</span> <span class="tpl-param">profile​</span>
+</pre>
+<p>The <span class="tpl-param">profile​</span> is only present for versions of GLSL that have this distinction.
+</p><p>Note that GLSL only gained the <span class="tpl-code">#version</span> declaration in version 1.10; if an implementation exposes support for GLSL 1.00 (through <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_100.txt">ARB_shading_language_100</a>), then it will return an empty string ("").
+</p><p>Versions of the GLSL for OpenGL ES can also be supported. If an implementation returns "100", this does not refer to GLSL 1.00. It instead refers to support for OpenGL ES's 2.0's GLSL ES version 1.00. The <span class="tpl-param">profile​</span> can also be "es", which represents a version of OpenGL ES's shading language. So version "300 es" represents GLSL ES 3.00. GLSL ES 1.00 does not use the "es" profile name.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318004356
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.097 seconds
+Real time usage: 0.107 seconds
+Preprocessor visited node count: 1677/1000000
+Post‐expand include size: 19351/2097152 bytes
+Template argument size: 4372/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 43/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   74.154      1 -total
+ 45.28%   33.577      1 Template:Snippet
+ 36.13%   26.790      2 Template:Infobox_feature
+ 32.98%   24.454      2 Template:Infobox2
+ 32.91%   24.402      1 OpenGL_Error/No_Error_Context
+ 12.35%    9.159     20 Template:Infobox/longrow
+  8.94%    6.626     20 Template:Infobox/shortrow
+  8.89%    6.591     14 Template:Apifunc
+  8.01%    5.942      1 Template:View_talk_edit
+  6.53%    4.843      1 Template:Deprecated
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1668-0!canonical and timestamp 20260318004356 and revision id 14875. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=OpenGL_Context&amp;oldid=14875#Context_types">https://wikis.khronos.org/opengl/index.php?title=OpenGL_Context&amp;oldid=14875#Context_types</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

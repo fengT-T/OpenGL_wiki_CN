@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Array Texture - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"03514aca4424471155381205","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Array_Texture","wgTitle":"Array Texture","wgCurRevisionId":14564,"wgRevisionId":14564,"wgArticleId":1516,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","Textures"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Array_Texture","wgRelevantArticleId":1516,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Array_Texture rootpage-Array_Texture skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Array Texture</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Array Texture</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">EXT extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_array.txt">EXT_texture_array</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Objects</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a></div>
+<hr />
+<ul><li><a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>
+<ul><li><a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">Vertex Buffer Objects</a></li>
+<li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Objects</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Objects</a></li>
+<li><a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a></li>
+<li><a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a></li>
+<li><a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a></li></ul></li>
+<li><a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a></li>
+<li><a href="/opengl/Texture" title="Texture">Textures</a>
+<ul><li><a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a></li>
+<li><a href="/opengl/Image_Format" title="Image Format">Image formats</a></li>
+<li><a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a></li>
+<li><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a></li>
+<li><b>Array Texture</b>s</li>
+<li><a href="/opengl/Multisample_Texture" title="Multisample Texture">Multisample Textures</a></li>
+<li><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a></li>
+<li><a href="/opengl/3D_Texture" title="3D Texture">3D Textures</a></li>
+<li><a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a></li>
+<li><a href="/opengl/Texture_Storage#Texture_views" title="Texture Storage">Texture Views</a></li></ul></li>
+<li><a href="/opengl/Query_Object" title="Query Object">Asynchronous query objects</a></li>
+<li><a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a>
+<ul><li><a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a></li>
+<li><a href="/opengl/Renderbuffer_Object" title="Renderbuffer Object">Renderbuffer Objects</a></li></ul></li>
+<li><b>Unconventional objects:</b>
+<ul><li><a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a></li>
+<li><a href="/opengl/GLSL_Object" title="GLSL Object">Shader and program objects</a></li></ul></li></ul>
+</div>
+</div></td></tr></tbody></table>
+<p>An <b>Array Texture</b> is a <a href="/opengl/Texture" title="Texture">Texture</a> where each mipmap level contains an array of images of the same size. Array textures may have <a href="/opengl/Mipmap" class="mw-redirect" title="Mipmap">Mipmaps</a>, but each mipmap in the texture has the same number of levels.
+</p><p>The domain of the images in the array depend on the array texture's specific type. Array textures come in 1D and 2D types, with <a href="#Cubemap_arrays">cubemap arrays</a> available on some hardware.
+</p><p>The high cost of texture switches resulted in a widespread preference for texture atlases (a single texture which stores data for multiple objects). This resulted in fewer texture switching, and thus less overhead. Array textures are an alternative to atlases, as they can store multiple layers of texture data for objects without some of the problems of atlases.
+</p><p>Array texture are not usable from the fixed function pipeline; you must use a <a href="/opengl/Shader" title="Shader">Shader</a> to access them.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Terminology"><span class="tocnumber">1</span> <span class="toctext">Terminology</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Creation_and_Management"><span class="tocnumber">2</span> <span class="toctext">Creation and Management</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Access_in_shaders"><span class="tocnumber">3</span> <span class="toctext">Access in shaders</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Cubemap_arrays"><span class="tocnumber">4</span> <span class="toctext">Cubemap arrays</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Limitations"><span class="tocnumber">5</span> <span class="toctext">Limitations</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Terminology">Terminology</span></h2>
+<p>Each mipmap level of an array texture is a series of images. Each image within a mipmap is called a "layer".
+</p>
+<h2><span class="mw-headline" id="Creation_and_Management">Creation and Management</span></h2>
+<p>1D array textures are created by binding a newly-created texture object to <span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>, then <a href="/opengl/Texture_Storage" title="Texture Storage">creating storage</a> for one or more mipmaps of the texture. This is done by using the "2D" image functions; the "<span class="tpl-param">height​</span>" parameter sets the number of layers in the array texture.
+</p><p>Every row of pixel data in the "2D" array of pixels is considered a separate 1D layer.
+</p><p>2D array textures are created similarly; bind a newly-created texture object to <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>, then use the "3D" image functions to allocate storage. The <span class="tpl-param">depth​</span> parameter sets the number of layers in the array.
+</p><p>Each 2D row/column sequence of pixel data in the "3D" array of pixels is considered a separate 2D layer.
+</p><p>Here is a source-code example:
+</p><p><br />
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/Texture_Array_Creation" title="Example/Texture Array Creation">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/Texture_Array_Creation&amp;action=edit">E</a></span></span></div>
+<p>This example code shows how to create a 2D array texture.
+</p>
+<div class="mw-highlight mw-highlight-lang-c mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLuint</span><span class="w"> </span><span class="n">texture</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="n">GLsizei</span><span class="w"> </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">GLsizei</span><span class="w"> </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">GLsizei</span><span class="w"> </span><span class="n">layerCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="n">GLsizei</span><span class="w"> </span><span class="n">mipLevelCount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="c1">// Read you texels here. In the current example, we have 2*2*2 = 8 texels, with each texel being 4 GLubytes.</span>
+<span class="n">GLubyte</span><span class="w"> </span><span class="n">texels</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">     </span><span class="c1">// Texels for first image.</span>
+<span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="c1">// Texels for second image.</span>
+<span class="w">     </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">   </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+<span class="w">     </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">   </span><span class="mi">255</span><span class="p">,</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="n">glGenTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="o">&amp;</span><span class="n">texture</span><span class="p">);</span>
+<span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="n">texture</span><span class="p">);</span>
+<span class="c1">// Allocate the storage.</span>
+<span class="n">glTexStorage3D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="n">mipLevelCount</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA8</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">layerCount</span><span class="p">);</span>
+<span class="c1">// Upload pixel data.</span>
+<span class="c1">// The first 0 refers to the mipmap level (level 0, since there&#39;s only 1)</span>
+<span class="c1">// The following 2 zeroes refers to the x and y offsets in case you only want to specify a subrectangle.</span>
+<span class="c1">// The final 0 refers to the layer index offset (we start from index 0 and have 2 levels).</span>
+<span class="c1">// Altogether you can specify a 3D box subset of the overall texture, but only one mip level at a time.</span>
+<span class="n">glTexSubImage3D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">layerCount</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span><span class="w"> </span><span class="n">texels</span><span class="p">);</span>
+
+<span class="c1">// Always set reasonable texture parameters</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="n">GL_TEXTURE_MIN_FILTER</span><span class="p">,</span><span class="n">GL_LINEAR</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span><span class="n">GL_LINEAR</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="n">GL_TEXTURE_WRAP_S</span><span class="p">,</span><span class="n">GL_CLAMP_TO_EDGE</span><span class="p">);</span>
+<span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="n">GL_TEXTURE_WRAP_T</span><span class="p">,</span><span class="n">GL_CLAMP_TO_EDGE</span><span class="p">);</span>
+</pre></div>
+<p>Note that, unlike for <a href="/opengl/3D_Textures" class="mw-redirect" title="3D Textures">3D Textures</a>, each mipmap uses the <i>same</i> number of layers. So if you're allocating 3 mipmaps of a 2D array texture, it would look like this:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="n">tex</span><span class="p">);</span>
+<span class="n">glTexImage3D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">num_layers</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+<span class="n">glTexImage3D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">num_layers</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+<span class="n">glTexImage3D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">num_layers</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span>
+</pre></div>
+<h2><span class="mw-headline" id="Access_in_shaders">Access in shaders</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler (GLSL)</a><i></i></div>
+<p>Texture arrays have separate sampler types: <span class="tpl-code">sampler1DArray</span> and <span class="tpl-code">sampler2DArray</span>. When accessing them within a shader, you use one extra texture coordinate. So <span class="tpl-code">sampler1DArray</span> would use a 2D texture coordinate, while <span class="tpl-code">sampler2DArray</span> would use a 3D texture coordinate.
+</p><p>The last coordinate is the layer number to access. For floating-point texture coordinates (when not using texture functions like <a href="/opengl/Direct_Texel_Fetch" class="mw-redirect" title="Direct Texel Fetch"><span class="tpl-code">texelFetch</span></a>), the floating-point layer is rounded then clamped to compute the integer layer index by the following function:
+</p>
+<pre>actual_layer = max(0, min(<span class="tpl-param">d​</span> - 1, floor(<span class="tpl-param">layer​</span> + 0.5)) )
+</pre>
+<p>Here, <span class="tpl-param">d​</span> is the number of layers in the texture, and <span class="tpl-param">layer​</span> is the floating-point layer from the texture coordinate. For example, to sample at s = 0.4, t = 0.6, for layer 2, use vec3(0.4, 0.6, 2).
+</p>
+<div style="margin-left: 3em;">
+<b>Legacy Note:</b> Array textures cannot be used with fixed-function OpenGL's texturing systems. You must use shaders to access them.</div>
+<h2><span class="mw-headline" id="Cubemap_arrays">Cubemap arrays</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Cubemap_Array_Texture" class="mw-redirect" title="Cubemap Array Texture">Cubemap Array Texture</a><i></i></div>
+<p>Cubemap textures can be arrayed, if OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_cube_map_array.txt">ARB_texture_cube_map_array</a> is available. In a cubemap array texture, each array image is conceptually a cubemap. However, all OpenGL APIs that act on cubemap array textures treat them as being a special case of 2D array textures. Therefore, the number of layers is really 6 * the number of actual cubemaps in the array. It is only within a shader where the layer index provided is the actual cubemap index in the array.
+</p>
+<h2><span class="mw-headline" id="Limitations">Limitations</span></h2>
+<p>Array texture sizes are normally limited to the usual <span class="tpl-enum">GL_MAX_TEXTURE_SIZE</span> limitation. However, the dimension that represents the number of array levels is limited by <span class="tpl-enum">GL_MAX_ARRAY_TEXTURE_LAYERS</span>, which is generally much smaller. OpenGL 4.5 requires that the limit be at least 2048, while OpenGL 3.0 requires it be at least 256.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318072314
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.091 seconds
+Real time usage: 0.098 seconds
+Preprocessor visited node count: 1197/1000000
+Post‐expand include size: 14805/2097152 bytes
+Template argument size: 5546/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 2/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 9894/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   61.164      1 -total
+ 58.45%   35.748      1 Template:Stack
+ 31.20%   19.083      1 Template:Infobox_feature
+ 28.41%   17.375      1 Template:Infobox2
+ 21.18%   12.957      1 Template:Object_float
+ 18.52%   11.328      1 Template:Object_list
+ 16.23%    9.929      1 Template:Snippet
+ 11.59%    7.089     26 Template:Pagelink
+  9.57%    5.851     10 Template:Infobox/shortrow
+  9.01%    5.509     10 Template:Infobox/longrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1516-0!canonical and timestamp 20260318072314 and revision id 14564. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Array_Texture&amp;oldid=14564">https://wikis.khronos.org/opengl/index.php?title=Array_Texture&amp;oldid=14564</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:Textures" title="Category:Textures">Textures</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Array+Texture" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Array_Texture" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Array_Texture&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Array_Texture"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Array_Texture&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Array_Texture&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Array_Texture" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Array_Texture" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Array_Texture&amp;oldid=14564" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Array_Texture&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Array_Texture&amp;id=14564&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 27 July 2019, at 17:55.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":165,"wgPageParseReport":{"limitreport":{"cputime":"0.091","walltime":"0.098","ppvisitednodes":{"value":1197,"limit":1000000},"postexpandincludesize":{"value":14805,"limit":2097152},"templateargumentsize":{"value":5546,"limit":2097152},"expansiondepth":{"value":13,"limit":100},"expensivefunctioncount":{"value":2,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":9894,"limit":5000000},"timingprofile":["100.00%   61.164      1 -total"," 58.45%   35.748      1 Template:Stack"," 31.20%   19.083      1 Template:Infobox_feature"," 28.41%   17.375      1 Template:Infobox2"," 21.18%   12.957      1 Template:Object_float"," 18.52%   11.328      1 Template:Object_list"," 16.23%    9.929      1 Template:Snippet"," 11.59%    7.089     26 Template:Pagelink","  9.57%    5.851     10 Template:Infobox/shortrow","  9.01%    5.509     10 Template:Infobox/longrow"]},"cachereport":{"timestamp":"20260318072314","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6c2618ada3d1',t:'MTc3NDIzNzMwNw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Uniform Buffer Object - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Uniform_Buffer_Object rootpage-Uniform_Buffer_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Uniform Buffer Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Uniform Buffer Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.1</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt">ARB_Uniform_Buffer_Object</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td>
+<div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Objects</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a></div>
+<hr />
+<ul><li><a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>
+<ul><li><a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">Vertex Buffer Objects</a></li>
+<li><b>Uniform Buffer Object</b>s</li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Objects</a></li>
+<li><a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a></li>
+<li><a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a></li>
+<li><a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a></li></ul></li>
+<li><a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a></li>
+<li><a href="/opengl/Texture" title="Texture">Textures</a>
+<ul><li><a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a></li>
+<li><a href="/opengl/Image_Format" title="Image Format">Image formats</a></li>
+<li><a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a></li>
+<li><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a></li>
+<li><a href="/opengl/Array_Texture" title="Array Texture">Array Textures</a></li>
+<li><a href="/opengl/Multisample_Texture" title="Multisample Texture">Multisample Textures</a></li>
+<li><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a></li>
+<li><a href="/opengl/3D_Texture" title="3D Texture">3D Textures</a></li>
+<li><a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a></li>
+<li><a href="/opengl/Texture_Storage#Texture_views" title="Texture Storage">Texture Views</a></li></ul></li>
+<li><a href="/opengl/Query_Object" title="Query Object">Asynchronous query objects</a></li>
+<li><a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a>
+<ul><li><a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a></li>
+<li><a href="/opengl/Renderbuffer_Object" title="Renderbuffer Object">Renderbuffer Objects</a></li></ul></li>
+<li><b>Unconventional objects:</b>
+<ul><li><a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a></li>
+<li><a href="/opengl/GLSL_Object" title="GLSL Object">Shader and program objects</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>A <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a> that is used to store <a href="/opengl/GLSL_Uniform" class="mw-redirect" title="GLSL Uniform">uniform</a> data for a <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">shader program</a> is called a <b>Uniform Buffer Object.</b> They can be used to share uniforms between different programs, as well as quickly change between sets of uniforms for the same program object.
+</p><p>The term "Uniform Buffer Object" refers to the OpenGL buffer object that is used to provide storage for uniforms. The term "uniform blocks" refer to the GLSL language grouping of uniforms whose storage come from buffer objects.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Uses"><span class="tocnumber">1</span> <span class="toctext">Uses</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Shader_Specification"><span class="tocnumber">2</span> <span class="toctext">Shader Specification</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#OpenGL_Usage"><span class="tocnumber">3</span> <span class="toctext">OpenGL Usage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Layout_queries"><span class="tocnumber">3.1</span> <span class="toctext">Layout queries</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Limitations"><span class="tocnumber">4</span> <span class="toctext">Limitations</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Legacy"><span class="tocnumber">5</span> <span class="toctext">Legacy</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Uses">Uses</span></h2>
+<p>Uniform buffers have several uses.
+</p><p>Switching between uniform buffer bindings is typically faster than switching dozens of uniforms in a program. Therefore, uniform buffers can be used to quickly change between different sets of uniform data for different objects that share the same program.
+</p><p>Also, uniform buffer objects can typically store more data than non-buffered uniforms. So they can be used to store and access larger blocks of data than unbuffered uniform values.
+</p><p>Lastly, they can be used to share information between different programs. So modifying a single buffer can effectively allow uniforms in multiple programs to be updated.
+</p>
+<h2><span class="mw-headline" id="Shader_Specification">Shader Specification</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/GLSL_Interface_Block" class="mw-redirect" title="GLSL Interface Block">GLSL Interface Block</a><i></i></div>
+<p><a href="/opengl/GLSL_Interface_Block#Uniform_blocks" class="mw-redirect" title="GLSL Interface Block">Uniform blocks</a> are a specialized form of <a href="/opengl/Buffer_Backed_Interface_Block" class="mw-redirect" title="Buffer Backed Interface Block">buffer-backed interface block</a>.
+</p>
+<h2><span class="mw-headline" id="OpenGL_Usage">OpenGL Usage</span></h2>
+<p>Buffer objects are associated with a program's uniform block similarly to the way that texture objects are associated with sampler uniforms. The context has <span class="tpl-enum">GL_MAX_UNIFORM_BUFFER_BINDINGS</span> binding locations for uniform buffers. This value is usually the sum of the maximum uniform block count for all 3 possible stages. This list of uniform binding locations is analogous to the set of texture image unit binding points.
+</p><p>Each active uniform block in GLSL has a corresponding active uniform block in the linked program. You can get the uniform block index (similar to a uniform location) with this function:
+</p>
+<div class="funcdef">
+GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetUniformBlockIndex" title="GLAPI/glGetUniformBlockIndex">glGetUniformBlockIndex</a></span>( GLuint <span class="tpl-param">program​</span>, const char *<span class="tpl-param">uniformBlockName​</span> );</div>
+<p>The <span class="tpl-param">uniformBlockName​</span> is the name of the uniform block, not the name of the GLSL scope for the uniform. This function returns <span class="tpl-enum">GL_INVALID_INDEX</span> if the block name could not be found.
+</p><p>The uniform block index is used to set what uniform buffer binding location that this uniform block uses. You can call this function to associate this uniform block with a uniform buffer binding location:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glUniformBlockBinding" title="GLAPI/glUniformBlockBinding">glUniformBlockBinding</a></span>( GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">uniformBlockIndex​</span>, GLuint <span class="tpl-param">uniformBlockBinding​</span> );</div>
+<p>This causes the <span class="tpl-param">uniformBlockIndex​</span> index in the <span class="tpl-param">program​</span> to be bound to the uniform buffer binding location <span class="tpl-param">uniformBlockBinding​</span>.
+</p><p>Once the program is bound to the context, all you need to do is bind the appropriate uniform buffer object(s) to those binding locations using <a href="/opengl/Buffer_Object#Binding_indexed_targets" title="Buffer Object">glBindBufferRange or glBindBufferBase,</a> as appropriate.
+</p>
+<h3><span class="mw-headline" id="Layout_queries">Layout queries</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Block_Layout_Query" class="mw-redirect" title="Block Layout Query">Block Layout Query</a><i></i></div>
+<p>If you did not use the <b>std140</b> layout for a block, you will need to query the byte offset for each uniform within the block. The OpenGL specification explains the storage of each of the basic types, but not the alignment between types. Struct members, just like regular uniforms, each have a separate offset that must be individually queried.
+</p><p><a href="/opengl/Block_Layout_Query" class="mw-redirect" title="Block Layout Query">Block Layout Query</a> describes what the various pieces of block layout information means. Retrieving this information uses the standard introspection API. This can be done via the <a href="/opengl/Uniform_Introspection" class="mw-redirect" title="Uniform Introspection">old-style API for uniforms</a> or via the newer <a href="/opengl/Program_Interface_Query" class="mw-redirect" title="Program Interface Query">Program Interface Query</a> API.
+</p>
+<h2><span class="mw-headline" id="Limitations">Limitations</span></h2>
+<p>Each shader stage has a limit on the number of separate uniform buffer binding locations. These are queried using <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetIntegerv</a></span> with <span class="tpl-enum">GL_MAX_VERTEX_UNIFORM_BLOCKS</span>, <span class="tpl-enum">GL_MAX_GEOMETRY_UNIFORM_BLOCKS</span>, or <span class="tpl-enum">GL_MAX_FRAGMENT_UNIFORM_BLOCKS</span>.
+</p><p>There is also a limitation on the available storage per uniform buffer. This is queried through <span class="tpl-enum">GL_MAX_UNIFORM_BLOCK_SIZE</span>. This is in basic machine units (ie: bytes).
+</p><p>If you bind a uniform buffer with <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>, the <i>offset</i> field of that parameter must be a multiple of <span class="tpl-enum">GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT</span> (this is a global value, not a per-program or per-block one). Thus, if you want to put the data for multiple uniform blocks in a single buffer object, you must make sure that the data for each within that block matches this alignment.
+</p>
+<h2><span class="mw-headline" id="Legacy">Legacy</span></h2>
+<p>An older form of this functionality exists through the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/bindable_uniform.txt">EXT_bindable_uniform</a> extension. This extension differs in many substantial ways. Essentially, it is a way of providing buffer object storage for a single uniform. The "single uniform" is allowed to be a struct, array, or array of structs rather than just a single basic type. So one could store multiple component members easily enough.
+</p><p>This extension only provides storage for this uniform; it does not expose layout. Where UBO requires the user to use standard buffer object manipulation to fill the buffer object, bindable uniform uses the same <span class="tpl-code"><a href="/opengl/GLAPI/glUniform" title="GLAPI/glUniform">glUniform</a></span> API to change the values in the bound uniform.
+</p><p>This also means that sharing buffers is not guaranteed. Implementations can still optimize away unused uniforms, so you cannot guarantee that you can share the same buffer object between different programs. The fact that you have to use the program object API to change the buffer object's data also means that you have to use a program object to change the stored uniform data.
+</p><p>Since the same hardware that supports GL_EXT_bindable_uniform is just as capable of supporting UBO, and <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/uniform_buffer_object.txt">ARB_uniform_buffer_object</a> is a core extension, you are advised to prefer UBOs over bindable uniform.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318181144
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.058 seconds
+Real time usage: 0.064 seconds
+Preprocessor visited node count: 1215/1000000
+Post‐expand include size: 14951/2097152 bytes
+Template argument size: 6161/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   37.858      1 -total
+ 64.00%   24.228      1 Template:Stack
+ 34.00%   12.871      1 Template:Infobox_feature
+ 30.18%   11.424      1 Template:Infobox2
+ 24.24%    9.177      1 Template:Object_float
+ 20.58%    7.791      1 Template:Object_list
+ 15.68%    5.937      2 Template:Funcdef
+ 12.12%    4.588     25 Template:Pagelink
+ 11.46%    4.340     10 Template:Infobox/longrow
+  8.22%    3.111      5 Template:Apifunc
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1484-0!canonical and timestamp 20260318181144 and revision id 13827. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Uniform_Buffer_Object&amp;oldid=13827">https://wikis.khronos.org/opengl/index.php?title=Uniform_Buffer_Object&amp;oldid=13827</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li><li><a href="/opengl/Category:Buffer_Objects" title="Category:Buffer Objects">Buffer Objects</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

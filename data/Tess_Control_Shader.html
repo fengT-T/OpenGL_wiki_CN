@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Tessellation Control Shader - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tessellation_Control_Shader rootpage-Tessellation_Control_Shader skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Tessellation Control Shader</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><span class="mw-redirectedfrom">(Redirected from <a href="/opengl/index.php?title=Tess_Control_Shader&amp;redirect=no" class="mw-redirect" title="Tess Control Shader">Tess Control Shader</a>)</span></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Tessellation Control Shader</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>The <b>Tessellation Control Shader</b> (TCS) is a <a href="/opengl/Shader" title="Shader">Shader</a> program written in <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a>. It sits between the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a> and the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a>.
+</p><p>The TCS controls how much tessellation a particular patch gets; it also defines the size of a patch, thus allowing it to augment data. It can also filter vertex data taken from the vertex shader. The main purpose of the TCS is to feed the tessellation levels to the <a href="/opengl/Tessellation#Tessellation_primitive_generator" title="Tessellation">Tessellation primitive generator stage</a>, as well as to feed patch data (as its output values) to the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a> stage.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Execution_model"><span class="tocnumber">1</span> <span class="toctext">Execution model</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Output_patch_size"><span class="tocnumber">1.1</span> <span class="toctext">Output patch size</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Inputs"><span class="tocnumber">2</span> <span class="toctext">Inputs</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Outputs"><span class="tocnumber">3</span> <span class="toctext">Outputs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Patch_variables"><span class="tocnumber">3.1</span> <span class="toctext">Patch variables</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Built-in_outputs"><span class="tocnumber">3.2</span> <span class="toctext">Built-in outputs</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Synchronization"><span class="tocnumber">3.3</span> <span class="toctext">Synchronization</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Limitations"><span class="tocnumber">4</span> <span class="toctext">Limitations</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Execution_model">Execution model</span></h2>
+<p>The TCS execution model is different from most other shader stages; it is most similar to <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>. Unlike <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shaders</a>, where each invocation can output multiple primitives, each TCS invocation is only responsible for producing a single vertex of output to the output patch.
+</p><p>For each <a href="/opengl/Patch_Primitive" class="mw-redirect" title="Patch Primitive">patch provided during rendering</a>, <span class="tpl-param">n​</span> TCS shader invocations will be processed, where <span class="tpl-param">n​</span> is the number of vertices in the output patch. So if a drawing command draws 20 patches, and each output patch has 4 vertices, there will be a total of 80 separate TCS invocations.
+</p><p>The different invocations that provide data to the same patch are interconnected. These invocations all <i>share</i> their output values. They can read output values that other invocations for the same patch have written to. But in order to do so, they must use a <a href="#Synchronization">synchronization</a> mechanism to ensure that all other invocations for the patch have executed at least that far.
+</p><p>Because of this, it is possible for TCS invocations to share data and communicate with one another.
+</p>
+<h3><span class="mw-headline" id="Output_patch_size">Output patch size</span></h3>
+<p>The output patch size is the number of vertices in the output patch. It also determines the number of TCS invocations used to compute this patch data. The output patch size does not have to match the input patch size.
+</p><p>The number of vertices in the output patch is defined with an output layout qualifier:
+</p>
+<pre>layout(vertices = <span class="tpl-param">patch_size​</span>) out;
+</pre>
+<p><span class="tpl-param">patch_size​</span> must be an integral constant expression greater than zero and less than the patch limit (<a href="#Limitations">see below</a>).
+</p>
+<h2><span class="mw-headline" id="Inputs">Inputs</span></h2>
+<p>All inputs from vertex shaders to the TCS are aggregated into arrays, based on the size of the input patch. The size of these arrays is the number of input vertices provided by the patch primitive.
+</p><p>Every TCS invocation for an input patch has access to the same input data, save for <span class="tpl-code">gl_InvocationID</span> (see below) which will be different for each invocation. So any TCS invocation can look at the input vertex data for the entire input patch.
+</p><p>User-defined inputs can be declared as unbounded arrays:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="kt">vec2</span><span class="w"> </span><span class="n">texCoord</span><span class="p">[];</span>
+</pre></div>
+<p>You should not attempt to index this array past the number of input patch vertices.
+</p><p>TCS inputs may have <a href="/opengl/Interpolation_qualifiers" class="mw-redirect" title="Interpolation qualifiers">interpolation qualifiers</a> on them. They have no actual function however.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Tessellation_Control_Shader/Defined_Inputs" title="Tessellation Control Shader/Defined Inputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation_Control_Shader/Defined_Inputs&amp;action=edit">E</a></span></span></div>
+<p><a class="mw-selflink selflink">Tessellation Control Shaders</a> provide the following built-in input variables:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_PatchVerticesIn</span><span class="p">;</span>
+<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_PrimitiveID</span><span class="p">;</span>
+<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_InvocationID</span><span class="p">;</span>
+</pre></div>
+<dl><dt><span class="tpl-code">gl_PatchVerticesIn</span></dt>
+<dd>the number of vertices in the input patch.</dd>
+<dt><span class="tpl-code">gl_PrimitiveID</span></dt>
+<dd>the index of the current patch within this rendering command.</dd>
+<dt><span class="tpl-code">gl_InvocationID</span></dt>
+<dd>the index of the TCS invocation within this patch. A TCS invocation writes to per-vertex output variables by using this to index them.</dd></dl>
+<p>The TCS also takes the built-in variables output by the <a href="/opengl/Vertex_Shader#Outputs" title="Vertex Shader">vertex shader</a>:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">}</span><span class="w"> </span><span class="nb">gl_in</span><span class="p">[</span><span class="nb">gl_MaxPatchVertices</span><span class="p">];</span>
+</pre></div>
+<p>Note that just because <span class="tpl-code">gl_in</span> is defined to have <span class="tpl-code">gl_MaxPatchVertices</span> entries does not mean that you can access beyond <span class="tpl-code">gl_PatchVerticesIn</span> and get reasonable values. These variables have only the meaning the vertex shader that passed them gave them.
+</p>
+<h2><span class="mw-headline" id="Outputs">Outputs</span></h2>
+<p>TCS output variables are passed directly to the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a>, without any form of interpolation (that's the TES's main job). These can be per-vertex outputs and per-patch outputs.
+</p><p>Per-vertex outputs are aggregated into arrays. Therefore, a user-defined per-vertex output variable would be defined as such:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="n">vec2</span><span class="w"> </span><span class="n">vertexTexCoord</span><span class="p">[];</span>
+</pre></div>
+<p>The length of the array (<span class="tpl-code">vertexTexCoord.length()</span> will always be the size of the output patch. So you don't need to restate it in the definition.
+</p><p>A TCS can <i>only ever</i> write to the per-vertex output variable that corresponds to their invocation. So writes to per-vertex outputs must be of the form <span class="tpl-code">vertexTexCoord[gl_InvocationID]</span>. Any expression that writes to a per-vertex output that doesn't index it with exactly "<span class="tpl-code">gl_InvocationID</span>" results in a compile-time error. Silly things like <span class="tpl-code">vertexTexCoord[gl_InvocationID - 1 + 1]</span> will also error.
+</p>
+<h3><span class="mw-headline" id="Patch_variables">Patch variables</span></h3>
+<p>Per-patch output variables are not aggregated into arrays (unless you want them to be, in which case you must specify a size). All TCS invocations for this patch see the same patch variables. They are declared with the <span class="tpl-code">patch</span> keyword:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">patch</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+</pre></div>
+<p>Any TCS invocation can write to a per-patch output; indeed, <i>all</i> TCS invocations will generally write to a per-patch output. As long as they all write the same value, everything is fine.
+</p>
+<h3><span class="mw-headline" id="Built-in_outputs">Built-in outputs</span></h3>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Tessellation_Control_Shader/Defined_Outputs" title="Tessellation Control Shader/Defined Outputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation_Control_Shader/Defined_Outputs&amp;action=edit">E</a></span></span></div>
+<p><b>Tessellation Control Shader</b>s have the following built-in patch output variables:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">patch</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_TessLevelOuter</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="k">patch</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_TessLevelInner</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</pre></div>
+<p>These define the outer and inner tessellation levels used by the <a href="/opengl/Tessellation#Tessellation_primitive_generation" title="Tessellation">tessellation primitive generator</a>. They define how much tessellation to apply to the patch. Their exact meaning depends on the type of patch (and other settings) defined in the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> If any of the outer levels used by the abstract patch type is 0 or negative (or NaN), then the patch will be discarded by the generator, and no TES invocations for this patch will result.</div>
+<p>As with any other <span class="tpl-code">patch</span> variable, multiple TCS invocations for the same patch can write to the same tessellation level variable, so long as they are all computing and writing the exact same value.
+</p><p>TCS's also provide the following optional per-vertex output variables:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">}</span><span class="w"> </span><span class="nb">gl_out</span><span class="p">[];</span>
+</pre></div>
+<p>The use of any of these in a TCS is completely optional. Indeed, their semantics will generally be of no practical value to the TCS. They have the same general meaning as for <a href="/opengl/Vertex_Shader/Defined_Outputs" title="Vertex Shader/Defined Outputs">vertex shaders</a>, but since a TCS must always be followed by an evaluation shader, the TCS never has to write to any of them.
+</p>
+<h3><span class="mw-headline" id="Synchronization">Synchronization</span></h3>
+<p>TCS invocations that operate on the same patch can read each others output variables, whether per-patch or per-vertex. To do so, they must first ensure that those invocations have actually <i>written</i> to those variables. The value of all output variables is undefined initially.
+</p><p>Ensuring that invocations have written to a variable requires synchronization between invocations. This is done via the <span class="tpl-code">barrier()</span> function. When executed, it will not complete until all other TCS invocations for this patch have reached that barrier. This means that all writes have occurred by this point. However, <i>subsequent</i> writes to those variables may have occurred, so if you want to read those variables, make sure that another <span class="tpl-code">barrier()</span> is issued before writing more to them. If there are no subsequent writes to those variables, then this should be fine.
+</p><p>The <span class="tpl-code">barrier()</span> function has significant restrictions on where it can be placed. It must be placed:
+</p>
+<ul><li><i>Directly</i> in the <span class="tpl-code">main()</span> function. It cannot be in any other functions or subroutines.</li>
+<li>Outside of <i>any</i> flow control. This includes <span class="tpl-code">if</span>, <span class="tpl-code">for</span>, <span class="tpl-code">switch</span>, and the like.</li>
+<li>Before any use of <span class="tpl-code">return</span>, even a conditional one.</li></ul>
+<p>This ensures that every TCS invocation hits the same sequence of <span class="tpl-code">barrier()</span> calls in the same order every time. The compiler will error if any of these restrictions are violated.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This is different from the restrictions on <span class="tpl-code">barrier()</span> in <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>. Also, writes to TCS output variables do not use the rules for <a href="/opengl/Incoherent_Memory_Access" class="mw-redirect" title="Incoherent Memory Access">Incoherent Memory Access</a>, so they do not need those memory barrier calls.</div>
+<h2><span class="mw-headline" id="Limitations">Limitations</span></h2>
+<p>There is a maximum output patch size, defined by <span class="tpl-enum">GL_MAX_PATCH_VERTICES</span>; the <span class="tpl-code">vertices</span> output qualifier must be less than this value. The minimum required limit is 32.
+</p><p>There are other limitations on output size, however. The number of components for active per-vertex output variables may not exceed <span class="tpl-enum">GL_MAX_TESS_CONTROL_OUTPUT_COMPONENTS</span>. The minimum required limit is 128.
+</p><p>The number of components for active per-patch output variables may not exceed <span class="tpl-enum">GL_MAX_TESS_PATCH_COMPONENTS</span>. The minimum required limit is 120. Note that the <span class="tpl-code">gl_TessLevelOuter</span> and <span class="tpl-code">gl_TessLevelInner</span> outputs do not count against this limit (but other built-in outputs do if you use them.
+</p><p>There is a limit on the total number of components that can go into an output patch. To compute the total number of components, multiply the number of active per-vertex components by the number of output vertices, then add the number of active per-patch components. This number may not exceed <span class="tpl-enum">GL_MAX_TESS_CONTROL_TOTAL_OUTPUT_COMPONENTS</span>. The minimum required limit is 4096, which is not quite enough to use a 32-vertex patch with 128 per-vertex components and 120 per-patch components. But it's still a lot.
+</p>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li><a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a></li>
+<li><a rel="nofollow" class="external text" href="https://web.archive.org/web/20160430072820/http://voxels.blogspot.com/2011/09/tesselation-shader-tutorial-with-source.html">OpenGL 4 Tessellation Shader Tutorial</a>: A simple OpenGL tutorial with source code for using Tessellation Shaders. Based on VC++ 2010.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318150921
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.092 seconds
+Real time usage: 0.102 seconds
+Preprocessor visited node count: 1294/1000000
+Post‐expand include size: 20402/2097152 bytes
+Template argument size: 5985/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 7/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 4039/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   65.598      1 -total
+ 53.53%   35.113      1 Template:Stack
+ 31.63%   20.749      1 Template:Infobox_feature
+ 29.03%   19.041      1 Template:Infobox2
+ 28.02%   18.381      2 Template:Snippet
+ 17.18%   11.268      1 Template:Pipeline_float
+ 14.52%    9.523      1 Template:Pipeline_list
+ 12.58%    8.252      1 Tessellation_Control_Shader/Defined_Outputs
+ 10.71%    7.028     24 Template:Pagelink
+  9.73%    6.386     10 Template:Infobox/longrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2343-0!canonical and timestamp 20260318150921 and revision id 14921. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation_Control_Shader&amp;oldid=14921">https://wikis.khronos.org/opengl/index.php?title=Tessellation_Control_Shader&amp;oldid=14921</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li><li><a href="/opengl/Category:Vertex_Processing" title="Category:Vertex Processing">Vertex Processing</a></li><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

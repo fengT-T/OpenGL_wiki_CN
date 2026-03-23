@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>SPIR-V - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"459d90195125efef38387e49","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"SPIR-V","wgTitle":"SPIR-V","wgCurRevisionId":14455,"wgRevisionId":14455,"wgArticleId":4893,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"SPIR-V","wgRelevantArticleId":4893,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-SPIR-V rootpage-SPIR-V skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">SPIR-V</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">SPIR-V</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/spirv_extensions.txt">ARB_spirv_extensions</a></td></tr>
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gl_spirv.txt">ARB_gl_spirv</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><b>SPIR-V</b></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>The <b>Standard, Portable Intermediate Representation - V</b> (<b>SPIR-V</b>) is an intermediate language for defining shaders. It is intended to be a compiler target from a number of different languages, which allows users the freedom to write shader languages however they want, while allowing implementations to not have to deal with the parsing of more complex languages like <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a>.
+</p><p>The <a rel="nofollow" class="external text" href="https://www.khronos.org/registry/spir-v/">SPIR-V registry</a> contains the current SPIR-V specification, along with its extensions.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Shader_compilation"><span class="tocnumber">1</span> <span class="toctext">Shader compilation</span></a>
+<ul>
+<li class="toclevel-2"><a href="#Entry_points_and_specialization"><span class="tocnumber">1.1</span> <span class="toctext">Entry points and specialization</span></a></li>
+<li class="toclevel-2"><a href="#Linking_SPIR-V"><span class="tocnumber">1.2</span> <span class="toctext">Linking SPIR-V</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-2"><a href="#Mapping_to_GLSL"><span class="tocnumber">2</span> <span class="toctext">Mapping to GLSL</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Introspection"><span class="tocnumber">2.1</span> <span class="toctext">Introspection</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Interface_matching"><span class="tocnumber">2.2</span> <span class="toctext">Interface matching</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Transform_feedback"><span class="tocnumber">2.3</span> <span class="toctext">Transform feedback</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Shader_subroutines"><span class="tocnumber">2.4</span> <span class="toctext">Shader subroutines</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Compatibility_features"><span class="tocnumber">2.5</span> <span class="toctext">Compatibility features</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#SPIR-V_extensions"><span class="tocnumber">3</span> <span class="toctext">SPIR-V extensions</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#Example"><span class="tocnumber">4</span> <span class="toctext">Example</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Shader_compilation">Shader compilation</span></h2>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/SPIR-V/Compilation" title="SPIR-V/Compilation">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=SPIR-V/Compilation&amp;action=edit">E</a></span></span></div>
+<p><b>SPIR-V'</b>s compilation model looks similar to that <a href="/opengl/Shader_Compilation" title="Shader Compilation">of GLSL</a>, but it does have some unique characteristics.
+</p><p>As with GLSL, SPIR-V makes use of shader and program objects. Because SPIR-V is a binary format, SPIR-V shaders are loaded into shader objects via the use of the shader binary API:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glShaderBinary" title="GLAPI/glShaderBinary">glShaderBinary</a></span>(GLsizei <span class="tpl-param">count​</span>, const GLuint *<span class="tpl-param">shaders​</span>, GLenum <span class="tpl-param">binaryFormat​</span>, const void *<span class="tpl-param">binary​</span>, GLsizei <span class="tpl-param">length​</span>);</div>
+<p><span class="tpl-param">shaders​</span> is an array of <span class="tpl-param">count​</span> length of previously created shader objects that the SPIR-V data will be loaded into. So this function can load the same SPIR-V source code into multiple shader objects.
+</p><p>SPIR-V has a specific <span class="tpl-param">binaryFormat​</span>: the enumerator <span class="tpl-enum">GL_SHADER_BINARY_FORMAT_SPIR_V</span>. The <span class="tpl-param">binary​</span> is the loaded SPIR-V itself, with a byte length of <span class="tpl-param">length​</span>. This must include the entire SPIR-V, as defined by the specification, including header information.
+</p><p>The use of this function will replace the shaders specified by previous calls to <span class="tpl-code"><a href="/opengl/GLAPI/glShaderSource" title="GLAPI/glShaderSource">glShaderSource</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glShaderBinary" title="GLAPI/glShaderBinary">glShaderBinary</a></span>. Loading a non-SPIR-V binary or loading GLSL source strings into the program will make it no longer contain SPIR-V code.
+</p><p>While a shader object has a SPIR-V binary loaded into it, the object becomes slightly different. <span class="tpl-code"><a href="/opengl/GLAPI/glGetShader" title="GLAPI/glGetShader">glGetShaderiv(shader, GL_SPIR_V_BINARY)</a></span> will return <span class="tpl-enum">GL_TRUE</span>.
+</p>
+<h3><span class="mw-headline" id="Entry_points_and_specialization">Entry points and specialization</span></h3>
+<p>SPIR-V is similar to GLSL, but it has some differences. Two differences are particularly relevant.
+</p>
+<ol><li>A single SPIR-V file can have function entry-points for multiple shader stages, even of different types.</li>
+<li>SPIR-V has the concept of "specialization constants": parameters which the user can provide before the SPIR-V is compiled into its final form.</li></ol>
+<p>Before a SPIR-V shader object can be used, you must specify which entry-point to use and provide values for any specialization constants used by that entry-point. This is done through a single function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glSpecializeShader&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glSpecializeShader (page does not exist)">glSpecializeShader</a></span>(GLuint <span class="tpl-param">shader​</span>, const GLchar *<span class="tpl-param">pEntryPoint​</span>, GLuint <span class="tpl-param">numSpecializationConstants​</span>, const GLuint *<span class="tpl-param">pConstantIndex​</span>, const GLuint *<span class="tpl-param">pConstantValue​</span>);</div>
+<p><span class="tpl-param">pEntryPoint​</span> is the string name of the entry-point that this SPIR-V shader object will use. <span class="tpl-param">pConstantIndex​</span> and <span class="tpl-param">pConstantValue​</span> are arrays containing the index of each specialization constant and the corresponding values that will be used. These arrays are <span class="tpl-param">numSpecializationConstants​</span> in length. Specialization constants not referenced by <span class="tpl-param">pConstantIndex​</span> use the default values specified in the SPIR-V shader.
+</p><p>Specializing a SPIR-V shader is analogous to compiling a GLSL shader. So if this function completes successfully, the shader object's compile status is <span class="tpl-enum">GL_TRUE</span>. If specialization fails, then the shader infolog has information explaining why and an <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Error</a> is generated.
+</p><p><span class="tpl-param">pEntryPoint​</span> must name a valid entry point. Also, the entry point's "execution model" (SPIR-V speak for "<a href="/opengl/Shader_Stage" class="mw-redirect" title="Shader Stage">Shader Stage</a>") must match the stage the shader object was created with. Specialization can also fail if <span class="tpl-param">pConstantIndex​</span> references a specialization constant index that the SPIR-V binary does not use. If specialization fails, the shader's info log is updated appropriately.
+</p><p>Once specialized, SPIR-V shaders cannot be re-specialized. However, you can reload the SPIR-V binary data into them, which will allow them to be specialized again.
+</p>
+<h3><span class="mw-headline" id="Linking_SPIR-V">Linking SPIR-V</span></h3>
+<p>SPIR-V shader objects that have been specialized can be used to link programs (separable or otherwise). If you link multiple shader objects in the same program, then either all of them must be SPIR-V shaders or <i>none</i> of them may be SPIR-V shaders. You cannot link SPIR-V to non-SPIR-V shaders in a program.
+</p><p>Also, note that SPIR-V shaders must have an entry-point. So SPIR-V modules for the same stage cannot be linked together. Each SPIR-V shader object must provide all of the code for its module.
+</p><p>You can use separable programs built from SPIR-V shaders in the same pipeline object as non-SPIR-V shaders.
+</p>
+<h2><span class="mw-headline" id="Mapping_to_GLSL">Mapping to GLSL</span></h2>
+<p>The OpenGL specification still considers GLSL to be the primary OpenGL shading language. Fortunately, SPIR-V has many concepts that map to GLSL concepts. The mapping in most cases is obvious, so we will discuss the non-obvious cases here.
+</p>
+<h3><span class="mw-headline" id="Introspection">Introspection</span></h3>
+<p>GLSL provides a <a href="/opengl/Program_Introspection" title="Program Introspection">comprehensive API for querying resource interfaces that are part of a linked program.</a> These APIs are legal for programs built from SPIR-V, with one restriction.
+</p><p>Because SPIR-V is an intermediate language, things like names are unnecessary. As such, while SPIR-V does permit you to assign a name to a particular construct, it does not <i>require</i> you to do so. Therefore, any OpenGL introspection query that involves the name of a SPIR-V variable or other construct may not produce reasonable results.
+</p><p>If you have the index of a SPIR-V-defined resource, and you query the name, you may get an empty string (NUL-terminated). But you may also get the name assigned to it in the SPIR-V shader. Which you get is implementation-dependent.
+</p><p>What is not implementation-dependent is the inability to query aspects of a resource from its name. Even if the SPIR-V shader assigns the resource a name, and even if the implementation lets you successfully query that name, any attempt to query the property of a resource <i>by that name</i> will produce either -1 or <span class="tpl-enum">GL_INVALID_INDEX</span>, whichever is appropriate for the value being queried.
+</p><p>All other forms of introspection are perfectly valid. For example, you can query the number of default block uniforms, then iterate over each one, reliably fetching all of the usual information (type, location, etc). Except for the name, of course.
+</p>
+<h3><span class="mw-headline" id="Interface_matching">Interface matching</span></h3>
+<p>Input/output interface matching for user-defined variables in SPIR-V works by matching explicit <span class="tpl-code">Location</span>s. As such, all variables that are used for input/output interfaces must have a location assigned. Even members of blocks (via structs) must have locations assigned.
+</p><p>An output variable for a particular <span class="tpl-code">Location</span> and <span class="tpl-code">Component</span> must have a corresponding input variable with the same <span class="tpl-code">Location</span> and <span class="tpl-code">Component</span> values.
+</p><p>If the type of an output variable is a built-in scalar or vector type, then the type of the corresponding input does not have to match exactly. The output must have the same basic type as the input, and it must provide at least as many components as the input receives.
+</p><p>If the type of the output is a struct, then the input struct must match in the types, numbers, and declaration order of their members. Output arrays match input arrays if they have the same number of array elements and the same type.
+</p><p>Decorations must match between corresponding variables, except for interpolation decorations.
+</p><p>For built-in interface variables, things are a bit more complex. In SPIR-V, you can only have one built-in input block and one built-in output block. Each such block must have all of its members decorated with <span class="tpl-code">BuiltIn</span>, and the block cannot have any members decorated with <span class="tpl-code">Location</span>. Lastly, the top-level members of the block must be built-in types.
+</p><p>Interface matching for built-in blocks requires an exact match, except for the fragment shader input block. That one (which contains all of the <a href="/opengl/Fragment_Shader#System_inputs" title="Fragment Shader">built-in variables</a>) does not need to match the previous <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage's built-in variables. But the built-in blocks between vertex processing stages do need to match exactly.
+</p>
+<h3><span class="mw-headline" id="Transform_feedback">Transform feedback</span></h3>
+<p>Any shader stage entry-point that will output feedback information must explicitly use the <span class="tpl-code">Xfb</span> execution mode.
+</p>
+<h3><span class="mw-headline" id="Shader_subroutines">Shader subroutines</span></h3>
+<p>SPIR-V does not support subroutines at all, so you may not use them.
+</p>
+<h3><span class="mw-headline" id="Compatibility_features">Compatibility features</span></h3>
+<p>SPIR-V has no support for many compatibility features of GLSL, or just older features. For example, the built-in uniform <span class="tpl-code">gl_DepthRangeParameters</span> is not part of SPIR-V. There is no support for <span class="tpl-code">shared</span> and <span class="tpl-code">packed</span> layouts in buffer-backed interface blocks. And, among others, support for older functions like <span class="tpl-code">texture2D</span> is gone.
+</p>
+<h2><span class="mw-headline" id="SPIR-V_extensions">SPIR-V extensions</span></h2>
+<p>SPIR-V is extensible. And working with all of OpenGL's features requires some SPIR-V extensions.
+</p>
+<h2><span class="mw-headline" id="Example">Example</span></h2>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/SPIRV_Full_Compile_Linking" title="Example/SPIRV Full Compile Linking">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/SPIRV_Full_Compile_Linking&amp;action=edit">E</a></span></span></div>
+<p>Full compile/link through <b>SPIR-V</b> of a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex</a> and <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a>.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Read our shaders into the appropriate buffers</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">vertexSpirv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// Get SPIR-V for vertex shader.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">fragmentSpirv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// Get SPIR-V for fragment shader.</span>
+
+<span class="c1">// Create an empty vertex shader handle</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">vertexShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_VERTEX_SHADER</span><span class="p">);</span>
+
+<span class="c1">// Apply the vertex shader SPIR-V to the shader object.</span>
+<span class="n">glShaderBinary</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_SHADER_BINARY_FORMAT_SPIR_V</span><span class="p">,</span><span class="w"> </span><span class="n">vertexSpirv</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">vertexSpirv</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+
+<span class="c1">// Specialize the vertex shader.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">vsEntrypoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span><span class="w"> </span><span class="c1">// Get VS entry point name</span>
+<span class="n">glSpecializeShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="o">*</span><span class="p">)</span><span class="n">vsEntrypoint</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+
+<span class="c1">// Specialization is equivalent to compilation.</span>
+<span class="n">GLint</span><span class="w"> </span><span class="n">isCompiled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the shader anymore.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+<span class="c1">// Create an empty fragment shader handle</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">fragmentShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">);</span>
+
+<span class="c1">// Apply the fragment shader SPIR-V to the shader object.</span>
+<span class="n">glShaderBinary</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_SHADER_BINARY_FORMAT_SPIR_V</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentSpirv</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">fragmentSpirv</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+
+<span class="c1">// Specialize the fragment shader.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fsEntrypoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span><span class="w"> </span><span class="c1">//Get VS entry point name</span>
+<span class="n">glSpecializeShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="o">*</span><span class="p">)</span><span class="n">fsEntrypoint</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">);</span>
+
+<span class="c1">// Specialization is equivalent to compilation.</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the shader anymore.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Either of them. Don&#39;t leak shaders.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Vertex and fragment shaders are successfully compiled.</span>
+<span class="c1">// Now time to link them together into a program.</span>
+<span class="c1">// Get a program object.</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateProgram</span><span class="p">();</span>
+
+<span class="c1">// Attach our shaders to our program</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="c1">// Link our program</span>
+<span class="n">glLinkProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+
+<span class="c1">// Note the different functions here: glGetProgram* instead of glGetShader*.</span>
+<span class="n">GLint</span><span class="w"> </span><span class="n">isLinked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LINK_STATUS</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">isLinked</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isLinked</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetProgramInfoLog</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the program anymore.</span>
+<span class="w">	</span><span class="n">glDeleteProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Don&#39;t leak shaders either.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Always detach shaders after a successful link.</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentShader</span><span class="p">);</span>
+</pre></div>
+<!-- 
+NewPP limit report
+Cached time: 20260318212603
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.101 seconds
+Real time usage: 0.109 seconds
+Preprocessor visited node count: 1420/1000000
+Post‐expand include size: 29855/2097152 bytes
+Template argument size: 7661/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 1/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 15938/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   61.825      1 -total
+ 56.88%   35.169      1 Template:Stack
+ 39.99%   24.725      2 Template:Snippet
+ 31.58%   19.527      1 Template:Infobox_feature
+ 28.38%   17.546      1 Template:Infobox2
+ 26.50%   16.383      1 SPIR-V/Compilation
+ 20.52%   12.689      1 Template:Shader_float
+ 17.61%   10.888      1 Template:Shader_list
+ 13.05%    8.068      2 Template:Funcdef
+ 12.26%    7.582     27 Template:Pagelink
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:4893-0!canonical and timestamp 20260318212603 and revision id 14455. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=SPIR-V&amp;oldid=14455">https://wikis.khronos.org/opengl/index.php?title=SPIR-V&amp;oldid=14455</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=SPIR-V" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/SPIR-V" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:SPIR-V&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/SPIR-V"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=SPIR-V&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=SPIR-V&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/SPIR-V" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/SPIR-V" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=SPIR-V&amp;oldid=14455" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=SPIR-V&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=SPIR-V&amp;id=14455&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 3 December 2018, at 16:38.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":141,"wgPageParseReport":{"limitreport":{"cputime":"0.101","walltime":"0.109","ppvisitednodes":{"value":1420,"limit":1000000},"postexpandincludesize":{"value":29855,"limit":2097152},"templateargumentsize":{"value":7661,"limit":2097152},"expansiondepth":{"value":13,"limit":100},"expensivefunctioncount":{"value":1,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":15938,"limit":5000000},"timingprofile":["100.00%   61.825      1 -total"," 56.88%   35.169      1 Template:Stack"," 39.99%   24.725      2 Template:Snippet"," 31.58%   19.527      1 Template:Infobox_feature"," 28.38%   17.546      1 Template:Infobox2"," 26.50%   16.383      1 SPIR-V/Compilation"," 20.52%   12.689      1 Template:Shader_float"," 17.61%   10.888      1 Template:Shader_list"," 13.05%    8.068      2 Template:Funcdef"," 12.26%    7.582     27 Template:Pagelink"]},"cachereport":{"timestamp":"20260318212603","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6d4bfe16a3d1',t:'MTc3NDIzNzM1NA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

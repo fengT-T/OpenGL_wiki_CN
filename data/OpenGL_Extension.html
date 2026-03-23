@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>OpenGL Extension - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-OpenGL_Extension rootpage-OpenGL_Extension skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">OpenGL Extension</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p><b>OpenGL extensions</b> are a means for OpenGL implementations to provide new or expanded functionality that the core of OpenGL does not provide. Using extensions should not be looked on as something to be avoided; it should be accepted as standard practice for the OpenGL user.
+</p><p>Some extensions expose features that only one particular hardware vendor exposes, but many extensions are implemented by multiple implementations. There is a mechanism for determining which extensions are available from a particular implementation.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Extension_Registry"><span class="tocnumber">1</span> <span class="toctext">Extension Registry</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Content_of_an_Extension"><span class="tocnumber">2</span> <span class="toctext">Content of an Extension</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Extension_Support"><span class="tocnumber">2.1</span> <span class="toctext">Extension Support</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Extensions_Loading"><span class="tocnumber">3</span> <span class="toctext">Extensions Loading</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Extension_Types"><span class="tocnumber">4</span> <span class="toctext">Extension Types</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#ARB_Approval"><span class="tocnumber">4.1</span> <span class="toctext">ARB Approval</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Extension_Development"><span class="tocnumber">4.2</span> <span class="toctext">Extension Development</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Core_Extensions"><span class="tocnumber">4.3</span> <span class="toctext">Core Extensions</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Ubiquitous_extensions"><span class="tocnumber">4.4</span> <span class="toctext">Ubiquitous extensions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#External_Links"><span class="tocnumber">5</span> <span class="toctext">External Links</span></a></li>
+<li class="toclevel-1 tocsection-11"><a href="#Extensions_of_Interest"><span class="tocnumber">6</span> <span class="toctext">Extensions of Interest</span></a>
+<ul>
+<li class="toclevel-2 tocsection-12"><a href="#Common_extensions"><span class="tocnumber">6.1</span> <span class="toctext">Common extensions</span></a></li>
+<li class="toclevel-2 tocsection-13"><a href="#Targeting_OpenGL_3.3"><span class="tocnumber">6.2</span> <span class="toctext">Targeting OpenGL 3.3</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Targeting_OpenGL_2.1"><span class="tocnumber">6.3</span> <span class="toctext">Targeting OpenGL 2.1</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#How_to_read"><span class="tocnumber">7</span> <span class="toctext">How to read</span></a>
+<ul>
+<li class="toclevel-2 tocsection-16"><a href="#Preamble_sections"><span class="tocnumber">7.1</span> <span class="toctext">Preamble sections</span></a>
+<ul>
+<li class="toclevel-3 tocsection-17"><a href="#Dependencies"><span class="tocnumber">7.1.1</span> <span class="toctext">Dependencies</span></a></li>
+<li class="toclevel-3 tocsection-18"><a href="#Overview"><span class="tocnumber">7.1.2</span> <span class="toctext">Overview</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-19"><a href="#Normative_text"><span class="tocnumber">7.2</span> <span class="toctext">Normative text</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#Functions_and_enumerators"><span class="tocnumber">7.2.1</span> <span class="toctext">Functions and enumerators</span></a></li>
+<li class="toclevel-3 tocsection-21"><a href="#Additions_and_Dependencies"><span class="tocnumber">7.2.2</span> <span class="toctext">Additions and Dependencies</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-22"><a href="#Footer"><span class="tocnumber">7.3</span> <span class="toctext">Footer</span></a>
+<ul>
+<li class="toclevel-3 tocsection-23"><a href="#Issues"><span class="tocnumber">7.3.1</span> <span class="toctext">Issues</span></a></li>
+<li class="toclevel-3 tocsection-24"><a href="#Revision_History"><span class="tocnumber">7.3.2</span> <span class="toctext">Revision History</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Extension_Registry">Extension Registry</span></h2>
+<p>The OpenGL Extension Registry is maintained by the <a href="/opengl/OpenGL_Architectural_Review_Board" title="OpenGL Architectural Review Board">ARB</a> and contains the technical specifications of all known OpenGL extensions. 
+The registry also contains guidelines for creating new extensions and has example C/C++ header files containing function entry points and token enums.
+</p><p>The extension registry has over 300 extensions listed. Many of these extensions are old and obsolete in modern programming practice; they are listed for the sake of completeness. Quite a few of these extensions have been folded into the OpenGL core.
+</p>
+<h2><span class="mw-headline" id="Content_of_an_Extension">Content of an Extension</span></h2>
+<p>An extension always contains <b>at least</b> one enum token, <b>or</b> one function. They mostly contain more. If an extension is supported on a specific computer, it means those tokens and/or functions can be used there. The name of the tokens and functions ends with the prefix of the extension. For example, the extension GL_ARB_multitexture (which has been adapted into the core) contains the function glActiveTextureARB and the token GL_TEXTURE0_ARB. The exception to this is core extensions, which is explained below.
+</p>
+<h3><span class="mw-headline" id="Extension_Support">Extension Support</span></h3>
+<p>All extensions are written against a version of OpenGL. The extension spec. specifies a modification to that core version's spec. That version is often (but not always) the minimum version that the extension can be used together with.
+</p><p>It is possible to check at run-time whether an extension is supported or not. For more information, see <a href="/opengl/Get_Context_Info" class="mw-redirect" title="Get Context Info">Get Context Info</a>.
+</p>
+<h2><span class="mw-headline" id="Extensions_Loading">Extensions Loading</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Load_OpenGL_Functions" title="Load OpenGL Functions">Load OpenGL Functions</a><i></i></div>
+<p>OpenGL extensions must be loaded dynamically at runtime. There are <a href="/opengl/Extension_Loading_Library" class="mw-redirect" title="Extension Loading Library">many automatic tools</a> for loading them.
+</p>
+<h2><span class="mw-headline" id="Extension_Types">Extension Types</span></h2>
+<p>Extensions fall into 3 broad categories: vendor-specific, generic, and ARB-approved. The name of each extension starts with a prefix, specifying what type it is.
+</p><p>Extensions that start with GL_EXT are generic extensions. They can be implemented by any implementation. This does not ensure that they are implemented by all IHVs, but it means that the extension is available to be implemented by multiple vendors. It is also a signal to the user of OpenGL that this extension may find its way into other implementations.
+</p><p>There is a higher level of EXT extensions, called GL_ARB. These extensions are multi-vendor as well, but they are specifically approved by the OpenGL ARB. These are extensions that are most likely to enter later versions of the core OpenGL, and if they do, there will likely be few changes made to them.
+</p><p>All other prefixes are vendor-specific. GL_NV means that only NVIDIA hardware will implement this extension. GL_APPLE means that this extension will only be found on implementations that are on Macintoshes. And so forth.
+</p><p>Regardless of the vendor prefix, vendor-specific OpenGL extensions may be implemented an/or licensed by multiple hardware vendors to ensure compatibility. This is very rare in practice.
+</p>
+<table class="wikitable">
+
+<tbody><tr>
+<th>Extension Prefix
+</th>
+<th>Extension Vendor
+</th></tr>
+<tr>
+<td>ARB
+</td>
+<td>OpenGL&#174; ARB approved extensions.
+</td></tr>
+<tr>
+<td>NV
+</td>
+<td>NVIDIA Corporation.
+</td></tr>
+<tr>
+<td>NVX
+</td>
+<td>NVIDIA Corporation. Experimental extension.<sup>1</sup>
+</td></tr>
+<tr>
+<td>ATI
+</td>
+<td>ATI Technologies, Inc.
+</td></tr>
+<tr>
+<td>3DLABS
+</td>
+<td>3DLABS, Inc.
+</td></tr>
+<tr>
+<td>SUN
+</td>
+<td>Sun Microsystems, Inc.
+</td></tr>
+<tr>
+<td>SGI
+</td>
+<td>Silicon Graphics, Inc.
+</td></tr>
+<tr>
+<td>SGIX
+</td>
+<td>Silicon Graphics, Inc. Experimental extension.<sup>1</sup>
+</td></tr>
+<tr>
+<td>SGIS
+</td>
+<td>Silicon Graphics, Inc. Experimental extension.<sup>1</sup>
+</td></tr>
+<tr>
+<td>INTEL
+</td>
+<td>Intel Corporation.
+</td></tr>
+<tr>
+<td>3DFX
+</td>
+<td>3dfx Interactive.
+</td></tr>
+<tr>
+<td>IBM
+</td>
+<td>International Business Machines Corporation, or simply IBM.
+</td></tr>
+<tr>
+<td>MESA
+</td>
+<td>The Mesa 3D Graphics Library.
+</td></tr>
+<tr>
+<td>GREMEDY
+</td>
+<td>Graphic Remedy, Ltd.
+</td></tr>
+<tr>
+<td>OML
+</td>
+<td>Khronos Group, Inc. API: <a rel="nofollow" class="external text" href="http://www.khronos.org/openml/">OpenML&#174;</a>
+</td></tr>
+<tr>
+<td>OES
+</td>
+<td>Khronos Group, Inc. API: <a rel="nofollow" class="external text" href="http://www.khronos.org/opengles/">OpenGL&#174; ES</a>
+</td></tr>
+<tr>
+<td>PGI
+</td>
+<td>Portland Group Inc.
+</td></tr>
+<tr>
+<td>I3D
+</td>
+<td>Intense3D, now 3DLABS Inc.
+</td></tr>
+<tr>
+<td>INGR
+</td>
+<td>Intergraph Corporation.
+</td></tr>
+<tr>
+<td>MTX
+</td>
+<td>Matrox Electronic Systems Ltd.
+</td></tr>
+<tr>
+<th>Extension Prefix
+</th>
+<th>Extension Platform
+</th></tr>
+<tr>
+<td>WGL_EXT, WGL_ARB, WGL_ATI, WGL_NV
+</td>
+<td>Microsoft Corporation. WGL = <b>W</b>indows Open<b>GL</b>
+</td></tr>
+<tr>
+<td>GLX_EXT, GLX_ARB, GLX_ATI, GLX_NV
+</td>
+<td>X-Window-based platforms.
+</td></tr>
+<tr>
+<td>AGL
+</td>
+<td>Apple Inc. AGL = <b>A</b>pple Open<b>GL</b>
+</td></tr>
+</tbody></table>
+<p><sup>1</sup>, Experimental extensions should not be used in a production environment as they are subject to removal from implementation.
+</p>
+<h3><span class="mw-headline" id="ARB_Approval">ARB Approval</span></h3>
+<p>Proprietary extensions which prove their worth can become ARB approved (such as GL_ARB_multitexture) and shortly after become core. Most likely, an extension is already of type EXT, then becomes ARB, then core. In some cases, but not many, a proprietary extension becomes ARB, then core. Often, the original extension's developer allows other companies to also code it into their drivers without royalty requirements.
+</p><p>In some cases, there are differences between extension and the core function. GLSL's extension version (ARB_shader_objects) was rather different from the core 2.0 functionality.
+</p>
+<h3><span class="mw-headline" id="Extension_Development">Extension Development</span></h3>
+<p>Anyone may develop extensions for the OpenGL&#174; API; the community gives feedback. An example case would be the GL_GREMEDY_string_marker extension, which was initially a private extension, is now included in the OpenGL Extension Registry.
+</p>
+<h3><span class="mw-headline" id="Core_Extensions">Core Extensions</span></h3>
+<p>OpenGL version 3.0 added a 4th general group of extension: core extensions. Their purpose is to expose core features from higher versions in lower versions, which is particularly useful if those core features are hardware-based. 
+</p><p>Core extensions all have the GL_ARB prefix, but their functions and enumerations do not end with ARB. This way, they exactly mimic the way the core functions and enumerations look; this allows code written to use them to be updated to higher GL versions without modifications. The behavior of core extensions is exactly the same as the corresponding core functionality.
+</p>
+<h3><span class="mw-headline" id="Ubiquitous_extensions">Ubiquitous extensions</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Ubiquitous_Extensions" class="mw-redirect" title="Ubiquitous Extensions">Ubiquitous Extensions</a><i></i></div>
+<p>There are some extensions that have been implemented for so long and so broadly that they are considered part of the basic structure of OpenGL. They are not core but this is mainly a technicality. The user should feel free to expect these extensions to be present.
+</p>
+<h2><span class="mw-headline" id="External_Links">External Links</span></h2>
+<ul><li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/">OpenGL Extension Registry</a></li></ul>
+<h2><span class="mw-headline" id="Extensions_of_Interest">Extensions of Interest</span></h2>
+<p>If you are new to OpenGL programming, you may find the large list in the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry">OpenGL Registry</a> too long and intimidating to sift through. This is a list of commonly useful extensions. They are grouped based on the OpenGL version you are targeting.
+</p>
+<h3><span class="mw-headline" id="Common_extensions">Common extensions</span></h3>
+<p>These are available and useful for all versions of OpenGL (assuming the implementation developer still supports the hardware):
+</p>
+<ul><li><a rel="nofollow" class="external text" href="https://github.com/KhronosGroup/OpenGL-Registry/blob/master/extensions/ARB/WGL_ARB_extensions_string.txt">WGL_ARB_extensions_string</a> (and the WGL extensions you can get with this extension)</li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/wgl_pixel_format.txt">WGL_ARB_pixel_format</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/framebuffer_sRGB.txt">WGL_ARB_framebuffer_sRGB</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_filter_anisotropic.txt">GL_EXT_texture_filter_anisotropic</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_compression_s3tc.txt">GL_EXT_texture_compression_s3tc</a>
+<ul><li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/texture_sRGB.txt">EXT_texture_sRGB</a> While sRGB textures are core in 3.0+, this extension also <a href="/opengl/Compressed_SRGB_Image_Format" class="mw-redirect" title="Compressed SRGB Image Format">exposes s3tc sRGB formats</a>. So you still need to use the extension to access these formats.</li></ul></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/debug_output.txt">GL_ARB_debug_output</a>: Only available if you create a debug context.</li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/KHR/debug.txt">GL_KHR_debug</a>: replaces ARB_debug_output, and is always available, but it is depending on the implementation how much information, if any, is provided if used with a non-debug context.</li></ul>
+<h3><span class="mw-headline" id="Targeting_OpenGL_3.3">Targeting OpenGL 3.3</span></h3>
+<p>These are useful extensions when targeting GL 3.3. These are either non-hardware extensions introduced after 3.3, or hardware features not exposed by 3.3's API. Most 3.3 hardware will provide these, given recent drivers.
+</p>
+<div class="column-count column-count-2" style="-moz-column-count: 2; -webkit-column-count: 2; column-count: 2;">
+<ul><li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compressed_texture_pixel_storage.txt">GL_ARB_compressed_texture_pixel_storage</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/conservative_depth.txt">GL_ARB_conservative_depth</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/ES2_compatibility.txt">GL_ARB_ES2_compatibility</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/get_program_binary.txt">GL_ARB_get_program_binary</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/explicit_uniform_location.txt">GL_ARB_explicit_uniform_location</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/internalformat_query.txt">GL_ARB_internalformat_query</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/internalformat_query2.txt">GL_ARB_internalformat_query2</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/map_buffer_alignment.txt">GL_ARB_map_buffer_alignment</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/program_interface_query.txt">GL_ARB_program_interface_query</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">GL_ARB_separate_shader_objects</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_420pack.txt">GL_ARB_shading_language_420pack</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shading_language_packing.txt">GL_ARB_shading_language_packing</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_buffer_range.txt">GL_ARB_texture_buffer_range</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_storage.txt">GL_ARB_texture_storage</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_view.txt">GL_ARB_texture_view</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/vertex_attrib_binding.txt">GL_ARB_vertex_attrib_binding</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/viewport_array.txt">GL_ARB_viewport_array</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/texture_barrier.txt">GL_NV_texture_barrier</a> (implemented widely on AMD hardware)</li></ul>
+</div>
+<p>AMD's 3.x-class hardware has features that are commonly 4.x-level features. These are exposed through these extensions:
+</p>
+<ul><li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback2.txt">GL_ARB_transform_feedback2</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">GL_ARB_transform_feedback3</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_buffer_object_rgb32.txt">GL_ARB_texture_buffer_object_rgb32</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_precision.txt">GL_ARB_shader_precision</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/draw_buffers_blend.txt">GL_ARB_draw_buffers_blend</a></li></ul>
+<h3><span class="mw-headline" id="Targeting_OpenGL_2.1">Targeting OpenGL 2.1</span></h3>
+<p>These are useful extensions when targeting GL 2.1 hardware. Note that many of the above extensions are <i>also</i> available, if the hardware is still being supported. These represent non-hardware extensions introduced after 2.1, or hardware features not exposed by 2.1's API. Most 2.1 hardware that is still being supported by its maker will provide these, given recent drivers.
+</p>
+<ul><li>Most of the previous list</li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/vertex_array_object.txt">GL_ARB_vertex_array_object</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/framebuffer_object.txt">GL_ARB_framebuffer_object</a>
+<ul><li>If not this, you get very similar functionality from these:</li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/framebuffer_object.txt">GL_EXT_framebuffer_object</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/framebuffer_blit.txt">GL_EXT_framebuffer_blit</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/framebuffer_multisample.txt">GL_EXT_framebuffer_multisample</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/packed_depth_stencil.txt">GL_EXT_packed_depth_stencil</a>.</li></ul></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/map_buffer_range.txt">GL_ARB_map_buffer_range</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/copy_buffer.txt">GL_ARB_copy_buffer</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/texture_rectangle.txt">GL_ARB_texture_rectangle</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/color_buffer_float.txt">GL_ARB_color_buffer_float</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/half_float_pixel.txt">GL_ARB_half_float_pixel</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/sync.txt">GL_ARB_sync</a></li></ul>
+<p>Targeting GL 2.1, but on GL 3-class hardware (mainly for Mac OSX versions without GL 3.x support):
+</p>
+<ul><li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/texture_rg.txt">GL_ARB_texture_rg</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/ARB/texture_compression_rgtc.txt">GL_ARB_texture_compression_rgtc</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/bindable_uniform.txt">GL_EXT_bindable_uniform</a> (similar to <a href="/opengl/Uniform_Buffer_Objects" class="mw-redirect" title="Uniform Buffer Objects">Uniform Buffer Objects</a>, but not as cleanly specified.)</li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/draw_buffers2.txt">GL_EXT_draw_buffers2</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/geometry_shader4.txt">GL_EXT_geometry_shader4</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/gpu_shader4.txt">GL_EXT_gpu_shader4</a></li>
+<li><a rel="nofollow" class="external text" href="https://www.opengl.org/registry/specs/EXT/framebuffer_sRGB.txt">GL_EXT_framebuffer_sRGB</a></li></ul>
+<h2><span class="mw-headline" id="How_to_read">How to read</span></h2>
+<p>Reading an OpenGL extension is somewhat complicated. Extensions have many sections, and these sections have different meanings. Some sections are descriptive while others are normative. A descriptive section does not represent the actual functionality of the extension; it either explains some facet of the extension or offers other useful information. Normative sections are those that actually specify the behavior of the OpenGL graphics system.
+</p>
+<h3><span class="mw-headline" id="Preamble_sections">Preamble sections</span></h3>
+<p>There are a number of sections in an extension that serve as simple introductory material. The <i>Name</i>, <i>Name String</i>, etc. These all have information that's fairly obvious to understand.
+</p>
+<h4><span class="mw-headline" id="Dependencies">Dependencies</span></h4>
+<p>The <i>Dependencies</i> section is a bit more complicated. OpenGL extensions are sort of like .diff files. They specify changes to the OpenGL specification. A .diff file is useless without the file that it is to be applied to. And just as with .diff files, OpenGL extensions are written against a specific version of the OpenGL specification.
+</p><p>The version that the extension is written against is specified by the "This extension is written against..." text. If the extension extends GLSL, there will be a second version for the GLSL specification.
+</p><p>Extensions may be written against a particular specification version, but it is possible to implement them that extension on older OpenGL versions. Some extensions can be implemented even on OpenGL 1.1, while others have a higher base version. The minimum version that the extension can appear in is specified with the text, "X are required," where <i>X</i> is the minimum OpenGL and/or GLSL version required.
+</p><p>Extensions can also have a number of dependencies on either other extensions or higher version numbers. The idea is pretty simple, in general. If extension X changes its behavior in some way in the presence of extension Y, then extension X has a dependency on extension Y. This is stated with the text "This extension interacts with...". The specific interactions are specified in the main body of the extension.
+</p><p>The text "This extension interacts trivially with..." means that the interaction is fairly obvious. For example, the ARB_shader_image_load_store extension interacts "trivially" with ARB_tessellation_shader and/or OpenGL 4.0. The interaction is obvious: ignore references to the tessellation shader stages. This is a trivial interaction. Other interactions are not as trivial.
+</p>
+<h4><span class="mw-headline" id="Overview">Overview</span></h4>
+<p>The <i>Overview</i> section is the heart of the descriptive text. It provides a plain-text explanation of what the extension does. This is descriptive text, so it is non-binding; the specific functionality is provided elsewhere. But the overview provides a good start in understanding what the extension actually does.
+</p>
+<h3><span class="mw-headline" id="Normative_text">Normative text</span></h3>
+<p>The main body of the normative text, the actual text that says how the extension works, is provided after the overview. It is broken down into two basic sections: a list of the new functions/enums, and a list of the spec additions/dependency descriptions. These sections comprise the main body of the extension.
+</p>
+<h4><span class="mw-headline" id="Functions_and_enumerators">Functions and enumerators</span></h4>
+<p>The <i>New Procedures and Functions</i> section is a list of all of the functions the extension provides, if any. The <i>New Tokens</i> section is a list of all of the enumerators provided, their values, and what functions accept them, if any.
+</p>
+<h4><span class="mw-headline" id="Additions_and_Dependencies">Additions and Dependencies</span></h4>
+<p>After the tokens and functions, there will be several sections titled <i>Additions to Chapter X of the...</i>, where X is some chapter number in the OpenGL specification that the extension is written against. Within each addition section, there is a list of blocks of text, where the original text in the spec is either removed, added, or changed as outlined in the extension.
+</p><p>Following these can be a section titled <i>Errors</i>. This explains any possible errors rising from functions described or modified in this extension.
+</p><p>After this is a list of <i>Dependencies</i> sections. For every dependency listed in the first dependencies section at the beginning of the extension, there will be a block of text explaining how the spec changes in the presence of the extension or OpenGL version.
+</p>
+<h3><span class="mw-headline" id="Footer">Footer</span></h3>
+<p>After the main body, we have various other descriptive information.
+</p>
+<h4><span class="mw-headline" id="Issues">Issues</span></h4>
+<p>The <i>Issues</i> section is a list of design questions that the people working on the extension were asked and answered, informing how the extension came to its current form. This descriptive info is often handy in getting an idea how an extension works without having to read the specific details. The <i>Overview</i> can give a general idea of how it works, but the <i>Issues</i> section can give insight into what the details are.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> In many older extension specifications, the <i>Issues</i> section directly followed the <i>Overview</i> section. Newer ones move <i>Issues</i> below the main body, because there were a <i>lot</i> of issues in some extensions.</div>
+<h4><span class="mw-headline" id="Revision_History">Revision History</span></h4>
+<p>The history of revisions of the extension. Most of these happen before it is first published, but some (rarely) happen later.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318072931
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.060 seconds
+Real time usage: 0.062 seconds
+Preprocessor visited node count: 199/1000000
+Post‐expand include size: 1158/2097152 bytes
+Template argument size: 547/2097152 bytes
+Highest expansion depth: 6/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   15.763      1 -total
+ 28.54%    4.498      1 Template:Div_col
+ 24.91%    3.926      2 Template:Main
+ 20.81%    3.280      1 Template:Note
+ 11.29%    1.780      1 Template:Column-count
+ 10.14%    1.598      1 Template:Div_col_end
+ 10.12%    1.596      1 Template:Extref
+  9.14%    1.441      1 Template:Note_style
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1280-0!canonical and timestamp 20260318072931 and revision id 14337. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=OpenGL_Extension&amp;oldid=14337">https://wikis.khronos.org/opengl/index.php?title=OpenGL_Extension&amp;oldid=14337</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

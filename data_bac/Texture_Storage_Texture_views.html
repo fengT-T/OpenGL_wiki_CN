@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Texture Storage - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"805a502328dfbcbe836267ca","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Texture_Storage","wgTitle":"Texture Storage","wgCurRevisionId":14994,"wgRevisionId":14994,"wgArticleId":2304,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","Textures","Missing DSA"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Texture_Storage","wgRelevantArticleId":2304,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Texture_Storage rootpage-Texture_Storage skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Texture Storage</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>The <b>Texture Storage</b> is the part of <a href="/opengl/Texture" title="Texture">Texture</a> objects that contains the actual pixel data stored in the texture. This article describes the layout of a texture's storage, the many ways of managing the allocation and pixel contents of a texture's storage.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Anatomy_of_storage"><span class="tocnumber">1</span> <span class="toctext">Anatomy of storage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Image_sizes"><span class="tocnumber">1.1</span> <span class="toctext">Image sizes</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Kinds_of_storage"><span class="tocnumber">1.2</span> <span class="toctext">Kinds of storage</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Immutable_storage"><span class="tocnumber">2</span> <span class="toctext">Immutable storage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Texture_views"><span class="tocnumber">2.1</span> <span class="toctext">Texture views</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#View_texture_aliases"><span class="tocnumber">2.1.1</span> <span class="toctext">View texture aliases</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Mutable_storage"><span class="tocnumber">3</span> <span class="toctext">Mutable storage</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Texture_completeness"><span class="tocnumber">3.1</span> <span class="toctext">Texture completeness</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Direct_creation"><span class="tocnumber">3.2</span> <span class="toctext">Direct creation</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Compressed_format_creation"><span class="tocnumber">3.3</span> <span class="toctext">Compressed format creation</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Framebuffer_copy_creation"><span class="tocnumber">3.4</span> <span class="toctext">Framebuffer copy creation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Storage_contents"><span class="tocnumber">4</span> <span class="toctext">Storage contents</span></a>
+<ul>
+<li class="toclevel-2 tocsection-13"><a href="#Automatic_mipmap_generation"><span class="tocnumber">4.1</span> <span class="toctext">Automatic mipmap generation</span></a></li>
+<li class="toclevel-2 tocsection-14"><a href="#Pixel_upload"><span class="tocnumber">4.2</span> <span class="toctext">Pixel upload</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Compressed_pixel_upload"><span class="tocnumber">4.3</span> <span class="toctext">Compressed pixel upload</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Texture_clear"><span class="tocnumber">4.4</span> <span class="toctext">Texture clear</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Texture_copy"><span class="tocnumber">4.5</span> <span class="toctext">Texture copy</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Framebuffer_copy"><span class="tocnumber">4.6</span> <span class="toctext">Framebuffer copy</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Framebuffer_rendertarget"><span class="tocnumber">4.7</span> <span class="toctext">Framebuffer rendertarget</span></a>
+<ul>
+<li class="toclevel-3 tocsection-20"><a href="#Framebuffer_blit"><span class="tocnumber">4.7.1</span> <span class="toctext">Framebuffer blit</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-21"><a href="#Invalidation"><span class="tocnumber">4.8</span> <span class="toctext">Invalidation</span></a></li>
+<li class="toclevel-2 tocsection-22"><a href="#Pixel_download"><span class="tocnumber">4.9</span> <span class="toctext">Pixel download</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-23"><a href="#Buffer_storage"><span class="tocnumber">5</span> <span class="toctext">Buffer storage</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Anatomy_of_storage">Anatomy of storage</span></h2>
+<p>A texture's image storage contains one or more images of a certain dimensionality. Each <a href="/opengl/Texture#Theory" title="Texture">kind of texture</a> has a specific arrangement of images in its storage. Textures can have mipmaps, which are smaller versions of the same image used to aid in texture sampling and filtering. Each mipmap level has a separate set of images.
+</p><p>Since a texture stores multiple images, it is important to be able to identify a specific image in a texture. Each image in a texture can be uniquely identified by the following numbers, depending on the texture type:
+</p>
+<ul><li>For textures that can have mipmaps, the mipmap <span class="tpl-param">level​</span> that contains the image.</li>
+<li>For <a href="/opengl/Array_Texture" title="Array Texture">Array Textures</a>, the array <span class="tpl-param">layer​</span> that contains the image.</li>
+<li>For <a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a>, the face within that array layer and mipmap level. Note that for cubemap array textures, the layer and face are combined into layer-faces.</li></ul>
+<p>Therefore, a texture can be thought of as a three-dimensional array of images. The first index is the mipmap level, the second is the array layer, and the third is the cube map face. Another way to think of it is that a texture has a number of mipmap levels. Each mipmap can have a number of array layers. And each array layer has a number of faces. Every image of a texture can therefore be uniquely referenced by the face, layer, and level indices.
+</p><p>Here is a table describing which texture types may have which values (mipmaps, array layers, and faces):
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>Texture type
+</th>
+<th>Mipmaps
+</th>
+<th>Array<br />Layers
+</th>
+<th>Cubemap<br />Faces
+</th>
+<th>Image<br />dimensionality
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_1D</span>
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>1D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D</span>
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>2D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_3D</span>
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>3D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>1D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>2D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>Yes
+</td>
+<td>2D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td>
+<td>Yes
+</td>
+<td>2D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_RECTANGLE</span>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>2D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_BUFFER</span>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>1D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE</span>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>2D
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE_ARRAY</span>
+</td>
+<td>
+</td>
+<td>Yes
+</td>
+<td>
+</td>
+<td>2D
+</td></tr></tbody></table>
+<p>Note that virtually every function in OpenGL that deals with a texture's storage <i>assumes</i> that the texture may have mipmaps. So almost all of them take a <span class="tpl-param">level​</span> parameter. When using such functions for textures that cannot be mipmapped, the value for <span class="tpl-param">level​</span> must always be 0. Similarly, when dealing with functions that ask for a number of mipmap levels (such as the function to create storage for a texture), you must use 1 for non-mipmapped texture types.
+</p>
+<h3><span class="mw-headline" id="Image_sizes">Image sizes</span></h3>
+<p>Each texture type represents images of a certain dimensionality. As such, it is important to know the size of the individual images within a texture. This is easy enough.
+</p><p>All images that have the <i>same</i> mipmap level (ie: all array layers and/or cube map faces in a mipmap) in a texture will have the same size (note that there are ways to try to break this rule; they will only lead to a non-functional texture). That size depends on the size of the base mipmap level of the texture: level 0. The size of level 0 images defines the texture's effective size.
+</p><p>For every mipmap level past level 0, the size decreases in half, rounded down. So if you have a 67x67 base mipmap level for a texture with two-dimensional images, the images in mipmap level 1 will be 33x33 in size. For level 2, they will be 16x16. And so forth.
+</p><p>The mipmap chain stops when all dimensions are 1; that is the maximum mipmap level. "Maximum" in level index value, because the base level starts at 0.
+</p><p>The number of array layers and cube map faces <i>do not change</i> with the mipmap level. If a texture has 3 array layers, every mipmap will have 3 array layers. This is important to remember when allocating texture storage and uploading pixel data.
+</p>
+<div style="margin-left: 3em;">
+<b>Warning:</b> Cube map and cube map array textures must use <i>square sizes</i>. The width and height must be the same.</div>
+<h3><span class="mw-headline" id="Kinds_of_storage">Kinds of storage</span></h3>
+<p>The above describes the way the storage exists within a texture. How to <i>create</i> that storage is another matter.
+</p><p>There are three kinds of storage for textures: mutable storage, immutable storage, and buffer storage. Only <a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a> can use buffer storage, where the texture gets its storage from a <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a>. And similarly, buffer textures cannot use mutable or immutable storage. Any other kind of texture can use either mutable or immutable storage (well, the <a href="/opengl/Immutable_Buffer_Storage" class="mw-redirect" title="Immutable Buffer Storage">buffer object's storage can be immutable</a>, but that's the buffer object's storage, not the texture's storage). Because of this, the discussion below, with the exception of <a href="#Buffer_storage">one section</a>, will focus on mutable and immutable storage.
+</p><p>One of the big differences between mutable storage allocation and immutable storage allocation is this: immutable storage allocates all of the images for the texture all at once. Every mipmap level, array layer, and cube map face is all allocated with a single call, giving all of these images a specific <a href="/opengl/Image_Format" title="Image Format">Image Format</a>. It is called "immutable" because once the storage is allocated, the storage <i>cannot</i> be changed. The texture can be deleted as normal, but the storage cannot be altered. A 256x256 2D texture with 5 mipmap layers that uses the <span class="tpl-enum">GL_RGBA8</span> image format will *always* be a 256x256 2D texture with 5 mipmap layers that uses the <span class="tpl-enum">GL_RGBA8</span> image format.
+</p><p>Note that what immutable storage refers to is the allocation of the memory, not the <i>contents</i> of that memory. You can upload different pixel data to immutable storage all you want. With mutable storage, you can re-vamp the storage of a texture object entirely, changing a 256x256 texture into a 1024x1024 texture.
+</p><p>Immutable storage can be analogized to the <a rel="nofollow" class="external text" href="http://www.codeguru.com/cpp/cpp/cpp_mfc/general/article.php/c6967/Constant-Pointers-and-Pointers-to-Constants.htm">C++ concept of "pointer const"</a>:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">pData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="mi">500</span><span class="p">];</span>
+</pre></div>
+<p>The value of the <span class="tpl-code">pData</span> pointer cannot change. You can't store a new pointer in <span class="tpl-code">pData</span>. But, because the <i>contents</i> of <span class="tpl-code">pData</span> are not <span class="tpl-code">const</span>, it's perfectly valid to modify it as you wish:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">pData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="mi">500</span><span class="p">];</span>
+<span class="n">std</span><span class="o">::</span><span class="n">fill</span><span class="p">(</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="n">pData</span><span class="o">+</span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">//Legal</span>
+<span class="n">std</span><span class="o">::</span><span class="n">strcpy</span><span class="p">(</span><span class="n">pData</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;A String Literal&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">//Also legal.</span>
+<span class="k">delete</span><span class="w"> </span><span class="p">[]</span><span class="n">pData</span><span class="p">;</span><span class="w"> </span><span class="c1">//Yes, this is legal too. You can delete pointer consts.</span>
+<span class="n">pData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="kt">char</span><span class="p">[</span><span class="mi">700</span><span class="p">];</span><span class="w"> </span><span class="c1">//NOT LEGAL.</span>
+<span class="n">pData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Foo&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">//Also not legal.</span>
+</pre></div>
+<div style="margin-left: 3em;">
+<b>Recommendation:</b> If your implementation supports creating textures with immutable storage, you should use it wherever possible. It will save you from <i>innumerable</i> mistakes and headaches.</div>
+<h2><span class="mw-headline" id="Immutable_storage">Immutable storage</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Immutable Storage</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2, 4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_storage.txt">ARB_texture_storage</a>, <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_storage_multisample.txt">ARB_texture_storage_multisample</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Allocating immutable storage for a texture requires binding the texture to its target, then calling a function of the form <span class="tpl-code">glTexStorage*</span>. Which function you call depends on which <a href="/opengl/Texture#Theory" title="Texture">texture type</a> you are trying to allocate storage for. Each function only works on a specific set of targets.
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTexStorage1D" title="GLAPI/glTexStorage1D">glTexStorage1D</a></span>( GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">levels​</span>, GLint <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span> );</div>
+<dl><dd>Valid <span class="tpl-param">target​</span>: <span class="tpl-enum">GL_TEXTURE_1D</span></dd></dl>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTexStorage2D" title="GLAPI/glTexStorage2D">glTexStorage2D</a></span>( GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">levels​</span>, GLint <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span> );</div>
+<dl><dd>Valid <span class="tpl-param">target​</span>s: <span class="tpl-enum">GL_TEXTURE_2D</span>, <span class="tpl-enum">GL_TEXTURE_RECTANGLE</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>, or <span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>.</dd>
+<dd>For 1D array textures, the number of array layers in each mipmap level is the <span class="tpl-param">height​</span> value. For rectangle textures, the number of mipmap levels must be 1.</dd></dl>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTexStorage3D" title="GLAPI/glTexStorage3D">glTexStorage3D</a></span>( GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">levels​</span>, GLint <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLsizei <span class="tpl-param">depth​</span> );</div>
+<dl><dd>Valid <span class="tpl-param">target​</span>s: <span class="tpl-enum">GL_TEXTURE_3D</span>, <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span> (this requires GL 4.0 or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_cube_map_array.txt">ARB_texture_cube_map_array</a>)</dd>
+<dd>For 2D array textures, the number of array layers in each mipmap level is the <span class="tpl-param">depth​</span> value.</dd>
+<dd>For 2D cubemap array textures, the number of cubemap layer-faces is the <span class="tpl-param">depth​</span>, which must be a multiple of 6. Therefore, the number of individual cubemaps in the array is given by <span class="tpl-param">depth​</span> / 6.</dd></dl>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTexStorage2DMultisample" title="GLAPI/glTexStorage2DMultisample">glTexStorage2DMultisample</a></span>( GLenum <span class="tpl-param">target​</span>, GLsizei <span class="tpl-param">samples​​</span>, GLint <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLboolean <span class="tpl-param">fixedsamplelocations​​</span> );</div>
+<dl><dd>Valid <span class="tpl-param">target​</span>s: <span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE</span></dd></dl>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTexStorage3DMultisample" title="GLAPI/glTexStorage3DMultisample">glTexStorage3DMultisample</a></span>( GLenum <span class="tpl-param">target​</span>, GLsizei <span class="tpl-param">samples​​</span>, GLint <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLsizei <span class="tpl-param">depth​</span>, GLboolean <span class="tpl-param">fixedsamplelocations​​</span> );</div>
+<dl><dd>Valid <span class="tpl-param">target​</span>s: <span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE_ARRAY</span></dd></dl>
+<p>These functions allocate images with the given size (<span class="tpl-param">width​</span>, <span class="tpl-param">height​</span>, and <span class="tpl-param">depth​</span>, where appropriate), with the number of mipmaps given by <span class="tpl-param">levels​</span>. The storage is created here, but the contents of that storage is undefined. It's a lot like calling <span class="tpl-code">malloc</span>; you get memory, but there's nothing in it yet.
+</p><p>The <span class="tpl-param">internalformat​</span> parameter defines the <a href="/opengl/Image_Format" title="Image Format">Image Format</a> to use for the texture. For the most part, any texture type can use any image format. Including the compressed formats. Note that these functions explicitly require the use of sized image formats. So <span class="tpl-enum">GL_RGBA</span> is not sufficient; you have to ask for a size, like <span class="tpl-enum">GL_RGBA8</span>.
+</p><p>For the <a href="/opengl/Multisample_Texture" title="Multisample Texture">multisample functions</a>, <span class="tpl-param">samples​</span> defines the number of samples that will be used per-texel in the texture. If you set <span class="tpl-param">fixedsamplelocations​</span> is <span class="tpl-enum">GL_TRUE</span>, then the following is assured:
+</p>
+<ol><li>The texels in the image will all use the same sample locations.</li>
+<li>The texels in the image will all use the same number of sample locations (normally, the implementation could give some texels fewer than <span class="tpl-param">samples​</span>, while other texels get more).</li>
+<li>All textures with fixed sample locations will use the same set of sample locations, regardless of <a href="/opengl/Image_Format" title="Image Format">Image Format</a>.</li></ol>
+<h3><span class="mw-headline" id="Texture_views">Texture views</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Texture Views</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_view.txt">ARB_texture_view</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Besides the infinitely cleaner texture specification syntax and the general reduction in the chance for mistakes, creating immutable storage for textures has one other advantage: immutable storage can be shared between texture objects.
+</p><p>Mutable storage is bound to a single texture object. Immutable storage can be shared among several objects, such that they are all referring to the same memory. Think of it like passing a reference-counted smart pointer around. Each object has its own smart pointer, and the memory doesn't go away until all objects that reference the shared memory are destroyed.
+</p><p>The <span class="tpl-code">glTexStorage*</span> functions all create <i>new</i> immutable storage, ala <span class="tpl-code">malloc</span>. In order to share previously-created immutable storage, we must use a different function:
+<br style="clear: both" />
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTextureView" title="GLAPI/glTextureView">glTextureView</a></span>(GLuint <span class="tpl-param">texture​</span>, GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">origtexture​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLuint <span class="tpl-param">minlevel​</span>, GLuint <span class="tpl-param">numlevels​</span>, GLuint <span class="tpl-param">minlayer​</span>, GLuint <span class="tpl-param">numlayers​</span>)</div>
+<p>This function takes two textures. <span class="tpl-param">origtexture​</span> is the texture that currently has immutable storage. <span class="tpl-param">texture​</span> is a new texture that doesn't have immutable storage. <span class="tpl-param">target​</span> is the type of <span class="tpl-param">texture​</span>. When this function completes, it will share immutable storage with <span class="tpl-param">origtexture​</span>. This is called a "view texture", because the new texture represents a "view" into the original texture's storage.
+</p>
+<div style="margin-left: 3em;">
+<p><b>Warning:</b> The <span class="tpl-param">texture​</span> parameter <b>must</b> be a name returned from <span class="tpl-code"><a href="/opengl/GLAPI/glGenTextures" title="GLAPI/glGenTextures">glGenTextures</a></span> that has <i>not previously been bound to a target</i>.
+</p>
+This function requires an uninitialised texture, so using names from <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glCreateTexture&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glCreateTexture (page does not exist)">glCreateTexture</a></span> or names that have been bound already will fail.</div>
+<p>The view texture does not have to look at the exact same size of storage. It can reference only a portion of the original texture. For example, if you have an immutable texture with 6 mipmap levels, you can create a view that only uses 3 mipmap levels.
+</p><p>This is the responsibility of the <span class="tpl-param">minlevel​</span> and <span class="tpl-param">numlevels​</span> parameters. The <span class="tpl-param">minlevel​</span> specifies the mipmap level in the <span class="tpl-param">origtexture​</span> that will become the base level of the view texture. <span class="tpl-param">numlevels​</span> specifies how many mipmaps are to be viewed. If the <span class="tpl-param">origtexture​</span> is not a texture type that has mipmaps (multisample or <a href="/opengl/Rectangle_Texture" title="Rectangle Texture">rectangle</a> textures), then <span class="tpl-param">minlevel​</span> must be 0 and <span class="tpl-param">numlevels​</span> must be 1. For textures that could have mipmaps, then <span class="tpl-param">minlevel​</span> and <span class="tpl-param">numlevels​</span> will be clamped to the actual available number of mipmaps in the source texture (though it is an error if <span class="tpl-param">minlevel​</span> is outside of the range of mipmaps).
+</p><p>For textures that have layers or faces (<span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>, <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>, or <span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>), a range of layers to take can be specified with <span class="tpl-param">minlayer​</span> and <span class="tpl-param">numlayers​</span>. As with the mipmap level range parameters, the layer ranges are clamped to the available range of layers, and <span class="tpl-param">minlayer​</span> must be an available layer in the image. Cube maps are treated as an array texture with 6 layers. Cube map array layers here are layer-faces.
+</p>
+<h4><span class="mw-headline" id="View_texture_aliases">View texture aliases</span></h4>
+<p>There are two special tricks you can play with view textures. The texture type of <span class="tpl-param">origtexture​</span> does not have to match the <span class="tpl-param">target​</span>. For example, you can have a 1D array texture and create a view of it as a 1D texture, which represents a specific array layer of the original texture. To do this, you must use <span class="tpl-param">minlayer​</span> to define the layer you want to select, and pass 1 to <span class="tpl-param">numlayers​</span>.
+</p><p>You can only perform this kind of conversion between very specific sets of texture types. Here is a table defining where the conversion is allowed:
+</p><p><span class="tpl-vte"><a href="/opengl/Template:Glapi_view_type_map" title="Template:Glapi view type map">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Template:Glapi_view_type_map&amp;action=edit">E</a></span></span>
+</p>
+<table class="wikitable">
+
+<tbody><tr>
+<th>Original Target
+</th>
+<th>Compatible New Targets
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_1D</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_1D</span>, <span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_2D</span>, <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_3D</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_3D</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>, <span class="tpl-enum">GL_TEXTURE_2D</span>, <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_RECTANGLE</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_RECTANGLE</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_BUFFER</span>
+</td>
+<td><i>none</i>. Cannot be used with this function.
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_1D</span>, <span class="tpl-enum">GL_TEXTURE_1D_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_2D</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>, <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>, <span class="tpl-enum">GL_TEXTURE_2D</span>, <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span>, <span class="tpl-enum">GL_TEXTURE_CUBE_MAP_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE</span>, <span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE_ARRAY</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE_ARRAY</span>
+</td>
+<td><span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE</span>, <span class="tpl-enum">GL_TEXTURE_2D_MULTISAMPLE_ARRAY</span>
+</td></tr></tbody></table>
+<p><br />
+The number of mipmaps levels and array layers you fetch are not allowed to violate the constraints of the destination <span class="tpl-param">target​</span>. So if you want to get a 2D array texture view of a 2D non-array texture, the new 2D array texture will only have one array layer. Similarly, if you want to create a <a href="/opengl/Cubemap_Array_Texture" class="mw-redirect" title="Cubemap Array Texture">Cubemap Array Texture</a> from a regular 2D array texture, the number of layer-faces in the cubemap array must be a multiple of 6 (though the initial layer taken from the 2D array does not need to be a multiple of 6).
+</p><p>The other trick you can do with view textures is change the <a href="/opengl/Image_Format" title="Image Format">Image Format</a>. <span class="tpl-param">internalformat​</span> is not restricted to the exact image format that <span class="tpl-param">origtexture​</span> uses. It only has to be <i>compatible</i> with it. All formats that share the same "class" are compatible with each other. Here are the various classes and their compatible formats:
+</p><p><span class="tpl-vte"><a href="/opengl/Template:Glapi_view_format_map" title="Template:Glapi view format map">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Template:Glapi_view_format_map&amp;action=edit">E</a></span></span>
+</p>
+<table class="wikitable">
+
+<tbody><tr>
+<th>Class
+</th>
+<th>Internal Formats
+</th></tr>
+<tr>
+<td>128-bit
+</td>
+<td><span class="tpl-enum">GL_RGBA32F</span>, <span class="tpl-enum">GL_RGBA32UI</span>, <span class="tpl-enum">GL_RGBA32I</span>
+</td></tr>
+<tr>
+<td>96-bit
+</td>
+<td><span class="tpl-enum">GL_RGB32F</span>, <span class="tpl-enum">GL_RGB32UI</span>, <span class="tpl-enum">GL_RGB32I</span>
+</td></tr>
+<tr>
+<td>64-bit
+</td>
+<td><span class="tpl-enum">GL_RGBA16F</span>, <span class="tpl-enum">GL_RG32F</span>, <span class="tpl-enum">GL_RGBA16UI</span>, <span class="tpl-enum">GL_RG32UI</span>, <span class="tpl-enum">GL_RGBA16I</span>, <span class="tpl-enum">GL_RG32I</span>, <span class="tpl-enum">GL_RGBA16</span>, <span class="tpl-enum">GL_RGBA16_SNORM</span>
+</td></tr>
+<tr>
+<td>48-bit
+</td>
+<td><span class="tpl-enum">GL_RGB16</span>, <span class="tpl-enum">GL_RGB16_SNORM</span>, <span class="tpl-enum">GL_RGB16F</span>, <span class="tpl-enum">GL_RGB16UI</span>, <span class="tpl-enum">GL_RGB16I</span>
+</td></tr>
+<tr>
+<td>32-bit
+</td>
+<td><span class="tpl-enum">GL_RG16F</span>, <span class="tpl-enum">GL_R11F_G11F_B10F</span>, <span class="tpl-enum">GL_R32F</span>, <span class="tpl-enum">GL_RGB10_A2UI</span>, <span class="tpl-enum">GL_RGBA8UI</span>, <span class="tpl-enum">GL_RG16UI</span>, <span class="tpl-enum">GL_R32UI</span>, <span class="tpl-enum">GL_RGBA8I</span>, <span class="tpl-enum">GL_RG16I</span>, <span class="tpl-enum">GL_R32I</span>, <span class="tpl-enum">GL_RGB10_A2</span>, <span class="tpl-enum">GL_RGBA8</span>, <span class="tpl-enum">GL_RG16</span>, <span class="tpl-enum">GL_RGBA8_SNORM</span>, <span class="tpl-enum">GL_RG16_SNORM</span>, <span class="tpl-enum">GL_SRGB8_ALPHA8</span>, <span class="tpl-enum">GL_RGB9_E5</span>
+</td></tr>
+<tr>
+<td>24-bit
+</td>
+<td><span class="tpl-enum">GL_RGB8</span>, <span class="tpl-enum">GL_RGB8_SNORM</span>, <span class="tpl-enum">GL_SRGB8</span>, <span class="tpl-enum">GL_RGB8UI</span>, <span class="tpl-enum">GL_RGB8I</span>
+</td></tr>
+<tr>
+<td>16-bit
+</td>
+<td><span class="tpl-enum">GL_R16F</span>, <span class="tpl-enum">GL_RG8UI</span>, <span class="tpl-enum">GL_R16UI</span>, <span class="tpl-enum">GL_RG8I</span>, <span class="tpl-enum">GL_R16I</span>, <span class="tpl-enum">GL_RG8</span>, <span class="tpl-enum">GL_R16</span>, <span class="tpl-enum">GL_RG8_SNORM</span>, <span class="tpl-enum">GL_R16_SNORM</span>
+</td></tr>
+<tr>
+<td>8-bit
+</td>
+<td><span class="tpl-enum">GL_R8UI</span>, <span class="tpl-enum">GL_R8I</span>, <span class="tpl-enum">GL_R8</span>, <span class="tpl-enum">GL_R8_SNORM</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_VIEW_CLASS_RGTC1_RED</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RED_RGTC1</span>, <span class="tpl-enum">GL_COMPRESSED_SIGNED_RED_RGTC1</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_VIEW_CLASS_RGTC2_RG</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RG_RGTC2</span>, <span class="tpl-enum">GL_COMPRESSED_SIGNED_RG_RGTC2</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_VIEW_CLASS_BPTC_UNORM</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RGBA_BPTC_UNORM</span>, <span class="tpl-enum">GL_COMPRESSED_SRGB_ALPHA_BPTC_UNORM</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_VIEW_CLASS_BPTC_FLOAT</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RGB_BPTC_SIGNED_FLOAT</span>, <span class="tpl-enum">GL_COMPRESSED_RGB_BPTC_UNSIGNED_FLOAT</span>
+</td></tr></tbody></table>
+<p><span class="tpl-vte"><a href="/opengl/Template:Glapi_view_s3tc_map" title="Template:Glapi view s3tc map">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Template:Glapi_view_s3tc_map&amp;action=edit">E</a></span></span>
+</p>
+<table class="wikitable">
+<caption><b>S3TC texture view compatibility</b>
+</caption>
+<tbody><tr>
+<th>Class
+</th>
+<th>Internal formats
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_S3TC_DXT1_RGB</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RGB_S3TC_DXT1_EXT</span>, <span class="tpl-enum">GL_COMPRESSED_SRGB_S3TC_DXT1_EXT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_S3TC_DXT1_RGBA</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RGBA_S3TC_DXT1_EXT</span>, <span class="tpl-enum">GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT1_EXT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_S3TC_DXT3_RGBA</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RGBA_S3TC_DXT3_EXT</span>, <span class="tpl-enum">GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT3_EXT</span>
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_S3TC_DXT5_RGBA</span>
+</td>
+<td><span class="tpl-enum">GL_COMPRESSED_RGBA_S3TC_DXT5_EXT</span>, <span class="tpl-enum">GL_COMPRESSED_SRGB_ALPHA_S3TC_DXT5_EXT</span>
+</td></tr></tbody></table>
+<p><br />
+Any formats <i>not</i> on this chart are only compatible with themselves; you cannot create a view with a different format.
+</p><p>Because view textures reference immutable storage, this also means that view textures can be used as <span class="tpl-param">origtexture​</span>. So you can create a view of a view.
+</p><p>The mipmap levels, number and indices of layers, base level texture size, and similar parameters for a view are defined by the particular view, not the original block of storage. As an example, let's say we create a 2D array texture with immutable storage as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="n">tex</span><span class="p">);</span>
+<span class="n">glTexStorage3D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA8</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">);</span>
+</pre></div>
+<p>We can create a view of <span class="tpl-code">tex</span>:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glTextureView</span><span class="p">(</span><span class="n">texView1</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TEXTURE_2D_ARRAY</span><span class="p">,</span><span class="w"> </span><span class="n">tex</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA8</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">);</span>
+</pre></div>
+<p><span class="tpl-code">texView1</span> is a 2D array texture. As far as <span class="tpl-code">texView1</span> is concerned, the size of its base level is 256x256, because it starts with the third mipmap of <span class="tpl-code">tex</span>. It has only 5 mipmaps. And though it is an array, it has only 3 array layers.
+</p><p>We can create view from the new texture:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glTextureView</span><span class="p">(</span><span class="n">texView2</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">texView1</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA8</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+<p><span class="tpl-code">texView2</span> is a 2D texture. It has 1 mipmap level, and the size of that level is 64x64, because it picked the third mipmap from <span class="tpl-code">texView1</span>. It has 1 array layer, which is taken from the second layer in <span class="tpl-code">texView1</span>.
+</p><p>What is <span class="tpl-code">texView2</span> in relation to <span class="tpl-code">tex</span>? Exactly what it sounds like. <span class="tpl-code">texView2</span> takes the <i>fifth</i> mipmap level and the <i>third</i> array layer from <span class="tpl-code">tex</span>.
+</p><p>A view texture cannot view more mipmap levels and/or array layers than the <span class="tpl-param">origtexture​</span> advertises, <i>even if</i> the original texture is a view texture and those extra levels/layers exist. Views can only view the same information that the original does or a subset of it. If you want to view more of the storage, you need to use a texture that can access that storage.
+</p><p>Thus, it is technically possible to completely lose access to some levels/layers of a texture, if you delete the original texture created with <span class="tpl-code">glTexStorage*</span>.
+</p>
+<h2><span class="mw-headline" id="Mutable_storage">Mutable storage</span></h2>
+<p>OpenGL functions of the form <span class="tpl-code">gl*TexImage*</span> are used to create mutable storage for images within a texture. Calling any of these on a texture that had immutable storage created for it is an error.
+</p><p>The immutable storage calls are the equivalent of a C <span class="tpl-code">malloc</span>: they allocate memory, but they don't put anything in it. All of the mutable storage calls are capable of both allocating memory and transferring pixel data into that memory.
+</p>
+<h3><span class="mw-headline" id="Texture_completeness">Texture completeness</span></h3>
+<p>The mutable storage allocation functions allocate one mipmap level of the texture at a time (and <a href="/opengl/Cubemap_Texture" title="Cubemap Texture">in some cases</a>, only <i>part</i> of a mipmap level at a time). Because each mipmap level is created individually, the onus is on the user to ensure that the <a href="/opengl/Texture_Completeness" class="mw-redirect" title="Texture Completeness">allocated texture object is complete</a>.
+</p>
+<h3><span class="mw-headline" id="Direct_creation">Direct creation</span></h3>
+<p>There are several ways to allocate mutable storage; the differences are based on where they get their pixel data from. Since mutable storage creation also uploads data, there are many different places the user can get data from.
+</p><p>The <i>only</i> difference between these groups of functions is where they get the pixel data to initialize their images from.
+</p><p>The most direct method performs a regular <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> operation from either client memory or a <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">buffer object</a>. These are the functions that allocate and upload in this way:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage1D" title="GLAPI/glTexImage1D">glTexImage1D</a></span>( GLenum <i>target</i>, GLint <i>level</i>, GLint <i>internalformat</i>, GLsizei <i>width</i>, GLint <i>border</i>, GLenum <i>format</i>, GLenum <i>type</i>, void *<i>data</i> );
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage2D" title="GLAPI/glTexImage2D">glTexImage2D</a></span>( GLenum <i>target</i>, GLint <i>level</i>, GLint <i>internalformat</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLint <i>border</i>, GLenum <i>format</i>, GLenum <i>type</i>, void *<i>data</i> );
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage3D" title="GLAPI/glTexImage3D">glTexImage3D</a></span>( GLenum <i>target</i>, GLint <i>level</i>, GLint <i>internalformat</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLsizei <i>depth</i>, GLint <i>border</i>, GLenum <i>format</i>, GLenum <i>type</i>, void *<i>data</i> );
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage2DMultisample" title="GLAPI/glTexImage2DMultisample">glTexImage2DMultisample</a></span>( GLenum <i>target</i>, GLsizei <i>samples</i>, GLint <i>internalformat</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLboolean <i>ﬁxedsamplelocations</i> );
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage3DMultisample" title="GLAPI/glTexImage3DMultisample">glTexImage3DMultisample</a></span>( GLenum <i>target</i>, GLsizei <i>samples</i>, GLint <i>internalformat</i>, GLsizei <i>width</i>, GLsizei <i>height</i>, GLsizei <i>depth</i>, GLboolean <i>ﬁxedsamplelocations</i> );
+</p>
+</div>
+<p>These functions allocate an image from the texture bound to <span class="tpl-param">target​</span> (<a href="/opengl/Cubemap_Textures#Creation" class="mw-redirect" title="Cubemap Textures">cube map <span class="tpl-param">target​</span> is used to select which face to allocate and upload to</a>). The <span class="tpl-param">level​</span> parameter specifies the mipmap level for the image to be allocated. You can only allocate one mipmap level at a time.
+</p><p>With the exception of cubemaps, <span class="tpl-param">target​</span>s for these functions work as they did for the analogous <a href="#Immutable_storage">immutable storage</a> functions. So <span class="tpl-code"><a href="/opengl/GLAPI/glTexImage2D" title="GLAPI/glTexImage2D">glTexImage2D</a></span> is used to allocate a mipmap level of <a href="/opengl/Array_Texture" title="Array Texture">a 1D array texture</a>, where the <span class="tpl-param">height​</span> is the number of elements in the array. Multisample texture types must use the multisample allocation functions. And so forth.
+</p><p>Some of these functions have a <span class="tpl-param">border​</span> parameter. This was old functionality that is no longer supported (and really, never was); always set it to 0.
+</p>
+<div style="margin-left: 3em;">
+<b>Warning:</b> Do not forget to make sure that all mipmaps and images in the same texture are allocated with the same <span class="tpl-param">internalformat​</span>.</div>
+<p>The <span class="tpl-param">format​</span>, <span class="tpl-param">type​</span>, and <span class="tpl-param">data​</span> parameters are used for performing a <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> operation. This allows one to create a texture and fill it with some data in one call. As with any pixel transfer operation, <a href="/opengl/Pixel_Buffer_Objects" class="mw-redirect" title="Pixel Buffer Objects">Pixel Buffer Objects</a> can be used to feed OpenGL the data.
+</p><p>You do not need to fill in the texture's data in the same call that you create it in. If <span class="tpl-param">data​</span> is NULL, no pixel transfer will be done, and the texture's data is undefined.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Even if <i>data</i> is NULL, the <i>format</i> and <i>type</i> fields must be legal fields, or the entire call will fail with a <span class="tpl-enum">GL_INVALID_ENUM</span> <a href="/opengl/OpenGL_Error" title="OpenGL Error">error.</a></div>
+<p>The multisample versions of these functions do not offer pixel transfer. This is because the image data of multisample textures cannot be updated from client data. It can only be filled in as a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">render target</a> or via some other form of in-OpenGL writing operation (<a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a>, for example).
+</p>
+<h3><span class="mw-headline" id="Compressed_format_creation">Compressed format creation</span></h3>
+<p>Textures that use <a href="/opengl/Compressed_Texture" class="mw-redirect" title="Compressed Texture">compressed image formats</a> need special care. It is perfectly legal to pass an appropriate compressed format to any of the prior functions (except for the multisample ones). However, the <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> parameters pose a problem. They are designed for regular image data where each pixel is specified individually.
+</p><p>Most compressed formats store pixels in specially formatted blocks. As such, you cannot perform a direct pixel transfer of <i>previously compressed</i> data. If you use a compressed <span class="tpl-param">internalformat​</span> with a regular pixel transfer call, you are telling OpenGL to take uncompressed data and compress it manually.
+</p><p>There are a number of special functions for allocating images with compressed formats and simultaneously filling them with <i>compressed</i> data:
+</p>
+<div class="funcdef">
+<p>void <a href="/opengl/GLAPI/glCompressedTexImage1D" title="GLAPI/glCompressedTexImage1D">glCompressedTexImage1D</a>( GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLint <span class="tpl-param">border​</span>, GLsizei <span class="tpl-param">imageSize​</span>, void *<span class="tpl-param">data​</span> );
+</p><p>void <a href="/opengl/GLAPI/glCompressedTexImage2D" title="GLAPI/glCompressedTexImage2D">glCompressedTexImage2D</a>( GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLint <span class="tpl-param">border​</span>, GLsizei <span class="tpl-param">imageSize​</span>, void *<span class="tpl-param">data​</span> );
+</p><p>void <a href="/opengl/GLAPI/glCompressedTexImage3D" title="GLAPI/glCompressedTexImage3D">glCompressedTexImage3D</a>( GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLsizei <span class="tpl-param">depth​</span>, GLint <span class="tpl-param">border​</span>, GLsizei <span class="tpl-param">imageSize​</span>, void *<span class="tpl-param">data​</span> );
+</p>
+</div>
+<p>With the exception of the last two parameters, these functions work identically to their <span class="tpl-code">glTexImage*</span> counterparts. They allocate mutable storage of the given size for the texture bound to the given target.
+</p><p>Where they differ is in how they transfer pixel data. OpenGL assumes that the data you are passing has been properly formatted according to whatever <span class="tpl-param">internalformat​</span> the image uses. Therefore, it is just going to copy the data verbatim from your <span class="tpl-param">data​</span>. The <span class="tpl-param">imageSize​</span> must match with what OpenGL would compute based on the dimensions of the image and the <span class="tpl-param">internalformat​</span>. If it doesn't, you get an <a href="/opengl/OpenGL_Error" title="OpenGL Error"><span class="tpl-enum">GL_INVALID_VALUE</span></a> error.
+</p><p>Again, <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a> work with such transfers. The <span class="tpl-param">data​</span> parameter must thus be a byte-offset from the front of the buffer bound to <span class="tpl-enum">GL_UNPACK_BUFFER</span>.
+</p>
+<div style="margin-left: 3em;">
+<b>Warning:</b> <span class="tpl-param">data​</span> <i>cannot</i> be NULL here (unless you're using a PBO); if you didn't want to transfer pixel data, you should have used <span class="tpl-code">glTexImage*</span>.</div>
+<p><span class="tpl-param">internalformat​</span> must not be a generic compressed format. It must be a specific compressed format (such as <span class="tpl-enum">GL_COMPRESSED_RG_RGTC1​</span> or <span class="tpl-enum">GL_COMPRESSED_RGB_S3TC_DXT1_EXT​</span>.
+</p>
+<h3><span class="mw-headline" id="Framebuffer_copy_creation">Framebuffer copy creation</span></h3>
+<p>When creating storage for a texture, you can also get the pixel data from the <a href="/opengl/Framebuffer" title="Framebuffer">Framebuffer</a> currently bound to the <span class="tpl-enum">GL_READ_FRAMEBUFFER</span> target. It will use the current read buffer of that framebuffer (for color reads), so make sure to use <span class="tpl-code"><a href="/opengl/GLAPI/glReadBuffer" title="GLAPI/glReadBuffer">glReadBuffer</a></span> to set it properly beforehand. Also, the framebuffer must be complete.
+</p><p>These functions act like a combination of <span class="tpl-code"><a href="/opengl/GLAPI/glReadPixels" title="GLAPI/glReadPixels">glReadPixels</a></span> followed by <span class="tpl-code">glTexImage*</span> for the appropriate type. Since framebuffers are two-dimensional, only 1D and 2D copy creation are allowed:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyTexImage1D" title="GLAPI/glCopyTexImage1D">glCopyTexImage1D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLint <span class="tpl-param">x​</span>, GLint <span class="tpl-param">y​</span>, GLsizei <span class="tpl-param">width​</span>, GLint <span class="tpl-param">border​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyTexImage2D" title="GLAPI/glCopyTexImage2D">glCopyTexImage2D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLint <span class="tpl-param">x​</span>, GLint <span class="tpl-param">y​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLint <span class="tpl-param">border​</span>);
+</p>
+</div>
+<p>The <span class="tpl-param">width​</span> and <span class="tpl-param">height​</span> define the size of the given mipmap <span class="tpl-param">level​</span>. They also define the size of the region taken from the framebuffer. <span class="tpl-param">x​</span> and <span class="tpl-param">y​</span> define the bottom-left corner where the read starts (remember: OpenGL puts the origin of the framebuffer at the bottom-left).
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Copies to multisample textures are not allowed. This is because <span class="tpl-code"><a href="/opengl/GLAPI/glReadPixels" title="GLAPI/glReadPixels">glReadPixels</a></span> forces a multisample resolve. You can copy <i>from</i> multisample images, but this will do a resolve. If you want to preserve the sample count, you must <a href="#Framebuffer_blit">blit</a> it into an already existing multisample texture's storage.</div>
+<p>Which buffer is copied from depends on the <a href="/opengl/Image_Format" title="Image Format">type of <span class="tpl-param">internalformat​</span></a>. If <span class="tpl-param">internalformat​</span> is a color format, then the current read buffer specified by <span class="tpl-code"><a href="/opengl/GLAPI/glReadBuffer" title="GLAPI/glReadBuffer">glReadBuffer</a></span> is used. If <span class="tpl-param">internalformat​</span> has a depth component, the depth buffer is used (an error occurs if there is no depth buffer). If it has a stencil component, the stencil buffer is used (an error occurs if there is no stencil buffer). If <span class="tpl-param">internalformat​</span> has both depth and stencil, then both are used as the source.
+</p>
+<h2><span class="mw-headline" id="Storage_contents">Storage contents</span></h2>
+<p>Once the storage has been defined with one of the above functions, the contents of the storage (the actual pixel data) can be modified and access via various functions.
+</p>
+<h3><span class="mw-headline" id="Automatic_mipmap_generation">Automatic mipmap generation</span></h3>
+<p>It is often useful to auto-generate a mipmap set from just the base mipmap level in the previously defined range. How exactly the implementation does filtering for mipmap generation is implementation-dependent.
+</p><p>Before calling this function, the base mipmap level must be established. It must be allocated (either with mutable or immutable storage). For cube maps, this also means that each of the 6 faces of the base mipmap level must be allocated.
+</p><p>Once this is done, call this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGenerateMipmap" title="GLAPI/glGenerateMipmap">glGenerateMipmap</a></span>( GLenum <span class="tpl-param">target​</span> );</div>
+<p>This will cause the texture bound to <span class="tpl-param">target​</span> to have its mipmap levels below the base level auto-generated. Note that the <span class="tpl-enum">GL_TEXTURE_BASE_LEVEL</span> and <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span> range are observed. If the max level specifies mipmap levels that cannot exist (for example, the base level is 16x16 in size, and the max level is 20. A 16x16 texture only has 5 mipmap levels), then the effective max level is clamped to the final size 1 image.
+</p><p>The current base level will not be changed; only all of the other levels will be generated. Any mipmap levels that are outside of the base/max range will <i>not</i> be changed by this call.
+</p><p>If the clamped max level specifies mipmap levels that have not yet been allocated, then they will be allocated. Recall that in an immutable storage texture, <span class="tpl-enum">GL_TEXTURE_MAX_LEVEL</span> will <i>always</i> specify an allocated mipmap level (and trying to set it outside of that range results in an error), so it isn't possible for this to happen for immutable storage textures.
+</p>
+<h3><span class="mw-headline" id="Pixel_upload">Pixel upload</span></h3>
+<p>Part or all of a mipmap level can have its pixels replaced via a <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> operation. This can be initiated with these functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexSubImage1D" title="GLAPI/glTexSubImage1D">glTexSubImage1D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLsizei <span class="tpl-param">width​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const GLvoid * <span class="tpl-param">data​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexSubImage2D" title="GLAPI/glTexSubImage2D">glTexSubImage2D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">yoffset​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const GLvoid * <span class="tpl-param">data​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glTexSubImage3D" title="GLAPI/glTexSubImage3D">glTexSubImage3D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">yoffset​</span>, GLint <span class="tpl-param">zoffset​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLsizei <span class="tpl-param">depth​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const GLvoid * <span class="tpl-param">data​</span>);
+</p>
+</div>
+<p>These functions work like their <a href="#Direct_creation"><span class="tpl-code">glTexImage*</span> analogs</a>, with two exceptions. First, they can upload to a sub-section of the mipmap level (hence the name "SubImage"). The sub-section is defined by the <span class="tpl-param">xoffset​</span>, <span class="tpl-param">yoffset​</span>, <span class="tpl-param">zoffset​</span>, <span class="tpl-param">width​</span>, <span class="tpl-param">height​</span>, and <span class="tpl-param">depth​</span> parameters. The offsets define the pixel offsets from the bottom-left of the particular mipmap level. The sizes define both the size of the data being transferred and the pixel size of the data to be overwritten.
+</p><p>The second difference is of course that they do not reallocate the texture's storage. They only upload data to the image(s).
+</p>
+<h3><span class="mw-headline" id="Compressed_pixel_upload">Compressed pixel upload</span></h3>
+<table class="metadata plainlinks stub" style="background: #CCF; border: 1px solid black;"><tbody><tr>
+<td>TODO: This section needs to be filled in.</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Texture_clear">Texture clear</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Texture Clear</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/clear_texture.txt">ARB_clear_texture</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Once storage for images in textures has been allocated, that storage can be cleared to a particular color. This can be done with one of the following functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glClearTexImage" title="GLAPI/glClearTexImage">glClearTexImage</a></span>(GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const void * <span class="tpl-param">data​</span>);
+</p>
+void <span class="tpl-code"><a href="/opengl/GLAPI/glClearTexSubImage" title="GLAPI/glClearTexSubImage">glClearTexSubImage</a></span>(GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">yoffset​</span>, GLint <span class="tpl-param">zoffset​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLsizei <span class="tpl-param">depth​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const void * <span class="tpl-param">data​</span>);</div>
+<p>The first function clears all images in the given mipmap <span class="tpl-param">level​</span>. The second function only clears the portion of the image specified by the <span class="tpl-param">xoffset​</span>, <span class="tpl-param">yoffset​</span>, <span class="tpl-param">zoffset​</span>, and <span class="tpl-param">width​</span>, <span class="tpl-param">height​</span>, <span class="tpl-param">depth​</span>.
+</p><p>Neither function takes the texture's type. It will detect the type from the <span class="tpl-param">texture​</span> itself. If the texture's type doesn't have a particular dimension, then you should set the offset for that dimension to 0 and the size parameter to 1.
+</p><p>Note that <span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span>​ textures work differently here. This function treats <span class="tpl-enum">GL_TEXTURE_CUBE_MAP​</span> as basically a <span class="tpl-enum">GL_TEXTURE_2D_ARRAY​</span> texture with 6 layers. So you can clear all of the faces from one cubemap by using a <span class="tpl-param">zoffset​</span> of 0 and a <span class="tpl-param">depth​</span> of 6. The order of the faces in the array is the same as for <a href="/opengl/Layered_Framebuffer" class="mw-redirect" title="Layered Framebuffer">layered rendering</a> to a cube map.
+</p><p>The <span class="tpl-param">format​</span>, <span class="tpl-param">type​</span>, and <span class="tpl-param">data​</span> values work like the standard <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> parameters, with a few exceptions. First, <span class="tpl-param">data​</span> only points to a single pixel's worth of data. Second, these functions do not use <a href="/opengl/Pixel_Buffer_Objects" class="mw-redirect" title="Pixel Buffer Objects">asynchronous pixel transfer</a> mechanisms, so you cannot put the single pixel of data in a buffer object. Third, <span class="tpl-param">data​</span> can be NULL; if it is, then the texture will be cleared to 0.
+</p>
+<h3><span class="mw-headline" id="Texture_copy">Texture copy</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">glCopyImageSubData</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/copy_image.txt">ARB_copy_image</a></td></tr>
+ 
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Vendor extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/copy_image.txt">NV_copy_image</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Image data can be copied between images in textures. To do this, use this function:
+</p><p><br style="clear: both" />
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyImageSubData" title="GLAPI/glCopyImageSubData">glCopyImageSubData</a></span>(GLuint <span class="tpl-param">srcName​</span>, GLenum <span class="tpl-param">srcTarget​</span>, GLint <span class="tpl-param">srcLevel​</span>, GLint <span class="tpl-param">srcX​</span>, GLint <span class="tpl-param">srcY​</span>, GLint <span class="tpl-param">srcZ​</span>, GLuint <span class="tpl-param">dstName​</span>, GLenum <span class="tpl-param">dstTarget​</span>, GLint <span class="tpl-param">dstLevel​</span>, GLint <span class="tpl-param">dstX​</span>, GLint <span class="tpl-param">dstY​</span>, GLint <span class="tpl-param">dstZ​</span>, GLsizei <span class="tpl-param">srcWidth​</span>, GLsizei <span class="tpl-param">srcHeight​</span>, GLsizei <span class="tpl-param">srcDepth​</span>);</div>
+<p>The <span class="tpl-param">srcName​</span> and <span class="tpl-param">dstName​</span> are the textures to copy from and to, respectively. They can be the same if you wish to copy data between mipmap levels of the same texture.
+</p><p>The <span class="tpl-param">srcX​</span>, <span class="tpl-param">srcY​</span>, and <span class="tpl-param">srcZ​</span> define the offset from the bottom-left of the source mipmap level <span class="tpl-param">srcLevel​</span> to begin copying. The <span class="tpl-param">srcWidth​</span>, <span class="tpl-param">srcHeight​</span>, and <span class="tpl-param">srcDepth​</span> define the size to be copied. And <span class="tpl-param">dstX​</span>, GLint <span class="tpl-param">dstY​</span>, and <span class="tpl-param">dstZ​</span> specify the offset in the destination mipmap level <span class="tpl-param">dstLevel​</span>.
+</p><p>Note that <span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span> textures work differently here. This function treats <span class="tpl-enum">GL_TEXTURE_CUBE_MAP</span> as basically a <span class="tpl-enum">GL_TEXTURE_2D_ARRAY</span> texture with 6 layers. So you can copy all of the faces from one cubemap to another by using a <span class="tpl-param">srcDepth​</span> of 6. The order of the faces in the array is the same as for <a href="/opengl/Layered_Framebuffer" class="mw-redirect" title="Layered Framebuffer">layered rendering</a> to a cube map.
+</p><p>This function copies pixel data directly as is; no filtering or anything of that nature can take place. It also doesn't do color conversion, so copying from linear RGB to sRGB will not convert the colors. Think of it as <span class="tpl-code">memcpy</span> for textures.
+</p><p>This copy operation doesn't do any kind of format conversions either. This means that you can only copy between certain <a href="/opengl/Image_Format" title="Image Format">Image Formats</a>. It can copy between image formats that are compatible for <a href="#Texture_views">texture views</a>. Also, the <a href="/opengl/Multisampling" title="Multisampling">sample count</a> for the two images must be the same.
+</p><p>It can also copy between certain compressed and uncompressed formats, but only where the block size of the compressed format is equal to the pixel size of the uncompressed format. This <i>does not</i> perform compression or decompression; it simply copies the data directly. This allows you to implement compression and decompression algorithms.
+</p><p>For example, you can generate compressed blocks of data into <span class="tpl-enum">GL_RGBA16UI</span> texture (perhaps through a <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a> and <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a>). Then you copy the image into a texture whose format is <span class="tpl-enum">GL_COMPRESSED_RED_RGTC1</span>. Each "pixel" of the source texture represents a compressed block in the destination. So the source area is actually 4x smaller than the overwritten area in the destination image. In terms of pixels of course; in terms of memory, it's still just a <span class="tpl-code">memcpy</span>).
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/copy_image.txt">NV_copy_image</a> is an older version of this functionality, but it provides similar services. It does not let you copy between compressed and uncompressed formats. Despite being an NVIDIA extension, it is well-supported on AMD hardware.</div>
+<h3><span class="mw-headline" id="Framebuffer_copy">Framebuffer copy</span></h3>
+<p>You can copy image data from the current <span class="tpl-enum">GL_READ_FRAMEBUFFER</span> into existing texture storage with these functions. It will use the current read buffer of that framebuffer (for copying into textures that have color image formats), so make sure to use <span class="tpl-code"><a href="/opengl/GLAPI/glReadBuffer" title="GLAPI/glReadBuffer">glReadBuffer</a></span> to set it properly beforehand:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyTexSubImage1D" title="GLAPI/glCopyTexSubImage1D">glCopyTexSubImage1D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">x​</span>, GLint <span class="tpl-param">y​</span>, GLsizei <span class="tpl-param">width​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyTexSubImage2D" title="GLAPI/glCopyTexSubImage2D">glCopyTexSubImage2D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">yoffset​</span>, GLint <span class="tpl-param">x​</span>, GLint <span class="tpl-param">y​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyTexSubImage3D" title="GLAPI/glCopyTexSubImage3D">glCopyTexSubImage3D</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">yoffset​</span>, GLint <span class="tpl-param">zoffset​</span>, GLint <span class="tpl-param">x​</span>, GLint <span class="tpl-param">y​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>);
+</p>
+</div>
+<p>These functions work similarly to <a href="#Framebuffer_copy_creation">the corresponding <span class="tpl-code">glCopyTexImage*</span> functions</a>.
+</p><p>The <span class="tpl-param">xoffset​</span>, <span class="tpl-param">yoffset​</span>, and <span class="tpl-param">zoffset​</span> parameters represent the offset into the destination mipmap level of where to copy the image data. The <span class="tpl-param">x​</span> and <span class="tpl-param">y​</span> parameters are the offset into the <i>framebuffer</i> image being copied from. The <span class="tpl-param">width​</span> and <span class="tpl-param">height​</span> define the size of the rectangle to copy from the framebuffer.
+</p>
+<h3><span class="mw-headline" id="Framebuffer_rendertarget">Framebuffer rendertarget</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Framebuffer_Object#Attaching_Images" title="Framebuffer Object">Framebuffer_Object#Attaching_Images</a><i></i></div>
+<p>Images from textures can be attached to framebuffer objects, where they can be used as render targets.
+</p>
+<h4><span class="mw-headline" id="Framebuffer_blit">Framebuffer blit</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Framebuffer#Blitting" title="Framebuffer">Framebuffer#Blitting</a><i></i></div>
+<p>Images from textures in framebuffers can also be used as destinations for blit operations.
+</p>
+<h3><span class="mw-headline" id="Invalidation">Invalidation</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Image Invalidation</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/invalidate_subdata.txt">ARB_invalidate_subdata</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>It is possible to tell OpenGL to "invalidate" images stored in a texture. From an outside perspective, this means that the contents of the selected images become undefined; the pixel values can be anything.
+</p><p>However, from a <a href="/opengl/Synchronization" title="Synchronization">Synchronization</a> perspective, this can be a valuable tool. If you invalidate the storage for a texture, then the OpenGL implementation can simply allocate new storage for it internally. This means that operations on this new storage don't have to wait for operations on the old (now orphaned) storage to complete.
+</p><p>This is perhaps most useful with multisample textures, since these are often used as render targets. Once you've rendered to them and either blitted from them or otherwise resolved them to the screen or some other image, they aren't needed anymore. You still need the texture <i>object</i>, but you can orphan the storage by invalidating it, which lets OpenGL create new storage that you can immediately (hopefully) start rendering into.
+</p><p>To invalidate an entire mipmap level of a texture, you use this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glInvalidateTexImage" title="GLAPI/glInvalidateTexImage">glInvalidateTexImage</a></span>(GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>);</div>
+<p>After calling this function, the contents of <i>every image in <span class="tpl-param">level​</span></i> become undefined. This includes all cube map faces, all array layers, and all cube map array layer-faces.
+</p><p>It is possible to invalidate sub-regions of a mipmap level. This is possibly less useful than invalidating the entire mipmap level, but it could gain some performance in some circumstances.
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glInvalidateTexSubImage" title="GLAPI/glInvalidateTexSubImage">glInvalidateTexSubImage</a></span>(GLuint <span class="tpl-param">texture​</span>, GLint <span class="tpl-param">level​</span>, GLint <span class="tpl-param">xoffset​</span>, GLint <span class="tpl-param">yoffset​</span>, GLint <span class="tpl-param">zoffset​</span>, GLsizei <span class="tpl-param">width​</span>, GLsizei <span class="tpl-param">height​</span>, GLsizei <span class="tpl-param">depth​</span>);</div>
+<p>The offsets define the position within the given texture to invalidate, and the sizes define the region to invalidate. For textures lacking those dimensions, the offset should be 0 and the missing sizes should be 1. Cube maps are again treated as array textures with 6 layers, so the <span class="tpl-param">zoffset​</span> is the face index of the cube map.
+</p>
+<h3><span class="mw-headline" id="Pixel_download">Pixel download</span></h3>
+<p>You can retrieve image data from a texture with this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGetTexImage" title="GLAPI/glGetTexImage">glGetTexImage</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">level​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, GLvoid * <span class="tpl-param">img​</span>);</div>
+<p>This function performs a <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> pack (ie: read) operation into <span class="tpl-param">img​</span>. It will retrieve the entire mipmap level of the texture, except for cube maps. For them, you must use the individual face <span class="tpl-param">target​</span>s.
+</p><p>This decompresses any <a href="/opengl/Compressed_Image_Format" class="mw-redirect" title="Compressed Image Format">compressed textures</a>. To read compressed data as compressed data, you must use this function:
+</p>
+<div class="funcdef">
+<span class="tpl-code"><a href="/opengl/GLAPI/glGetCompressedTexImage" title="GLAPI/glGetCompressedTexImage">glGetCompressedTexImage</a></span>(GLenum <span class="tpl-param">target​</span>, GLint <span class="tpl-param">lod​</span>, GLvoid * <span class="tpl-param">img​</span>);</div>
+<p>You are expected to know how big the <span class="tpl-param">img​</span> data storage ought to be.
+</p>
+<h2><span class="mw-headline" id="Buffer_storage">Buffer storage</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Texture</a><i></i></div>
+<p>The storage for buffer textures come from <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a> directly. Buffer textures are one-dimensional. Their "width" is the size of the buffer object range that is attached to the texture with <span class="tpl-code"><a href="/opengl/GLAPI/glTexBuffer" title="GLAPI/glTexBuffer">glTexBuffer</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glTexBufferRange" title="GLAPI/glTexBufferRange">glTexBufferRange</a></span> (requires 4.3 or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/texture_buffer_range.txt">ARB_texture_buffer_range</a>).
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260319081748
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.224 seconds
+Real time usage: 0.233 seconds
+Preprocessor visited node count: 7242/1000000
+Post‐expand include size: 86230/2097152 bytes
+Template argument size: 28886/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 5/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 5088/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  138.860      1 -total
+ 29.17%   40.512      5 Template:Infobox_feature
+ 27.58%   38.301      5 Template:Infobox2
+ 18.91%   26.259      3 Template:Snippet
+ 18.45%   25.625     18 Template:Funcdef
+ 10.38%   14.408    301 Template:Param
+  9.34%   12.967     50 Template:Infobox/shortrow
+  9.20%   12.772     50 Template:Infobox/longrow
+  9.00%   12.499    161 Template:Enum
+  8.59%   11.931      1 Template:Glapi_view_format_map
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2304-0!canonical and timestamp 20260319081748 and revision id 14994. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Texture_Storage&amp;oldid=14994">https://wikis.khronos.org/opengl/index.php?title=Texture_Storage&amp;oldid=14994</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:Textures" title="Category:Textures">Textures</a></li><li><a href="/opengl/Category:Missing_DSA" title="Category:Missing DSA">Missing DSA</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Texture+Storage" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Texture_Storage" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Texture_Storage&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Texture_Storage"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Texture_Storage&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Texture_Storage&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Texture_Storage" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Texture_Storage" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Texture_Storage&amp;oldid=14994" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Texture_Storage&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Texture_Storage&amp;id=14994&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 31 July 2024, at 17:30.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":186,"wgPageParseReport":{"limitreport":{"cputime":"0.224","walltime":"0.233","ppvisitednodes":{"value":7242,"limit":1000000},"postexpandincludesize":{"value":86230,"limit":2097152},"templateargumentsize":{"value":28886,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":5,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":5088,"limit":5000000},"timingprofile":["100.00%  138.860      1 -total"," 29.17%   40.512      5 Template:Infobox_feature"," 27.58%   38.301      5 Template:Infobox2"," 18.91%   26.259      3 Template:Snippet"," 18.45%   25.625     18 Template:Funcdef"," 10.38%   14.408    301 Template:Param","  9.34%   12.967     50 Template:Infobox/shortrow","  9.20%   12.772     50 Template:Infobox/longrow","  9.00%   12.499    161 Template:Enum","  8.59%   11.931      1 Template:Glapi_view_format_map"]},"cachereport":{"timestamp":"20260319081748","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6c2fb97ba3d1',t:'MTc3NDIzNzMwOQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

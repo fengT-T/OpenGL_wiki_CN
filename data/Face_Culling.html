@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Face Culling - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Face_Culling rootpage-Face_Culling skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Face Culling</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><b>Face Culling</b></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+<p><a href="/opengl/Primitive" title="Primitive">Triangle primitives</a> after all transformation steps have a particular facing. This is defined by the order of the three vertices that make up the triangle, as well as their apparent order on-screen. Triangles can be discarded based on their apparent facing, a process known as <b>Face Culling</b>.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Winding_order"><span class="tocnumber">1</span> <span class="toctext">Winding order</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Tessellation"><span class="tocnumber">1.1</span> <span class="toctext">Tessellation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Culling"><span class="tocnumber">2</span> <span class="toctext">Culling</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Fragment_Shader"><span class="tocnumber">3</span> <span class="toctext">Fragment Shader</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Winding_order">Winding order</span></h2>
+<p>When the user issues a <a href="/opengl/Drawing_Command" class="mw-redirect" title="Drawing Command">Drawing Command</a>, the vertices processed by the <a href="/opengl/Rendering_Pipeline" class="mw-redirect" title="Rendering Pipeline">Rendering Pipeline</a> are processed in the order provided by <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>. The <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> can alter the order, but even then, the vertices created by each GS invocation are ordered relative to the other vertices. The <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a> can directly control the order of the vertices in the tessellated patch <a href="#Tessellation">using special options</a>.
+</p><p>When vertices are broken down into <a href="/opengl/Primitive" title="Primitive">Primitives</a> during <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>, the order of the vertices relative to the others in the primitive is noted. The order of the vertices in a triangle, when combined with their visual orientation, can be used to determine whether the triangle is being seen from the "front" or the "back" side.
+</p><p>This is determined by the winding order of the triangle. Given an ordering of the triangle's three vertices, a triangle can appear to have a clockwise winding or counter-clockwise winding. Clockwise means that the three vertices, in order, rotate clockwise around the triangle's center. Counter-clockwise means that the three vertices, in order, rotate counter-clockwise around the triangle's center.
+</p><p><span class="mw-default-size" typeof="mw:File"><a href="/opengl/File:Winding_order.png" class="mw-file-description"><img src="/opengl/images/Winding_order.png" decoding="async" width="500" height="288" class="mw-file-element" /></a></span>
+</p><p>Which side is considered the "front" side is controlled by this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glFrontFace" title="GLAPI/glFrontFace">glFrontFace</a></span>(GLenum <span class="tpl-param">mode​</span>);</div>
+<p>This is global state. <span class="tpl-param">mode​</span> may be <span class="tpl-enum">GL_CW</span> or <span class="tpl-enum">GL_CCW</span>, which mean clockwise or counter-clockwise is front, respectively. On a freshly created <a href="/opengl/OpenGL_Context" title="OpenGL Context">OpenGL Context</a>, the default front face is <span class="tpl-enum">GL_CCW</span>.
+</p><p>Non-triangle primitives will always be considered to be showing their front face.
+</p>
+<h3><span class="mw-headline" id="Tessellation">Tessellation</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Winding_Order" class="mw-redirect" title="Tessellation Winding Order">Tessellation Winding Order</a><i></i></div>
+<p>The winding order of the abstract patch vertices generated during <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> is controlled by the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a>. It is a layout option specified by the TES, rather than a runtime value. The winding order is specified in terms of the direction: <span class="tpl-code">cw</span> and <span class="tpl-code">ccw</span>. Which is considered "front" is still defined by <span class="tpl-code"><a href="/opengl/GLAPI/glFrontFace" title="GLAPI/glFrontFace">glFrontFace</a></span>.
+</p><p>Note that this only specifies the winding order of the triangles in the space of the abstract patch. Each triangle's final winding order will be based on how the positions of those vertices are transformed by the TES (or a subsequent <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a>). So this setting is only a starting point, not an ending point.
+</p>
+<h2><span class="mw-headline" id="Culling">Culling</span></h2>
+<p>The primary use of setting the front facing of a triangle is to allow the culling of the front or back facing triangles.
+</p><p>Consider a cube; this is made of 12 triangles, but 6 of them will be facing in the opposite direction from the other 6. Unless the cube is transparent, 6 of the triangles will always be covered up by the other 6. Indeed, depending on the projection, more than 6 triangles could be covered; imagine a cube viewed from the front that is very close to the camera. Foreshortening means that even the sides are facing away from the camera.
+</p><p>Face culling allows non-visible triangles of closed surfaces to be removed before expensive <a href="/opengl/Rasterization" title="Rasterization">Rasterization</a> and <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> operations.
+</p><p>To activate face culling, <span class="tpl-enum">GL_CULL_FACE</span> must first be enabled with <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable</a></span>. By default, face culling is disabled. To select which side will be culled, use the following function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glCullFace" title="GLAPI/glCullFace">glCullFace</a></span>(GLenum <span class="tpl-param">mode​</span>);</div>
+<p><span class="tpl-param">mode​</span> can be set to <span class="tpl-enum">GL_FRONT</span>, <span class="tpl-enum">GL_BACK</span>, or <span class="tpl-enum">GL_FRONT_AND_BACK</span>. The latter will cull all triangles. This is different from <span class="tpl-code"><a href="/opengl/GLAPI/glEnable" title="GLAPI/glEnable">glEnable(GL_RASTERIZER_DISCARD)</a></span>, as the latter will shut off <i>all</i> <a href="/opengl/Primitive" title="Primitive">Primitives</a>, while culling both faces will only cull triangles (since only they have faces).
+</p><p>By default, <span class="tpl-enum">GL_BACK</span> is the face to be culled.
+</p>
+<h2><span class="mw-headline" id="Fragment_Shader">Fragment Shader</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Fragment_Shader#System_inputs" title="Fragment Shader">Fragment_Shader#System_inputs</a><i></i></div>
+<p>The <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> is capable of detecting which face a primitive is rasterized with. The built-in FS input <span class="tpl-code">gl_FrontFacing</span> will be true if the primitive is being seen from the front (or is a primitive without a facing), and it will be false if it is seen from the back.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260319032741
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.052 seconds
+Real time usage: 0.056 seconds
+Preprocessor visited node count: 584/1000000
+Post‐expand include size: 4386/2097152 bytes
+Template argument size: 1316/2097152 bytes
+Highest expansion depth: 8/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   27.956      1 -total
+ 43.54%   12.171      1 Template:Pipeline_float
+ 35.40%    9.897      1 Template:Pipeline_list
+ 26.42%    7.385      2 Template:Funcdef
+ 21.31%    5.957     20 Template:Pagelink
+ 14.77%    4.128      5 Template:Apifunc
+ 12.24%    3.422      2 Template:Main
+  8.27%    2.311      8 Template:Code
+  6.37%    1.780      8 Template:Enum
+  5.98%    1.672      4 Template:Param
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1363-0!canonical and timestamp 20260319032741 and revision id 14600. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Face_Culling&amp;oldid=14600">https://wikis.khronos.org/opengl/index.php?title=Face_Culling&amp;oldid=14600</a>"</div></div>
+		<div id="catlinks" class="catlinks catlinks-allhidden" data-mw="interface"></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

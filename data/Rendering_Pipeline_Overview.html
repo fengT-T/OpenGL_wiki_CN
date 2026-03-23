@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Rendering Pipeline Overview - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Rendering_Pipeline_Overview rootpage-Rendering_Pipeline_Overview skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Rendering Pipeline Overview</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><p>The <b>Rendering Pipeline</b> is the sequence of steps that OpenGL takes when rendering objects. This overview will provide a high-level description of the steps in the pipeline.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Pipeline"><span class="tocnumber">1</span> <span class="toctext">Pipeline</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Vertex_Specification"><span class="tocnumber">2</span> <span class="toctext">Vertex Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Vertex_Rendering"><span class="tocnumber">2.1</span> <span class="toctext">Vertex Rendering</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Vertex_Processing"><span class="tocnumber">3</span> <span class="toctext">Vertex Processing</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Vertex_shader"><span class="tocnumber">3.1</span> <span class="toctext">Vertex shader</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Tessellation"><span class="tocnumber">3.2</span> <span class="toctext">Tessellation</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Geometry_Shader"><span class="tocnumber">3.3</span> <span class="toctext">Geometry Shader</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Vertex_post-processing"><span class="tocnumber">4</span> <span class="toctext">Vertex post-processing</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Transform_Feedback"><span class="tocnumber">4.1</span> <span class="toctext">Transform Feedback</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Primitive_assembly"><span class="tocnumber">4.2</span> <span class="toctext">Primitive assembly</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#Clipping"><span class="tocnumber">4.3</span> <span class="toctext">Clipping</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Face_culling"><span class="tocnumber">4.4</span> <span class="toctext">Face culling</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Rasterization"><span class="tocnumber">5</span> <span class="toctext">Rasterization</span></a></li>
+<li class="toclevel-1 tocsection-14"><a href="#Fragment_Processing"><span class="tocnumber">6</span> <span class="toctext">Fragment Processing</span></a></li>
+<li class="toclevel-1 tocsection-15"><a href="#Per-Sample_Operations"><span class="tocnumber">7</span> <span class="toctext">Per-Sample Operations</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Pipeline">Pipeline</span></h2>
+<figure typeof="mw:File/Frame"><a href="/opengl/File:RenderingPipeline.png" class="mw-file-description"><img alt="Rendering Pipeline Flowchart" src="/opengl/images/RenderingPipeline.png" decoding="async" width="271" height="602" class="mw-file-element" /></a><figcaption>Diagram of the Rendering Pipeline. The blue boxes are programmable shader stages.</figcaption></figure>
+<p>The OpenGL rendering pipeline is initiated when you perform a <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">rendering operation</a>. Rendering operations require the presence of a <a href="/opengl/Vertex_Specification" title="Vertex Specification">properly-defined vertex array object</a> and a linked <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">Program Object</a> or <a href="/opengl/Program_Pipeline_Object" class="mw-redirect" title="Program Pipeline Object">Program Pipeline Object</a> which provides the <a href="/opengl/Shader" title="Shader">shaders</a> for the programmable pipeline stages.
+</p><p>Once initiated, the pipeline operates in the following order:
+</p>
+<ol><li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>:
+<ol><li>Each vertex retrieved from the vertex arrays (as defined by the VAO) is acted upon by a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>. Each vertex in the stream is processed in turn into an output vertex.</li>
+<li>Optional primitive <a href="/opengl/Tessellation" title="Tessellation">tessellation stages</a>.</li>
+<li>Optional <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> primitive processing. The output is a sequence of primitives.</li></ol></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>, the outputs of the last stage are adjusted or shipped to different locations.
+<ol><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> happens here.</li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a></li>
+<li>Primitive <a href="/opengl/Clipping" class="mw-redirect" title="Clipping">Clipping</a>, the <a href="/opengl/Perspective_Divide" class="mw-redirect" title="Perspective Divide">perspective divide</a>, and the <a href="/opengl/Viewport_Transform" class="mw-redirect" title="Viewport Transform">viewport transform</a> to window space.</li></ol></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Scan conversion and primitive parameter interpolation</a>, which generates a number of <a href="/opengl/Fragment" title="Fragment">Fragments</a>.</li>
+<li>A <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> processes each fragment. Each fragment generates a number of outputs.</li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample_Processing</a>, including but not limited to:
+<ol><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ol></li></ol>
+<p><br style="clear: both" />
+</p>
+<h2><span class="mw-headline" id="Vertex_Specification">Vertex Specification</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a><i></i></div>
+<p>The process of vertex specification is where the application sets up an ordered list of vertices to send to the pipeline. These vertices define the boundaries of a <i>primitive</i>.
+</p><p>Primitives are basic drawing shapes, like triangles, lines, and points. Exactly how the list of vertices is interpreted as primitives is handled via a later stage.
+</p><p>This part of the pipeline deals with a number of objects like <a href="/opengl/Vertex_Array_Objects" class="mw-redirect" title="Vertex Array Objects">Vertex Array Objects</a> and <a href="/opengl/Vertex_Buffer_Objects" class="mw-redirect" title="Vertex Buffer Objects">Vertex Buffer Objects</a>. Vertex Array Objects define what data each vertex has, while Vertex Buffer Objects store the actual vertex data itself.
+</p><p>A vertex's data is a series of <a href="/opengl/Vertex_Attributes" class="mw-redirect" title="Vertex Attributes">attributes</a>. Each attribute is a small set of data that the next stage will do computations on. While a set of attributes do specify a vertex, there is nothing that says that part of a vertex's attribute set needs to be a position or normal. Attribute data is entirely arbitrary; the only meaning assigned to any of it happens in the vertex processing stage.
+</p>
+<h3><span class="mw-headline" id="Vertex_Rendering">Vertex Rendering</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a><i></i></div>
+<p>Once the vertex data is properly specified, it is then rendered as a <a href="/opengl/Primitive" title="Primitive">Primitive</a> via a drawing command.
+</p>
+<h2><span class="mw-headline" id="Vertex_Processing">Vertex Processing</span></h2>
+<p>Vertices fetched due to the prior vertex rendering stage begin their processing here. The vertex processing stages are almost all <a href="/opengl/Shader" title="Shader">programmable operations</a>. This allows user code to customize the way vertices are processed. Each stage represents a different kind of shader operation.
+</p><p>Many of these stages are optional.
+</p>
+<h3><span class="mw-headline" id="Vertex_shader">Vertex shader</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a><i></i></div>
+<p>Vertex shaders perform basic processing of each individual vertex. Vertex shaders receive the attribute inputs from the vertex rendering and converts each incoming vertex into a single outgoing vertex based on an arbitrary, <a href="/opengl/Shader" title="Shader">user-defined program</a>.
+</p><p>Vertex shaders can have user-defined outputs, but there is also a special output that represents the final position of the vertex. If there are no subsequent vertex processing stages, vertex shaders are expected to fill in this position with the clip-space position of the vertex, for rendering purposes.
+</p><p>One limitation on vertex processing is that each input vertex <i>must</i> map to a specific output vertex. And because <a href="/opengl/Shader_Invocation" class="mw-redirect" title="Shader Invocation">vertex shader invocations</a> cannot share state between them, the input attributes to output vertex data mapping is 1:1. That is, if you feed the exact same attributes to the same vertex shader in the same primitive, you will get the same output vertex data. This gives implementations the right to optimize vertex processing; if they can detect that they're about to process a previously processed vertex, they can use the previously processed data stored in a <a href="/opengl/Post_Transform_Cache" title="Post Transform Cache">post-transform cache</a>. Thus they do not have to run the vertex processing on that data again.
+</p><p>Vertex shaders are not optional.
+</p>
+<h3><span class="mw-headline" id="Tessellation">Tessellation</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Tessellation</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Tessellation_Shader" class="mw-redirect" title="Tessellation Shader">Tessellation Shader</a><i></i></div>
+<p>Primitives can be tessellated using two shader stages and a fixed-function tessellator between them. The <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a> (TCS) stage comes first, and it determines the amount of tessellation to apply to a primitive, as well as ensuring connectivity between adjacent tessellated primitives. The <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a> (TES) stage comes last, and it applies the interpolation or other operations used to compute user-defined data values for primitives generated by the fixed-function tessellation process.
+</p><p>Tessellation as a process is optional. Tessellation is considered active if a TES is active. The TCS is optional, but a TCS can only be used alongside a TES.
+<br style="clear: both" />
+</p>
+<h3><span class="mw-headline" id="Geometry_Shader">Geometry Shader</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a><i></i></div>
+<p>Geometry shaders are user-defined programs that process each incoming primitive, returning zero or more output primitives.
+</p><p>The input primitives for geometry shaders are the output primitives from a subset of the <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a> process. So if you send a triangle strip as a single primitive, what the geometry shader will see is a series of triangles.
+</p><p>However, there are a number of input primitive types that are defined specifically for geometry shaders. These adjacency primitives give GS's a larger view of the primitives; they provide access to vertices of primitives adjacent to the current one.
+</p><p>The output of a GS is zero or more simple primitives, much like the output of primitive assembly. The GS is able to remove primitives, or tessellate them by outputting many primitives for a single input. The GS can also tinker with the vertex values themselves, either doing some of the work for the vertex shader, or just to interpolate the values when tessellating them. Geometry shaders can even convert primitives to different types; input point primitives can become triangles, or lines can become points.
+</p><p>Geometry shaders are optional.
+</p>
+<h2><span class="mw-headline" id="Vertex_post-processing">Vertex post-processing</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a><i></i></div>
+<p>After the shader-based vertex processing, vertices undergo a number of fixed-function processing steps.
+</p>
+<h3><span class="mw-headline" id="Transform_Feedback">Transform Feedback</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a><i></i></div>
+<p>The outputs of the geometry shader or primitive assembly can be written to a series of <a href="/opengl/Buffer_Objects" class="mw-redirect" title="Buffer Objects">buffer objects</a> that have been setup for this purpose. This is called transform feedback mode; it allows the user to transform data via vertex and geometry shaders, then hold on to that data for use later.
+</p><p>The data output into the transform feedback buffer is the data from each primitive emitted by this step.
+</p>
+<h3><span class="mw-headline" id="Primitive_assembly">Primitive assembly</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a><i></i></div>
+<p>Primitive assembly is the process of collecting a run of vertex data output from the prior stages and composing it into a sequence of primitives. The type of primitive the user rendered with determines how this process works.
+</p><p>The output of this process is an ordered sequence of simple primitives (lines, points, or triangles). If the input is a triangle strip primitive containing 12 vertices, for example, the output of this process will be 10 triangles.
+</p><p>If tessellation or geometry shaders are active, then a limited form of primitive assembly is executed before these <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stages. This is used to feed those particular shader stages with individual primitives, rather than a sequence of vertices.
+</p><p>The rendering pipeline can also be aborted at this stage. This allows the use of <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> operations, without having to actually render something.
+</p>
+<h3><span class="mw-headline" id="Clipping">Clipping</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Clipping" class="mw-redirect" title="Clipping">Clipping</a><i></i></div>
+<p>The primitives are then clipped. Clipping means that primitives that lie on the boundary between the inside of the viewing volume and the outside are split into several primitives, such that the entire primitive lies in the volume. Also, the last <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> shader stage can specify user-defined clipping operations, on a per-vertex basis.
+</p><p>The vertex positions are transformed from clip-space to window space via the <a href="/opengl/Perspective_Divide" class="mw-redirect" title="Perspective Divide">Perspective Divide</a> and the <a href="/opengl/Viewport_Transform" class="mw-redirect" title="Viewport Transform">Viewport Transform</a>.
+</p>
+<h3><span class="mw-headline" id="Face_culling">Face culling</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a><i></i></div>
+<p>Triangle primitives can be culled (ie: discarded without rendering) based on the triangle's facing in window space. This allows you to avoid rendering triangles facing away from the viewer. For closed surfaces, such triangles would naturally be covered up by triangles facing the user, so there is never any need to render them. Face culling is a way to avoid rendering such primitives.
+</p>
+<h2><span class="mw-headline" id="Rasterization">Rasterization</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Rasterization" title="Rasterization">Rasterization</a><i></i></div>
+<p>Primitives that reach this stage are then rasterized in the order in which they were given. The result of rasterizing a primitive is a sequence of <i><a href="/opengl/Fragment" title="Fragment">Fragments</a></i>.
+</p><p>A fragment is a set of state that is used to compute the final data for a pixel (or sample if <a href="/opengl/Multisampling" title="Multisampling">multisampling</a> is enabled) in the output framebuffer. The state for a fragment includes its position in screen-space, the sample coverage if multisampling is enabled, and a list of arbitrary data that was output from the previous vertex or geometry shader.
+</p><p>This last set of data is computed by interpolating between the data values in the vertices for the fragment. The style of interpolation is defined by the shader that outputed those values.
+</p>
+<h2><span class="mw-headline" id="Fragment_Processing">Fragment Processing</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a><i></i></div>
+<p>The data for each fragment from the rasterization stage is processed by a fragment shader. The output from a fragment shader is a list of colors for each of the color buffers being written to, a depth value, and a stencil value. Fragment shaders are not able to set the stencil data for a fragment, but they do have control over the color and depth values.
+</p><p>Fragment shaders are optional. If you render without a fragment shader, the depth (and stencil) values of the fragment get their usual values. But the value of all of the colors that a fragment could have are undefined. Rendering without a fragment shader is useful when rendering only a primitive's default depth information to the depth buffer, such as when performing <a href="/opengl/Occlusion_Query" class="mw-redirect" title="Occlusion Query">Occlusion Query</a> tests.
+</p>
+<h2><span class="mw-headline" id="Per-Sample_Operations">Per-Sample Operations</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample_Processing</a><i></i></div>
+<p>The fragment data output from the fragment processor is then passed through a sequence of steps.
+</p><p>The first step is a sequence of culling tests; if a test is active and the fragment fails the test, the underlying pixels/samples are not updated (usually). Many of these tests are only active if the user activates them. The tests are:
+</p>
+<ul><li>Pixel ownership test: Fails if the fragment's pixel is not "owned" by OpenGL (if another window is overlapping with the GL window). Always passes when using a <a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Object</a>. Failure means that the pixel contains undefined values.</li>
+<li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a>: When enabled, the test fails if the fragment's pixel lies outside of a specified rectangle of the screen.</li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a>: When enabled, the test fails if the stencil value provided by the test does not compare as the user specifies against the stencil value from the underlying sample in the stencil buffer. Note that the stencil value in the framebuffer can still be modified even if the stencil test fails (and even if the depth test fails).</li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a>: When enabled, the test fails if the fragment's depth does not compare as the user specifies against the depth value from the underlying sample in the depth buffer.</li></ul>
+<div style="margin-left: 3em;">
+<b>Note:</b> Though these are specified to happen after the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a>, they can be made to happen <a href="/opengl/Early_Fragment_Test" title="Early Fragment Test">before the fragment shader</a> under certain conditions. If they happen before the FS, then any culling of the fragment will also prevent the fragment shader from executing, this saving performance.</div>
+<p>After this, <a href="/opengl/Blending" title="Blending">color blending</a> happens. For each fragment color value, there is a specific blending operation between it and the color already in the framebuffer at that location. <a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operations</a> may also take place in lieu of blending, which perform bitwise operations between the fragment colors and framebuffer colors.
+</p><p>Lastly, the fragment data is written to the framebuffer. <a href="/opengl/Write_Mask" title="Write Mask">Masking operations</a> allow the user to prevent writes to certain values. Color, depth, and stencil writes can be masked on and off; individual color channels can be masked as well.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260318024729
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.071 seconds
+Real time usage: 0.077 seconds
+Preprocessor visited node count: 1028/1000000
+Post‐expand include size: 7476/2097152 bytes
+Template argument size: 1839/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   40.091      1 -total
+ 52.91%   21.213      1 Template:Infobox_feature
+ 45.46%   18.224      1 Template:Infobox2
+ 25.39%   10.179     13 Template:Main
+ 15.12%    6.060     10 Template:Infobox/longrow
+ 14.89%    5.970     10 Template:Infobox/shortrow
+ 10.80%    4.331      1 Template:Note
+  6.43%    2.576      2 Template:Clear_float
+  4.16%    1.666      1 Template:Extref
+  3.20%    1.282      1 Template:Current_version
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1538-0!canonical and timestamp 20260318024729 and revision id 14914. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Rendering_Pipeline_Overview&amp;oldid=14914">https://wikis.khronos.org/opengl/index.php?title=Rendering_Pipeline_Overview&amp;oldid=14914</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

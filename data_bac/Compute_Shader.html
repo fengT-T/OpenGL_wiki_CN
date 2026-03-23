@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Compute Shader - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"2e0daa565f3801bce5720412","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Compute_Shader","wgTitle":"Compute Shader","wgCurRevisionId":14536,"wgRevisionId":14536,"wgArticleId":2214,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language","Shaders"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Compute_Shader","wgRelevantArticleId":2214,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Compute_Shader rootpage-Compute_Shader skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Compute Shader</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Compute Shader</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>A <b>Compute Shader</b> is a <a href="/opengl/Shader_Stage" class="mw-redirect" title="Shader Stage">Shader Stage</a> that is used entirely for computing arbitrary information. While it can do rendering, it is generally used for tasks not <i>directly</i> related to drawing triangles and pixels.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Execution_model"><span class="tocnumber">1</span> <span class="toctext">Execution model</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Compute_space"><span class="tocnumber">1.1</span> <span class="toctext">Compute space</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Dispatch"><span class="tocnumber">2</span> <span class="toctext">Dispatch</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Inputs"><span class="tocnumber">3</span> <span class="toctext">Inputs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Local_size"><span class="tocnumber">3.1</span> <span class="toctext">Local size</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Outputs"><span class="tocnumber">4</span> <span class="toctext">Outputs</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Shared_variables"><span class="tocnumber">5</span> <span class="toctext">Shared variables</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Shared_memory_coherency"><span class="tocnumber">5.1</span> <span class="toctext">Shared memory coherency</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Atomic_operations"><span class="tocnumber">5.2</span> <span class="toctext">Atomic operations</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Limitations"><span class="tocnumber">6</span> <span class="toctext">Limitations</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Execution_model">Execution model</span></h2>
+<p>Compute shaders operate differently from other shader stages. All of the other shader stages have a well-defined set of input values, some built-in and some user-defined. The frequency at which a shader stage executes is specified by the nature of that stage; vertex shaders execute once per input vertex, for example (though some executions can be skipped via caching). Fragment shader execution is defined by the fragments generated from the rasterization process.
+</p><p>Compute shaders work very differently. The "space" that a compute shader operates on is largely abstract; it is up to each compute shader to decide what the space means. The number of compute shader executions is defined by the function used to execute the compute operation. Most important of all, compute shaders have no user-defined inputs and no outputs at all. The built-in inputs only define where in the "space" of execution a particular compute shader invocation is.
+</p><p>Therefore, if a compute shader wants to take some values as input, it is up to the shader itself to fetch that data, via <a href="/opengl/GLSL_Sampler" class="mw-redirect" title="GLSL Sampler">texture access</a>, <a href="/opengl/Image_Load_Store" title="Image Load Store">arbitrary image load</a>, <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage blocks</a>, or other forms of interface. Similarly, if a compute shader is to actually compute anything, it must explicitly write to an image or shader storage block.
+</p>
+<h3><span class="mw-headline" id="Compute_space">Compute space</span></h3>
+<p>The space that compute shaders operate within is abstract. There is the concept of a <i>work group</i>; this is the smallest amount of compute operations that the user can execute. Or to put it another way, the user can execute some number of work groups.
+</p><p>The number of work groups that a compute operation is executed with is defined by the user when they invoke the compute operation. The space of these groups is three dimensional, so it has a number of "X", "Y", and "Z" groups. Any of these can be 1, so you can perform a two-dimensional or one-dimensional compute operation instead of a 3D one. This is useful for processing image data or linear arrays of a particle system or whatever.
+</p><p>When the system actually computes the work groups, it can do so in any order. So if it is given a work group set of (3, 1, 2), it could execute group (0, 0, 0) first, then skip to group (1, 0, 1), then jump to (2, 0, 0), etc. So your compute shader should not rely on the order in which individual groups are processed.
+</p><p>Do not think that a single work group is the same thing as a single compute shader invocation; there's a reason why it is called a "group". Within a single work group, there may be many compute shader invocations. How many is defined by the <i>compute shader itself</i>, not by the call that executes it. This is known as the <i>local size</i> of the work group.
+</p><p>Every compute shader has a three-dimensional local size (again, sizes can be 1 to allow 2D or 1D local processing). This defines the number of invocations of the shader that will take place within each work group.
+</p><p>Therefore, if the local size of a compute shader is (128, 1, 1), and you execute it with a work group count of (16, 8, 64), then you will get 1,048,576 separate shader invocations. Each invocation will have a set of inputs that <i>uniquely</i> identifies that specific invocation.
+</p><p>This distinction is useful for doing various forms of image compression or decompression; the local size would be the size of a block of image data (8x8, for example), while the group count will be the image size divided by the block size. Each block is processed as a single work group.
+</p><p>The individual invocations within a work group will be executed "in parallel". The main purpose of the distinction between work group count and local size is that the different compute shader invocations <i>within</i> a work group can communicate through a set of <span class="tpl-code">shared</span> variables and special functions. Invocations in different work groups (within the same compute shader dispatch) cannot effectively communicate. Not without potentially deadlocking the system.
+</p>
+<h2><span class="mw-headline" id="Dispatch">Dispatch</span></h2>
+<p>Compute shaders are not part of the regular <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">rendering pipeline</a>. So when executing a <a href="/opengl/Drawing_Command" class="mw-redirect" title="Drawing Command">Drawing Command</a>, the compute shader linked into the current program or pipeline is not involved.
+</p><p>There are two functions to initiate compute operations. They will use whichever compute shader is currently active (via <span class="tpl-code"><a href="/opengl/GLAPI/glBindProgramPipeline" title="GLAPI/glBindProgramPipeline">glBindProgramPipeline</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram</a></span>, following the usual rules for determining the active program for a stage). Though they are not <a href="/opengl/Drawing_Command" class="mw-redirect" title="Drawing Command">Drawing Commands</a>, they are <a href="/opengl/Rendering_Command" class="mw-redirect" title="Rendering Command">Rendering Commands</a>, so they can be <a href="/opengl/Conditional_Rendering" class="mw-redirect" title="Conditional Rendering">conditionally executed</a>.
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glDispatchCompute" title="GLAPI/glDispatchCompute">glDispatchCompute</a></span>(GLuint <span class="tpl-param">num_groups_x​</span>, GLuint <span class="tpl-param">num_groups_y​</span>, GLuint <span class="tpl-param">num_groups_z​</span>);
+</pre>
+<p>The <span class="tpl-param">num_groups_*​</span> parameters define the work group count, in three dimensions. These numbers cannot be zero. There are <a href="#Limitations">limitations</a> on the number of work groups that can be dispatched.
+</p><p>It is possible to execute dispatch operations where the work group counts come from information stored in a <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a>. This is similar to <a href="/opengl/Indirect_Drawing" class="mw-redirect" title="Indirect Drawing">indirect drawing for vertex data</a>:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glDispatchComputeIndirect" title="GLAPI/glDispatchComputeIndirect">glDispatchComputeIndirect</a></span>(GLintptr <span class="tpl-param">indirect​</span>);
+</pre>
+<p>The <span class="tpl-param">indirect​</span> parameter is the byte-offset to the buffer currently bound to the <span class="tpl-enum">GL_DISPATCH_INDIRECT_BUFFER​</span> target. Note that the same <a href="#Limitations">limitations on the work group counts</a> still apply; however, indirect dispatch bypasses OpenGL's usual error checking. As such, attempting to dispatch with out-of-bounds work group sizes can cause a crash or even a GPU hard-lock, so be careful when generating this data.
+</p>
+<h2><span class="mw-headline" id="Inputs">Inputs</span></h2>
+<p>Compute shaders cannot have any user-defined input variables. If you wish to provide input to a CS, you must use the implementation-defined inputs coupled with resources like <a href="/opengl/Ssbo" class="mw-redirect" title="Ssbo">storage buffers</a> or <a href="/opengl/Texture" title="Texture">Textures</a>. You can use the shader's invocation and work group indices to decide which data to fetch and process.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Compute_Shader/Defined_Inputs" title="Compute Shader/Defined Inputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Compute_Shader/Defined_Inputs&amp;action=edit">E</a></span></span></div>
+<p><b>Compute Shader</b>s have the following built-in input variables.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="kt">uvec3</span><span class="w"> </span><span class="nb">gl_NumWorkGroups</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">uvec3</span><span class="w"> </span><span class="nb">gl_WorkGroupID</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">uvec3</span><span class="w"> </span><span class="nb">gl_LocalInvocationID</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">uvec3</span><span class="w"> </span><span class="nb">gl_GlobalInvocationID</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">uint</span><span class="w">  </span><span class="nb">gl_LocalInvocationIndex</span><span class="p">;</span>
+</pre></div>
+<dl><dt><span class="tpl-code">gl_NumWorkGroups</span></dt>
+<dd>This variable contains the number of work groups passed to the dispatch function.</dd>
+<dt><span class="tpl-code">gl_WorkGroupID</span></dt>
+<dd>This is the current work group for this shader invocation. Each of the XYZ components will be on the half-open range [0, gl_NumWorkGroups.XYZ).</dd>
+<dt><span class="tpl-code">gl_LocalInvocationID</span></dt>
+<dd>This is the current invocation of the shader <i>within</i> the work group. Each of the XYZ components will be on the half-open range [0, <span class="tpl-code">gl_WorkGroupSize.XYZ</span>).</dd>
+<dt><span class="tpl-code">gl_GlobalInvocationID</span></dt>
+<dd>This value uniquely identifies this particular invocation of the compute shader among <i>all</i> invocations of this compute dispatch call. It's a short-hand for the math computation:</dd></dl>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="nb">gl_WorkGroupID</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">gl_WorkGroupSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">gl_LocalInvocationID</span><span class="p">;</span>
+</pre></div>
+<dl><dt><span class="tpl-code">gl_LocalInvocationIndex</span></dt>
+<dd>This is a 1D version of <span class="tpl-code">gl_LocalInvocationID</span>. It identifies this invocation's index <i>within</i> the work group. It is short-hand for this math computation:</dd></dl>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="w">  </span><span class="nb">gl_LocalInvocationIndex</span><span class="w"> </span><span class="o">=</span>
+<span class="w">          </span><span class="nb">gl_LocalInvocationID</span><span class="p">.</span><span class="n">z</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">gl_WorkGroupSize</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">gl_WorkGroupSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span>
+<span class="w">          </span><span class="nb">gl_LocalInvocationID</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nb">gl_WorkGroupSize</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">          </span><span class="nb">gl_LocalInvocationID</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+</pre></div>
+<h3><span class="mw-headline" id="Local_size">Local size</span></h3>
+<p>The local size of a compute shader is defined within the shader, using a special layout input declaration:
+</p>
+<pre> layout(local_size_x = <span class="tpl-param">X​</span>, local_size_y = <span class="tpl-param">Y​</span>, local_size_z = <span class="tpl-param">Z​</span>) in;
+</pre>
+<p>By default, the local sizes are 1, so if you only want a 1D or 2D work group space, you can specify just the <span class="tpl-param">X​</span> or the <span class="tpl-param">X​</span> and <span class="tpl-param">Y​</span> components. They must be integral constant expressions of value greater than 0. Their values must abide by the <a href="#Limitations">limitations imposed below</a>; if they do not, a compiler or linker error occurs.
+</p><p>The local size is available to the shader as a <a href="/opengl/Constant_Expression" class="mw-redirect" title="Constant Expression">compile-time constant variable</a>, so you don't need to define it yourself:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">uvec3</span><span class="w"> </span><span class="nb">gl_WorkGroupSize</span><span class="p">;</span>
+</pre></div>
+<h2><span class="mw-headline" id="Outputs">Outputs</span></h2>
+<p>Compute shaders do not have output variables. If you wish to have a CS generate some output, you must use a resource to do so. <a href="/opengl/Ssbo" class="mw-redirect" title="Ssbo">Shader storage buffers</a> and <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> operations are useful ways to output data from a CS.
+</p>
+<h2><span class="mw-headline" id="Shared_variables">Shared variables</span></h2>
+<p>Global variables in compute shaders can be declared with the <span class="tpl-code">shared</span> storage qualifier. The value of such variables are shared between all invocations within a work group. You cannot declare any <a href="/opengl/Opaque_Type" class="mw-redirect" title="Opaque Type">opaque types</a> as shared, but aggregates (arrays and structs) are fine.
+</p><p>At the beginning of a work group, these values are uninitialized. Also, the variable declaration cannot have initializers, so this is illegal:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">shared</span><span class="w"> </span><span class="kt">uint</span><span class="w"> </span><span class="n">foo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">;</span><span class="w"> </span><span class="c1">// No initializers for shared variables.</span>
+</pre></div>
+<p>If you want to initialize a shared variable to a particular value, then one of the invocations must explicitly set the variable to that value. And <i>only one</i> invocation must do so, due to the following.
+</p>
+<h3><span class="mw-headline" id="Shared_memory_coherency">Shared memory coherency</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Memory_Model#Incoherent_memory_access" title="Memory Model">Memory Model#Incoherent memory access</a><i></i></div>
+<p>Shared variable access uses the rules for incoherent memory access. This means that the user must perform certain synchronization in order to ensure that shared variables are visible.
+</p><p>Shared variables are all implicitly declared <span class="tpl-code">coherent</span>, so you don't need to (and can't use) that qualifier. However, you still need to provide an appropriate memory barrier.
+</p><p>The <a href="/opengl/Incoherent_Memory_Visibility" class="mw-redirect" title="Incoherent Memory Visibility">usual set of memory barriers</a> is available to compute shaders, but they also have access to <span class="tpl-code">memoryBarrierShared()</span>; this barrier is specifically for shared variable ordering. <span class="tpl-code">groupMemoryBarrier()</span> acts like <span class="tpl-code">memoryBarrier()</span>, ordering memory writes for all kinds of variables, but it only orders read/writes for the current work group.
+</p><p>While all invocations within a work group are said to execute "in parallel", that doesn't mean that you can assume that all of them are executing in lock-step. If you need to ensure that an invocation has written to some variable so that you can read it, you need to synchronize <i>execution</i> with the invocations, not just issue a memory barrier (you still need the memory barrier though).
+</p><p>To synchronize reads and writes between invocations within a work group, you must employ the <span class="tpl-code">barrier()</span> function. This forces an explicit synchronization between all invocations in the work group. Execution within the work group will not proceed until all other invocations have reach this barrier. Once past the <span class="tpl-code">barrier()</span>, all shared variables previously written across all invocations in the group will be visible.
+</p><p>There are limitations on how you can call <span class="tpl-code">barrier()</span>. However, compute shaders are not as limited as <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shaders</a> in their use of this function. <span class="tpl-code">barrier()</span> can be called from flow-control, but it can only be called from <i>uniform</i> flow control. All expressions that lead to the evaluation of a <span class="tpl-code">barrier()</span> must be <a href="/opengl/Dynamically_Uniform_Expression" class="mw-redirect" title="Dynamically Uniform Expression">dynamically uniform</a>.
+</p><p>In short, if you execute the same compute shader, no matter how different the data they fetch is, every execution must hit the <i>exact</i> same set of <span class="tpl-code">barrier()</span> calls in the exact same order. Otherwise, serious errors may occur.
+</p>
+<h3><span class="mw-headline" id="Atomic_operations">Atomic operations</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Shader_Storage_Buffer_Object#Atomic_operations" title="Shader Storage Buffer Object">Shader Storage Buffer Object#Atomic operations</a><i></i></div>
+<p>A number of atomic operations can be performed on shared variables of integral type (and vectors/arrays/structs of them). These functions are shared with <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Object</a> atomics.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Atomic_Variable_Operations" title="Atomic Variable Operations">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Atomic_Variable_Operations&amp;action=edit">E</a></span></span></div>
+<p>All of the atomic functions return the <i><b>original</b></i> value. The term "<i>n</i>int" can be <span class="tpl-code">int</span> or <span class="tpl-code">uint</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicAdd(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>Adds <span class="tpl-param">data​</span> to <span class="tpl-param">mem​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicMin(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>The <span class="tpl-param">mem​</span>'s value is no lower than <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicMax(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>The <span class="tpl-param">mem​</span>'s value is no greater than <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicAnd (inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p><span class="tpl-param">mem​</span> becomes the bitwise-and between <span class="tpl-param">mem​</span> and <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicOr(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p><span class="tpl-param">mem​</span> becomes the bitwise-or between <span class="tpl-param">mem​</span> and <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicXor(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p><span class="tpl-param">mem​</span> becomes the bitwise-xor between <span class="tpl-param">mem​</span> and <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicExchange(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>Sets <span class="tpl-param">mem​</span>'s value to <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicCompSwap(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">compare​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>If the current value of <span class="tpl-param">mem​</span> is equal to <span class="tpl-param">compare​</span>, then <span class="tpl-param">mem​</span> is set to <span class="tpl-param">data​</span>. Otherwise it is left unchanged.
+</p>
+<h2><span class="mw-headline" id="Limitations">Limitations</span></h2>
+<p>The number of work groups that can be dispatched in a single dispatch call is defined by <span class="tpl-enum">GL_MAX_COMPUTE_WORK_GROUP_COUNT</span>. This must be queried with <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetIntegeri_v</a></span>, with the index being on the closed range [0, 2], representing the X, Y and Z components of the maximum work group count. Attempting to call <span class="tpl-code"><a href="/opengl/GLAPI/glDispatchCompute" title="GLAPI/glDispatchCompute">glDispatchCompute</a></span> with values that exceed this range is an error. Attempting to call <span class="tpl-code"><a href="/opengl/GLAPI/glDispatchComputeIndirect" title="GLAPI/glDispatchComputeIndirect">glDispatchComputeIndirect</a></span> is much worse; it may result in program termination or other badness.
+</p><p>Note that the <i>minimum</i> these values must be is 65535 in all three axes. So you've probably got a lot of room to work with.
+</p><p>There are limits on the local size as well; indeed, there are two sets of limitations. There is a general limitation on the local size dimensions, queried with <span class="tpl-enum">GL_MAX_COMPUTE_WORK_GROUP_SIZE</span> in the same way as above. Note that the minimum requirements here are much smaller: 1024 for X and Y, and a mere 64 for Z.
+</p><p>There is another limitation: the total number of invocations within a work group. That is, the product of the X, Y and Z components of the local size must be less than <span class="tpl-enum">GL_MAX_COMPUTE_WORK_GROUP_INVOCATIONS</span>. The minimum value here is 1024.
+</p><p>There is also a limit on the total storage size for all shared variables in a compute shader. This is <span class="tpl-enum">GL_MAX_COMPUTE_SHARED_MEMORY_SIZE</span>, which is in bytes. The OpenGL-required minimum is 32KB. OpenGL does not specify the exact mapping between GL types and shared variable storage, though you could use the std140 layout rules and UBO/SSBO sizes as a general guideline.
+</p>
+<!-- 
+NewPP limit report
+Cached time: 20260317153038
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.057 seconds
+Real time usage: 0.063 seconds
+Preprocessor visited node count: 1461/1000000
+Post‐expand include size: 20190/2097152 bytes
+Template argument size: 3526/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 5/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 3534/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   35.590      1 -total
+ 43.46%   15.469      2 Template:Snippet
+ 28.93%   10.295      1 Template:Infobox_feature
+ 25.63%    9.123      1 Template:Infobox2
+ 20.20%    7.190      1 Atomic_Variable_Operations
+ 13.82%    4.919      1 Compute_Shader/Defined_Inputs
+  9.32%    3.315     10 Template:Infobox/shortrow
+  8.85%    3.149      8 Template:Funcdef
+  8.22%    2.924     10 Template:Infobox/longrow
+  7.73%    2.751     50 Template:Param
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2214-0!canonical and timestamp 20260317153038 and revision id 14536. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Compute_Shader&amp;oldid=14536">https://wikis.khronos.org/opengl/index.php?title=Compute_Shader&amp;oldid=14536</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Compute+Shader" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Compute_Shader" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Compute_Shader&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Compute_Shader"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Compute_Shader&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Compute_Shader&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Compute_Shader" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Compute_Shader" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Compute_Shader&amp;oldid=14536" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Compute_Shader&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Compute_Shader&amp;id=14536&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 22 April 2019, at 15:20.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":164,"wgPageParseReport":{"limitreport":{"cputime":"0.057","walltime":"0.063","ppvisitednodes":{"value":1461,"limit":1000000},"postexpandincludesize":{"value":20190,"limit":2097152},"templateargumentsize":{"value":3526,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":5,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":3534,"limit":5000000},"timingprofile":["100.00%   35.590      1 -total"," 43.46%   15.469      2 Template:Snippet"," 28.93%   10.295      1 Template:Infobox_feature"," 25.63%    9.123      1 Template:Infobox2"," 20.20%    7.190      1 Atomic_Variable_Operations"," 13.82%    4.919      1 Compute_Shader/Defined_Inputs","  9.32%    3.315     10 Template:Infobox/shortrow","  8.85%    3.149      8 Template:Funcdef","  8.22%    2.924     10 Template:Infobox/longrow","  7.73%    2.751     50 Template:Param"]},"cachereport":{"timestamp":"20260317153038","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6d814e0aa3d1',t:'MTc3NDIzNzM2Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

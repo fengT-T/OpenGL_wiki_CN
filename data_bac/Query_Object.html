@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Query Object - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"4fb7600a7e2bcf751cfce0f1","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Query_Object","wgTitle":"Query Object","wgCurRevisionId":14967,"wgRevisionId":14967,"wgArticleId":2208,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Objects","Missing DSA"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Query_Object","wgRelevantArticleId":2208,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=skins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Query_Object rootpage-Query_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Query Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Query Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+1.5</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/occlusion_query.txt">ARB_occlusion_query</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><b>Query Objects</b> are <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Objects</a> that are used for asynchronous queries of certain kinds of information.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Management"><span class="tocnumber">1</span> <span class="toctext">Management</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Query_scope"><span class="tocnumber">1.1</span> <span class="toctext">Query scope</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Query_retrieval"><span class="tocnumber">1.2</span> <span class="toctext">Query retrieval</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Query_buffer_object"><span class="tocnumber">1.3</span> <span class="toctext">Query buffer object</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Query_precision"><span class="tocnumber">1.4</span> <span class="toctext">Query precision</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Occlusion_queries"><span class="tocnumber">2</span> <span class="toctext">Occlusion queries</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Timer_queries"><span class="tocnumber">3</span> <span class="toctext">Timer queries</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Primitive_queries"><span class="tocnumber">4</span> <span class="toctext">Primitive queries</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Multiple_streams"><span class="tocnumber">4.1</span> <span class="toctext">Multiple streams</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-10"><a href="#Reference"><span class="tocnumber">5</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Management">Management</span></h2>
+<p>Query objects follow the general <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a> paradigm. They have <span class="tpl-code"><a href="/opengl/GLAPI/glGenQueries" title="GLAPI/glGenQueries">glGenQueries</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteQueries" title="GLAPI/glDeleteQueries">glDeleteQueries</a></span>. However, unlike most other OpenGL Objects, there is no general glBindQuery or similar function.
+</p><p>Query objects are not <a href="/opengl/Container_Object" class="mw-redirect" title="Container Object">Container Objects</a>, but they cannot be shared between OpenGL contexts.
+</p><p>Many kinds of query operations require a <i>scope</i>. The scope of the query is bound by a pair of begin/end functions, such that the query returns some information generated through the execution of the commands within that scope.
+</p><p>Like textures, query objects have different types, represented by the <span class="tpl-param">target​</span> parameter taken by the query object functions. Query objects represent a single integer value, generated by some OpenGL process, which can be queried asynchronously. The different types determine what the value being queried means and where it comes from:
+</p>
+<ul><li><span class="tpl-enum">GL_SAMPLES_PASSED​</span>: The number of samples that pass the depth test for all drawing commands within the scope of the query.</li>
+<li><span class="tpl-enum">GL_ANY_SAMPLES_PASSED​</span>: <span class="tpl-enum">GL_FALSE</span> if none of the scoped drawing commands generate samples that pass the depth test; otherwise, the value is <span class="tpl-enum">GL_TRUE</span>. This requires OpenGL 3.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/occlusion_query2.txt">ARB_occlusion_query2</a>.</li>
+<li><span class="tpl-enum">GL_ANY_SAMPLES_PASSED_CONSERVATIVE​</span>: As <span class="tpl-enum">GL_ANY_SAMPLES_PASSED</span>, except that the implementation may use a less accurate algorithm, which may be faster, but at the cost of more more false positives. This requires OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/ES3_compatibility.txt">ARB_ES3_compatibility</a>.</li>
+<li><span class="tpl-enum">GL_PRIMITIVES_GENERATED</span>: Records the number of primitives sent to a particular <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> output stream (or by stream 0 if no GS is active) by the scoped drawing commands. This requires OpenGL 3.0; multiple streams requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>.</li>
+<li><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN</span>: Records the number of primitives written by a <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> stream to a <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> object (or by stream 0 if no GS is active) by the scoped drawing commands. This requires OpenGL 3.0; multiple streams requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>.</li>
+<li><span class="tpl-enum">GL_TIME_ELAPSED​</span>: Records the time that it takes for the GPU to execute all of the scoped commands. The timer starts when all commands before the scope have <a href="/opengl/OpenGL_Command_Completion" class="mw-redirect" title="OpenGL Command Completion"><i>completed</i></a>, and the timer ends when the last scoped command has completed. Requires OpenGL 3.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/timer_query.txt">ARB_timer_query</a>.</li>
+<li><span class="tpl-enum">GL_TIMESTAMP</span>: Records the current time of the GPU. Requires OpenGL 3.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/timer_query.txt">ARB_timer_query</a>.</li></ul>
+<h3><span class="mw-headline" id="Query_scope">Query scope</span></h3>
+<p>The result of query objects is usually based on data created from multiple drawing commands. These commands represent the scope of the query operation. The scope of a query operation is demarcated by a begin/end pair of functions:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glBeginQuery" title="GLAPI/glBeginQuery">glBeginQuery</a></span>(GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">id​</span>);
+<span class="tpl-code"><a href="/opengl/GLAPI/glEndQuery" class="mw-redirect" title="GLAPI/glEndQuery">glEndQuery</a></span>(GLenum <span class="tpl-param">target​</span>);
+</pre>
+<p>The only query type <span class="tpl-param">target​</span> not accepted by these functions is <span class="tpl-enum">GL_TIMESTAMP</span>.
+</p><p>Some targets are indexed, meaning that the target has some number of slots for query operations. These kinds of targets can use <span class="tpl-code"><a href="/opengl/GLAPI/glBeginQueryIndexed" title="GLAPI/glBeginQueryIndexed">glBeginQueryIndexed</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glEndQueryIndexed" class="mw-redirect" title="GLAPI/glEndQueryIndexed">glEndQueryIndexed</a></span>, which take an index that the function will begin a query on. <span class="tpl-code"><a href="/opengl/GLAPI/glBeginQuery" title="GLAPI/glBeginQuery">glBeginQuery</a></span> is defined as calling <span class="tpl-code"><a href="/opengl/GLAPI/glBeginQueryIndexed" title="GLAPI/glBeginQueryIndexed">glBeginQueryIndexed</a></span> with an <span class="tpl-param">index​</span> of 0.
+</p><p>What the index represents depends on the <span class="tpl-param">target​</span> type. Targets that allow for a non-zero index are:
+</p>
+<ul><li><span class="tpl-enum">GL_PRIMITIVES_GENERATED​</span>: The index represents a vertex stream output from the Geometry Shader. The maximum index is <span class="tpl-enum">GL_MAX_VERTEX_STREAMS</span>. Requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>.</li>
+<li><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN</span>: The index represents a vertex stream output from the Geometry Shader. The maximum index is <span class="tpl-enum">GL_MAX_VERTEX_STREAMS</span>. Requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>.</li></ul>
+<h3><span class="mw-headline" id="Query_retrieval">Query retrieval</span></h3>
+<p>Once a query object has ended its querying operation (via a call to <span class="tpl-code"><a href="/opengl/GLAPI/glEndQueryIndexed" class="mw-redirect" title="GLAPI/glEndQueryIndexed">glEndQueryIndexed</a></span> or an equivalent function), the data stored in the query can be retrieved. To retrieve information from the query object, the following function is used:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glGetQueryObject" title="GLAPI/glGetQueryObject">glGetQueryObject[ui64v]</a></span>(GLuint <span class="tpl-param">id​</span>, GLenum <span class="tpl-param">pname​</span>, type * <span class="tpl-param">params​</span>);
+</pre>
+<p>The <span class="tpl-param">id​</span> is the query object to retrieve information about. <span class="tpl-param">pname​</span> is the type of information to retrieve. The data queried will be written into <span class="tpl-param">params​</span>.
+</p><p>Query objects provide the following different types of information:
+</p>
+<dl><dt><span class="tpl-enum">GL_QUERY_RESULT_AVAILABLE</span></dt>
+<dd>The purpose of query objects is to represent <i>asynchronous</i> queries of values. Thus, even after a query's scope has ended, the queried value may not be immediately available. This query is used to ask the query object if the result is actually available. This will write <span class="tpl-code">GL_FALSE</span> to <span class="tpl-param">params​</span> if the query operation has not been completed, and <span class="tpl-code">GL_TRUE</span> otherwise.</dd>
+<dt><span class="tpl-enum">GL_QUERY_RESULT</span></dt>
+<dd>This returns the actual result of the query. If the query's internal integer value is too large for the bitdepth the function call asked for (ie: the query stores the integer with 48-bits, but the user uses the the 32-bit integer version of the function), then the value returned will be the value that is closest to the actual value of the query.</dd>
+<dd>Note that if you query the result <i>before</i> <span class="tpl-enum">GL_QUERY_RESULT_AVAILABLE</span> returns <span class="tpl-code">GL_TRUE</span>, then you will be effectively turning an asynchronous query into a synchronous one. That is, the function will stall the CPU until the result is available.</dd>
+<dt><span class="tpl-enum">GL_QUERY_RESULT_NO_WAIT</span> (requires OpenGL 4.4<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/query_buffer_object.txt">ARB_query_buffer_object</a>)</dt>
+<dd>This is a combination of the above two values. If the query result is available, this returns the query result as though with <span class="tpl-enum">GL_QUERY_RESULT</span>. If the query result is not available, then <i>nothing</i> is written, and whatever value was in <span class="tpl-param">params​</span> will be unchanged.</dd></dl>
+<h3><span class="mw-headline" id="Query_buffer_object">Query buffer object</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Query Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/query_buffer_object.txt">ARB_query_buffer_object</a></td></tr>
+ 
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Vendor extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/AMD/query_buffer_object.txt">AMD_query_buffer_object</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The results queried from a query object can be fed into a <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a>. This allows users to help feed query results back into internal OpenGL operations. This is useful for querying <a href="#Primitive_queries">the number of primitives generated</a> by the <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> into an <a href="/opengl/Indirect_Drawing" class="mw-redirect" title="Indirect Drawing">indirect rendering call</a>. It can also be used in tandem with <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> and other buffer writing mechanisms.
+</p><p>To do this, a buffer object must first be bound to <span class="tpl-enum">GL_QUERY_BUFFER</span> with <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer</a></span>. When a non-zero buffer object is bound to this binding point, the behavior of <span class="tpl-code"><a href="/opengl/GLAPI/glGetQueryObject" title="GLAPI/glGetQueryObject">glGetQueryObject</a></span> changes. The <span class="tpl-param">params​</span> field is interpreted, not as a pointer to memory but as a <i>numerical byte offset</i> into the buffer bound to <span class="tpl-enum">GL_QUERY_BUFFER</span>.
+</p><p>The size of the value written is determined by the type used with the <span class="tpl-code"><a href="/opengl/GLAPI/glGetQueryObject" title="GLAPI/glGetQueryObject">glGetQueryObject</a></span> function call. So the 64-bit integer versions of that function will write 64 bits of data, and the <span class="tpl-param">params​</span> offset must be 8-byte aligned. Otherwise it will write 32 bits of data, and the offset must be 4-byte aligned.
+</p><p>The write into the buffer works using the standard, in-order <a href="/opengl/Memory_Model" title="Memory Model">Memory Model</a> that the rest of OpenGL uses. There is a barrier that is needed to order writes between <a href="/opengl/Incoherent_Memory_Access" class="mw-redirect" title="Incoherent Memory Access">incoherent accesses to the buffer</a> and this API.
+</p>
+<h3><span class="mw-headline" id="Query_precision">Query precision</span></h3>
+<p>All query objects represent a single integer value. However, each type of query object has a different precision for this value. While you can query the integer value at 32 and 64-bit precision, the OpenGL implementation only provides so much precision for these values.
+</p><p>The precision for a query can be acquired by calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetQuery" title="GLAPI/glGetQuery">glGetQuery</a></span> with <span class="tpl-enum">GL_QUERY_COUNTER_BITS</span> as the second parameter. OpenGL defines the minimum precision for each query type as follows:
+</p>
+<table>
+<tbody><tr>
+<th>Query type
+</th>
+<th>Minimum precision
+</th></tr>
+<tr>
+<td><span class="tpl-enum">GL_SAMPLES_PASSED​</span>
+</td>
+<td>32*
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_ANY_SAMPLES_PASSED​</span>
+</td>
+<td>1
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_ANY_SAMPLES_PASSED_CONSERVATIVE​</span>
+</td>
+<td>1
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_PRIMITIVES_GENERATED</span>
+</td>
+<td>32
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN</span>
+</td>
+<td>32
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TIME_ELAPSED​</span>
+</td>
+<td>30
+</td></tr>
+<tr>
+<td><span class="tpl-enum">GL_TIMESTAMP</span>
+</td>
+<td>30
+</td></tr></tbody></table>
+<p>* In OpenGL 3.3, the minimum precision required is a function of the maximum viewport width and height. Specifically, the precision is required to be at least enough to hold a counter that is twice the maximum width and height, thus supporting 2x multisampling at the largest buffer size. GL 4.0 and above simply require at least 32 bits of precision.
+</p><p>Note that implementations are allowed to return 0 for any of these values. This means that the query type contains no actual information, and the implementation does not really support it..
+</p>
+<h2><span class="mw-headline" id="Occlusion_queries">Occlusion queries</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Query Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+1.5</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/occlusion_query2.txt">ARB_occlusion_query2</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Occlusion queries are the collective name for the following query object types: <span class="tpl-enum">GL_SAMPLES_PASSED​​</span>, <span class="tpl-enum">GL_ANY_SAMPLES_PASSED​​</span>, and <span class="tpl-enum">GL_ANY_SAMPLES_PASSED_CONSERVATIVE​​</span>. These represent ways to detect whether an object is visible.
+</p><p>Specifically, these queries detect whether any fragments continue being processed after reaching the depth test stage in the <a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a> part of the rendering pipeline. These operations proceed in the order defined on that page, so if a fragment passes the depth test, then it must also have passed all of the operations before it. So fragments which pass the depth test must also have passed the stencil test, scissor test, etc.
+</p><p>This also has implications for what happens when <a href="/opengl/Early_Fragment_Test#Explicit_specification" title="Early Fragment Test">explicitly forces</a> the implementation to perform some of those tests before the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> executes (normally, they come afterwards). In this case, a fragment will be considered to have passed the depth test before the FS executes. So that sample will be counted by the occlusion query <i>even if</i> you <span class="tpl-code">discard</span> the fragment in the shader. The discarded fragment will not be written to color buffers, but it will still count for query purposes.
+</p><p>When using <a href="/opengl/Multisampling" title="Multisampling">Multisampling</a>, the implementation is allowed to decide how to count the individual samples within a pixel area. The implementation may count only the samples within a triangle's area (if the triangle only covers part of a pixel), or it may count <i>all</i> of the samples if the triangle covers any sample in a pixel.
+</p><p><span class="tpl-enum">GL_SAMPLES_PASSED</span> gives a count of the number of samples that passed, while <span class="tpl-enum">GL_ANY_SAMPLES_PASSED​​</span> is a boolean query: did any samples pass. The <span class="tpl-enum">GL_ANY_SAMPLES_PASSED_CONSERVATIVE​​</span> does essentially the same thing, but with an accuracy tradeoff for possibly increased performance. If it is inaccurate, then it will only give false positives rather than false negatives.
+</p><p>The result of an occlusion query can be used as the condition for <a href="/opengl/Conditional_Rendering" class="mw-redirect" title="Conditional Rendering">Conditional Rendering</a>.
+</p><p>In general, this feature is used to prevent rendering objects that are complex by rendering a much simpler volume (with a simple shader) in the same place. <a href="/opengl/Write_Mask" title="Write Mask">Write Masks</a> are used to prevent drawing anything or modifying the depth buffer. If samples of that object are visible, then the actual complex object is drawn.
+</p>
+<h2><span class="mw-headline" id="Timer_queries">Timer queries</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Timer Query</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/timer_query.txt">ARB_timer_query</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Timer queries are the collective name for the query types <span class="tpl-enum">GL_TIMESTAMP</span> and <span class="tpl-enum">GL_TIME_ELAPSED</span>. These are used for measuring the GPU timings of various operations. All times returned are measured in <i>nanoseconds</i>.
+</p><p>The <span class="tpl-enum">GL_TIME_ELAPSED</span> query is used with a scope to measure how long it takes for the scoped commands to execute on the GPU. The timer starts when the first command starts executing, and the timer ends when the final command is <i>completed</i>.
+</p><p>The <span class="tpl-enum">GL_TIMESTAMP</span> query type is not used with a scope; it is used to record a specific time. Exactly what the time is relative to is implementation-dependent, but the timestamp is always increasing. The timestamp can be fetched in one of two ways. It can be fetched into a query object with this function:
+</p>
+<pre><span class="tpl-code"><a href="/opengl/GLAPI/glQueryCounter" title="GLAPI/glQueryCounter">glQueryCounter</a></span>(GLuint <span class="tpl-param">id​</span>, GLenum <span class="tpl-param">target​</span>);
+</pre>
+<p>This will store into the query object the time when the GPU will have <i>completed</i> all previously issued commands.
+</p><p>It can also be fetched directly. Calling <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetInteger64v</a></span> with <span class="tpl-enum">GL_TIMESTAMP</span> will return the GPU timestamp when all previously given commands have <i>issued</i>, but not necessarily completed. Unlike the actual timer query commands, this command will stall the CPU until the timestamp is returned.
+</p><p>When using the synchronous timestamp, coupled with an asynchronous <span class="tpl-enum">GL_TIMESTAMP</span> query into a query object, one can determine the latency between when commands are issued and when they complete.
+</p>
+<h2><span class="mw-headline" id="Primitive_queries">Primitive queries</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Primitive Query</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Primitive queries are the collective name for the <span class="tpl-enum">GL_PRIMITIVES_GENERATED​​</span> and <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN​</span> query object types. These are used for detecting how many <a href="/opengl/Primitive" title="Primitive">primitives</a> were generated during one or more rendering operations. This is primarily used for <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>, particularly in cases where the number of primitives to be generated by a <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> and/or <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> depends on the data provided.
+</p><p>The primitive counts in these cases are the number of basic primitives. So a triangle strip 5 vertices long is 3 primitives, not one primitive.
+</p><p><span class="tpl-enum">GL_PRIMITIVES_GENERATED​​</span> provides the number of primitives that are output by the final <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> step. If there's no Geometry Shader or Tessellation activated, then this will be the number of primitives from the <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">drawing command</a>.
+</p><p><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN</span> is slightly different. It is the number of primitives that are written to transform feedback buffers. For this count to be incremented, the scoped commands must issue drawing commands while within the boundaries of <span class="tpl-code"><a href="/opengl/GLAPI/glBeginTransformFeedback" title="GLAPI/glBeginTransformFeedback">glBeginTransformFeedback/glEndTransformFeedback</a></span>. The transform feedback scope and the query scope can overlap, and one can end before the other. Similarly, transform feedback can be paused with <span class="tpl-code"><a href="/opengl/GLAPI/glPauseTransformFeedback" title="GLAPI/glPauseTransformFeedback">glPauseTransformFeedback</a></span>, and the count will not include primitives generated during the pause.
+</p><p>Note that <span class="tpl-code"><a href="/opengl/GLAPI/glDrawTransformFeedback" title="GLAPI/glDrawTransformFeedback">glDrawTransformFeedback</a></span> is perfectly capable of rendering from a transform feedback object without having to query the number of vertices. Though this is only core in GL 4.0, it is widely available on 3.x-class hardware.
+</p>
+<h3><span class="mw-headline" id="Multiple_streams">Multiple streams</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Stream Output</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Transform feedback operations can have multiple output streams. As such, primitive queries can be indexed, with each index representing a potential transform feedback output stream.
+</p><p>The definition of the primitive query types does not change. Primitives can still be sent to a stream where no transform feedback buffers are written. In that case, any <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_PRIMITIVES_WRITTEN</span> queries active on that stream will not have their count incremented. However, active <span class="tpl-enum">GL_PRIMITIVES_GENERATED</span> queries will.
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Queries_and_Timers" title="Category:Core API Ref Queries and Timers">Core API Ref Queries and Timers</a>: Reference documentation for all query object API functions.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318080941
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.103 seconds
+Real time usage: 0.107 seconds
+Preprocessor visited node count: 4270/1000000
+Post‐expand include size: 39168/2097152 bytes
+Template argument size: 8144/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 1/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   73.671      1 -total
+ 64.47%   47.498      6 Template:Infobox_feature
+ 60.76%   44.766      6 Template:Infobox2
+ 21.00%   15.472     60 Template:Infobox/longrow
+ 19.76%   14.559     60 Template:Infobox/shortrow
+  8.43%    6.214     11 Template:Require
+  8.11%    5.972     19 Template:Apifunc
+  5.77%    4.251     48 Template:Enum
+  4.26%    3.140     23 Template:Code
+  3.99%    2.936     15 Template:Extref
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2208-0!canonical and timestamp 20260318080941 and revision id 14967. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Query_Object&amp;oldid=14967">https://wikis.khronos.org/opengl/index.php?title=Query_Object&amp;oldid=14967</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li><li><a href="/opengl/Category:Missing_DSA" title="Category:Missing DSA">Missing DSA</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Query+Object" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Query_Object" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Query_Object&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Query_Object"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Query_Object&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Query_Object&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Query_Object" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Query_Object" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Query_Object&amp;oldid=14967" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Query_Object&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Query_Object&amp;id=14967&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 23 July 2024, at 13:19.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":138,"wgPageParseReport":{"limitreport":{"cputime":"0.103","walltime":"0.107","ppvisitednodes":{"value":4270,"limit":1000000},"postexpandincludesize":{"value":39168,"limit":2097152},"templateargumentsize":{"value":8144,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":1,"limit":5000000},"timingprofile":["100.00%   73.671      1 -total"," 64.47%   47.498      6 Template:Infobox_feature"," 60.76%   44.766      6 Template:Infobox2"," 21.00%   15.472     60 Template:Infobox/longrow"," 19.76%   14.559     60 Template:Infobox/shortrow","  8.43%    6.214     11 Template:Require","  8.11%    5.972     19 Template:Apifunc","  5.77%    4.251     48 Template:Enum","  4.26%    3.140     23 Template:Code","  3.99%    2.936     15 Template:Extref"]},"cachereport":{"timestamp":"20260318080941","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6c3a9b5ca3d1',t:'MTc3NDIzNzMxMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

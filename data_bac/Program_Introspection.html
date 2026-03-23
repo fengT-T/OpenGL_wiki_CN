@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Program Introspection - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"8a4b0cc99ed4d3f2a9366fd2","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Program_Introspection","wgTitle":"Program Introspection","wgCurRevisionId":14855,"wgRevisionId":14855,"wgArticleId":2293,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Program_Introspection","wgRelevantArticleId":2293,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Program_Introspection rootpage-Program_Introspection skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Program Introspection</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><b>Introspection</b></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p><b>Program Introspection</b> is a mechanism for taking a <a href="/opengl/GLSL_Object" title="GLSL Object">program object</a> and querying information about it, so as to be able to interface and interact with it. For example, if there is a uniform, you may need to query its location so that you can set its value.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Naming"><span class="tocnumber">1</span> <span class="toctext">Naming</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Arrays"><span class="tocnumber">1.1</span> <span class="toctext">Arrays</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Interface_block_arrays"><span class="tocnumber">1.1.1</span> <span class="toctext">Interface block arrays</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-4"><a href="#Interface_block_member_naming"><span class="tocnumber">1.2</span> <span class="toctext">Interface block member naming</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Shader_storage_blocks"><span class="tocnumber">1.3</span> <span class="toctext">Shader storage blocks</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Old_style"><span class="tocnumber">2</span> <span class="toctext">Old style</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Attributes"><span class="tocnumber">2.1</span> <span class="toctext">Attributes</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Fragment_Outputs"><span class="tocnumber">2.2</span> <span class="toctext">Fragment Outputs</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Uniforms_and_blocks"><span class="tocnumber">2.3</span> <span class="toctext">Uniforms and blocks</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#Uniform_blocks"><span class="tocnumber">2.3.1</span> <span class="toctext">Uniform blocks</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-11"><a href="#Subroutines"><span class="tocnumber">2.4</span> <span class="toctext">Subroutines</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#Atomic_counters"><span class="tocnumber">2.5</span> <span class="toctext">Atomic counters</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Interface_query"><span class="tocnumber">3</span> <span class="toctext">Interface query</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#Interfaces"><span class="tocnumber">3.1</span> <span class="toctext">Interfaces</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Resource_indices"><span class="tocnumber">3.2</span> <span class="toctext">Resource indices</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#Resource_properties"><span class="tocnumber">3.3</span> <span class="toctext">Resource properties</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#Shortcuts"><span class="tocnumber">3.4</span> <span class="toctext">Shortcuts</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Examples"><span class="tocnumber">3.5</span> <span class="toctext">Examples</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#Reference"><span class="tocnumber">4</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Naming">Naming</span></h2>
+<p>The introspection APIs will often make a single "variable" definition in GLSL appear as though it were multiple variables. This is done for variables that are not basic types or arrays of basic types (note that in GLSL, <a href="/opengl/Basic_Type_(GLSL)" class="mw-redirect" title="Basic Type (GLSL)">"basic types"</a> include vector and matrix types).
+</p><p>For example, consider the following:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">A_Struct</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">second</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">third</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="n">A_Struct</span><span class="w"> </span><span class="n">unif</span><span class="p">;</span>
+</pre></div>
+<p>The struct itself cannot be queried via the introspection API; the struct is just a prototype, an aggregate type definition. The variable <span class="tpl-code">unif</span> is a <span class="tpl-code">uniform</span>, of type `A_Struct`.
+</p><p>However, if you try to get the uniform location, or any other property, of <span class="tpl-code">unif</span>, you will be unable to do so. As far as the introspection API is concerned, there <i>is no</i> <span class="tpl-code">unif</span>. Because the introspection API is built around basic types, struct aggregates of basic type are not directly visible.
+</p><p>Instead, each sub-element of the struct that is a basic type is visible. So there is a uniform named <span class="tpl-code">unif.first</span>. There is a uniform named <span class="tpl-code">unif.second</span>. And so forth.
+</p><p>This rule is applied recursively. Consider the following:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">Inner</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">inOne</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">inTwo</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">struct</span><span class="w"> </span><span class="n">Outer</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">first</span><span class="p">;</span>
+<span class="w">  </span><span class="n">Inner</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">second</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">third</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="n">Outer</span><span class="w"> </span><span class="n">unif</span><span class="p">;</span>
+</pre></div>
+<p>The uniforms generated from this are as follows: <span class="tpl-code">unif.first</span>, <span class="tpl-code">unif.data.inOne</span>, <span class="tpl-code">unif.data.inTwo</span>, etc. There is no <span class="tpl-code">unif.data</span> variable as far as the introspection API is concerned.
+</p>
+<h3><span class="mw-headline" id="Arrays">Arrays</span></h3>
+<p>Arrays work differently, depending on whether they are arrays of basic types or arrays of aggregates (structs or arrays are aggregates. Arrays of arrays requires either GL 4.3 or the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/arrays_of_arrays.txt">ARB_arrays_of_arrays</a> extension).
+</p><p>An array of basic type represents a single resource:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">Aggregate</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">main</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">sec</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="n">anArray</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+<span class="k">uniform</span><span class="w"> </span><span class="n">Aggregate</span><span class="w"> </span><span class="n">unif</span><span class="p">;</span>
+</pre></div>
+<p><span class="tpl-code">anArray[0]</span> is a single resource of type <span class="tpl-code">vec3</span>, which has an array size of 7. There is no resource named <span class="tpl-code">anArray[3]</span>; just for index 0. Similarly, <span class="tpl-code">unif.sec[0]</span> is a single resource of type <span class="tpl-code">vec2</span>, which has an array size of 3.
+</p><p>Note that the array index can be removed in these cases. Thus the query-by-name APIs will accept either <span class="tpl-code">anArray</span> or <span class="tpl-code">anArray[0]</span>. But if you query the name, you will always get the "[0]" version.
+</p><p>Arrays of aggregates (structs or, if OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/arrays_of_arrays.txt">ARB_arrays_of_arrays</a> is available <a href="/opengl/Arrays_Of_Arrays" class="mw-redirect" title="Arrays Of Arrays">other arrays</a>) are more complicated. They work like structs, such that each individual array element is taken as a separate resource with a distinct name. Consider:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="n">Aggregate</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">main</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">sec</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="n">Aggregate</span><span class="w"> </span><span class="n">unifArray</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</pre></div>
+<p>There is no uniform named <span class="tpl-code">unifArray</span>. However, there is a uniform named <span class="tpl-code">unifArray[0].main</span>. There is one named <span class="tpl-code">unifArray[2].sec[0]</span>, which is an array of basic types. There are five of each of these. As before, the bottom-level array can be clipped off: <span class="tpl-code">unifArray[2].sec</span> is equivalent to <span class="tpl-code">unifArray[2].sec[0]</span>.
+</p><p>These rules are applied recursively up the hierarchy.
+</p>
+<h4><span class="mw-headline" id="Interface_block_arrays">Interface block arrays</span></h4>
+<p><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface Blocks</a> can be arrayed. Arrays of interface blocks require the specification of an instance name:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">BlockName</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span><span class="w"> </span><span class="n">instanceName</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</pre></div>
+<p>In the fully linked program, this code will create three separate interface blocks. They are named based on the block name, so the three blocks will be named <span class="tpl-code">BlockName[0]</span>, <span class="tpl-code">BlockName[1]</span>, and <span class="tpl-code">BlockName[2]</span>.
+</p>
+<h3><span class="mw-headline" id="Interface_block_member_naming">Interface block member naming</span></h3>
+<p><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a> can have effects on the names of their members. If the interface block has an instance name, then the member name will be prefixed by the <i>block name</i> (not the instance name).
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">BlockName</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">mem</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">uniform</span><span class="w"> </span><span class="n">BlockName2</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">mem</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">instanceName2</span><span class="p">;</span>
+</pre></div>
+<p>The above code will create two uniforms, each of which is in its own separate block. The name of the first is "mem", in both GLSL and OpenGL's introspection API. The name of the second is "BlockName2.mem" in the introspection API, but the GLSL shader will call it "instanceName2.mem".
+</p><p>The reason for this is that blocks can be shared between shader stages. They are connected by their block name; it is perfectly valid to link two shaders that use blocks with the same block name (and member definitions), but with different instance names. This is commonly used when passing data between the various <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> shader stages. So while within a particular shader stage only one instance name applies, at the program level multiple instance names could apply to the same block. Therefore the block name, the name that is constant across shader stages, is used instead.
+</p><p>Note that this naming applies to all interface block types. So variables declared in input and output blocks are also decorated as such.
+</p><p>Interface blocks declared as arrays work in the exact same way. This means:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">uniform</span><span class="w"> </span><span class="n">BlockName3</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">mem</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="n">instanceName3</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+</pre></div>
+<p>This definition will create a <i>single member</i> named "<span class="tpl-code">BlockName3.min</span>". The reason this array of four blocks only counts as having one variable is because each of the four blocks uses the same internal definition. There is nothing that could be queried from <span class="tpl-code">BlockName3[1]</span> that could not be queried from <span class="tpl-code">BlockName3[0]</span>.
+</p>
+<h3><span class="mw-headline" id="Shader_storage_blocks">Shader storage blocks</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Shader storage block</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The array rules work slightly differently for <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage block members</a>. They have the concept of a "top-level array".
+</p><p>When looking at the direct members of a storage block, the first array index on such a variable is considered a "top-level array." This array is treated specially, and it has a special size field (separate from the array size) in the <a href="#Interface_query">query API</a>. Top-level arrays are considered a single resource, so you do not access the individual elements of a top-level array with an array index.
+</p><p>Consider this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">buffer</span><span class="w"> </span><span class="n">SSBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec2</span><span class="w"> </span><span class="n">first</span><span class="p">[</span><span class="mi">10</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">vec3</span><span class="w"> </span><span class="n">double_dim</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">5</span><span class="p">];</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="n">triple_dim</span><span class="p">[</span><span class="mi">5</span><span class="p">][</span><span class="mi">4</span><span class="p">][</span><span class="mi">8</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div>
+<p><span class="tpl-code">first[0]</span> is a top-level array, with a type of <span class="tpl-code">vec2</span> and a top-level array size of 10. There is no resource named <span class="tpl-code">SSBlock.first[3]</span>.
+</p><p><span class="tpl-code">double_dim[0][0]</span> is a top-level array, with a top-level array size of 2. But it also has a regular array size of size 5, with a type of <span class="tpl-code">vec3</span>. So there is only <i>one</i> resource; there is no <span class="tpl-code">double_dim[0][3]</span> and so forth, just the base resource.
+</p><p><span class="tpl-code">triple_dim[0][0][0]</span> is a top-level array, with a top-level array size of 5. It also has a regular array size of 8. <i>However</i>, there is another resource named <span class="tpl-code">triple_dim[0][1][0]</span>. And two more at that. All four of those resources are top-level arrays.
+</p><p>In total, the above shader storage block definition has 6 member resources, 4 of which are derived from <span class="tpl-code">triple_dim</span>.
+</p><p>With SS-Blocks, the regular array index comes from the last array index, while the top-level index comes from the first. And the top-level takes priority, so if there is only one array index, it is the top-level array index.
+</p>
+<h2><span class="mw-headline" id="Old_style">Old style</span></h2>
+<p>The APIs in this section represent an older interface to program information. If OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/program_interface_query.txt">ARB_program_interface_query</a> is available, <a href="#Interface_query">you should use those APIs</a>. Be advised that the <a href="#Interface_query">new APIs</a> are the only way to query the following information:
+</p>
+<ul><li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage block information</a>, as well as the buffer variables stored in them.</li>
+<li><a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">Fragment shader output variable information</a> (besides <a href="#Fragment_Outputs">getting the location/index from a known name</a>).</li>
+<li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> out variable and buffer association information.</li>
+<li>Inputs/Outputs between shader stages in separable programs.</li></ul>
+<h3><span class="mw-headline" id="Attributes">Attributes</span></h3>
+<p>If a program has a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>, vertex shader inputs, aka <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attributes</a>, can be queried. Vertex attributes can be active or inactive. Attributes that are unused are inactive; they do not have a binding. The number of active attributes in a program can be retrieved with <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgramiv</a></span> with <span class="tpl-enum">GL_ACTIVE_ATTRIBUTES</span>.
+</p><p>To retrieve information about an attribute, call this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveAttrib" title="GLAPI/glGetActiveAttrib">glGetActiveAttrib</a></span>( GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">index​</span>, GLsizei <span class="tpl-param">bufSize​</span>, GLsizei *<span class="tpl-param">length​</span>, GLint *<span class="tpl-param">size​</span>, GLenum *<span class="tpl-param">type​</span>, char *<span class="tpl-param">name​</span> );
+</pre>
+<p>The <span class="tpl-param">index​</span> is a number on the half-open range [0, <span class="tpl-enum">GL_ACTIVE_ATTRIBUTES</span>); it represents a particular active attribute. <span class="tpl-param">name​</span> will be filled in with the name of the attribute; <span class="tpl-param">bufSize​</span> is the size of this character array. If <span class="tpl-param">length​</span> is not NULL, it will be filled in with the number of characters written to <span class="tpl-param">name​</span>. The <span class="tpl-param">size​</span> will be filled with the number of elements in the attribute array, if the attribute is an array type. Otherwise, it will be set to 1. The <span class="tpl-param">type​</span> will be set to the OpenGL enumeration for the GLSL type of the attribute.
+</p><p>To get the attribute location (the one used by <span class="tpl-code"><a href="/opengl/GLAPI/glVertexAttribPointer" title="GLAPI/glVertexAttribPointer">glVertexAttribPointer</a></span>, not the <span class="tpl-param">index​</span> field used above), we use this function:
+</p>
+<pre> GLint <span class="tpl-code"><a href="/opengl/GLAPI/glGetAttribLocation" title="GLAPI/glGetAttribLocation">glGetAttribLocation</a></span>( GLuint <span class="tpl-param">program​</span>, const char *<span class="tpl-param">name​</span> );
+</pre>
+<p>If <span class="tpl-param">name​</span> is not an active attribute in <span class="tpl-param">program​</span>, the function will return -1.
+</p>
+<h3><span class="mw-headline" id="Fragment_Outputs">Fragment Outputs</span></h3>
+<p><a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">Fragment color numbers</a> and <a href="/opengl/Fragment_Shader#Dual-source_blending" title="Fragment Shader">indices</a> can be queried with these functions:
+</p>
+<pre> GLint <span class="tpl-code"><a href="/opengl/GLAPI/glGetFragDataLocation" title="GLAPI/glGetFragDataLocation">glGetFragDataLocation</a></span>(GLuint <span class="tpl-param">program​</span>, const char * <span class="tpl-param">name​</span>);
+ GLint <span class="tpl-code"><a href="/opengl/GLAPI/glGetFragDataIndex" title="GLAPI/glGetFragDataIndex">glGetFragDataIndex</a></span>(GLuint <span class="tpl-param">program​</span>, const char * <span class="tpl-param">name​</span>);
+</pre>
+<p>Note that you must provide a name for these functions. Unlike with attributes, this API cannot be used to enumerate the names and properties of fragment shader outputs. You must know what the names of the locations are.
+</p>
+<h3><span class="mw-headline" id="Uniforms_and_blocks">Uniforms and blocks</span></h3>
+<p>Active uniforms are uniforms that the shader compiler/linker has determined are in active use by the executable code. Uniforms that are not active cannot be queried.
+</p><p>All uniforms, whether in uniform blocks or not, are assigned an index when the program is linked. This index is <i>not</i> the same as a uniform location or a uniform block index.
+</p><p>You can enumerate all of the active uniforms by using <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgram</a></span> with <span class="tpl-enum">GL_ACTIVE_UNIFORMS</span>. Thus, all active uniform indices will have indices less than this value. You can then loop over this range.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This will iterate over <i>all</i> active uniforms, including those declared in uniform blocks. If you want to iterate over only the active uniforms in the default block (ie: not in a block), then you must skip any uniform who's <span class="tpl-enum">GL_UNIFORM_BLOCK_INDEX​</span> is not -1.</div>
+<p>However, you can also get uniform indices from string names of the uniforms. This is done with this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetUniformIndices" title="GLAPI/glGetUniformIndices">glGetUniformIndices</a></span>(GLuint <span class="tpl-param">program​</span>, GLsizei <span class="tpl-param">uniformCount​</span>, const char ** <span class="tpl-param">uniformNames​</span>, GLuint *<span class="tpl-param">uniformIndices​</span>);
+</pre>
+<p>This will cause the array <span class="tpl-param">uniformIndices​</span>, which is of size <span class="tpl-param">uniformCount​</span> to be filled with the indices for the strings in the <span class="tpl-param">uniformNames​</span> list (also of size <span class="tpl-param">uniformCount​</span>); If a uniform name in the string list doesn't correspond to the name of an active uniform, then the corresponding index in <span class="tpl-param">uniformIndices​</span> will be <span class="tpl-enum">GL_INVALID_INDEX</span>.
+</p><p>Once you have an index, you can query the name of the uniform with this function (assuming you don't know it):
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniformName" title="GLAPI/glGetActiveUniformName">glGetActiveUniformName</a></span>( GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">uniformIndex​</span>, GLsizei <span class="tpl-param">bufSize​</span>, GLsizei *<span class="tpl-param">length​</span>, char *<span class="tpl-param">uniformName​</span>);
+</pre>
+<p>This function stores the name in the <span class="tpl-param">uniformName​</span> buffer, which is of size <span class="tpl-param">bufSize​</span> bytes. The actual length of <span class="tpl-param">uniformName​</span> is stored in <span class="tpl-param">length​</span> (unless <span class="tpl-param">length​</span> is NULL, which is allowed).
+</p><p>General information about uniforms can be queried with this function, which can retrieve information for multiple uniforms at once:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniformsiv" class="mw-redirect" title="GLAPI/glGetActiveUniformsiv">glGetActiveUniformsiv</a></span>( GLuint <span class="tpl-param">program​</span>, GLsizei <span class="tpl-param">uniformCount​</span>, const GLuint *<span class="tpl-param">uniformIndices​</span>, GLenum <span class="tpl-param">pname​</span>, GLint *<span class="tpl-param">params​</span> );
+</pre>
+<p>The <span class="tpl-param">uniformIndices​</span> array is a list of uniform indices <span class="tpl-param">uniformCount​</span> in length. These are the uniforms that the user is asking to acquire. <span class="tpl-param">pname​</span> is an enum that determines what information to query for the uniforms. <span class="tpl-param">params​</span> are the values that get returned; it is an array <span class="tpl-param">uniformCount​</span> in length. One value for each uniform index is generated.
+</p><p>The possibilities for <span class="tpl-param">pname​</span> are:
+</p>
+<ul><li><span class="tpl-enum">GL_UNIFORM_TYPE</span>: Retrieves the GLenum for the uniform's type.</li>
+<li><span class="tpl-enum">GL_UNIFORM_SIZE</span>: Retrieves the size of the uniform. For arrays, this is the length of the array<sup>1</sup>. For non-arrays, this is 1.</li>
+<li><span class="tpl-enum">GL_UNIFORM_NAME_LENGTH</span>: The length of that uniform's name.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK_INDEX</span>: The uniform block index for this uniform, which can be used to <a href="#Uniform_blocks">query information about this block</a>. If this uniform is not in a block, the value will be -1.</li>
+<li><span class="tpl-enum">GL_UNIFORM_OFFSET</span>: The byte offset into the beginning of the uniform block for this uniform. If the uniform is not in a block, the value will be -1.</li>
+<li><span class="tpl-enum">GL_UNIFORM_ARRAY_STRIDE</span>: The byte stride for elements of the array, for uniforms in a uniform block. For non-array uniforms in a block, this value is 0. For uniforms not in a block, the value will be -1.</li>
+<li><span class="tpl-enum">GL_UNIFORM_MATRIX_STRIDE</span>: The byte stride for columns of a column-major matrix or rows for a row-major matrix, for uniforms in a uniform block. For non-matrix uniforms in a block, this value is 0. For uniforms not in a block, the value will be -1.</li>
+<li><span class="tpl-enum">GL_UNIFORM_IS_ROW_MAJOR</span>: <span class="tpl-enum">GL_TRUE</span> if the matrix is row-major and the uniform is in a block. <span class="tpl-enum">GL_FALSE</span> is returned if the uniform is column-major, the uniform is not in a block (all non-block matrices are column-major), or simply not a matrix type.</li>
+<li><span class="tpl-enum">GL_UNIFORM_ATOMIC_COUNTER_BUFFER_INDEX</span>: If the uniform defines an atomic counter, then this value will be the index of the buffer that this counter is associated with. Otherwise, it will be -1.</li></ul>
+<div style="margin-left: 3em;">
+<b><sup>1</sup>:</b> To facilitate optimizations, OpenGL implementations are allowed to implicitly shrink arrays if they can determine, from the linked program code, that certain array indices cannot be reached. Thus, this value may be smaller than what the shaders originally stated.</div>
+<p>An older function, superseded by <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniformName" title="GLAPI/glGetActiveUniformName">glGetActiveUniformName</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniforms" title="GLAPI/glGetActiveUniforms">glGetActiveUniformsiv</a></span> also exists:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniform" title="GLAPI/glGetActiveUniform">glGetActiveUniform</a></span>( GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">index​</span>, GLsizei <span class="tpl-param">bufSize​</span>, GLsizei *<span class="tpl-param">length​</span>, GLint *<span class="tpl-param">size​</span>, GLenum *<span class="tpl-param">type​</span>, char *<span class="tpl-param">name​</span> );
+</pre>
+<p>This retrieves the name as in <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniformName" title="GLAPI/glGetActiveUniformName">glGetActiveUniformName</a></span>, but it also retrieves <span class="tpl-enum">GL_UNIFORM_TYPE</span> in <span class="tpl-param">type​</span>, <span class="tpl-enum">GL_UNIFORM_SIZE</span> in <span class="tpl-param">size​</span>, and <span class="tpl-enum">GL_UNIFORM_NAME_LENGTH</span> in <span class="tpl-param">length​</span>.
+</p><p>The length of the longest uniform name in a program can be queried with <span class="tpl-enum">GL_ACTIVE_UNIFORM_MAX_LENGTH</span> through <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgramiv</a></span>. You can use this along with <span class="tpl-enum">GL_ACTIVE_UNIFORMS</span> to allocate an array of strings that will be sufficiently large enough to hold the string names for a program's uniforms.
+</p>
+<h4><span class="mw-headline" id="Uniform_blocks">Uniform blocks</span></h4>
+<p>The above APIs can query information about uniforms inside or outside of a block, but getting information about the <a href="/opengl/Interface_Block_(GLSL)#Uniform_blocks" title="Interface Block (GLSL)">uniform block</a> itself, requires a different set of APIs.
+</p><p>Each active uniform block has an index. As with the uniform API, you can query this in two ways. You can iterate over the active uniform blocks by calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgram(GL_ACTIVE_UNIFORM_BLOCKS)</a></span> to get the limit to iterate over. Or you can get the index for a uniform block by name with this function:
+</p>
+<pre> GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetUniformBlockIndex" title="GLAPI/glGetUniformBlockIndex">glGetUniformBlockIndex</a></span>( GLuint <span class="tpl-param">program​​</span>, const GLchar *<span class="tpl-param">name​​</span> );
+</pre>
+<p>With the index, properties about the block as a while can be queried. The numerical properties can be queried with this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniformBlock" title="GLAPI/glGetActiveUniformBlock">glGetActiveUniformBlockiv</a></span>(GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">uniformBlockIndex​</span>, GLenum <span class="tpl-param">pname​</span>, GLint *<span class="tpl-param">params​</span>);
+</pre>
+<p><span class="tpl-param">pname​</span> must be one of these:
+</p>
+<ul><li><span class="tpl-enum">GL_UNIFORM_BLOCK_BINDING​</span>: The current block binding, as set either within the shader or from <span class="tpl-code"><a href="/opengl/GLAPI/glUniformBlockBinding" title="GLAPI/glUniformBlockBinding">glUniformBlockBinding</a></span>.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK_DATA_SIZE</span>: The buffer object storage size needed for this block.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK_NAME_LENGTH</span>: The length of this block's name.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS</span>: The number of active uniforms within this block.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK_ACTIVE_UNIFORM_INDICES</span>: <span class="tpl-param">params​</span> will be filled in with the uniform indices of all uniforms that are stored in this block. It will receive <span class="tpl-enum">GL_UNIFORM_BLOCK_ACTIVE_UNIFORMS</span> number of uniforms.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK_REFERENCED_BY_*</span>: <span class="tpl-enum">GL_FALSE</span> if the uniform block is not referenced by an active * shader, where * is the particular shader stage in question. It can be <span class="tpl-enum">VERTEX_SHADER</span>, <span class="tpl-enum">FRAGMENT_SHADER</span>, or <span class="tpl-enum">GEOMETRY_SHADER</span>. If GL 4.0/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a>, then it can also be <span class="tpl-enum">TESS_CONTROL_SHADER</span> or <span class="tpl-enum">TESS_EVALUATION_SHADER</span>. If GL 4.3/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a>, then <span class="tpl-enum">COMPUTE_SHADER</span> is also possible.</li></ul>
+<p>The name of a block can be queried with this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveUniformBlockName" title="GLAPI/glGetActiveUniformBlockName">glGetActiveUniformBlockName</a></span>(GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">uniformBlockIndex​</span>, GLsizei <span class="tpl-param">bufSize​</span>, GLsizei *<span class="tpl-param">length​</span>, GLchar *<span class="tpl-param">uniformBlockName​</span>);
+</pre>
+<p>You can use the <span class="tpl-enum">GL_UNIFORM_BLOCK_NAME_LENGTH</span> query to get how much space you should reserve.
+</p>
+<h3><span class="mw-headline" id="Subroutines">Subroutines</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Shader Subroutine Query</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_subroutine.txt">ARB_shader_subroutine</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Shader_Subroutine/Introspection" title="Shader Subroutine/Introspection">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Shader_Subroutine/Introspection&amp;action=edit">E</a></span></span></div>
+<p>Because the list of <a href="/opengl/Shader_Subroutine" title="Shader Subroutine">subroutine resources</a> (of all kinds) are broken down by shader stage, all functions that query information about them take a <span class="tpl-param">shadertype​</span> parameter in addition to the <span class="tpl-param">program​</span> object to query from. The <span class="tpl-param">shadertype​</span> is the <a href="/opengl/Shader_Stage" class="mw-redirect" title="Shader Stage">shader stage enumerator name</a> for the stage to query information about.
+</p><p>Each active subroutine (a subroutine function which can be used with a subroutine uniform that itself is active) has an index. There are two ways to get the index for a particular subroutine function. If you have the name of a subroutine, you can query the index with this function:
+</p>
+<div class="funcdef">
+GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetSubroutineIndex" title="GLAPI/glGetSubroutineIndex">glGetSubroutineIndex</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">shadertype​</span>, const GLchar *<span class="tpl-param">name​</span>);</div>
+<p>If <span class="tpl-param">name​</span> does not name an <i>active</i> subroutine function, then <span class="tpl-enum">GL_INVALID_INDEX</span> will be returned. Otherwise, it will be the index of the subroutine function.
+</p><p>To iterate through the list of all subroutine functions, you can query the total number of subroutines. This is done via this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramStage" title="GLAPI/glGetProgramStage">glGetProgramStageiv</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">shadertype​</span>, GLenum <span class="tpl-param">pname​</span>, GLint *<span class="tpl-param">values​</span>);</div>
+<p>To query the number of active subroutine functions, <span class="tpl-param">pname​</span> must be <span class="tpl-enum">GL_ACTIVE_SUBROUTINES</span>. This stores the number of active subroutine functions as a single integer in <span class="tpl-param">values​</span>.
+</p><p>To get the name of a subroutine function from an index, pass the <span class="tpl-param">index​</span> to this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveSubroutineName" title="GLAPI/glGetActiveSubroutineName">glGetActiveSubroutineName</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">shadertype​</span>, GLuint <span class="tpl-param">index​</span>, GLsizei <span class="tpl-param">bufsize​</span>, GLsizei *<span class="tpl-param">length​</span>, GLchar *<span class="tpl-param">name​</span>);</div>
+<p><span class="tpl-param">bufsize​</span> is the total number of bytes that <span class="tpl-param">name​</span> points to; OpenGL will not write more than this number of bytes. If <span class="tpl-param">length​</span> is not NULL, the function will write the number of characters written into <span class="tpl-param">name​</span>.
+</p><p>There is no way to query the length of the name for a specific subroutine function (at least, not with this API. You must use the <a href="/opengl/Program_Interface_Query" class="mw-redirect" title="Program Interface Query">query API for that</a>). However, you can query the largest subroutine function name used by a shader stage. This is done with <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramStage" title="GLAPI/glGetProgramStage">glGetProgramStage</a></span>, using the <span class="tpl-enum">GL_ACTIVE_SUBROUTINE_MAX_LENGTH</span> enumerator.
+</p><p>The name is the only information that can be queried about a subroutine function directly.
+</p><p>Like regular <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniforms</a>, subroutine uniforms have both a location and an index. The location is used when actually selecting which subroutine to use for that uniform, while the index is <i>only</i> used to query information about that uniform.
+</p><p>To iterate through the number of subroutine uniforms for a stage and query information about them, you must first get the number of subroutine uniform indices. This uses <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramStage" title="GLAPI/glGetProgramStage">glGetProgramStage</a></span> with <span class="tpl-param">GL_ACTIVE_SUBROUTINE_UNIFORMS​</span>. The valid indices range from 0 to that value minus one.
+</p><p>Armed with a subroutine uniform <span class="tpl-param">index​</span>, one can query general information about the subroutine uniform with this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveSubroutineUniform" title="GLAPI/glGetActiveSubroutineUniform">glGetActiveSubroutineUniformiv</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">shadertype​</span>, GLuint <span class="tpl-param">index​</span>, GLenum <span class="tpl-param">pname​</span>, GLint *<span class="tpl-param">values​</span>);</div>
+<p><span class="tpl-param">pname​</span> defines what information is to be set into <span class="tpl-param">values​</span>:
+</p>
+<ul><li><span class="tpl-enum">GL_NUM_COMPATIBLE_SUBROUTINES</span>: The number of subroutine functions that can be used with this uniform.</li>
+<li><span class="tpl-enum">GL_COMPATIBLE_SUBROUTINES</span>: This returns an array of indices for each of the subroutine functions that can be used with this uniform. <span class="tpl-param">values​</span> must be at least <span class="tpl-enum">GL_NUM_COMPATIBLE_SUBROUTINES</span> entries in size.</li>
+<li><span class="tpl-enum">GL_UNIFORM_SIZE</span>: The number of entries in the subroutine uniform. Subroutine uniforms can be in arrays, so this is the count of array elements. If the subroutine uniform is not an array,</li>
+<li><span class="tpl-enum">GL_UNIFORM_NAME_LENGTH</span>: The length of the uniform's name.</li></ul>
+<p>To get the subroutine uniform's name, call this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveSubroutineUniformName" title="GLAPI/glGetActiveSubroutineUniformName">glGetActiveSubroutineUniformName</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">shadertype​</span>, GLuint <span class="tpl-param">index​</span>, GLsizei <span class="tpl-param">bufsize​</span>, GLsizei *<span class="tpl-param">length​</span>, GLchar *<span class="tpl-param">name​</span>);</div>
+<p>The subroutine uniform location is used to know how to assign a subroutine function index to the subroutine uniform when it comes time to render with the shader.
+</p><p>Regular <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniform variables</a> are assigned locations arbitrarily. Subroutine uniforms are a bit different. The number of subroutine uniform locations assigned to a particular shader stage can be determined by calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramStage" title="GLAPI/glGetProgramStage">glGetProgramStage</a></span> with <span class="tpl-enum">GL_ACTIVE_SUBROUTINE_UNIFORM_LOCATIONS</span>. <i>All</i> subroutine uniform locations less than that number (and &gt;= 0) are active subroutine uniform locations. This is required by the specification.
+</p><p>Because subroutine uniforms can be arrays, there can be more subroutine uniform locations than there are subroutine uniform indices. Each subroutine uniform only counts as one for the index list, but arrayed subroutine uniforms take up multiple locations.
+</p><p>To get a subroutine uniform's location given the name, use this function:
+</p>
+<div class="funcdef">
+GLint <span class="tpl-code"><a href="/opengl/GLAPI/glGetSubroutineUniformLocation" title="GLAPI/glGetSubroutineUniformLocation">glGetSubroutineUniformLocation</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">shadertype​</span>, const GLchar *<span class="tpl-param">name​</span>);</div>
+<p>If <span class="tpl-param">name​</span> names an arrayed subroutine uniform, then the location refers to X consecutive locations starting from the returned location, where X is the array size declared in the shader. If the subroutine uniform is not active, this function will return -1.
+</p>
+<h3><span class="mw-headline" id="Atomic_counters">Atomic counters</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Atomic Counters</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Information about <a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a> can be queried via the following APIs. Atomic counter variables are opaque types as well as <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniforms</a>. As such, most of the information about atomic counters can be queried with the <a href="#Uniforms_and_blocks">uniform interface</a>.
+</p><p>What cannot be queried is the information about buffer object bindings and offsets into those buffers. Thus, OpenGL provides a special API just for querying the <a href="/opengl/Atomic_Counter#Storage_parameters" title="Atomic Counter">storage parameter information</a> from a program.
+</p><p>Each atomic counter variable must have a buffer binding. The querying interface looks at buffer bindings, not variables. So if four variables all use the same binding index (with different offsets), then interface will only show 1 buffer binding.
+</p><p>To enumerate all of the active buffer bindings in a program, use <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgram" title="GLAPI/glGetProgram">glGetProgram(GL_ACTIVE_ATOMIC_COUNTER_BUFFERS)</a></span>. To query information about each binding, use this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glGetActiveAtomicCounterBuffer" title="GLAPI/glGetActiveAtomicCounterBuffer">glGetActiveAtomicCounterBufferiv</a></span>(Gluint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">bufferIndex​</span>, GLenum <span class="tpl-param">pname​</span>, GLint *<span class="tpl-param">params​</span>)
+</pre>
+<p><span class="tpl-param">bufferIndex​</span> is a number on the half-open range from 0 to the number of active atomic counter buffers, which represents a specific buffer binding. <span class="tpl-param">pname​</span> is the specific data to query for this atomic counter. It can take the following values, which define what values are stored into <span class="tpl-param">params​</span>:
+</p>
+<ul><li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_BINDING</span>: The atomic counter buffer binding index for this buffer.</li>
+<li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_DATA_SIZE</span>: The minimum size (implementation-dependent) of the buffer region that must be bound by the user. That is, when the user uses <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> (or <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferBase" title="GLAPI/glBindBufferBase">glBindBufferBase</a></span>), the bound range must be at least this large.</li>
+<li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS​</span> and <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTER_INDICES</span>: The first enum returns the number of active atomic counter variables used by this binding point. The second enum will fill <span class="tpl-param">params​</span> with uniform indices for those atomic counter variables. The user must pass an array big enough to store <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_ACTIVE_ATOMIC_COUNTERS​</span> indices.</li>
+<li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_REFERENCED_BY_*</span>: <span class="tpl-enum">GL_FALSE</span> if the atomic counter buffer is not referenced by an active * shader, where * is the particular shader stage in question. The stage can be <span class="tpl-enum">VERTEX_SHADER</span>, <span class="tpl-enum">FRAGMENT_SHADER</span>, <span class="tpl-enum">GEOMETRY_SHADER</span>, <span class="tpl-enum">TESS_CONTROL_SHADER</span>, or <span class="tpl-enum">TESS_EVALUATION_SHADER</span>. If GL 4.3/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a> is available, then <span class="tpl-enum">COMPUTE_SHADER</span> is also possible.</li></ul>
+<h2><span class="mw-headline" id="Interface_query">Interface query</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Interface Query</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/program_interface_query.txt">ARB_program_interface_query</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>This new interface provides a uniform mechanism for querying just about everything from a program. At least, you can query everything that external OpenGL code can interface with. You can't query information about number of functions (unless they're subroutines) or global variables or things like that. But uniforms, inputs/outputs, etc? All of those are made available through this consistent interface.
+</p><p>These APIs rely on some new concepts. Each linked program provides a number of <i>interfaces</i>, where each interface represents a set of <i>active resources</i> of some kind. An interface is a conceptual grouping. "Uniforms" are an interface in a program. Each individual active uniform in a program is a resource.
+</p><p>The idea is to take all of the various different functions for introspecting programs and put them in a single interface that is extensible without adding new functions.
+</p>
+<h3><span class="mw-headline" id="Interfaces">Interfaces</span></h3>
+<p>An interface represents a particular collection of resources that can be queried from a program. Interfaces are identified by an enumerator. The available interfaces are:
+</p>
+<ul><li><span class="tpl-enum">GL_UNIFORM</span>: The set of active uniforms in a program. This includes uniforms located in uniform blocks.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BLOCK</span>: The set of active uniform blocks in a program. These resources describe the blocks themselves, not the specific variables within them. Though they do store a list of said uniforms.</li>
+<li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>: The set of active atomic counter buffers in a program. This describes the buffer bindings, not the actual atomic variables. Those are uniforms.</li>
+<li><span class="tpl-enum">GL_PROGRAM_INPUT</span>: The set of active <i>user-defined</i> inputs to the first shader stage in this program. If the first stage is a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>, then this is the list of <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">active attributes</a>. If the program only contains a <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a>, then there are no user-defined inputs.</li>
+<li><span class="tpl-enum">GL_PROGRAM_OUTPUT</span>: The set of active <i>user-defined</i> outputs from the final shader stage in this program. If the final stage is a <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a>, then this represents the <a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">fragment outputs that get written to individual color buffers.</a> If the program only contains a <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a>, then there are no user-defined outputs.</li>
+<li><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_VARYING</span>: The set of active outputs from the last <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> shader stage in the program; these variables are eligible for <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> capture.</li>
+<li><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER​</span>: Requires OpenGL 4.4<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a>. Like <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>, this describes the arrangement of buffers used by a shader for transform feedback. The variables themselves are described by <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_VARYING</span>.</li>
+<li><span class="tpl-enum">GL_BUFFER_VARIABLE</span>: The set of active buffer variables in the program. These are all of the variables stored within <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage blocks</a>.</li>
+<li><span class="tpl-enum">GL_SHADER_STORAGE_BLOCK</span>: The set of active <a href="/opengl/Interface_Block_(GLSL)#Shader_storage_blocks" title="Interface Block (GLSL)">shader storage blocks</a>. Much like the interface for uniform blocks, these resources describe the blocks themselves, not the specific variables within them.</li>
+<li><span class="tpl-enum">GL_*_SUBROUTINE</span>: The set of active <a href="/opengl/Shader_Subroutine" title="Shader Subroutine">subroutines</a> in the program. The "*" represents the shader stage to query from; unlike other interfaces, this only queries about specific stages. The "*" can be:
+<ul><li><span class="tpl-enum">VERTEX</span></li>
+<li><span class="tpl-enum">GEOMETRY</span></li>
+<li><span class="tpl-enum">FRAGMENT</span></li>
+<li><span class="tpl-enum">TESS_CONTROL</span>: Requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></li>
+<li><span class="tpl-enum">TESS_EVALUATION</span>: Requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></li>
+<li><span class="tpl-enum">COMPUTE</span>: Requires OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a></li></ul></li>
+<li><span class="tpl-enum">GL_*_SUBROUTINE_UNIFORM</span>: The set of active <a href="/opengl/Shader_Subroutine" title="Shader Subroutine">subroutine uniforms</a> in the program. Subroutine uniforms behave differently from regular uniforms; they cannot be queried via the <span class="tpl-enum">GL_UNIFORM</span> interface. As before, the "*" represents the shader stage to query from; unlike other interfaces, this only queries about specific stages.</li></ul>
+<p>While the main purpose of the interfaces are to allow you to query information about the resources within those interfaces, there is some per-interface information that is important. This information is usually an aggregate of all of the resources in the interface, such as maximum name length and such. The most important per-interface information is the number of resources within that interface for a program.
+</p><p>Per-interface information can be fetched via this function:
+</p>
+<pre>void <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramInterface" title="GLAPI/glGetProgramInterface">glGetProgramInterfaceiv</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">programInterface​</span>, GLenum <span class="tpl-param">pname​</span>, GLint * <span class="tpl-param">params​</span>);
+</pre>
+<p>The <span class="tpl-param">programInterface​</span> is one of the interfaces, as defined above. <span class="tpl-param">pname​</span> is the particular data you want to query, and it gets written into <span class="tpl-param">params​</span>. The possible <span class="tpl-param">pname​</span> values that can be queried from an interface are:
+</p>
+<dl><dt><span class="tpl-enum">GL_ACTIVE_RESOURCES​</span></dt>
+<dd>The number of active resources of that interface type.</dd>
+<dt><span class="tpl-enum">GL_MAX_NAME_LENGTH​</span></dt>
+<dd>The length of the longest string name among all resources of that interface type. This is useful for pre-allocating buffers if you are fetching names; you can always allocate the maximum length. As with all OpenGL string length APIs, the length <i>includes</i> the null-terminator. <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span> and <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> are unnamed, so you cannot use this <span class="tpl-param">pname​</span> with that interface.</dd></dl>
+<div style="margin-left: 3em;">
+<b>Note:</b> The reason for the last restriction is that those describe the <i>buffer binding</i>, not the counters themselves. The variables are uniforms (for atomic counters) or outputs (for transform feedback), so the names for them are queried through those interfaces. Just like <span class="tpl-enum">GL_UNIFORM_BLOCK</span>s, <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>s contain <span class="tpl-enum">GL_UNIFORM</span>s. Similarly, <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> contains <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_VARYING</span>s.</div>
+<dl><dt><span class="tpl-enum">GL_MAX_NUM_ACTIVE_VARIABLES​</span></dt>
+<dd>The largest number of active variables among all resources in this interface. This should only be queried for interfaces whose resources that <i>contain</i> active variables. Namely, <span class="tpl-enum">GL_UNIFORM_BLOCK</span>, <span class="tpl-enum">GL_SHADER_STORAGE_BLOCK</span>, <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span>, and <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>; all others will return 0. Thus, if you use <span class="tpl-enum">GL_UNIFORM_BLOCK</span> with this param, you are asking for the maximum number of active variables that any active uniform block in the program has. Again, this is useful for preallocating buffers and so forth.</dd>
+<dt><span class="tpl-enum">GL_MAX_NUM_COMPATIBLE_SUBROUTINES​</span></dt>
+<dd>The largest number of compatible subroutines among all subroutine variables for that shader stage. This can only be used with the <span class="tpl-enum">GL_*_SUBROUTINE</span> interfaces.</dd></dl>
+<h3><span class="mw-headline" id="Resource_indices">Resource indices</span></h3>
+<p>Active resources within an interface are conceptually stored in a contiguous, unbroken array. Each active resource has a unique, zero-based index that references that resource, and each interface for a program maintains a separate array of indices for its resource. Therefore, a specific index within an interface uniquely identifies a resource.
+</p><p>You can iterate through the resources in an interface by querying the number of resources in that interface via <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramInterface" title="GLAPI/glGetProgramInterface">glGetProgramInterfaceiv(<span class="tpl-enum">GL_ACTIVE_RESOURCES</span>)</a></span>. For interfaces who's resources have specific string names, you can also query the index by name:
+</p>
+<pre> GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResourceIndex" title="GLAPI/glGetProgramResourceIndex">glGetProgramResourceIndex</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">programInterface​</span>, const char * <span class="tpl-param">name​</span>);
+</pre>
+<p>If the resource named by <span class="tpl-param">name​</span> is not an active resource, <span class="tpl-enum">GL_INVALID_INDEX</span> is returned.
+</p><p>Some interfaces have unnamed resources, like <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>; these resources therefore cannot be queried by name. If you want the counter buffer resource associated with a particular atomic counter uniform variable, query for the <span class="tpl-enum">GL_UNIFORM</span> that references the buffer, then query its <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER_INDEX​</span> property.
+</p>
+<h3><span class="mw-headline" id="Resource_properties">Resource properties</span></h3>
+<p>Once an index for an active resource has been acquired, properties from that active resource can be queried. This is done via calls to this function:
+</p>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResource" title="GLAPI/glGetProgramResource">glGetProgramResourceiv</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">programInterface​</span>, GLuint <span class="tpl-param">index​</span>, GLsizei <span class="tpl-param">propCount​</span>, const Glenum * <span class="tpl-param">props​</span>, GLsizei <span class="tpl-param">count​</span>, GLsizei * <span class="tpl-param">length​</span>, GLint * <span class="tpl-param">params​</span>);
+</pre>
+<p>This function can retrieve multiple properties (though all from the same resource) into a buffer all at once. Most properties will only write one value to <span class="tpl-param">params​</span>, but some will write several (in all cases, the length can be queried).
+</p><p>The sheer volume of information that can be queried from this interface is massive. It is all documented on <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResource" title="GLAPI/glGetProgramResource">glGetProgramResource</a></span>'s reference page, including the list of which interfaces support which properties. So there is no need to repeat it here.
+</p><p>There are some properties that are notable in that they cannot be queried from the older APIs or that they use different names:
+</p>
+<dl><dt><span class="tpl-enum">GL_NUM_ACTIVE_VARIABLES</span> and <span class="tpl-enum">GL_ACTIVE_VARIABLES</span></dt>
+<dd>For resources that contain other resources (uniform/shader storage blocks and atomic counter buffers), this query is used to return a list of the active variables that they contain. The particular interface to use these indices with depends on what is being queried. If <span class="tpl-enum">GL_UNIFORM_BLOCK</span> or <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span> is used, then the indices are indices into the <span class="tpl-enum">GL_UNIFORM</span> interface. If <span class="tpl-enum">GL_SHADER_STORAGE_BLOCK</span> is used, then they are indices into the <span class="tpl-enum">GL_BUFFER_VARIABLE</span> interface. If <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> is used, then they are indices in the <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_VARYING</span> interface.</dd>
+<dt><span class="tpl-enum">GL_REFERENCED_BY_*_SHADER</span></dt>
+<dd>These are used to detect which shader stages use the variable. All of the variable interfaces (except <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_VARYING</span> and the subroutine uniforms), can detect where they come from.</dd></dl>
+<p>There is one property that cannot be queried from the above function: the resource's name. That must be queried with this function:
+</p>
+<pre> GLuint <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResourceName" title="GLAPI/glGetProgramResourceName">glGetProgramResourceName</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">programInterface​</span>, GLuint <span class="tpl-param">index​</span>, GLsizei <span class="tpl-param">bufSize​</span>, GLsizei * <span class="tpl-param">length​</span>, char * <span class="tpl-param">name​</span>);
+</pre>
+<p>Names can only be queried for interfaces who's resources are named. This means not <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span> or <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span>, as these only describe the buffer bindings for these concepts, not the variables themselves.
+</p>
+<h3><span class="mw-headline" id="Shortcuts">Shortcuts</span></h3>
+<p>While the above interface is exceedingly comprehensive, it is less than convenient for accessing certain commonly-used information. Specifically, the <span class="tpl-enum">GL_LOCATION</span> and <span class="tpl-enum">GL_LOCATION_INDEX</span> fields. These fields have special APIs that mimic functions like <span class="tpl-code"><a href="/opengl/GLAPI/glGetAttribLocation" title="GLAPI/glGetAttribLocation">glGetAttribLocation</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glGetFragDataIndex" title="GLAPI/glGetFragDataIndex">glGetFragDataIndex</a></span>:
+</p>
+<pre> GLint <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResourceLocation" title="GLAPI/glGetProgramResourceLocation">glGetProgramResourceLocation</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">programInterface​</span>, const char * <span class="tpl-param">name​</span>);
+ GLint <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResourceLocationIndex" title="GLAPI/glGetProgramResourceLocationIndex">glGetProgramResourceLocationIndex</a></span>(GLuint <span class="tpl-param">program​</span>, GLenum <span class="tpl-param">programInterface​</span>, const char * <span class="tpl-param">name​</span>);
+</pre>
+<p>These functions are equivalent to calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResourceIndex" title="GLAPI/glGetProgramResourceIndex">glGetProgramResourceIndex</a></span> with <span class="tpl-param">name​</span>, and if it returns a valid index, calling <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResource" title="GLAPI/glGetProgramResource">glGetProgramResource</a></span> with the appropriate field. The <span class="tpl-param">programInterface​</span> parameter must match with what is allowed for querying those parameters with <span class="tpl-code"><a href="/opengl/GLAPI/glGetProgramResource" title="GLAPI/glGetProgramResource">glGetProgramResource</a></span>. So the <span class="tpl-code">LocationIndex</span> can only be used with the <span class="tpl-enum">GL_PROGRAM_OUTPUT</span> interface.
+</p>
+<h3><span class="mw-headline" id="Examples">Examples</span></h3>
+<p>This system is rather complex. So here is some example code for doing common tasks.
+</p><p><br />
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/Program_Interface_Non_Block_Uniforms" title="Example/Program Interface Non Block Uniforms">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/Program_Interface_Non_Block_Uniforms&amp;action=edit">E</a></span></span></div>
+<p>Iteration over all <i>non-block</i> uniform variables, fetching their names, types, and locations:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLint</span><span class="w"> </span><span class="n">numUniforms</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramInterfaceiv</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ACTIVE_RESOURCES</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">numUniforms</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">properties</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GL_BLOCK_INDEX</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TYPE</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NAME_LENGTH</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LOCATION</span><span class="p">};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">unif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">unif</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numUniforms</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">unif</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GLint</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="w">  </span><span class="n">glGetProgramResourceiv</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM</span><span class="p">,</span><span class="w"> </span><span class="n">unif</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">properties</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// Skip any uniforms that are in a block.</span>
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span>
+<span class="w">    </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Get the name. Must use a std::vector rather than a std::string for C++03 standards issues.</span>
+<span class="w">  </span><span class="c1">// C++11 would let you use a std::string directly.</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nameData</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">glGetProgramResourceName</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM</span><span class="p">,</span><span class="w"> </span><span class="n">unif</span><span class="p">,</span><span class="w"> </span><span class="n">nameData</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nameData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="n">nameData</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">nameData</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+<p><br />
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Example/Program_Interface_Uniforms_In_Blocks" title="Example/Program Interface Uniforms In Blocks">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Example/Program_Interface_Uniforms_In_Blocks&amp;action=edit">E</a></span></span></div>
+<p>Iteration over all uniforms within each uniform block.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">GLint</span><span class="w"> </span><span class="n">numBlocks</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramInterfaceiv</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="n">GL_ACTIVE_RESOURCES</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">numBlocks</span><span class="p">);</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">blockProperties</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GL_NUM_ACTIVE_VARIABLES</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">activeUnifProp</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GL_ACTIVE_VARIABLES</span><span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">unifProperties</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="n">GL_NAME_LENGTH</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TYPE</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LOCATION</span><span class="p">};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">blockIx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">blockIx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numBlocks</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">blockIx</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">GLint</span><span class="w"> </span><span class="n">numActiveUnifs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">glGetProgramResourceiv</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="n">blockIx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">blockProperties</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">numActiveUnifs</span><span class="p">);</span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">numActiveUnifs</span><span class="p">)</span>
+<span class="w">    </span><span class="k">continue</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLint</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blockUnifs</span><span class="p">(</span><span class="n">numActiveUnifs</span><span class="p">);</span>
+<span class="w">  </span><span class="n">glGetProgramResourceiv</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM_BLOCK</span><span class="p">,</span><span class="w"> </span><span class="n">blockIx</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">activeUnifProp</span><span class="p">,</span><span class="w"> </span><span class="n">numActiveUnifs</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">blockUnifs</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+
+<span class="w">  </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">unifIx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">unifIx</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numActiveUnifs</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">unifIx</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="n">GLint</span><span class="w"> </span><span class="n">values</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="w">    </span><span class="n">glGetProgramResourceiv</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM</span><span class="p">,</span><span class="w"> </span><span class="n">blockUnifs</span><span class="p">[</span><span class="n">unifIx</span><span class="p">],</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">unifProperties</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Get the name. Must use a std::vector rather than a std::string for C++03 standards issues.</span>
+<span class="w">    </span><span class="c1">// C++11 would let you use a std::string directly.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nameData</span><span class="p">(</span><span class="n">values</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">glGetProgramResourceName</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">GL_UNIFORM</span><span class="p">,</span><span class="w"> </span><span class="n">blockUnifs</span><span class="p">[</span><span class="n">unifIx</span><span class="p">],</span><span class="w"> </span><span class="n">nameData</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nameData</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="n">nameData</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">nameData</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+<p><br />
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Shader_Program_Query" title="Category:Core API Ref Shader Program Query">Category:Core API Ref Shader Program Query</a> All program introspection API functions.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318092004
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.184 seconds
+Real time usage: 0.198 seconds
+Preprocessor visited node count: 6076/1000000
+Post‐expand include size: 72636/2097152 bytes
+Template argument size: 18821/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 10/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 20621/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  107.883      1 -total
+ 23.15%   24.980      4 Template:Infobox_feature
+ 21.68%   23.387      4 Template:Infobox2
+ 19.14%   20.651      3 Template:Snippet
+ 12.49%   13.474      1 Template:Shader_float
+ 11.77%   12.698      1 Shader_Subroutine/Introspection
+  9.05%    9.764      1 Template:Shader_list
+  7.55%    8.143     40 Template:Infobox/longrow
+  7.51%    8.105    164 Template:Param
+  6.94%    7.489     40 Template:Infobox/shortrow
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2293-0!canonical and timestamp 20260318092004 and revision id 14855. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Program_Introspection&amp;oldid=14855">https://wikis.khronos.org/opengl/index.php?title=Program_Introspection&amp;oldid=14855</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Program+Introspection" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Program_Introspection" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/opengl/Talk:Program_Introspection" rel="discussion" title="Discussion about the content page [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Program_Introspection"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Program_Introspection&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Program_Introspection&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Program_Introspection" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Program_Introspection" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Program_Introspection&amp;oldid=14855" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Program_Introspection&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Program_Introspection&amp;id=14855&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 28 April 2021, at 20:27.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":151,"wgPageParseReport":{"limitreport":{"cputime":"0.184","walltime":"0.198","ppvisitednodes":{"value":6076,"limit":1000000},"postexpandincludesize":{"value":72636,"limit":2097152},"templateargumentsize":{"value":18821,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":10,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":20621,"limit":5000000},"timingprofile":["100.00%  107.883      1 -total"," 23.15%   24.980      4 Template:Infobox_feature"," 21.68%   23.387      4 Template:Infobox2"," 19.14%   20.651      3 Template:Snippet"," 12.49%   13.474      1 Template:Shader_float"," 11.77%   12.698      1 Shader_Subroutine/Introspection","  9.05%    9.764      1 Template:Shader_list","  7.55%    8.143     40 Template:Infobox/longrow","  7.51%    8.105    164 Template:Param","  6.94%    7.489     40 Template:Infobox/shortrow"]},"cachereport":{"timestamp":"20260318092004","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6d415d1fa3d1',t:'MTc3NDIzNzM1Mw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Buffer Object - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"4a5f72856bb58ee31384fe74","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Buffer_Object","wgTitle":"Buffer Object","wgCurRevisionId":14999,"wgRevisionId":14999,"wgArticleId":1463,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Objects","Buffer Objects"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Buffer_Object","wgRelevantArticleId":1463,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=skins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Buffer_Object rootpage-Buffer_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Buffer Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Objects</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a></div>
+<hr />
+<ul><li><b>Buffer Object</b>s
+<ul><li><a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">Vertex Buffer Objects</a></li>
+<li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Objects</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Objects</a></li>
+<li><a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a></li>
+<li><a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a></li>
+<li><a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a></li></ul></li>
+<li><a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a></li>
+<li><a href="/opengl/Texture" title="Texture">Textures</a>
+<ul><li><a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a></li>
+<li><a href="/opengl/Image_Format" title="Image Format">Image formats</a></li>
+<li><a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a></li>
+<li><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a></li>
+<li><a href="/opengl/Array_Texture" title="Array Texture">Array Textures</a></li>
+<li><a href="/opengl/Multisample_Texture" title="Multisample Texture">Multisample Textures</a></li>
+<li><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a></li>
+<li><a href="/opengl/3D_Texture" title="3D Texture">3D Textures</a></li>
+<li><a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a></li>
+<li><a href="/opengl/Texture_Storage#Texture_views" title="Texture Storage">Texture Views</a></li></ul></li>
+<li><a href="/opengl/Query_Object" title="Query Object">Asynchronous query objects</a></li>
+<li><a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a>
+<ul><li><a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a></li>
+<li><a href="/opengl/Renderbuffer_Object" title="Renderbuffer Object">Renderbuffer Objects</a></li></ul></li>
+<li><b>Unconventional objects:</b>
+<ul><li><a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a></li>
+<li><a href="/opengl/GLSL_Object" title="GLSL Object">Shader and program objects</a></li></ul></li></ul>
+</div>
+</div>
+<p><b>Buffer Objects</b> are <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Objects</a> that store an array of unformatted memory allocated by the OpenGL context (AKA the GPU). These can be used to store <a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">vertex data</a>, <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">pixel data retrieved from images or the framebuffer</a>, and a <a href="#General_use">variety of other things</a>.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Creation"><span class="tocnumber">1</span> <span class="toctext">Creation</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Immutable_Storage"><span class="tocnumber">1.1</span> <span class="toctext">Immutable Storage</span></a>
+<ul>
+<li class="toclevel-3 tocsection-3"><a href="#Immutable_access_methods"><span class="tocnumber">1.1.1</span> <span class="toctext">Immutable access methods</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-4"><a href="#Mutable_Storage"><span class="tocnumber">1.2</span> <span class="toctext">Mutable Storage</span></a>
+<ul>
+<li class="toclevel-3 tocsection-5"><a href="#Buffer_Object_Usage"><span class="tocnumber">1.2.1</span> <span class="toctext">Buffer Object Usage</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Data_Specification"><span class="tocnumber">2</span> <span class="toctext">Data Specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-7"><a href="#Clearing"><span class="tocnumber">2.1</span> <span class="toctext">Clearing</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Copying"><span class="tocnumber">2.2</span> <span class="toctext">Copying</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#Mapping"><span class="tocnumber">2.3</span> <span class="toctext">Mapping</span></a>
+<ul>
+<li class="toclevel-3 tocsection-10"><a href="#Alignment"><span class="tocnumber">2.3.1</span> <span class="toctext">Alignment</span></a></li>
+<li class="toclevel-3 tocsection-11"><a href="#Buffer_Corruption"><span class="tocnumber">2.3.2</span> <span class="toctext">Buffer Corruption</span></a></li>
+<li class="toclevel-3 tocsection-12"><a href="#Persistent_mapping"><span class="tocnumber">2.3.3</span> <span class="toctext">Persistent mapping</span></a></li>
+<li class="toclevel-3 tocsection-13"><a href="#Performance_Concerns"><span class="tocnumber">2.3.4</span> <span class="toctext">Performance Concerns</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Invalidation"><span class="tocnumber">2.4</span> <span class="toctext">Invalidation</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#Streaming"><span class="tocnumber">2.5</span> <span class="toctext">Streaming</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-16"><a href="#General_use"><span class="tocnumber">3</span> <span class="toctext">General use</span></a>
+<ul>
+<li class="toclevel-2 tocsection-17"><a href="#Binding_indexed_targets"><span class="tocnumber">3.1</span> <span class="toctext">Binding indexed targets</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Multibind_and_indexed_targets"><span class="tocnumber">3.2</span> <span class="toctext">Multibind and indexed targets</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-19"><a href="#Reference"><span class="tocnumber">4</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Creation">Creation</span></h2>
+<p>Buffer Objects are <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">OpenGL Objects</a>; they therefore follow all of the rules of regular OpenGL objects. To create a buffer object, you call <span class="tpl-code"><a href="/opengl/GLAPI/glGenBuffers" title="GLAPI/glGenBuffers">glGenBuffers</a></span>. Or with <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> you can call <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glCreateBuffers&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glCreateBuffers (page does not exist)">glCreateBuffers</a></span>. Finally, to delete buffer objects you call <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteBuffers" title="GLAPI/glDeleteBuffers">glDeleteBuffers</a></span>. These use the standard Gen/Delete or Create/Delete paradigms as most OpenGL objects.
+</p><p>As with the standard OpenGL object paradigm, <span class="tpl-code"><a href="/opengl/GLAPI/glGenBuffers" title="GLAPI/glGenBuffers">glGenBuffers</a></span> only creates the object's name, the reference to the object. The actual state associated with a newly generated name won't be <i>initialized</i> until it is first bound to the context. You do this using the following API:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer</a></span>(GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">buffer​</span>);
+</p>
+</div>
+<p>The <span class="tpl-param">target​</span> defines how you intend to use this binding of the buffer object. When you're just creating, filling the buffer object with data, or both, the target you use doesn't technically matter.
+</p><p>When using <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> buffer APIs the above bind-to-create paradigm is no longer necessary as <span class="tpl-code"><a href="/opengl/index.php?title=GLAPI/glCreateBuffers&amp;action=edit&amp;redlink=1" class="new" title="GLAPI/glCreateBuffers (page does not exist)">glCreateBuffers</a></span> both generates a name <i>and</i> initializes its internal state immediately. However, take care when mixing DSA with non-DSA APIs as the DSA equivalents of all non-DSA functions that previously took a <span class="tpl-param">target​</span> now require a fully initialized object.
+</p><p>Buffer objects hold a linear array of memory of arbitrary size. This memory must be allocated before it can be uploaded to or used. There are two ways to allocate storage for buffer objects: mutable or immutable. Allocating immutable storage for a buffer changes the nature of how you can interact with the buffer object.
+</p>
+<h3><span class="mw-headline" id="Immutable_Storage">Immutable Storage</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Immutable Storage</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/buffer_storage.txt">ARB_buffer_storage</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Much like <a href="/opengl/Texture_Storage#Kinds_of_storage" title="Texture Storage">immutable storage textures</a>, the storage for buffer objects can be allocated immutably. When this is done, you will be unable to reallocate that storage. You may still invalidate it with an <a href="#Invalidation">explicit invalidation command</a> or through <a href="##Mapping">mapping the buffer</a>. But you cannot do the <span class="tpl-code">glBufferData(..., NULL)</span> trick to invalidate it if the storage is immutable.
+</p><p>To allocate immutable storage for buffer objects, you can call this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBufferStorage" title="GLAPI/glBufferStorage">glBufferStorage</a></span>(GLenum <span class="tpl-param">target​</span>, GLsizeiptr <span class="tpl-param">size​</span>, const GLvoid *<span class="tpl-param">data​</span>, GLbitfield <span class="tpl-param">flags​</span>);</div>
+<p>And with <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> you can also call this:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBufferStorage" title="GLAPI/glBufferStorage">glNamedBufferStorage</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLsizeiptr <span class="tpl-param">size​</span>, const GLvoid *<span class="tpl-param">data​</span>, GLbitfield <span class="tpl-param">flags​</span>);</div>
+<p>The <span class="tpl-param">target​</span> parameter is just like the one for <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer</a></span>; it says which bound buffer to modify.
+</p><p><span class="tpl-param">buffer​</span>, as in other <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> APIs, specifies which buffer <i>object</i> to modify.
+</p><p><span class="tpl-param">size​</span> represents how many bytes you want to allocate in this buffer object. 
+</p><p><span class="tpl-param">data​</span> is a pointer to an array of bytes of <span class="tpl-param">size​</span> in length. OpenGL will copy that data into the buffer object upon initialization. You may pass NULL for this parameter; if you do, the initial contents of the buffer will be undefined. You can <a href="#Clearing">clear the buffer after allocation</a> if you wish to update it.
+</p><p>The <span class="tpl-param">flags​</span> field sets up a contract between you and OpenGL, describing how you may and may not access the contents of the buffer.
+</p>
+<h4><span class="mw-headline" id="Immutable_access_methods">Immutable access methods</span></h4>
+<p>Immutable storage buffer objects allow you to establish a contract with OpenGL, specifying how you will access and modify the contents of the buffer object's storage. The <span class="tpl-param">flags​</span> bitfield is a series of bits that describes what restrictions you will operate under, and if you do not abide by these restrictions, you will get an <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Error</a>.
+</p><p>The <span class="tpl-param">flags​</span> bits cover how the user may directly read from or write to the buffer. But this only restricts how the user directly modifies the data store; "server-side" operations on buffer contents are always available.
+</p><p>The following operations are always valid on immutable buffers regardless of the <span class="tpl-param">flags​</span> field:
+</p>
+<ul><li>Writing to the buffer with any <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">rendering pipeline process</a>. These include <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>, <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a>, <a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counter</a>, and <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader Storage Buffer Object</a>. Basically, anything that is part of the rendering pipeline that can write to a buffer will always work.</li>
+<li><a href="#Clearing">Clearing the buffer</a>. Because this only transfers a few bytes of data, it is not considered "client-side" modification.</li>
+<li><a href="#Copying">Copying the buffer</a>. This copies from one buffer to another, so it all happens "server-side".</li>
+<li><a href="#Invalidation">Invalidating the buffer</a>. This only wipes out the contents of the buffer, so it is considered "server-side".</li>
+<li><a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Asynchronous pixel transfers into the buffer</a>. This sets the data in a buffer, but only through pure-OpenGL mechanisms.</li>
+<li>Using <span class="tpl-code"><a href="/opengl/GLAPI/glGetBufferSubData" title="GLAPI/glGetBufferSubData">glGetBufferSubData</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glGetBufferSubData" title="GLAPI/glGetBufferSubData">glGetNamedBufferSubData</a></span> to read a part of the buffer back to the CPU. This is not a "server-side" operation, but it's always available regardless.</li></ul>
+<p>Here are the available client-side behaviors that you can request and the bits that represent them. Most of these can be set independently from one another; any dependencies are explicitly stated:
+</p>
+<dl><dt><span class="tpl-enum">GL_MAP_READ_BIT</span></dt>
+<dd>Allows the user to read the buffer via <a href="#Mapping">mapping the buffer</a>. Without this flag, attempting to map the buffer for reading will fail.</dd>
+<dt><span class="tpl-enum">GL_MAP_WRITE_BIT</span></dt>
+<dd>Allows the user to <a href="#Mapping">map the buffer</a> for writing. Without this flag, attempting to map the buffer for writing will fail.</dd>
+<dt><span class="tpl-enum">GL_DYNAMIC_STORAGE_BIT</span></dt>
+<dd>Allows the user to modify the contents of the storage with <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glNamedBufferSubData</a></span>. Without this flag, attempting to call that function on this buffer will fail.</dd>
+<dt><span class="tpl-enum">GL_MAP_PERSISTENT_BIT</span></dt>
+<dd>Allows the buffer object to be <a href="#Persistent_mapping">mapped in such a way that it can be used while it is mapped</a>. Without this flag, attempting to perform any operation on the buffer while it is mapped will fail. You must use one of the mapping bits when using this bit.</dd>
+<dt><span class="tpl-enum">GL_MAP_COHERENT_BIT</span></dt>
+<dd>Allows reads from and writes to a persistent buffer to be coherent with OpenGL, without an explicit barrier. Without this flag, you must use an explicit barrier to achieve coherency. You must use <span class="tpl-enum">GL_PERSISTENT_BIT</span> when using this bit.</dd>
+<dt><span class="tpl-enum">GL_CLIENT_STORAGE_BIT</span></dt>
+<dd>A hint that suggests to the implementation that the storage for the buffer should come from "client" memory.</dd></dl>
+<p>While you are free to use any legal combination of these bits, there are certain uses of buffer objects that lend themselves to certain bitfield combinations.
+</p><p><b>Pure in-OpenGL buffers:</b> Sometimes, it is useful to have a buffer object that is owned almost entirely by OpenGL processes. The contents of the buffer are written by <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>, <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>, or various other mechanisms. And other OpenGL processes read from them, such as via <a href="/opengl/Indirect_Drawing" class="mw-redirect" title="Indirect Drawing">Indirect Rendering</a>, <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>, and so forth.
+</p><p>In this case, all you really need is the ability to allocate storage of some fixed size. Setting <span class="tpl-param">flags​</span> to 0 is the best way to handle this.
+</p><p><b>Static data buffers:</b> In some cases, data stored in a buffer object will not be changed once it is uploaded. For example, vertex data can be static: set once and used many times.
+</p><p>For these cases, you set <span class="tpl-param">flags​</span> to 0 and use <span class="tpl-param">data​</span> as the initial upload. From then on, you simply use the data in the buffer. This requires that you have assembled all of the static data up-front.
+</p><p><b>Image reading buffers:</b> Through <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a>, it is possible to use a buffer as an intermediary for asynchronous pixel transfer operations. In this case, the purpose of the buffer is just to make the read asynchronous.
+</p><p>You could rely on <span class="tpl-code"><a href="/opengl/GLAPI/glGetBufferSubData" title="GLAPI/glGetBufferSubData">glGetBufferSubData/glGetNamedBufferSubData</a></span> to do the reading, but mapping the buffer for reading will achieve equal if not superior performance. Therefore, <span class="tpl-param">flags​</span> should be set to <span class="tpl-enum">GL_MAP_READ_BIT</span>.
+</p><p><b>Modifiable buffers:</b> Generally speaking, mapping a buffer and writing to it will be equally as efficient as <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData/glNamedBufferSubData</a></span>. And in most cases, it will be much faster, particularly if <a href="#Invalidation">invalidation</a> and other <a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a> techniques are employed.
+</p><p>To cover this, <span class="tpl-param">flags​</span> should be set to <span class="tpl-enum">GL_MAP_WRITE_BIT</span>. This lets the implementation know that you will not be using <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData/glNamedBufferSubData</a></span> at all.
+</p>
+<h3><span class="mw-headline" id="Mutable_Storage">Mutable Storage</span></h3>
+<p>To create mutable storage for a buffer object, you use this API:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBufferData" title="GLAPI/glBufferData">glBufferData</a></span>(GLenum <span class="tpl-param">target​</span>, GLsizeiptr <span class="tpl-param">size​</span>, const GLvoid *<span class="tpl-param">data​</span>, GLenum <span class="tpl-param">usage​</span>);</div>
+<p>And with <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> you can also call this:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBufferData" title="GLAPI/glBufferData">glNamedBufferData</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLsizeiptr <span class="tpl-param">size​</span>, const GLvoid *<span class="tpl-param">data​</span>, GLenum <span class="tpl-param">usage​</span>);</div>
+<p>The <span class="tpl-param">target​</span> parameter is just like the one for <span class="tpl-code">glBindBuffer</span>; it says which bound buffer to modify. <span class="tpl-code">size</span> represents how many bytes you want to allocate in this buffer object.
+</p><p>The <span class="tpl-param">buffer​</span> parameter, as in other <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> APIs, specifies which buffer <i>object</i> to modify.
+</p><p>The <span class="tpl-param">data​</span> parameter is a pointer to user memory that will be copied into the buffer object's data store. If this value is NULL, then no copying will occur, and the buffer object's data will be undefined.
+</p><p>The <span class="tpl-param">usage​</span> parameter can be very confusing.
+</p>
+<h4><span class="mw-headline" id="Buffer_Object_Usage">Buffer Object Usage</span></h4>
+<p>Buffer objects are general purpose memory storage blocks allocated by OpenGL. They are intended to be used in a great many ways. To give the implementation great flexibility in exactly what a particular buffer object's data store will be, so as to better optimize performance, the user is required to give usage hints. These provide a general description as to how exactly the user will be using the buffer object.
+</p><p>There are two independent parts to the usage pattern: how the user will be reading/writing from/to the buffer, and how often the user will be changing it relative to the use of the data.
+</p><p>There are two ways for data to cause a change in the data contents of a buffer object. One way is for the user to explicitly upload some binary data. The other way is for the user to issue GL commands that cause the buffer to be filled in. For example, if you want to have a buffer store the results of a vertex shader computation through the use of transform feedback, the user is not directly changing the buffer information. So this is the latter kind of change.
+</p><p>Similarly, the user can read a buffer's data, using a variety of commands. Or, the user can execute an OpenGL command that causes the GL to read the contents of the buffer and do something based on it. Buffers storing vertex data are read by the GL when rendering.
+</p><p>There are three hints that the user can specify the data. They are all based on what the <i>user</i> will be doing with the buffer. That is, whether the user will be directly reading or writing the buffer's data.
+</p>
+<ul><li>DRAW: The user will be writing data to the buffer, but the user will not read it.</li>
+<li>READ: The user will not be writing data, but the user will be reading it back.</li>
+<li>COPY: The user will be neither writing nor reading the data.</li></ul>
+<p>DRAW is useful for, as the name suggests, drawing. The user is uploading data, but only the GL is reading it. Buffer objects holding vertex data are generally specified as DRAW, though there can be exceptions.
+</p><p>READ is used when a buffer object is used as the destination for OpenGL commands. This could be rendering to a <a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Texture</a>, using <a href="/opengl/Image_Load_Store" title="Image Load Store">arbitrary writes to buffer textures</a>, doing a <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">pixel transfer into a buffer object</a>, using <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>, or any other OpenGL operation that writes to buffer objects.
+</p><p>COPY is used when a buffer object is used to pass data from one place in OpenGL to another. For example, you can read image data into a buffer, then use that image data as vertex data in a draw call. Your code never actually sends data to the buffer directly, nor does it read data back. You can also use <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> to achieve the same thing in a more direct way. You have the feedback data go to a buffer object, then use that buffer object as vertex data. And while the user is causing the buffer to be updated via rendering commands, at no time is the user <i>directly</i> either reading from or writing to the buffer's storage.
+</p><p>There are three hints for how frequently the user will be changing the buffer's data.
+</p>
+<ul><li>STATIC: The user will set the data once.</li>
+<li>DYNAMIC: The user will set the data occasionally.</li>
+<li>STREAM: The user will be changing the data after every use. Or almost every use.</li></ul>
+<p>STREAM is pretty easy to understand: the buffer object's storage will be updated after almost every use. STATIC is pretty easy to understand too. The buffer object's contents will be updated once and never changed.
+</p><p>What is unclear is when DYNAMIC becomes STREAM or STATIC. These are only hints, after all. It is perfectly legal OpenGL code to modify a STATIC buffer after it has been created, or to never modify a STREAM buffer.
+</p><p>Is it better to use STATIC for buffers that are updated very infrequently? Is it better to use DYNAMIC for buffers that get updated frequently, but not at STREAM speed? Is it better to use DYNAMIC for buffers that get <i>partially</i> updated? These are questions that can only be answered with careful profiling. And even then, the answer will only be accurate for that particular driver version from that particular hardware vendor.
+</p><p>In any case, STREAM, STATIC, and DYNAMIC can be matched with READ, DRAW, and COPY in any combination. STREAM_COPY means that you will be doing transform feedback writes (or other kinds of GL-based writes) into the buffer after almost every use; it will not be updated with <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span> or similar functions. STATIC_READ means that you will fill the buffer up from the GL, but you will only do this once.
+</p>
+<h2><span class="mw-headline" id="Data_Specification">Data Specification</span></h2>
+<p>We have seen that <span class="tpl-code"><a href="/opengl/GLAPI/glBufferData" title="GLAPI/glBufferData">glBufferData</a></span> can be used to update the data in a buffer object. However, this also reallocates the buffer object's storage. This function is therefore not appropriate for merely updating the contents of the allocated memory (and for <a href="#Immutable_storage">immutable storage buffers</a>, it is not possible). 
+</p><p>Instead, to update all or part of the data in a buffer object, this API can be used:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span>(GLenum <span class="tpl-param">target​</span>, GLintptr <span class="tpl-param">size​</span>, GLsizeiptr <span class="tpl-param">size​</span>, const GLvoid *<span class="tpl-param">data​</span>);</div>
+<p>And with <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> you can also call this:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glNamedBufferSubData</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLintptr <span class="tpl-param">size​</span>, GLsizeiptr <span class="tpl-param">size​</span>, const GLvoid *<span class="tpl-param">data​</span>);</div>
+<p>The <span class="tpl-param">offset​</span> parameter is an integer offset into the buffer object where we should begin updating. The <span class="tpl-code">size</span> parameter is the number of bytes we should copy out of <span class="tpl-code">data</span>. For obvious reasons, <span class="tpl-code">data</span> cannot be NULL.
+</p>
+<h3><span class="mw-headline" id="Clearing">Clearing</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Buffer Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/clear_buffer_object.txt">ARB_clear_buffer_object</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>A buffer object's storage can be cleared, in part or in full, to a specific value. These functions work in a similar fashion to <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> operations, though with some significant differences:
+</p><p><br style="clear: both" />
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferData" title="GLAPI/glClearBufferData">glClearBufferData</a></span>(GLenum <span class="tpl-param">target​</span>​, GLenum <span class="tpl-param">internalformat​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const void *<span class="tpl-param">data​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferSubData" title="GLAPI/glClearBufferSubData">glClearBufferSubData</a></span>(GLenum <span class="tpl-param">target​</span>, GLenum <span class="tpl-param">internalformat​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">size​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const void *<span class="tpl-param">data​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferData" title="GLAPI/glClearBufferData">glClearNamedBufferData</a></span>(GLuint <span class="tpl-param">buffer​</span>​, GLenum <span class="tpl-param">internalformat​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const void *<span class="tpl-param">data​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferSubData" title="GLAPI/glClearBufferSubData">glClearNamedBufferSubData</a></span>(GLuint <span class="tpl-param">buffer​</span>​, GLenum <span class="tpl-param">internalformat​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">size​</span>, GLenum <span class="tpl-param">format​</span>, GLenum <span class="tpl-param">type​</span>, const void *<span class="tpl-param">data​</span>);
+</p>
+</div>
+<p><span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferData" title="GLAPI/glClearBufferData">glClearBufferData</a></span> works as <span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferSubData" title="GLAPI/glClearBufferSubData">glClearBufferSubData</a></span>, except it operates on the entire buffer's contents. Neither function reallocates the buffer object's storage.
+</p><p><span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferData" title="GLAPI/glClearBufferData">glClearNamedBufferData</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glClearBufferSubData" title="GLAPI/glClearBufferSubData">glClearNamedBufferSubData</a></span> are the <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> equivalents of their <span class="tpl-param">target​</span>-accepting counterparts.
+</p><p><span class="tpl-param">target​</span> is just like the one for <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer</a></span>; it says which bound buffer to be cleared.
+</p><p><span class="tpl-param">internalformat​</span> must be a sized <a href="/opengl/Image_Format" title="Image Format">Image Format</a>, but only of the kind that <a href="/opengl/Buffer_Texture_Format" class="mw-redirect" title="Buffer Texture Format">can be used for buffer textures</a>. This defines how OpenGL will store the data in the buffer object. <span class="tpl-param">format​</span> and <span class="tpl-param">type​</span> operate as normal for <a href="/opengl/Pixel_Transfer" title="Pixel Transfer">Pixel Transfer</a> operations.
+</p><p><span class="tpl-param">data​</span> is a pointer to a single pixel's worth of data, rather than the rows that are used in actual pixel transfers. So if <span class="tpl-param">format​</span> is <span class="tpl-enum">GL_RG</span> and <span class="tpl-param">type​</span> is <span class="tpl-enum">GL_UNSIGNED_BYTE</span>, then <span class="tpl-param">data​</span> should be a pointer to an array of two <span class="tpl-code">GLubyte</span>s.
+</p><p>This function will copy the given data repeatedly throughout the specified range of the buffer. <span class="tpl-param">offset​</span> must be a multiple of the byte size defined by the <span class="tpl-param">internalformat​</span>, as must <span class="tpl-param">size​</span>.
+</p>
+<h3><span class="mw-headline" id="Copying">Copying</span></h3>
+<p>Data can be copied from one buffer object to another, or from one region to another (non-overlapping) region of the same buffer. To do this, first bind the source and destination buffers to different <span class="tpl-param">target​</span>s. These could be any target, but <span class="tpl-enum">GL_COPY_READ_BUFFER​</span> and <span class="tpl-enum">GL_COPY_WRITE_BUFFER</span> have no special semantics, so they make useful targets for this purpose. When copying within a buffer, bind the same buffer object to both.
+</p><p>Once both are bound, use this function:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyBufferSubData" title="GLAPI/glCopyBufferSubData">glCopyBufferSubData</a></span>(GLenum <span class="tpl-param">readtarget​</span>, GLenum <span class="tpl-param">writetarget​</span>, GLintptr <span class="tpl-param">readoffset​</span>, GLintptr <span class="tpl-param">writeoffset​</span>, GLsizeiptr <span class="tpl-param">size​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glCopyBufferSubData" title="GLAPI/glCopyBufferSubData">glCopyNamedBufferSubData</a></span>(GLuint <span class="tpl-param">readbuffer​</span>, GLuint <span class="tpl-param">writebuffer​</span>, GLintptr <span class="tpl-param">readoffset​</span>, GLintptr <span class="tpl-param">writeoffset​</span>, GLsizeiptr <span class="tpl-param">size​</span>);
+</p>
+</div>
+<p><span class="tpl-param">readtarget​</span> is the buffer you bound the <i>source</i> buffer to. So this is where you get the data to copy from. <span class="tpl-param">writetarget​</span> is the buffer you bound the <i>destination</i> buffer to. <span class="tpl-param">readoffset​</span> is the byte offset from the beginning of the source buffer to start reading. <span class="tpl-param">writeoffset​</span> is the byte offset from the beginning of the destination buffer to start writing to. <span class="tpl-param">size​</span> is the number of bytes to read.
+</p><p><span class="tpl-code"><a href="/opengl/GLAPI/glCopyBufferSubData" title="GLAPI/glCopyBufferSubData">glCopyNamedBufferSubData</a></span> is the <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> equivalent of <span class="tpl-code"><a href="/opengl/GLAPI/glCopyBufferSubData" title="GLAPI/glCopyBufferSubData">glCopyBufferSubData</a></span> and differs only in that instead of binding <i>source</i> and <i>destination</i> buffers to targets first, you can name them directly.
+</p><p>Errors will be given if the offset/sizes would cause reading to or writing from locations outside of the respective buffer objects' storage. Also, if the source and destination buffers are the same, an error will be given if the range to be read from overlaps with the range to be written to.
+</p>
+<h3><span class="mw-headline" id="Mapping">Mapping</span></h3>
+<p><span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData/glNamedBufferSubData</a></span> is a nice way to present data to a buffer object. But it can be wasteful in performance, depending on your use patterns.
+</p><p>For example, if you have an algorithm that generates data that you want to store in the buffer object, you must first allocate some temporary memory to store that data in. Then you can use <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span> to transfer it to OpenGL's memory. Similarly, if you want to read data back, <span class="tpl-code"><a href="/opengl/GLAPI/glGetBufferSubData" title="GLAPI/glGetBufferSubData">glGetBufferSubData</a></span> is perhaps not what you need, though this is less likely. It would be really nice if you could just get a pointer to the buffer object's storage and write directly to it.
+</p><p>You can. To do this, you must <i>map</i> the buffer. This gives you a pointer to memory that you can write to or read from, theoretically, just like any other. When you unmap the buffer, this invalidates the pointer (don't use it again), and the buffer object will be updated with the changes you made to it.
+</p><p>While a buffer is mapped, you can freely unbind the buffer. However, unless you <a href="#Persistent_mapping">map the buffer persistently</a>, you cannot call any function that would cause OpenGL to read, modify, or write to that buffer while it is mapped. Thus, calling <span class="tpl-code"><a href="/opengl/GLAPI/glBufferData" title="GLAPI/glBufferData">glBufferData</a></span> is out, as is using any function that would cause OpenGL to read from it (rendering with a <a href="/opengl/Vertex_Array_Objects" class="mw-redirect" title="Vertex Array Objects">VAO</a> that uses it, etc).
+</p><p>To map a buffer, you call one of the following functions:
+</p>
+<div class="funcdef">
+<p>void *<span class="tpl-code"><a href="/opengl/GLAPI/glMapBuffer" title="GLAPI/glMapBuffer">glMapBuffer</a></span>(GLenum <span class="tpl-param">target​</span>, GLbitfield <span class="tpl-param">access​</span>);
+</p><p>void *<span class="tpl-code"><a href="/opengl/GLAPI/glMapBuffer" title="GLAPI/glMapBuffer">glMapNamedBuffer</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLbitfield <span class="tpl-param">access​</span>);
+</p><p>void *<span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapBufferRange</a></span>(GLenum <span class="tpl-param">target​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">length​</span>, GLbitfield <span class="tpl-param">access​</span>);
+</p><p>void *<span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapNamedBufferRange</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">length​</span>, GLbitfield <span class="tpl-param">access​</span>);
+</p>
+</div>
+<p>The return value is the pointer to the buffer object's data. The parameters <span class="tpl-param">offset​</span> and <span class="tpl-param">length​</span> allow you to specify a particular range within the buffer to map; you do not have to map the entire buffer. The <span class="tpl-param">target​</span> parameter refers to the particular target that you have the buffer you want to map bound to.
+</p><p>Where <span class="tpl-code"><a href="/opengl/GLAPI/glMapBuffer" title="GLAPI/glMapBuffer">glMapNamedBuffer</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapNamedBufferRange</a></span> are the <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> equivalents of their <span class="tpl-param">target​</span>-accepting counterparts, and take the <span class="tpl-param">buffer​</span> name directly instead of requiring binding to a target first.
+</p><p>The <span class="tpl-param">access​</span> parameter is a bit complicated.
+</p><p>You can tell OpenGL what you intend to do with the pointer. If you're just adding new data to the buffer, then the pointer that gets returned isn't something you need to read from. Similarly, it could be your intention to read from this pointer and not change the buffer; OpenGL could do a simple copy from the buffer's memory to scratch memory in the client address space to make reading the buffer faster (buffer memory may not be optimized for reading).
+</p><p>You specify this by setting bitflags in the <span class="tpl-param">access​</span> parameter. This parameter <i>must</i> have either the <span class="tpl-enum">GL_MAP_READ_BIT</span> or <span class="tpl-enum">GL_MAP_WRITE_BIT</span> set; it can have both (ie: the memory will be fit for reading and writing) but it can't have neither. There are a number of other flags that can be set.
+</p><p>Unmapping the buffer is done when you are finished with the pointer and want to let OpenGL know that the buffer is free to be used. This is done with the following functions:
+</p>
+<div class="funcdef">
+<p>bool <span class="tpl-code"><a href="/opengl/GLAPI/glUnmapBuffer" class="mw-redirect" title="GLAPI/glUnmapBuffer">glUnmapBuffer</a></span>(GLenum <span class="tpl-param">target​</span>);
+</p><p>bool <span class="tpl-code"><a href="/opengl/GLAPI/glUnmapBuffer" class="mw-redirect" title="GLAPI/glUnmapBuffer">glUnmapNamedBuffer</a></span>(GLuint <span class="tpl-param">buffer​</span>);
+</p>
+</div>
+<p>Both of these functions immediately invalidate the pointer returned from <span class="tpl-code">glMap*Buffer*</span> functions, so once called you should not use the returned pointers again. Also note that if either function returns <span class="tpl-enum">GL_FALSE</span> then either an error has occurred or the previously mapped buffers contents have been invalidated for some reason and should be reinitialized.
+</p>
+<h4><span class="mw-headline" id="Alignment">Alignment</span></h4>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Map Buffer Alignment</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/map_buffer_alignment.txt">ARB_map_buffer_alignment</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The alignment of the pointer returned by mapping functions is important when dealing with types that need highly restricted alignment. For example, SSE intrinsics need 16-byte alignment, while AVX intrinsics need 32-byte alignment.
+</p><p>The base alignment of a buffer object is defined as the alignment of the pointer retrieved by calling <span class="tpl-code"><a href="/opengl/GLAPI/glMapBuffer" title="GLAPI/glMapBuffer">glMapBuffer</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapBufferRange</a></span> with a zero <span class="tpl-param">offset​</span>. The base alignment of a buffer is implementation defined, but it must be no less than <span class="tpl-enum">GL_MIN_MAP_BUFFER_ALIGNMENT</span>. The smallest this value will be is 64, thus allowing this to work for any strictly aligned type in existence and some that aren't.
+</p><p>The alignment of the pointer returned by <span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapBufferRange</a></span> with a non-zero <span class="tpl-param">offset​</span> is the modulus of the <span class="tpl-param">offset​</span> by the base alignment.
+</p>
+<h4><span class="mw-headline" id="Buffer_Corruption">Buffer Corruption</span></h4>
+<p>There is one major gotcha when mapping a buffer.
+</p><p>During normal OpenGL operations, the OpenGL specification requires that all data stored in OpenGL objects be preserved. Thus, if something in the operating system or other such things causes video memory to be trashed, the OpenGL implementation must ensure that this data is restored properly.
+</p><p>Mapping is not a normal operation. Because of its low-level nature, these protections have to be relaxed. Therefore, it is possible that, during the time a buffer is mapped, some kind of corruption happens. If this occurs, calling <span class="tpl-code"><a href="/opengl/GLAPI/glUnmapBuffer" class="mw-redirect" title="GLAPI/glUnmapBuffer">glUnmapBuffer</a></span> will return GL_FALSE. At that point, the contents of the buffer in question are considered undefined. It may have your data, or it may have random garbage.
+</p><p>How often does this happen? On Microsoft Windows 5.1 (XP) and below, video memory could get trashed anytime an application didn't have input focus. This is why alt-tabbing away from games takes a long time to recover from; the application/OpenGL has to reload all of this data back to video memory. Fortunately, on Windows 6.0 (Vista) and above, this is fixed; Windows itself manages video memory and will ensure that all video memory is retained. Thus, at least theoretically, this should never be a problem on Vista or above machines.
+</p>
+<h4><span class="mw-headline" id="Persistent_mapping">Persistent mapping</span></h4>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Immutable Storage</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/buffer_storage.txt">ARB_buffer_storage</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Normally, if a buffer object is mapped, it cannot be used in a non-mapped fashion. Rendering commands that would read from or write to a mapped buffer will <a href="/opengl/OpenGL_Error" title="OpenGL Error">throw an error</a>, as will functions that explicitly read from or write to the buffer.
+</p><p>However, if the buffer is <a href="#Immutabe_Storage">created with immutable storage</a>, and the <span class="tpl-enum">GL_MAP_PERSISTENT_BIT</span> flag is set when it is created, <b>and</b> the buffer is mapped using the same <span class="tpl-enum">GL_MAP_PERSISTENT_BIT</span> flag, then the buffer can remain mapped essentially indefinitely. You can have OpenGL use or modify the buffer's storage as you see fit.
+</p><p>Everything has a price. The price of this is that you must deal with the ordering of reads and writes. By mapping the buffer in this fashion, you are taking full responsibility for synchronizing mapped access operations with OpenGL (and with other direct uses of the API).
+</p><p><b>Write Synchronization:</b> When you use a mapped pointer to write to a buffer, the data you write does not immediately become visible to OpenGL. It only becomes visible to OpenGL when you flush the written range of memory, and only if you mapped the buffer with <span class="tpl-enum">GL_MAP_FLUSH_EXPLICIT_BIT</span>:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glFlushMappedBufferRange" title="GLAPI/glFlushMappedBufferRange">glFlushMappedBufferRange</a></span>(GLenum <span class="tpl-param">target​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">length​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glFlushMappedBufferRange" title="GLAPI/glFlushMappedBufferRange">glFlushMappedNamedBufferRange</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">length​</span>);
+</p>
+</div>
+<p><span class="tpl-param">target​</span> specifies which bound buffer should be flushed, same as other buffer functions.
+</p><p><span class="tpl-code"><a href="/opengl/GLAPI/glFlushMappedBufferRange" title="GLAPI/glFlushMappedBufferRange">glFlushMappedNamedBufferRange</a></span> is the <a href="/opengl/Direct_State_Access" title="Direct State Access">DSA</a> equivalent of <span class="tpl-code"><a href="/opengl/GLAPI/glFlushMappedBufferRange" title="GLAPI/glFlushMappedBufferRange">glFlushMappedBufferRange</a></span> and takes the <span class="tpl-param">buffer​</span> name directly instead of requiring binding to a target first.
+</p><p>The <span class="tpl-param">offset​</span> and <span class="tpl-param">length​</span> parameters represent the memory range within the mapped storage to be flushed and made visible to OpenGL.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> You must take care not to modify memory that OpenGL is actively using. So if you have issued any commands that read from a particular range of a persistently mapped buffer, you should not modify that range unless you have ensured that those commands have <a href="/opengl/Synchronization" title="Synchronization">completed their execution.</a> This is best done via a <a href="/opengl/Sync_Object" title="Sync Object">fence</a>, but using multiple buffer regions for multiple frames worth of data is also a good idea. You'll still need a sync object, but you're far less likely to encounter an actual CPU stall.</div>
+<p><b>Read Synchronization:</b> Synchronizing OpenGL writes with user reads is more complex. This is because synchronization requires that two things have happened.
+</p><p>First, after issuing whatever OpenGL commands that will perform those writes, we must issue a memory barrier: <span class="tpl-code"><a href="/opengl/GLAPI/glMemoryBarrier" title="GLAPI/glMemoryBarrier">glMemoryBarrier(GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT)</a></span>. This ensures that data OpenGL has written is visible.
+</p><p>Second, and this must be done <i>after</i> issuing the barrier, you must ensure that both the command to write the data and the barrier have <a href="/opengl/Synchronization" title="Synchronization">completed their execution.</a> This could be done via a call to <span class="tpl-code"><a href="/opengl/GLAPI/glFinish" title="GLAPI/glFinish">glFinish</a></span>, but a better way would be through the use of a <a href="/opengl/Sync_Object" title="Sync Object">fence sync</a>. Once the fence has completed, the memory can be accessed.
+</p><p>So the steps are:
+</p>
+<ol><li>Send whatever commands will write to the buffer.</li>
+<li>Issue the memory barrier: <span class="tpl-code"><a href="/opengl/GLAPI/glMemoryBarrier" title="GLAPI/glMemoryBarrier">glMemoryBarrier(GL_CLIENT_MAPPED_BUFFER_BARRIER_BIT)</a></span></li>
+<li>Create a <a href="/opengl/Fence_Sync" class="mw-redirect" title="Fence Sync">fence</a>.</li>
+<li>Do something else for a while, so that you don't waste precious CPU time waiting for the GPU to be done.</li>
+<li><a href="/opengl/Sync_Object#Synchronization" title="Sync Object">Wait for the fence sync</a> to complete.</li>
+<li>Read from the mapped pointer.</li></ol>
+<p><b>Easy Synchronization:</b> If you use the <span class="tpl-enum">GL_MAP_COHERENT_BIT</span> when allocating the buffer's storage and you map it with the same bit (note that the persistent bit is required if you use this one), then you don't need most of the above synchronization mechanisms. When you write to the mapped pointer, the data you write will become visible to every OpenGL command issued after the write, automatically, so you don't need to flush. When you read from a mapped pointer, you don't need the <span class="tpl-code"><a href="/opengl/GLAPI/glMemoryBarrier" title="GLAPI/glMemoryBarrier">glMemoryBarrier</a></span> call to ensure that data OpenGL commands wrote to the buffer will become visible to you.
+</p><p>However, just because you get coherent visibility doesn't mean you get to read something that OpenGL hasn't written yet. And the same goes for writing when OpenGL reads. So you still need to set up that fence sync to make sure that OpenGL has actually written the data.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Obviously, there's a <i>reason</i> why you don't get the coherent behavior by default. That reason being performance. Possibly; there's <a rel="nofollow" class="external text" href="http://www.codeproject.com/Articles/872417/Persistent-Mapped-Buffers-in-OpenGL">evidence that there is no performance drop on some hardware</a>, so you should probably profile it yourself.</div>
+<h4><span class="mw-headline" id="Performance_Concerns">Performance Concerns</span></h4>
+<p>One thing to remember about buffer mapping is this: the implementation is not obligated in any way to give you an actual pointer to the buffer object's memory. It is perfectly capable of giving you a pointer to some memory that OpenGL allocated just for the purpose of mapping, then it will do the copy on its own time.
+</p><p>The other thing to remember is that you should not care. OpenGL likes to give implementations flexibility to make performance optimizations. If mapping a certain buffer gives you some other pointer, and the implementation will do the copy on its own time, you should assume that this is probably the fastest way to work. It's still potentially faster than glBufferSubData, since the copy in glBufferSubData must happen before the function call returns, whereas the copy in the mapping case can happen in a thread the GL spawns. The worst case is that it's no slower than glBufferSubData.
+</p><p>However, you should not use the pointer you are given like any other pointer you might have. If this pointer is a pointer to non-standard memory (uncached or video memory), then writing to it haphazardly can be problematic. If you are attempting to stream data to the buffer, you should always map the buffer only for writing and you should write sequentially. You do not need to write every byte, but you should avoid going backwards or skipping around in the memory.
+</p><p>The purpose in writing sequentially is to be able to use write-combine memory, a feature of some processors (most x86's). It allows sequential writes to uncached memory to flow fairly quickly, compared to random writes to uncached memory.
+</p>
+<h3><span class="mw-headline" id="Invalidation">Invalidation</span></h3>
+<p>When a buffer or region thereof is invalidated, it means that the contents of that buffer are now undefined. How OpenGL handles invalidation is up to it. Note that any pending operations on the buffer will still complete. Any pending reads from OpenGL will still get the previous values, and any pending writes will still write their values (though the writes will be discarded since you trashed the buffer).
+</p><p>The idea is that, by invalidating a buffer or range thereof, the implementation will simply grab a new piece of memory to use for any later operations. Thus, while previously <a href="/opengl/Synchronization" title="Synchronization">issued GL commands can still read the buffer's original data</a>, you can fill the invalidated buffer with new values (via mapping or <span class="tpl-code"><a href="/opengl/GLAPI/glBufferSubData" title="GLAPI/glBufferSubData">glBufferSubData</a></span>) without causing <a href="/opengl/Synchronization" title="Synchronization">implicit synchronization</a>.
+</p><p>Invalidation of a buffer can happen in one of three ways.
+</p><p>For buffer objects with non-immutable storage, a buffer can be invalidated by calling <span class="tpl-code"><a href="/opengl/GLAPI/glBufferData" title="GLAPI/glBufferData">glBufferData</a></span> with the exact same size and usage hint as before, and with a NULL <span class="tpl-param">data​</span> parameter. This is an older method of invalidation, and it should only be used when the others are not available.
+</p><p>Invalidation can happen at <a href="#Mapping">buffer mapping time</a> by calling <span class="tpl-code"><a href="/opengl/GLAPI/glMapBufferRange" title="GLAPI/glMapBufferRange">glMapBufferRange</a></span> with the <span class="tpl-enum">GL_MAP_INVALIDATE_BUFFER_BIT</span> mapping bit. This causes the entire buffer's contents to be invalidated (even if you only mapped part of it). To invalidate only the portion of the buffer being mapped, use <span class="tpl-enum">GL_MAP_INVALIDATE_RANGE_BIT</span> instead.
+</p>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Buffer invalidation</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/invalidate_subdata.txt">ARB_invalidate_subdata</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Invalidation can also be caused explicitly by calling one of the following functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glInvalidateBufferData" title="GLAPI/glInvalidateBufferData">glInvalidateBufferData</a></span>(GLuint <span class="tpl-param">buffer​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glInvalidateBufferSubData" title="GLAPI/glInvalidateBufferSubData">glInvalidateBufferSubData</a></span>(GLuint <span class="tpl-param">buffer​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">length​</span>);
+</p>
+</div>
+<p><span class="tpl-code"><a href="/opengl/GLAPI/glInvalidateBufferData" title="GLAPI/glInvalidateBufferData">glInvalidateBufferData</a></span> is equivalent to calling <span class="tpl-code"><a href="/opengl/GLAPI/glInvalidateBufferSubData" title="GLAPI/glInvalidateBufferSubData">glInvalidateBufferSubData</a></span> with <span class="tpl-param">offset​</span> as 0 and <span class="tpl-param">length​</span> as the size of the buffer's storage.
+</p>
+<h3><span class="mw-headline" id="Streaming">Streaming</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a><i></i></div>
+<p>Streaming is the process of frequently uploading data to a buffer object and then using that buffer object in some OpenGL process. Making this as efficient as possible is a delicate operation. Buffer objects provide a number of possible usage patterns for streaming, and which ones work best is not entirely clear. Testing should be done with the hardware of interest to make sure that you get optimal streaming performance.
+</p><p>The key to streaming is parallelism. The OpenGL specification permits an implementation to delay the execution of drawing commands. This allows you to draw a lot of stuff, and then let OpenGL handle things on its own time. Because of this, it is entirely possible that well after you called the rendering function with a buffer object, you might start trying to stream vertex data into that buffer. If this happens, the OpenGL specification requires that the thread halt until all drawing commands that could be affected by your update of the buffer object complete. This obviously misses the whole point of streaming.
+</p><p>The key to effective streaming is <a href="/opengl/Synchronization" title="Synchronization">synchronization</a>. Or more specifically, <i>avoiding</i> it at all costs.
+</p>
+<h2><span class="mw-headline" id="General_use">General use</span></h2>
+<p>Most of the uses of buffer objects involve binding them to a certain target, which other OpenGL operations will detect the bound buffer and then use the data stored in that buffer in some way, either reading or writing values in a well-defined format.
+</p><p>Here are the various targets for buffer objects and their associated uses:
+</p>
+<dl><dt><span class="tpl-enum">GL_ARRAY_BUFFER</span></dt>
+<dd>The buffer will be used as a <a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">source for vertex data</a>, but the connection is only made when <span class="tpl-code"><a href="/opengl/GLAPI/glVertexAttribPointer" title="GLAPI/glVertexAttribPointer">glVertexAttribPointer</a></span> is called. The pointer field of this function is taken as a byte offset from the beginning of whatever buffer is currently bound to this target.</dd>
+<dt><span class="tpl-enum">GL_ELEMENT_ARRAY_BUFFER</span></dt>
+<dd>All <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">rendering functions</a> of the form <span class="tpl-code">gl*Draw*Elements*</span> will use the pointer field as a byte offset from the beginning of the buffer object bound to this target. The indices used for indexed rendering will be taken from the buffer object. Note that this binding target is part of a <a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a> state, so a VAO <i>must</i> be bound before binding a buffer here.</dd>
+<dt><span class="tpl-enum">GL_COPY_READ_BUFFER</span> and <span class="tpl-enum">GL_COPY_WRITE_BUFFER</span></dt>
+<dd>These have no particular semantics. Because they have no actual meaning, they are useful targets for copying buffer object data with <span class="tpl-code"><a href="/opengl/GLAPI/glCopyBufferSubData" title="GLAPI/glCopyBufferSubData">glCopyBufferSubData</a></span>. You do not have to use these targets when copying, but by using them, you avoid disturbing buffer targets that have actual semantics.</dd>
+<dt><span class="tpl-enum">GL_PIXEL_UNPACK_BUFFER</span> and <span class="tpl-enum">GL_PIXEL_PACK_BUFFER</span></dt>
+<dd>These are for performing <a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">asynchronous pixel transfer operations.</a> If a buffer is bound to <span class="tpl-enum">GL_PIXEL_UNPACK_BUFFER</span>, <span class="tpl-code">glTexImage*</span>, <span class="tpl-code">glTexSubImage*</span>, <span class="tpl-code">glCompressedTexImage*</span>, and <span class="tpl-code">glCompressedTexSubImage*</span> are all affected. These functions will read their data from the bound buffer object instead of where a client pointer points. Similarly, if a buffer is bound to <span class="tpl-enum">GL_PIXEL_PACK_BUFFER</span>, <span class="tpl-code"><a href="/opengl/GLAPI/glGetTexImage" title="GLAPI/glGetTexImage">glGetTexImage</a></span>, and <span class="tpl-code"><a href="/opengl/GLAPI/glReadPixels" title="GLAPI/glReadPixels">glReadPixels</a></span> will store their data to the bound buffer object instead of where a client pointer points.</dd>
+<dt><span class="tpl-enum">GL_QUERY_BUFFER</span></dt>
+<dd>These are for performing direct writes from <a href="/opengl/Query_Object" title="Query Object">asynchronous queries</a> to <a href="/opengl/Query_Buffer_Object" class="mw-redirect" title="Query Buffer Object">buffer object memory</a>. If a buffer is bound to <span class="tpl-enum">GL_QUERY_BUFFER</span>, then all <span class="tpl-code"><a href="/opengl/GLAPI/glGetQueryObject" title="GLAPI/glGetQueryObject">glGetQueryObject[ui64v]</a></span> function calls will write the result to an offset into the bound buffer object.</dd>
+<dt><span class="tpl-enum">GL_TEXTURE_BUFFER</span></dt>
+<dd>This target has no special semantics.</dd>
+<dt><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span></dt>
+<dd>An <a href="#Binding_indexed_targets">indexed buffer binding</a> for buffers used in <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> operations.</dd>
+<dt><span class="tpl-enum">GL_UNIFORM_BUFFER</span></dt>
+<dd>An <a href="#Binding_indexed_targets">indexed buffer binding</a> for buffers used as <a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">storage for uniform blocks</a>.</dd>
+<dt><span class="tpl-enum">GL_DRAW_INDIRECT_BUFFER</span></dt>
+<dd>The buffer bound to this target will be used as the source for the <a href="/opengl/Indirect_Drawing" class="mw-redirect" title="Indirect Drawing">indirect data when performing indirect rendering</a>. This requires OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/draw_indirect.txt">ARB_draw_indirect</a>.</dd>
+<dt><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span></dt>
+<dd>An <a href="#Binding_indexed_targets">indexed buffer binding</a> for buffers used as storage for atomic counters. This requires OpenGL 4.2<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a></dd>
+<dt><span class="tpl-enum">GL_DISPATCH_INDIRECT_BUFFER</span></dt>
+<dd>The buffer bound to this target will be used as the source for indirect compute dispatch operations, via <span class="tpl-code"><a href="/opengl/GLAPI/glDispatchComputeIndirect" title="GLAPI/glDispatchComputeIndirect">glDispatchComputeIndirect</a></span>. This requires OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a>.</dd>
+<dt><span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span></dt>
+<dd>An <a href="#Binding_indexed_targets">indexed buffer binding</a> for buffers used as <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">storage for shader storage blocks</a>. This requires OpenGL 4.3<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a>.</dd>
+<dt><span class="tpl-enum">GL_PARAMETER_BUFFER</span></dt>
+<dd>The buffer bound to this target will be used as the source for the <span class="tpl-param">drawcount​</span> parameter in <a href="/opengl/Vertex_Rendering#Indirect_count" title="Vertex Rendering">indirect count multi draw</a> functions. This requires OpenGL 4.6<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/indirect_parameters.txt">ARB_indirect_parameters</a>.</dd></dl>
+<h3><span class="mw-headline" id="Binding_indexed_targets">Binding indexed targets</span></h3>
+<p>Some buffer targets are indexed, as noted above. This is used for binding a number of buffers that do similar things. For example, a <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> program can use a number of different uniform buffers.
+</p><p>To bind a buffer object to an indexed location, you may use these functions:
+</p>
+<div class="funcdef">
+<p>void <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferBase" title="GLAPI/glBindBufferBase">glBindBufferBase</a></span>(GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">index​</span>, GLuint <span class="tpl-param">buffer​</span>);
+</p><p>void <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>(GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">index​</span>, GLuint <span class="tpl-param">buffer​</span>, GLintptr <span class="tpl-param">offset​</span>, GLsizeiptr <span class="tpl-param">size​</span>);
+</p>
+</div>
+<p>This causes the <span class="tpl-param">buffer​</span> to be bound to the indexed location <span class="tpl-param">target​</span> at the <span class="tpl-param">index​</span> location, or unbinds the location if <span class="tpl-param">buffer​</span> is zero. The only valid values for <span class="tpl-param">target​</span> are indexed targets (see below).
+</p><p>The valid values for <span class="tpl-param">index​</span> depend on the kind of <span class="tpl-param">target​</span> being bound. The valid <span class="tpl-param">target​</span> values, and their associated index limits, are:
+</p>
+<ul><li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>: <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">GL_MAX_ATOMIC_COUNTER_BUFFER_BINDINGS</a></span>.</li>
+<li><span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span>: <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS</a></span>.</li>
+<li><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span>: <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</a></span>.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BUFFER</span>: <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">GL_MAX_UNIFORM_BUFFER_BINDINGS</a></span>.</li></ul>
+<p>The <span class="tpl-param">offset​</span> is the byte offset into <span class="tpl-param">buffer​</span> that the should be used for the binding, and the <span class="tpl-param">size​</span> is how many bytes after this are valid for this use of the buffer object, allowing you to bind subsections of a buffer object as the name suggests.
+</p><p>These parameters <i>also</i> have restrictions on their values. <span class="tpl-param">offset​</span> <b>must</b> be a multiple of the following values:
+</p>
+<ul><li><span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>: 4.</li>
+<li><span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span>: <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">GL_SHADER_STORAGE_BUFFER_OFFSET_ALIGNMENT</a></span>.</li>
+<li><span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span>: 4.</li>
+<li><span class="tpl-enum">GL_UNIFORM_BUFFER</span>: <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">GL_UNIFORM_BUFFER_OFFSET_ALIGNMENT</a></span>.</li></ul>
+<p>And further to these restrictions, the <span class="tpl-param">size​</span> parameter for <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> <b>also must</b> be a multiple of 4.
+</p>
+<div style="margin-left: 3em;">
+<p><b>Warning:</b> It is a common mistake to overlook the above restrictions so take extra care to observe these restrictions!
+</p>
+The offset alignments for <span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span> and <span class="tpl-enum">GL_UNIFORM_BUFFER</span> can be surprisingly large on some implementations and can vary substantially so it is likely you'll have to do extra work to accommodate them.</div>
+<p>Do note that this does not <i>replace</i> standard buffer binding with <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer</a></span>. It does in fact bind the buffer to the <span class="tpl-param">target​</span> parameter, thus unbinding whatever was bound to that target. But usually when you use <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>, you are serious about wanting to <i>use</i> the buffer rather than just modify it.
+</p><p>Think of <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> as binding the buffer to two places: the particular index and the <span class="tpl-param">target​</span>. <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer</a></span> only binds to the <span class="tpl-param">target​</span>, not the index.
+</p><p><span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferBase" title="GLAPI/glBindBufferBase">glBindBufferBase</a></span> is a more limited form of <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>, that binds the entire buffer to an index. It simply omits the <span class="tpl-param">offset​</span> and <span class="tpl-param">size​</span> fields, but it has one major difference from <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>. If you respecify the data store for the buffer with <span class="tpl-code"><a href="/opengl/GLAPI/glBufferData" title="GLAPI/glBufferData">glBufferData</a></span>, then all indices where it is bound with <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferBase" title="GLAPI/glBindBufferBase">glBindBufferBase</a></span> will take the new size (for any subsequent rendering commands). With <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span>, the bound locations will not be updated if the buffer's data size is changed.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Respecifying a buffer's data store with a larger or smaller size is generally not a good idea to begin with. You are advised not to rely on the resizing feature of <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferBase" title="GLAPI/glBindBufferBase">glBindBufferBase</a></span>.</div>
+<h3><span class="mw-headline" id="Multibind_and_indexed_targets">Multibind and indexed targets</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Multi-bind</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/multi_bind.txt">ARB_multi_bind</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>An array of buffers can be bound to a contiguous range of indexed binding points for a particular indexed buffer target. This is done with this function (note the "s" in "Buffers"):
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffersRange" title="GLAPI/glBindBuffersRange">glBindBuffersRange</a></span>(GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">first​</span>, GLsizei <span class="tpl-param">count​</span>, const GLuint *<span class="tpl-param">buffers​</span>, const GLintptr *<span class="tpl-param">offsets​</span>, const GLintptr *<span class="tpl-param">sizes​</span>);</div>
+<p><span class="tpl-param">target​</span> is the usual buffer binding target. <span class="tpl-param">first​</span> defines the starting index in <span class="tpl-param">target​</span> to begin binding to. <span class="tpl-param">count​</span> is the number of buffers to bind. Therefore, the indices in the range to bind are on the half-open range [<span class="tpl-param">first​</span>, <span class="tpl-param">first​</span> + <span class="tpl-param">count​</span>).
+</p><p><span class="tpl-param">buffers​</span> is an array of <span class="tpl-param">count​</span> buffer object names. This can be NULL; if it is, then this function will bind 0 to all of the binding points in the range. Individual elements of the array can also be 0; these will bind 0 as normal, having the expected effect.
+</p><p><span class="tpl-param">offsets​</span> and <span class="tpl-param">sizes​</span> are arrays of <span class="tpl-param">count​</span> offsets and sizes for the ranges to be bound to the context. These can be NULL, but only if <span class="tpl-param">buffers​</span> is NULL too.
+</p><p>There is also a <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffersBase" title="GLAPI/glBindBuffersBase">glBindBuffersBase</a></span> version. Similarly to the non-multibind version, <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffersBase" title="GLAPI/glBindBuffersBase">glBindBuffersBase</a></span> always binds the entire buffer, from beginning to end; you don't provide a per-buffer offset or size.
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Buffer_Objects" title="Category:Core API Ref Buffer Objects">Category:Core API Ref Buffer Objects</a>: Reference documentation for functions that manage buffer objects.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318043003
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.200 seconds
+Real time usage: 0.209 seconds
+Preprocessor visited node count: 7141/1000000
+Post‐expand include size: 72039/2097152 bytes
+Template argument size: 26402/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  120.089      1 -total
+ 35.59%   42.735      6 Template:Infobox_feature
+ 33.06%   39.703      6 Template:Infobox2
+ 18.09%   21.725     15 Template:Funcdef
+ 12.14%   14.579     60 Template:Infobox/longrow
+ 11.52%   13.831      1 Template:Object_float
+ 10.84%   13.017     67 Template:Apifunc
+  9.50%   11.408     60 Template:Infobox/shortrow
+  9.40%   11.291      1 Template:Object_list
+  8.19%    9.830    186 Template:Param
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1463-0!canonical and timestamp 20260318043003 and revision id 14999. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Buffer_Object&amp;oldid=14999">https://wikis.khronos.org/opengl/index.php?title=Buffer_Object&amp;oldid=14999</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li><li><a href="/opengl/Category:Buffer_Objects" title="Category:Buffer Objects">Buffer Objects</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Buffer+Object" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Buffer_Object" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/opengl/Talk:Buffer_Object" rel="discussion" title="Discussion about the content page [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Buffer_Object"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Buffer_Object&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Buffer_Object&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Buffer_Object" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Buffer_Object" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Buffer_Object&amp;oldid=14999" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Buffer_Object&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Buffer_Object&amp;id=14999&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 20 August 2024, at 16:46.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":197,"wgPageParseReport":{"limitreport":{"cputime":"0.200","walltime":"0.209","ppvisitednodes":{"value":7141,"limit":1000000},"postexpandincludesize":{"value":72039,"limit":2097152},"templateargumentsize":{"value":26402,"limit":2097152},"expansiondepth":{"value":11,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%  120.089      1 -total"," 35.59%   42.735      6 Template:Infobox_feature"," 33.06%   39.703      6 Template:Infobox2"," 18.09%   21.725     15 Template:Funcdef"," 12.14%   14.579     60 Template:Infobox/longrow"," 11.52%   13.831      1 Template:Object_float"," 10.84%   13.017     67 Template:Apifunc","  9.50%   11.408     60 Template:Infobox/shortrow","  9.40%   11.291      1 Template:Object_list","  8.19%    9.830    186 Template:Param"]},"cachereport":{"timestamp":"20260318043003","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6bb428cca3d1',t:'MTc3NDIzNzI4OQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

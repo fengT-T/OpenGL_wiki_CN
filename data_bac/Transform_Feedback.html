@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Transform Feedback - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"5153952a3ac2b02bd1b4f718","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Transform_Feedback","wgTitle":"Transform Feedback","wgCurRevisionId":14960,"wgRevisionId":14960,"wgArticleId":1558,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","General OpenGL","Missing DSA"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Transform_Feedback","wgRelevantArticleId":1558,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Transform_Feedback rootpage-Transform_Feedback skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Transform Feedback</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Transform Feedback</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<p><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback2.txt">ARB_transform_feedback2</a>,
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>,
+</p>
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback_instanced.txt">ARB_transform_feedback_instanced</a></td></tr>
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">EXT extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/EXT/transform_feedback.txt">EXT_transform_feedback</a></td></tr>
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Vendor extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/transform_feedback.txt">NV_transform_feedback</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><b>Transform Feedback</b></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p><b>Transform Feedback</b> is the process of capturing <a href="/opengl/Primitive" title="Primitive">Primitives</a> generated by the <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> step(s), recording data from those primitives into <a href="/opengl/Buffer_Objects" class="mw-redirect" title="Buffer Objects">Buffer Objects</a>. This allows one to preserve the post-transform rendering state of an object and resubmit this data multiple times.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Mention will be made of various functions that deal with multiple stream output. Feedback into multiple streams requires access to OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a> and <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader5.txt">ARB_gpu_shader5</a>. So if that is not available to you, ignore any such discussion.</div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Shader_setup"><span class="tocnumber">1</span> <span class="toctext">Shader setup</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Captured_data_format"><span class="tocnumber">1.1</span> <span class="toctext">Captured data format</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Advanced_interleaving"><span class="tocnumber">1.2</span> <span class="toctext">Advanced interleaving</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Doubles_and_alignment"><span class="tocnumber">1.3</span> <span class="toctext">Doubles and alignment</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#In-shader_specification"><span class="tocnumber">1.4</span> <span class="toctext">In-shader specification</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Buffer_binding"><span class="tocnumber">2</span> <span class="toctext">Buffer binding</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Feedback_process"><span class="tocnumber">3</span> <span class="toctext">Feedback process</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Feedback_objects"><span class="tocnumber">4</span> <span class="toctext">Feedback objects</span></a>
+<ul>
+<li class="toclevel-2 tocsection-9"><a href="#Feedback_pausing_and_resuming"><span class="tocnumber">4.1</span> <span class="toctext">Feedback pausing and resuming</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Feedback_rendering"><span class="tocnumber">4.2</span> <span class="toctext">Feedback rendering</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-11"><a href="#Limitations"><span class="tocnumber">5</span> <span class="toctext">Limitations</span></a></li>
+<li class="toclevel-1 tocsection-12"><a href="#Reference"><span class="tocnumber">6</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Shader_setup">Shader setup</span></h2>
+<p>In order to capture primitives, the program containing the final <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> shader stage must be linked with a number of parameters. These parameters must be set <i>before</i> linking the program, not after. So if you want to use <span class="tpl-code"><a href="/opengl/GLAPI/glCreateShaderProgram" title="GLAPI/glCreateShaderProgram">glCreateShaderProgram</a></span>, you will have to use the <a href="#In-shader_specification">in-shader specification API</a>, which is only available with OpenGL 4.4<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Platform Issue (NVIDIA):</b> <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/transform_feedback.txt">NV_transform_feedback</a> allows these parameters to be set dynamically after linking.</div>
+<p>The only program object that matters for transform feedback is the one that provides the last <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> shader stage. These settings can be on any other program in a separate program, but only the settings on the last active Vertex Processing shader stage will be used.
+</p><p>Transform feedback can operate in one of two capturing modes. In interleaved mode, all captured outputs go into the same buffer, interleaved with one another. In separate mode, each captured output goes into a separate buffer. This must be selected on a program object at link time.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> Separate capturing mode does not necessarily mean that it must captures into different <i><a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a></i>. It simply means that they are captured into separate buffer binding points. Different regions of the same buffer object can be bound to the different binding points, thus allowing you to use separate capture into the same buffer object. This will work as long as the bound regions don't overlap.</div>
+<p>To define the capture settings for a program, as well as which output variables are captured, use the following function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glTransformFeedbackVaryings" title="GLAPI/glTransformFeedbackVaryings">glTransformFeedbackVaryings</a></span>(GLuint <span class="tpl-param">program​</span>, GLsizei <span class="tpl-param">count​</span>, const char **<span class="tpl-param">varyings​</span>, GLenum <span class="tpl-param">bufferMode​</span>);</div>
+<p>The <span class="tpl-param">bufferMode​</span> is the capturing mode. It must be <span class="tpl-enum">GL_INTERLEAVED_ATTRIBS</span> or <span class="tpl-enum">GL_SEPARATE_ATTRIBS</span>
+</p><p>The <span class="tpl-param">count​</span> is the number of strings in the <span class="tpl-param">varyings​</span> array. This array specifies the name of the output variables of the appropriate shader stage to capture. The order that the variables are provided in defines the order in which they are captured. The names of these variables <a href="/opengl/Program_Introspection#Naming" title="Program Introspection">conform to the standard rules for naming GLSL variables</a>.
+</p><p>There are <a href="#Limitations">limitations</a> on the number of outputs that can be captured, as well as how many total components can be captured. Within these limits, any output variables can be captured, including outputs of struct types, arrays, members of <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface blocks</a>.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> This function sets <i>all</i> of the feedback outputs for the program. So if you call it again (before linking), prior settings are forgotten.</div>
+<h3><span class="mw-headline" id="Captured_data_format">Captured data format</span></h3>
+<p>Transform feedback explicitly captures <a href="/opengl/Primitive" title="Primitive">Primitives</a>. While it does capture data for each vertex, it does so after splitting each primitive up into separate primitives. So if you're rendering using <span class="tpl-enum">GL_TRIANGLE_STRIP</span>, and you render with 6 vertices, that yields 4 triangles. Transform feedback will capture 4 triangles worth of data. Since each triangle has 3 vertices, TF will capture <i>12</i> vertices, not the 6 you might expect from the drawing command.
+</p><p>Each primitive is written in the <a href="/opengl/Primitive_Assembly#Primitive_order" title="Primitive Assembly">order it is processed.</a> Within a primitive, the order of the vertex data written is the the vertex order after primitive assembly. This means that, when drawing with triangle strips for example, the captured primitive will switch the order of two vertices every other triangle. This ensures that <a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a> will still respect the ordering provided in the initial array of vertex data.
+</p><p>Within each vertex, the data is written in the order specified by the <span class="tpl-param">varyings​</span> array (when doing interleaved rendering). If an output variable is an aggregate (struct/array), then each member of the aggregate is written in order. Each component of the basic type of the output is written in order. Ultimately, all of the data is written tightly packed together (though capturing double-precision floats may cause padding).
+</p><p>A component will always be a float/double, signed integer, or unsigned integer, using the <a href="/opengl/OpenGL_Type" title="OpenGL Type">sizes for <span class="tpl-code">GLfloat</span>/<span class="tpl-code">GLdouble</span>, <span class="tpl-code">GLint</span>, and <span class="tpl-code">GLuint</span></a>. No packing or normalization is performed. The transform feedback system does not have an automated analog to the much more flexible <a href="/opengl/Vertex_Format" class="mw-redirect" title="Vertex Format">vertex format specification</a> system.
+</p><p>This of course does not prevent you from <i>manually</i> packing bits into unsigned integers in your shader.
+</p>
+<h3><span class="mw-headline" id="Advanced_interleaving">Advanced interleaving</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Advanced Interleaving</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The above settings only provide two modes: either all captured outputs go into separate buffers or they all go into the same buffer. In many cases, it is useful to be able to write several components to one buffer, while writing other components to others.
+</p><p>Also, captured interleaved data is tightly packed, with each variable's components coming immediately after the previous components. It is often useful to be able to skip writing over certain data, if some data changes and other data does not.
+</p><p>These can be achieved by the use of special "varying" names in the <span class="tpl-param">varyings​</span> array. These special names do not name actual output variables; they only cause some particular effect on subsequent writes.
+</p><p>These names and their effects are:
+</p>
+<dl><dt>gl_NextBuffer</dt>
+<dd>This causes all subsequent outputs to be routed to the next buffer index. The buffers start at 0 and increment by one each time this is encountered in the <span class="tpl-param">varyings​</span> list.</dd>
+<dd>There must not be more of these than the number of buffers that can be bound for use in transform feedback. Therefore, the number of these must be strictly less than <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</span>.</dd>
+<dt>gl_SkipComponents#</dt>
+<dd>This causes the system to skip writing # number of components, where # may be from 1 to 4. The memory covered by the skipped components will not be modified. Each component in this case is the size of a float.</dd>
+<dd>Note that components skipped in this way <i>still count</i> against the <a href="#Limitations">limitation on the number of components being output</a>.</dd></dl>
+<p>Output variables in the <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> can be declared to go to a <a href="/opengl/Geometry_Shader_Output_Stream" class="mw-redirect" title="Geometry Shader Output Stream">particular stream</a>. This is controlled via an in-shader specification, but there are certain limitations that affect advanced component interleaving.
+</p><p>No two outputs that go to different streams can be captured by the same buffer. Attempting to do so will result in a linker error. So using multiple streams with interleaved writing requires using advanced interleaving to route attributes to different buffers.
+</p><p>Note that this ability effectively makes separate capture mode superfluous. Interleaving with these facilities is a functional superset of what separate mode can do, since it can capture one output to each buffer individually.
+</p>
+<h3><span class="mw-headline" id="Doubles_and_alignment">Doubles and alignment</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Double-precision Alignment</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader_fp64.txt">ARB_gpu_shader_fp64</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The alignment of single-precision floats and integers is 4 bytes. However, the alignment of double-precision values is 8 bytes. This causes a problem when it comes to capturing transform feedback data.
+</p><p>The alignment of components <i>must</i> be ensured. This is trivially ensured with floats and integers, but doubles require special care. It is up to the user to ensure 8-byte alignment of all double precision data. Specifically, you must ensure two things:
+</p>
+<ul><li>Every double-precision component begins on an 8-byte boundary. You may need to insert padding where needed, using the <a href="#Advanced_interleaving">skipping functionality above</a>.</li>
+<li>All of the vertex data going to a particular buffer that includes a double-precision component must have a total vertex data size aligned to 8 bytes. This ensures that the second vertex will start on an 8 byte boundary. You may therefore need to add padding to the end of vertex data.</li></ul>
+<p>For example, if you want to capture the following, in the order defined here:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">out</span><span class="w"> </span><span class="n">DataBlock</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">var1</span><span class="p">;</span>
+<span class="w">  </span><span class="n">dvec2</span><span class="w"> </span><span class="n">someDoubles</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">var3</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+<p>This is the sequence of strings that you will need in your <span class="tpl-param">varyings​</span> data if you want to capture it in the order of definition:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">varyings</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="s">&quot;DataBlock.var1&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;gl_SkipComponents1&quot;</span><span class="p">,</span><span class="w">     </span><span class="c1">//Padding the next component to 8-byte alignment.</span>
+<span class="w">  </span><span class="s">&quot;DataBlock.someDoubles&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;DataBlock.var3&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="s">&quot;gl_SkipComponents1&quot;</span><span class="p">,</span><span class="w">     </span><span class="c1">//Padding out the entire vertex structure to 8-byte alignment.</span>
+<span class="p">};</span>
+</pre></div>
+<p>If you do not do this, you get undefined behavior. You could avoid the padding just by changing the order you capture them. You don't have to change the order you define them in the shader.
+</p>
+<h3><span class="mw-headline" id="In-shader_specification">In-shader specification</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">In-shader Specification</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.4</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>Shaders can define which outputs are captured by transform feedback and exactly how they are captured. When a shader defines them, querying the program for the mode of transform feedback will return interleaved mode (since the <a href="#Advanced_interleaving">advanced interleaving</a> makes separate mode a complete subset of interleaved mode).
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Transform_Feedback/In_Shader_Specification" title="Transform Feedback/In Shader Specification">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Transform_Feedback/In_Shader_Specification&amp;action=edit">E</a></span></span></div>
+<p><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a> can be used to define which output variables are captured in <b>Transform Feedback</b> operations. When these qualifiers are set in a shader, they completely override any attempt to set the transform feedback outputs from OpenGL via <span class="tpl-code"><a href="/opengl/GLAPI/glTransformFeedbackVaryings" title="GLAPI/glTransformFeedbackVaryings">glTransformFeedbackVaryings</a></span>.
+</p><p>Any output variable or output <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block</a> declared with the <b><span class="tpl-code">xfb_offset</span></b> layout qualifier will be part of the transform feedback output. This qualifier must be specified with an integer byte offset. The offset is the number of bytes from the beginning of a vertex to be written to the current buffer to this particular output variable.
+</p><p>The offsets of contained values (whether in arrays, structs, or members of an interface block if the whole block has an offset) are computed, based on the sizes of prior components to pack them in the order specified. Any explicitly provided offsets are not allowed to violate alignment restrictions. So if a definition contains a double (either directly or indirectly), the offset must be 8-byte aligned.
+</p><p>Members of interface blocks can have their offsets specified directly on them, which overrides any computed offsets. Also, all members of an interface block are not required to be written to outputs (though that will happens if you set the <span class="tpl-code">xfb_offset</span> on the block itself). Stream assignments for a geometry shader are required to be the same for all members of a block, but offsets are not.
+</p><p>Different variables being captured are assigned to buffer binding indices. Offset assignments are separate for the separate buffers. It is a linker error for two variables captured by the same buffer to have overlapping byte offsets, whether automatically computed or explicitly assigned.
+</p><p>An explicit buffer assignment is made by using the <b><span class="tpl-code">xfb_buffer</span></b> qualifier on the same declaration as the offset qualifier. This takes an integer which defines the buffer binding index that the captured output(s) is/are associated with. The integer must be less than <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</span>.
+</p><p>Any offsets for global variables or interface blocks that do not specify a buffer explicitly will use the current buffer. The current buffer is set as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span>
+</pre></div>
+<p>All following offsets for globals that do not explicitly specify a buffer will use 1 as their buffer. The initial current buffer for a shader is 0.
+</p><p>Variables can have <span class="tpl-code">xfb_buffer</span> assigned to them without <span class="tpl-code">xfb_offset</span>. This does nothing and will be ignored.
+</p><p>Interface blocks have a special association with buffers. Each interface block is associated with a buffer, regardless of whether any of its members are captured. The buffer is either the current buffer as defined above or a buffer explicitly specified by <span class="tpl-code">xfb_buffer</span>.
+</p><p>As previously stated, all members of a block do not have to be captured. However, if any members of a block <i>are</i> captured, they <i>must</i> all be captured to the same buffer. Specifically, the buffer associated with that block. It is an error to use <span class="tpl-code">xfb_buffer</span> on a member if the buffer index you provide is different from the index used by the block.
+</p><p>As an example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span><span class="w"> </span><span class="c1">// Default buffer of 2.</span>
+
+<span class="k">out</span><span class="w"> </span><span class="n">OutputBlock1</span><span class="w">            </span><span class="c1">// Block buffer index is implicitly 2.</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="n">val1</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="n">first</span><span class="p">;</span><span class="w">  </span><span class="c1">// The provided index is the same as the block&#39;s index.</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="n">other</span><span class="p">;</span><span class="w">  </span><span class="c1">// Compile error, due to changing the buffer index for a block member.</span>
+<span class="p">};</span>
+</pre></div>
+<p>Each buffer has the concept of a stride. This represents the byte count from the beginning of one captured vertex to the beginning of the next. It is computed by taking the output with the highest <span class="tpl-code">xfb_offset</span> value, adding its size to that offset, and then aligning the computed value to the base alignment of the buffer. The buffer's alignment is 4, unless it captures any double-precision values in which case it is 8. This means you do not need to manually pad structures for alignment, as you did with <a href="/opengl/Feedback_With_Doubles" class="mw-redirect" title="Feedback With Doubles">outside shader setting</a>.
+</p><p>The stride for a buffer can also be explicitly set using the <b><span class="tpl-code">xfb_stride</span></b> layout qualifier. This allows you to add extra space at the end, perhaps to skip data that will not change. A compilation error will result if the stride you specify is:
+</p>
+<ul><li>Too small, given the offsets and computed sizes of the captured data for that buffer.</li>
+<li>Not properly aligned. It must be at least 4 byte aligned, and it must be 8 byte aligned if the buffer captures any double-precision values.</li></ul>
+<p>The stride for a buffer is set as follows:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">xfb_stride</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">32</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span><span class="w"> </span><span class="c1">// Sets stride of buffer 1 to 32. Also, sets buffer 1 to be current.</span>
+</pre></div>
+<p>Linking errors will result if any captured outputs within a buffer overlap in space or violate padding. For example:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">Data</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">val1</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">val2</span><span class="p">;</span>
+<span class="w">  </span><span class="k">layout</span><span class="p">(</span><span class="n">xfb_offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="p">)</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">val3</span><span class="p">;</span><span class="w">  </span><span class="c1">// Compiler error. val2 covers bytes on the range [4, 20).</span>
+<span class="p">};</span>
+</pre></div>
+<p>Compiler/linker errors will result if you are using <a href="/opengl/Geometry_Shader_Output_Stream" class="mw-redirect" title="Geometry Shader Output Stream">Geometry Shader output streams</a> and two outputs from different streams are routed to the same buffer.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> When using <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/enhanced_layouts.txt">ARB_enhanced_layouts</a> as an extension (on older hardware), if <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a> is not also available, you may only output to a single buffer. You can still use offsets to put space between vertex attribute data, but you cannot set <span class="tpl-code">xbf_buffer</span> to any value other than 0.</div>
+<h2><span class="mw-headline" id="Buffer_binding">Buffer binding</span></h2>
+<p>Once you have a program with the proper settings to record outputs, you must now set up <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a> to capture these values. Buffer objects and their storage is created in the usual way. What changes is where you use them.
+</p><p>When you wish to begin a transform feedback operation, you must bind one or more buffers to the indexed <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> binding point. This is done through the use of the <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> function (or <a href="/opengl/Buffer_Multibind" class="mw-redirect" title="Buffer Multibind">equivalent functions</a>). The offset you provide must be 4-byte aligned, unless the data being captured into a buffer includes a double-precision value. In that case, it must be 8-byte aligned.
+</p><p>The indices you bind the buffer ranges to are the same buffer binding indices used when setting up where different outputs go. In separate output mode, each listed output goes to a different buffer index, assigned sequentially in the order provided by <span class="tpl-param">varyings​</span>, starting from 0. In interleaved mode, the outputs are all either recorded to one buffer, or to the buffers specified in the more advanced layout specification mechanisms.
+</p>
+<h2><span class="mw-headline" id="Feedback_process">Feedback process</span></h2>
+<p>Once buffers have been bound, a feedback operation can begin. You do this by calling this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBeginTransformFeedback" title="GLAPI/glBeginTransformFeedback">glBeginTransformFeedback</a></span>(GLenum <span class="tpl-param">primitiveMode​</span>);</div>
+<p>This activates transform feedback mode. While transform feedback mode is active (and not <a href="#Feedback_pausing_and_resuming">paused</a>), if you execute a <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">drawing command</a>, all outputs that are set to be captured by the final vertex processing stage will be recorded to the bound buffers. These will keep track of the last recorded position, so that multiple drawing commands will add to the recorded data.
+</p><p>Undefined behavior results if your bound buffer ranges are not large enough to hold the recorded data.
+</p><p>All feedback buffer binding indices that have outputs assigned to the by the current program must have valid bindings. If they do not, this function will fail with an <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Error</a>.
+</p><p>The <span class="tpl-param">primitiveMode​</span> must be one of <span class="tpl-enum">GL_POINTS</span>, <span class="tpl-enum">GL_LINES</span>, or <span class="tpl-enum">GL_TRIANGLES</span>. These modes define what kinds of primitives are captured by the system. They also put restrictions on the primitive type that reaches the final primitive assembly stage. That primitive basic type's must match the <span class="tpl-param">primitiveMode​</span>. The primitive type for a rendering process is defined as follows, in the given order:
+</p>
+<ol><li>If a <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> is active, then it is the primitive type output by the GS.</li>
+<li>If a <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a> is active, then it is the primitive type generated by the tessellation process.</li>
+<li>If neither of those are available, then it is the <span class="tpl-param">mode​</span> parameter of the command used to render.</li></ol>
+<p>While transform feedback is active (and not <a href="#Feedback_pausing_and_resuming">paused</a>), there are certainly things that you cannot do:
+</p>
+<ul><li>Change <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> buffer bindings.</li>
+<li>Doing anything which reads from or writes to any part of these buffers (outside of feedback writes, of course).</li>
+<li>Reallocating storage for any of these buffers. This includes invalidation.</li>
+<li>Change the current program. So <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgram" title="GLAPI/glUseProgram">glUseProgram</a></span> or <span class="tpl-code"><a href="/opengl/GLAPI/glBindProgramPipeline" title="GLAPI/glBindProgramPipeline">glBindProgramPipeline</a></span> cannot be called. This also includes re-linking the appropriate program, as well as <span class="tpl-code"><a href="/opengl/GLAPI/glUseProgramStages" title="GLAPI/glUseProgramStages">glUseProgramStages</a></span> if the target pipeline is the bound pipeline.</li></ul>
+<p>To end feedback mode, call this:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glEndTransformFeedback" class="mw-redirect" title="GLAPI/glEndTransformFeedback">glEndTransformFeedback</a></span>();</div>
+<p>e.g:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glUseProgram</span><span class="p">(</span><span class="n">g_program</span><span class="p">);</span>
+<span class="n">glBindBufferRange</span><span class="p">(</span><span class="n">GL_TRANSFORM_FEEDBACK_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">feedback_buffer</span><span class="p">,</span><span class="w"> </span><span class="n">buffer_offset</span><span class="p">,</span><span class="w"> </span><span class="n">number_of_bytes</span><span class="p">);</span>
+<span class="n">glBeginTransformFeedback</span><span class="p">(</span><span class="n">GL_LINES</span><span class="p">);</span>
+<span class="n">glBindVertexArray</span><span class="p">(</span><span class="n">vao</span><span class="p">);</span>
+<span class="n">glDrawElements</span><span class="p">(</span><span class="n">GL_POINTS</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">pindices</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">ushort</span><span class="p">),</span><span class="w"> </span><span class="n">GL_UNSIGNED_SHORT</span><span class="p">,</span><span class="w"> </span><span class="n">BUFFER_OFFSET</span><span class="p">(</span><span class="mi">0</span><span class="p">));</span>
+<span class="n">glEndTransformFeedback</span><span class="p">();</span>
+<span class="n">glUseProgram</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</pre></div>
+<h2><span class="mw-headline" id="Feedback_objects">Feedback objects</span></h2>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Transform Feedback Objects</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback2.txt">ARB_transform_feedback2</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The set of state needed to perform transform feedback operations can be encapsulated into an <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a>. Transform feedback objects are <a href="/opengl/OpenGL_Object##Container_objects" title="OpenGL Object">container objects</a>. These are created and managed in the usual way, with <span class="tpl-code"><a href="/opengl/GLAPI/glGenTransformFeedbacks" title="GLAPI/glGenTransformFeedbacks">glGenTransformFeedbacks</a></span>, <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteTransformFeedbacks" title="GLAPI/glDeleteTransformFeedbacks">glDeleteTransformFeedbacks</a></span>, and so forth.
+</p><p>To bind a transform feedback object, use this:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glBindTransformFeedback" title="GLAPI/glBindTransformFeedback">glBindTransformFeedback</a></span>(GLenum <span class="tpl-param">target​</span>, GLuint <span class="tpl-param">id​</span>);</div>
+<p><span class="tpl-param">target​</span> must always be <span class="tpl-enum">GL_TRANSFORM_FEEDBACK</span>. You cannot bind a transform feedback object if the current transform feedback object is active and not <a href="#Feedback_pausing_and_resuming">paused</a>.
+</p><p>The state encapsulated by these objects includes:
+</p>
+<ul><li>The generic buffer binding target <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span>. So all calls to <span class="tpl-code"><a href="/opengl/GLAPI/glBindBuffer" title="GLAPI/glBindBuffer">glBindBuffer(GL_TRANSFORM_FEEDBACK_BUFFER, ...)</a></span> will attach the buffer to the currently bound feedback object.</li>
+<li>All of the indexed <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> bindings. So all calls to <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange(GL_TRANSFORM_FEEDBACK_BUFFER, ...)</a></span> (or any equivalent functions) will attach the given region of the buffer to the currently bound feedback object.</li>
+<li>Whether the transform feedback is active and/or <a href="#Feedback_pausing_and_resuming">paused</a>.</li>
+<li>The current count of primitives and so forth recorded in the current feedback operation, if it is active.</li></ul>
+<p>So feedback objects store the buffer bindings that are being recorded to. This makes it easy to switch between different sets of feedback buffer bindings, rather than having to bind them all each time through.
+</p><p>The feedback object 0 is a default transform feedback object. You can use it just like any other transform feedback object, except that you can't delete it.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> The <a href="#Feedback_process">above notation</a> about when it is legal to do what with a buffer bound for transform feedback only applies to buffers attached to the feedback object that is itself currently bound. So if you unbind the current transform feedback object, you can change them again.</div>
+<h3><span class="mw-headline" id="Feedback_pausing_and_resuming">Feedback pausing and resuming</span></h3>
+<p>Transform feedback objects are good for more than just easily swapping different sets of buffers. You can halt a transform feedback operation temporarily, do some rendering that does not get captured, and then resume feedback operations with it. The feedback objects will properly keep track of where vertex data is to be recorded to.
+</p><p>To temporarily pause feedback operations, call this function:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glPauseTransformFeedback" title="GLAPI/glPauseTransformFeedback">glPauseTransformFeedback</a></span>();</div>
+<p>At this point, the feedback object can be unbound by binding a different one. The current program can be changed and so forth. Feedback operations can be paused indefinitely, and it is legal to read from buffers that are in a paused feedback operation (though you need to unbind the feedback object first).
+</p><p>To resume a paused feedback operation, you must do the following:
+</p>
+<ul><li>Bind the paused feedback object.</li>
+<li>Bind the <i>exact</i> <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">program</a> or <a href="/opengl/Program_Pipeline_Object" class="mw-redirect" title="Program Pipeline Object">pipeline</a> object that was used when <span class="tpl-code"><a href="/opengl/GLAPI/glBeginTransformFeedback" title="GLAPI/glBeginTransformFeedback">glBeginTransformFeedback</a></span> was called.</li>
+<li>Call this function:</li></ul>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glResumeTransformFeedback" title="GLAPI/glResumeTransformFeedback">glResumeTransformFeedback</a></span>();</div>
+<p>Note that the primitive mode will still be the same after resuming.
+</p><p>If you call <span class="tpl-code"><a href="/opengl/GLAPI/glEndTransformFeedback" class="mw-redirect" title="GLAPI/glEndTransformFeedback">glEndTransformFeedback</a></span> on a paused feedback object, it will correctly end the feedback operation for that object. You cannot use <span class="tpl-code"><a href="/opengl/GLAPI/glResumeTransformFeedback" title="GLAPI/glResumeTransformFeedback">glResumeTransformFeedback</a></span> on a feedback object that has been ended.
+</p>
+<h3><span class="mw-headline" id="Feedback_rendering">Feedback rendering</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Vertex_Rendering#Transform_feedback_rendering" title="Vertex Rendering">Vertex_Rendering#Transform_feedback_rendering</a><i></i></div>
+<p>To render the data captured by a transform feedback operation, you could use a <a href="/opengl/Primitive_Query" class="mw-redirect" title="Primitive Query">query object</a> to get the number of primitives captured, multiply that times the number of vertices per primitive, and feed that vertex count into a <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a> function. However, this process requires that the CPU read from the query object. This can provoke <a href="/opengl/Synchronization" title="Synchronization">Synchronization</a> issues. While <a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a> could work around some of these, there are better ways.
+</p><p>Feedback objects record the number of vertices that they captured in a feedback operation. Note that a feedback operation is only complete when <span class="tpl-code"><a href="/opengl/GLAPI/glEndTransformFeedback" class="mw-redirect" title="GLAPI/glEndTransformFeedback">glEndTransformFeedback</a></span> is called, so you must first call that before trying to use this data.
+</p><p>Once the feedback operation is complete, the feedback object has a vertex count. This can be used for rendering purposes by binding the feedback object and calling one of these functions:
+</p>
+<ul><li><span class="tpl-code"><a href="/opengl/GLAPI/glDrawTransformFeedback" title="GLAPI/glDrawTransformFeedback">glDrawTransformFeedback</a></span></li>
+<li><span class="tpl-code"><a href="/opengl/GLAPI/glDrawTransformFeedbackInstanced" title="GLAPI/glDrawTransformFeedbackInstanced">glDrawTransformFeedbackInstanced</a></span></li>
+<li><span class="tpl-code"><a href="/opengl/GLAPI/glDrawTransformFeedbackStream" title="GLAPI/glDrawTransformFeedbackStream">glDrawTransformFeedbackStream</a></span> (with OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>)</li>
+<li><span class="tpl-code"><a href="/opengl/GLAPI/glDrawTransformFeedbackStreamInstanced" title="GLAPI/glDrawTransformFeedbackStreamInstanced">glDrawTransformFeedbackStreamInstanced</a></span> (with OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>)</li></ul>
+<p>These functions work like <span class="tpl-code"><a href="/opengl/GLAPI/glDrawArrays" title="GLAPI/glDrawArrays">glDrawArrays</a></span> (or <span class="tpl-code"><a href="/opengl/GLAPI/glDrawArraysInstanced" title="GLAPI/glDrawArraysInstanced">glDrawArraysInstanced</a></span>). Note that these function <i>do not</i> perform any of the <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a> setup work. They don't automatically take the feedback buffers and bind them for use as vertex data. You must do that. All these functions do is get the vertex count from the feedback operation.  Also note that on the first transform feedback pass a non-Transform glDraw* function must be called to write the vertex data to the transform feedback buffer since the transform feedback object does not yet have the vertex count information. Once this is done, glDrawTransform* can be used both during transform feedback and rendering to screen.
+</p>
+<h2><span class="mw-headline" id="Limitations">Limitations</span></h2>
+<p>When using separate capture, there is a limitation on the total number of variables that can be captured. This is <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS</span>, which will be at least 4. Also, there is a limit to the number of components that any particular variable can contain. This is <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS</span>, which will be at least 4. If these limits are exceeded, a program linking error will result.
+</p><p>When using interleaved capture, the limit is the total number of components that can be captured. This is <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS</span>, which must be at least 64. Double-precision components count as 2. The number of "components" can be computed for <a href="#In-shader_specification">in-shader specification</a> by adding all of the buffer's strides and dividing by 4. That must be less than this queried value.
+</p><p>When using <a href="#Advanced_interleaving">advanced interleaving</a> to route different variables to different buffers, the limit on the number of available buffers is <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</span>.
+</p><p>Before OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>, the limit on the binding index to <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> for <span class="tpl-enum">GL_TRANSFORM_FEEDBACK_BUFFER</span> was <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS</span>, since more than one buffer can only be used with separate outputs. With OpenGL 4.0<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>, it is <span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</span>.
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Transform_Feedback" title="Category:Core API Ref Transform Feedback">Category:Core API Ref Transform Feedback</a>: Function documentation for all transform feedback commands, except for those that actually render with the results of a feedback operation.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318191437
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.102 seconds
+Real time usage: 0.111 seconds
+Preprocessor visited node count: 4314/1000000
+Post‐expand include size: 63219/2097152 bytes
+Template argument size: 19203/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 7/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 8545/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   63.875      1 -total
+ 43.30%   27.661      5 Template:Infobox_feature
+ 40.83%   26.083      5 Template:Infobox2
+ 31.33%   20.011      1 Template:Stack
+ 14.25%    9.104     50 Template:Infobox/shortrow
+ 13.58%    8.677     50 Template:Infobox/longrow
+ 10.52%    6.719      1 Template:Snippet
+  9.65%    6.164      1 Template:Pipeline_float
+  7.64%    4.880      1 Template:Pipeline_list
+  6.76%    4.316     27 Template:Apifunc
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1558-0!canonical and timestamp 20260318191437 and revision id 14960. Rendering was triggered because: diff-page
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Transform_Feedback&amp;oldid=14960">https://wikis.khronos.org/opengl/index.php?title=Transform_Feedback&amp;oldid=14960</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li><li><a href="/opengl/Category:Missing_DSA" title="Category:Missing DSA">Missing DSA</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Transform+Feedback" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Transform_Feedback" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Transform_Feedback&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Transform_Feedback"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Transform_Feedback&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Transform_Feedback&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Transform_Feedback" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Transform_Feedback" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Transform_Feedback&amp;oldid=14960" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Transform_Feedback&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Transform_Feedback&amp;id=14960&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 23 July 2024, at 13:12.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":145,"wgPageParseReport":{"limitreport":{"cputime":"0.102","walltime":"0.111","ppvisitednodes":{"value":4314,"limit":1000000},"postexpandincludesize":{"value":63219,"limit":2097152},"templateargumentsize":{"value":19203,"limit":2097152},"expansiondepth":{"value":13,"limit":100},"expensivefunctioncount":{"value":7,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":8545,"limit":5000000},"timingprofile":["100.00%   63.875      1 -total"," 43.30%   27.661      5 Template:Infobox_feature"," 40.83%   26.083      5 Template:Infobox2"," 31.33%   20.011      1 Template:Stack"," 14.25%    9.104     50 Template:Infobox/shortrow"," 13.58%    8.677     50 Template:Infobox/longrow"," 10.52%    6.719      1 Template:Snippet","  9.65%    6.164      1 Template:Pipeline_float","  7.64%    4.880      1 Template:Pipeline_list","  6.76%    4.316     27 Template:Apifunc"]},"cachereport":{"timestamp":"20260318191437","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6cceadfba3d1',t:'MTc3NDIzNzMzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

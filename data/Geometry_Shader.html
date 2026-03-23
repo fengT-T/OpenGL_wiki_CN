@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Geometry Shader - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Geometry_Shader rootpage-Geometry_Shader skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Geometry Shader</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Geometry Shader</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+ARB_geometry_shader4</td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><b>Geometry Shader</b></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>A <b>Geometry Shader</b> (GS) is a <a href="/opengl/Shader" title="Shader">Shader</a> program written in <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> that governs the processing of <a href="/opengl/Primitive" title="Primitive">Primitives</a>. Geometry shaders reside between the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shaders</a> (or the optional <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> stage) and the fixed-function <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a> stage.
+</p><p>A geometry shader is optional and does not have to be used.
+</p><p>Geometry shader invocations take a single <a href="/opengl/Primitive" title="Primitive">Primitive</a> as input and may output zero or more primitives. There are implementation-defined limits on how many primitives can be generated from a single GS invocation. GS's are written to accept a specific input primitive type and to output a specific primitive type.
+</p><p>While the GS can be used to amplify geometry, thus implementing a crude form of tessellation, this is generally not a good use of a GS. The main reasons to use a GS are:
+</p>
+<ul><li>Layered rendering: taking one primitive and rendering it to multiple images without having to change bound rendertargets and so forth.</li>
+<li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>: This is often employed for doing computational tasks on the GPU (obviously pre-<a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a>).</li></ul>
+<p>In OpenGL 4.0, GS's gained two new features. One was the ability to write to multiple output streams. This is used exclusively with transform feedback, such that different feedback buffer sets can get different transform feedback data.
+</p><p>The other feature was GS instancing, which allows multiple invocations to operate over the same input primitive. This makes layered rendering easier to implement and possibly faster performing, as each layer's primitive(s) can be computed by a separate GS instance.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> While geometry shaders have had previous extensions like GL_EXT_geometry_shader4 and GL_ARB_geometry_shader4, these extensions expose the API and GLSL functionality in <i>very</i> different ways from the core feature. This page describes only the core feature.</div>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Primitive_in/out_specification"><span class="tocnumber">1</span> <span class="toctext">Primitive in/out specification</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Instancing"><span class="tocnumber">1.1</span> <span class="toctext">Instancing</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Inputs"><span class="tocnumber">2</span> <span class="toctext">Inputs</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Outputs"><span class="tocnumber">3</span> <span class="toctext">Outputs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Layered_rendering"><span class="tocnumber">3.1</span> <span class="toctext">Layered rendering</span></a>
+<ul>
+<li class="toclevel-3 tocsection-6"><a href="#Which_vertex"><span class="tocnumber">3.1.1</span> <span class="toctext">Which vertex</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-7"><a href="#Output_streams"><span class="tocnumber">3.2</span> <span class="toctext">Output streams</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-8"><a href="#Output_limitations"><span class="tocnumber">4</span> <span class="toctext">Output limitations</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#See_also"><span class="tocnumber">5</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span id="Primitive_in.2Fout_specification"></span><span class="mw-headline" id="Primitive_in/out_specification">Primitive in/out specification</span></h2>
+<p>Each geometry shader is designed to accept a specific <a href="/opengl/Primitive" title="Primitive">Primitive</a> type as input and to output a specific primitive type. The accepted input primitive type is defined in the shader:
+</p>
+<pre>layout(<span class="tpl-param">input_primitive​</span>) in;
+</pre>
+<p>The <span class="tpl-param">input_primitive​</span> type <i>must</i> match the primitive type for the vertex stream provided to the GS. If <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> is enabled, then the primitive type is specified by the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a>'s output qualifiers. If Tessellation is not enabled, then the primitive type is provided by the <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">drawing command</a> that renders with this shader program. The valid values for <span class="tpl-param">input_primitive​</span>, along with the valid OpenGL <a href="/opengl/Primitive" title="Primitive">primitive types</a> or tessellation forms, are:
+</p>
+<table class="wikitable">
+<tbody><tr>
+<th>GS input
+</th>
+<th>OpenGL primitives
+</th>
+<th><a href="/opengl/Tessellation_Evaluation_Shader#Tessellation_options" title="Tessellation Evaluation Shader">TES parameter</a>
+</th>
+<th>vertex count
+</th></tr>
+<tr>
+<td><span class="tpl-code">points</span>
+</td>
+<td><span class="tpl-enum">GL_POINTS</span>
+</td>
+<td><span class="tpl-code">point_mode</span>
+</td>
+<td>1
+</td></tr>
+<tr>
+<td><span class="tpl-code">lines</span>
+</td>
+<td><span class="tpl-enum">GL_LINES</span>, <span class="tpl-enum">GL_LINE_STRIP</span>, <span class="tpl-enum">GL_LINE_LOOP</span>
+</td>
+<td><span class="tpl-code">isolines</span>
+</td>
+<td>2
+</td></tr>
+<tr>
+<td><span class="tpl-code">lines_adjacency</span>
+</td>
+<td><span class="tpl-enum">GL_LINES_ADJACENCY</span>, <span class="tpl-enum">GL_LINE_STRIP_ADJACENCY</span>
+</td>
+<td>N/A
+</td>
+<td>4
+</td></tr>
+<tr>
+<td><span class="tpl-code">triangles</span>
+</td>
+<td><span class="tpl-enum">GL_TRIANGLES</span>, <span class="tpl-enum">GL_TRIANGLE_STRIP</span>, <span class="tpl-enum">GL_TRIANGLE_FAN</span>
+</td>
+<td><span class="tpl-code">triangles</span>, <span class="tpl-code">quads</span>
+</td>
+<td>3
+</td></tr>
+<tr>
+<td><span class="tpl-code">triangles_adjacency</span>
+</td>
+<td><span class="tpl-enum">GL_TRIANGLES_ADJACENCY</span>, <span class="tpl-enum">GL_TRIANGLE_STRIP_ADJACENCY</span>
+</td>
+<td>N/A
+</td>
+<td>6
+</td></tr></tbody></table>
+<p>The vertex count is the number of vertices that the GS receives per-input primitive.
+</p><p>The output primitive type is defined as follows:
+</p>
+<pre>layout(<span class="tpl-param">output_primitive​</span>, max_vertices = <span class="tpl-param">vert_count​</span>) out;
+</pre>
+<p>The <span class="tpl-param">output_primitive​</span> must be one of the following:
+</p>
+<ul><li><span class="tpl-code">points</span></li>
+<li><span class="tpl-code">line_strip</span></li>
+<li><span class="tpl-code">triangle_strip</span></li></ul>
+<p>These work exactly the same way their counterpart OpenGL rendering modes do. To output individual triangles or lines, simply use <span class="tpl-code">EndPrimitive</span> (see below) after emitting each set of 3 or 2 vertices.
+</p><p>There must be a <span class="tpl-code">max_vertices</span> declaration for the output. The number must be a compile-time constant, and it defines the maximum number of vertices that will be written by a <i>single</i> invocation of the GS. It may be no larger than the implementation-defined limit of <span class="tpl-enum">MAX_GEOMETRY_OUTPUT_VERTICES</span>. The minimum value for this limit is 256. See the limitations below.
+</p>
+<h3><span class="mw-headline" id="Instancing">Instancing</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">GS Instancing</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader5.txt">ARB_gpu_shader5</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>The GS can also be instanced (this is separate from <a href="/opengl/Instancing" class="mw-redirect" title="Instancing">instanced rendering</a>, as this is localized to the GS). This causes the GS to execute multiple times for the same input primitive. Each invocation of the GS for a particular input primitive will get a different <span class="tpl-code">gl_InvocationID</span> value. This is useful for layered rendering and outputs to multiple streams (see below).
+</p><p>To use instancing, there must be an input <a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">layout qualifier</a>:
+</p>
+<pre>layout(invocations = <span class="tpl-param">num_instances​</span>) in;
+</pre>
+<p>The value of <span class="tpl-param">num_instances​</span> must not be larger than <span class="tpl-enum">MAX_GEOMETRY_SHADER_INVOCATIONS</span> (this will be at least 32). The built-in value <span class="tpl-code">gl_InvocationID</span> specifies the particular instance of this shader; it will be on the half-open range [0, <span class="tpl-param">num_instances​</span>).
+</p><p>The output primitives from instances are ordered by the <span class="tpl-code">gl_InvocationID</span>. So if the user renders two primitives, and has <span class="tpl-param">num_instances​</span> set to 3, then the GS will be effectively called in this order: (prim0, inst0), (prim0, inst1), (prim0, inst2), (prim1, inst0), ... The output primitives from the GS's will be ordered based on that input sequence. So if (prim0, inst0) outputs two triangles, they will both be rendered before rendering any triangles from (prim0, inst1).
+</p>
+<h2><span class="mw-headline" id="Inputs">Inputs</span></h2>
+<p>Geometry shaders take a primitive as input; each primitive is composed of some number of vertices, as defined by the input primitive type in the shader.
+</p><p>The outputs of the vertex shader (or <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> Stage, as appropriate) are thus fed to the GS as <i>arrays</i> of variables. These can be organized as individual variables or as part of an <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">interface block</a>. Each individual variable will be an array of the length of the primitive's vertex count; for interface blocks, the block itself will be arrayed with this length. The order of vertices in the input arrays corresponds to the order of the vertices specified by prior shader stages.
+</p><p>Geometry shader inputs may have <a href="/opengl/Interpolation_qualifiers" class="mw-redirect" title="Interpolation qualifiers">interpolation qualifiers</a> on them. If they do, then the prior stage's outputs must use the same qualifier.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Geometry_Shader/Defined_Inputs" title="Geometry Shader/Defined Inputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Geometry_Shader/Defined_Inputs&amp;action=edit">E</a></span></span></div>
+<p><a class="mw-selflink selflink">Geometry Shaders</a> provide the following built-in input variables:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">}</span><span class="w"> </span><span class="nb">gl_in</span><span class="p">[];</span>
+</pre></div>
+<p>These variables have only the meaning the prior shader stage(s) that passed them gave them. 
+</p><p>There are some GS input values that are based on primitives, not vertices. These are not aggregated into arrays. These are:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_PrimitiveIDIn</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_InvocationID</span><span class="p">;</span><span class="w"> </span><span class="c1">// Requires GLSL 4.0 or ARB_gpu_shader5</span>
+</pre></div>
+<dl><dt><span class="tpl-code">gl_PrimitiveIDIn</span></dt>
+<dd>the current input primitive's ID, based on the number of primitives processed by the GS since the current drawing command started.</dd>
+<dt><span class="tpl-code">gl_InvocationID</span></dt>
+<dd>the current instance, as defined when <a href="/opengl/Geometry_Shader_Instancing" class="mw-redirect" title="Geometry Shader Instancing">instancing geometry shaders</a>.</dd></dl>
+<h2><span class="mw-headline" id="Outputs">Outputs</span></h2>
+<p>Geometry shaders can output as many vertices as they wish (up to the maximum specified by the <span class="tpl-code">max_vertices</span> layout specification). To provide this, output values in geometry shaders are not arrays. Instead, a function-based interface is used.
+</p><p>GS code writes all of the output values for a vertex, then calls <span class="tpl-code">EmitVertex()</span>. This tells the system to write those output values to where ever it is that output vertices get written. After calling this function, all output variables contain undefined values. So you will need to write to them all again before emitting the next vertex (if there is a next vertex).
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> You must write to <i>each</i> output variable before every <span class="tpl-code">EmitVertex()</span> call (for all outputs <a href="#Output_streams">for a stream</a> for each <span class="tpl-code">EmitStreamVertex()</span> call).</div>
+<p>The GS defines what kind of primitive these vertex outputs represent. The GS can also end a primitive and start a new one, by calling the <span class="tpl-code">EndPrimitive()</span> function. This does not emit a vertex.
+</p><p>In order to write two independent triangles from a GS, you must write three separate vertices with <span class="tpl-code">EmitVertex()</span> for the first three vertices, then call <span class="tpl-code">EndPrimitive()</span> to end the strip and start a new one. Then you write three more vertices with <span class="tpl-code">EmitVertex()</span>.
+</p><p>Output variables are defined as normal for GLSL. They can be grouped into interface blocks or be single values, as appropriate. Output variables can be defined with <a href="/opengl/Interpolation_qualifiers" class="mw-redirect" title="Interpolation qualifiers">interpolation qualifiers</a>. The <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> equivalent interface variables should define the same variables with the same qualifiers.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Geometry_Shader/Defined_Outputs" title="Geometry Shader/Defined Outputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Geometry_Shader/Defined_Outputs&amp;action=edit">E</a></span></span></div>
+<p><b>Geometry Shader</b>s have the following built-in outputs.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+<p><span class="tpl-code">gl_PerVertex</span> defines an <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block</a> for outputs. The block is defined without an instance name, so that prefixing the names is not required.
+</p><p>The GS is the final <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage. Therefore, unless rasterization is being turned off, you must write to some of these values. These outputs are always associated with stream 0. So if you're emitting vertices to a different stream, you don't have to write to them.
+</p>
+<dl><dt><span class="tpl-code">gl_Position</span></dt>
+<dd>the clip-space output position of the current vertex. This value must be written if you are emitting a vertex to stream 0, unless rasterization is off.</dd>
+<dt><span class="tpl-code">gl_PointSize</span></dt>
+<dd>the pixel width/height of the point being rasterized. It is only necessary to write to this when outputting <a href="/opengl/Point_Primitive" class="mw-redirect" title="Point Primitive">point primitives</a>.</dd>
+<dt><span class="tpl-code">gl_ClipDistance</span></dt>
+<dd>allows the shader to set the distance from the vertex to each <a href="/opengl/User-Defined_Clip_Plane" class="mw-redirect" title="User-Defined Clip Plane">User-Defined Clip Plane</a>. A positive distance means that the vertex is inside/behind the clip plane, and a negative distance means it is outside/in front of the clip plane. In order to use this variable, the user must manually redeclare it (and therefore the interface block) with an explicit size.</dd></dl>
+<p>Certain predefined outputs have special meaning and semantics.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_PrimitiveID</span><span class="p">;</span>
+</pre></div>
+<p>The primitive ID will be passed to the fragment shader. The primitive ID for a particular line/triangle will be taken from the <a href="/opengl/Provoking_Vertex" class="mw-redirect" title="Provoking Vertex">provoking vertex</a> of that line/triangle, so make sure that you are writing the correct value for the right provoking vertex.
+</p><p>The meaning for this value is whatever you want it to be. However, if you want to match the standard OpenGL meaning (ie: what the <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a> would get if no GS were used), you must do this for each vertex before emitting it:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="nb">gl_PrimitiveID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">gl_PrimitiveIDIn</span><span class="p">;</span>
+</pre></div>
+<p>This naturally assumes that the number of primitives output by the GS equals the number of primitives received by the GS.
+</p>
+<h3><span class="mw-headline" id="Layered_rendering">Layered rendering</span></h3>
+<p>Layered rendering is the process of having the GS send specific primitives to different layers of a <a href="/opengl/Layered_Framebuffer" class="mw-redirect" title="Layered Framebuffer">layered framebuffer</a>. This can be useful for doing cube-based shadow mapping, or even for rendering cube environment maps without having to render the entire scene multiple times.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Geometry_Shader/Defined_Outputs_Layered" title="Geometry Shader/Defined Outputs Layered">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Geometry_Shader/Defined_Outputs_Layered&amp;action=edit">E</a></span></span></div>
+<p>Layered rendering in the <b>GS</b> works via two special output variables:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_Layer</span><span class="p">;</span>
+<span class="k">out</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_ViewportIndex</span><span class="p">;</span><span class="w"> </span><span class="c1">// Requires GL 4.1 or ARB_viewport_array.</span>
+</pre></div>
+<p>The <span class="tpl-code">gl_Layer</span> output defines which layer in the layered image the primitive goes to. Each vertex in the primitive must get the same layer index. Note that when rendering to cubemap arrays, the <span class="tpl-code">gl_Layer</span> value represents layer-faces (the faces within a layer), not the layers of cubemaps.
+</p><p><span class="tpl-code">gl_ViewportIndex</span>, which requires GL 4.1 or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/viewport_array.txt">ARB_viewport_array</a>, specifies which viewport index to use with this primitive.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/viewport_array.txt">ARB_viewport_array</a>, while technically a 4.1 feature, is widely available on 3.3 hardware, from both NVIDIA and AMD.</div>
+<p>Layered rendering can be more efficient with GS instancing, as different GS invocations can process instances in parallel. However, while <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/viewport_array.txt">ARB_viewport_array</a> is often implemented in 3.3 hardware, no 3.3 hardware provides <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/gpu_shader5.txt">ARB_gpu_shader5</a> support.
+</p>
+<div style="margin-left: 3em;">
+<b>Warning:</b> <span class="tpl-code">gl_Layer</span> and <span class="tpl-code">gl_ViewportIndex</span> are GS output variables. As such, every time you call <span class="tpl-code">EmitVertex</span>, their values will become <i>undefined</i>. Therefore, you must set these variables <i>every time</i> you loop over outputs.</div>
+<p>If the geometry shader never writes to <span class="tpl-code">gl_ViewportIndex</span>, then everything will behave as if 0 were written to it.
+</p>
+<h4><span class="mw-headline" id="Which_vertex">Which vertex</span></h4>
+<p><span class="tpl-code">gl_Layer</span> and <span class="tpl-code">gl_ViewportIndex</span> are per-vertex parameters, but they specify a property that applies to the entire <i>primitive</i>. Therefore, a question arises: which vertex in a particular primitive defines that primitive's layer and viewport index?
+</p><p>The answer is that it is implementation-dependent. However, OpenGL does have two queries to determine which one the current implementation uses: <span class="tpl-enum">GL_LAYER_PROVOKING_VERTEX</span> and <span class="tpl-enum">GL_VIEWPORT_INDEX_PROVOKING_VERTEX</span>.
+</p><p>The value returned from <span class="tpl-code"><a href="/opengl/GLAPI/glGet" title="GLAPI/glGet">glGetIntegerv</a></span> will be one of the following enumerators:
+</p>
+<ul><li><span class="tpl-enum">GL_PROVOKING_VERTEX</span>: The vertex used will track the current <a href="/opengl/Provoking_Vertex" class="mw-redirect" title="Provoking Vertex">provoking vertex convention</a>.</li>
+<li><span class="tpl-enum">GL_LAST_VERTEX_CONVENTION​</span>: The vertex used will be the one defined by the last-vertex provoking vertex convention.</li>
+<li><span class="tpl-enum">GL_FIRST_VERTEX_CONVENTION​</span>: The vertex used will be the one defined by the first-vertex provoking vertex convention.</li>
+<li><span class="tpl-enum">GL_UNDEFINED_VERTEX</span>: The implementation isn't saying.</li></ul>
+<p>For maximum portability, you will have to provide the same layer and viewport index to each primitive. So if you wanted to output a triangle strip, where different triangles had different indices, too bad. You have to split it into different primitives.
+</p>
+<h3><span class="mw-headline" id="Output_streams">Output streams</span></h3>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Output streams</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p>When using <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a> to compute values, it is often useful to be able to send different sets of vertices to different buffers at different rates. For example, GS's can send vertex data to one stream, while building per-instance data in another stream. The vertex data and per-instance data will be of different lengths, written at different speeds.
+</p><p>Multiple stream output <i>requires</i> that the output primitive type be <span class="tpl-code">points</span>. You can still take whatever input you prefer.
+</p><p>To provide this, output variables can be given a stream index with a layout qualifier:
+<br style="clear: both" />
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="w"> </span><span class="k">layout</span><span class="p">(</span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stream_index</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">some_output</span><span class="p">;</span>
+</pre></div>
+<p>The <span class="tpl-param">stream_index​</span> ranges from 0 to <span class="tpl-code">GL_MAX_VERTEX_STREAMS</span> - 1.
+</p><p>A default value for the stream can be set with:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">stream</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">out</span><span class="p">;</span>
+</pre></div>
+<p>All following <span class="tpl-code">out</span> variables will use stream 2 unless they specify a stream. The default can be changed later. The initial default is 0.
+</p><p>To write a vertex to a particular stream, the function <span class="tpl-code">EmitStreamVertex</span> is used. This function takes a stream index; only those output variables are written. Similarly, <span class="tpl-code">EndStreamPrimitive</span> ends a particular stream's primitive. However, since multiple stream output requires using <span class="tpl-code">points</span> primitives, the latter function is not very useful.
+</p><p>Only primitives emitted to stream 0 will actually be pass along to <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a> and rendered; the rest of the streams will only matter if transform feedback is being used. Calling <span class="tpl-code">EmitVertex</span> or <span class="tpl-code">EndPrimitive</span> is equivalent to calling their stream counterparts with stream 0.
+</p>
+<h2><span class="mw-headline" id="Output_limitations">Output limitations</span></h2>
+<p>There are two competing limitations on the output of a geometry shader:
+</p>
+<ol><li>The maximum number of vertices that a single invocation of a GS can output.</li>
+<li>The total maximum number of output components that a single invocation of a GS can output.</li></ol>
+<p>The first limit, defined by <span class="tpl-enum">GL_MAX_GEOMETRY_OUTPUT_VERTICES</span>, is the maximum number that can be provided to the <span class="tpl-param">max_vertices​</span> output layout qualifier. No single geometry shader invocation can exceed this number.
+</p><p>The other limit, defined by <span class="tpl-enum">GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS</span> is, in layman's terms, the total amount of stuff that a single GS invocation can write. It is the total number of output values (a component, in GLSL terms, is a component of a vector. So a <span class="tpl-code">float</span> is one component; a <span class="tpl-code">vec3</span> is 3 components) that a single GS invocation can write to. This is different from <span class="tpl-enum">GL_MAX_GEOMETRY_OUTPUT_COMPONENTS</span> (the maximum allowed number of components in <span class="tpl-code">out</span> variables). The total output component is the total number of components + vertices that can be written.
+</p><p>For example, if the total output component count is 1024 (the smallest maximum value from GL 4.3), and the output stream writes to 12 components, the total number of vertices that can be written is <span class="mwe-math-fallback-source-inline tex" dir="ltr">$ floor({\tfrac {1024}{12}})=85 $</span>. This is the absolute hard limit to the number of vertices that can be written. Even if <span class="tpl-enum">GL_MAX_GEOMETRY_OUTPUT_VERTICES</span> is larger than 85, because this vertex shader writes 12 components per vertex, the true maximum that this geometry shader can write is 85 vertices. If the geometry shader instead wrote only 8 components per vertex, then it could write 128 (subject to the output vertices limit, of course).
+</p><p>Note that even built-in outputs like <span class="tpl-code">gl_Layer</span> count towards <span class="tpl-enum">GL_MAX_GEOMETRY_TOTAL_OUTPUT_COMPONENTS</span>. For example, a geometry shader with a total output component count of 1024 which outputs <span class="tpl-code">vec4 gl_Position</span> and <span class="tpl-code">int gl_Layer</span> supports a maximum of <span class="mwe-math-fallback-source-inline tex" dir="ltr">$ floor({\tfrac {1024}{4+1}})=204 $</span> vertices.
+</p>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type Qualifier (GLSL)</a></li>
+<li><a href="/opengl/Geometry_Shader_Examples" title="Geometry Shader Examples">Geometry Shader Examples</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260317163245
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.249 seconds
+Real time usage: 0.618 seconds
+Preprocessor visited node count: 2894/1000000
+Post‐expand include size: 36976/2097152 bytes
+Template argument size: 9073/2097152 bytes
+Highest expansion depth: 11/100
+Expensive parser function count: 8/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 4479/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%  370.866      1 -total
+  6.25%   23.170      3 Template:Infobox_feature
+  5.93%   21.982      3 Template:Infobox2
+  5.46%   20.245      3 Template:Snippet
+  4.47%   16.581      1 Template:Stack
+  2.27%    8.414     30 Template:Infobox/longrow
+  1.64%    6.068     30 Template:Infobox/shortrow
+  1.49%    5.512      1 Geometry_Shader/Defined_Inputs
+  1.46%    5.412      1 Template:Pipeline_float
+  1.39%    5.148      1 Geometry_Shader/Defined_Outputs_Layered
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1566-0!canonical and timestamp 20260317163245 and revision id 14926. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Geometry_Shader&amp;oldid=14926">https://wikis.khronos.org/opengl/index.php?title=Geometry_Shader&amp;oldid=14926</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li><li><a href="/opengl/Category:Vertex_Processing" title="Category:Vertex Processing">Vertex Processing</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

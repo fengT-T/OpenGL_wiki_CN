@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Vertex Shader - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"38a32117d1340982285ed6d6","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Vertex_Shader","wgTitle":"Vertex Shader","wgCurRevisionId":14097,"wgRevisionId":14097,"wgArticleId":1563,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","Shaders","Vertex Processing","OpenGL Shading Language"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Vertex_Shader","wgRelevantArticleId":1563,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Vertex_Shader rootpage-Vertex_Shader skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Vertex Shader</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><b>Vertex Shader</b></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+<p>The <b>Vertex Shader</b> is the programmable <a href="/opengl/Shader" title="Shader">Shader</a> stage in the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">rendering pipeline</a> that handles the processing of individual vertices. Vertex shaders are fed <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attribute</a> data, as specified from a <a href="/opengl/Vertex_Specification" title="Vertex Specification">vertex array object</a> by a <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">drawing command</a>. A vertex shader receives a single vertex from the vertex stream and generates a single vertex to the output vertex stream. There must be a 1:1 mapping from input vertices to output vertices.
+</p><p>Vertex shaders typically perform transformations to post-projection space, for consumption by the <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a> stage. They can also be used to do per-vertex lighting, or to perform setup work for later shader stages.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Invocation_frequency"><span class="tocnumber">1</span> <span class="toctext">Invocation frequency</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Inputs"><span class="tocnumber">2</span> <span class="toctext">Inputs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Multiple_attributes"><span class="tocnumber">2.1</span> <span class="toctext">Multiple attributes</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Attribute_limits"><span class="tocnumber">2.2</span> <span class="toctext">Attribute limits</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Other_inputs"><span class="tocnumber">2.3</span> <span class="toctext">Other inputs</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Outputs"><span class="tocnumber">3</span> <span class="toctext">Outputs</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Invocation_frequency">Invocation frequency</span></h2>
+<p>The OpenGL specification is fairly lenient on the number of times a vertex shader is invoked by the rendering system. <a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a> and <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a> define a vertex stream: an ordered sequence of vertices to be consumed. The vertex shader will be executed <i>roughly</i> once for every vertex in the stream.
+</p><p>A vertex shader is (usually) <a href="/opengl/Invariance" title="Invariance">invariant</a> with its input. That is, within a single <a href="/opengl/Drawing_Command" class="mw-redirect" title="Drawing Command">Drawing Command</a>, two vertex shader invocations that get the exact same <a href="#Inputs">input attributes</a> will return binary identical results. Because of this, if OpenGL can detect that a vertex shader invocation is being given the same inputs as a previous invocation, it is allowed to reuse the results of the previous invocation, instead of wasting valuable time executing something that it already knows the answer to.
+</p><p>OpenGL implementations generally do not do this by actually comparing the input values (that would take far too long). Instead, this optimization typically only happens when using <a href="/opengl/Vertex_Specification" title="Vertex Specification">indexed rendering</a> <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">functions</a>. If a particular index is specified more than once (within the same <a href="/opengl/Instanced_Rendering" class="mw-redirect" title="Instanced Rendering">Instanced Rendering</a>), then this vertex is guaranteed to result in the exact same input data.
+</p><p>Therefore, implementations employ a <a href="/opengl/Post_Transform_Cache" title="Post Transform Cache">cache on the results of vertex shaders</a>. If an index/instance pair comes up again, and the result is still in the cache, then the vertex shader is not executed again. Thus, there can be fewer vertex shader invocations than there are vertices specified.
+</p><p>However, you are guaranteed to have at least one vertex shader invocation for every unique set of attributes you use.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> It is entire possible that the invocation frequency of the vertex shader can change if <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> is active. Particularly if a <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a> is active. So the tricks you might play to save vertex shader invocations may not work when tessellating. Then again, they may work just as well. However, it is assured that they <i>will not</i> save you TCS invocations, as the TCS cannot use these optimizations.</div>
+<h2><span class="mw-headline" id="Inputs">Inputs</span></h2>
+<p>User-defined input values to vertex shaders are sometimes called "vertex attributes". Their values are provided by issuing a <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">drawing command</a> while an appropriate <a href="/opengl/Vertex_Specification" title="Vertex Specification">vertex array object</a> is bound.
+</p><p>Vertex shader input variables are defined as normal for shader stages, using the <span class="tpl-code">in</span> <a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">type qualifier</a>. Vertex Shader inputs cannot be aggregated into <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">Interface Blocks</a>.
+</p><p>Each user-defined input variable is assigned one or more vertex attribute indices. These can be explicitly assigned in one of three ways. The methods for assigning these are listed in priority order, with the highest priority first. The higher priority methods take precedence over the later ones.
+</p>
+<dl><dt>In-shader specification</dt>
+<dd>The shader defines the attribute index. This is done using the <span class="tpl-code">layout(location = #)</span> syntax:</dd></dl>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">a_vec</span><span class="p">;</span>
+</pre></div>
+<dl><dd>This assigns the attribute <span class="tpl-code">a_vec</span> the index 2.</dd>
+<dt>Pre-link specification</dt>
+<dd>Before linking a program that includes a vertex shader, the user may tell OpenGL to assign a particular attribute to a particular index. This is done with the following function:</dd></dl>
+<pre> void <span class="tpl-code"><a href="/opengl/GLAPI/glBindAttribLocation" title="GLAPI/glBindAttribLocation">glBindAttribLocation</a></span>(GLuint <span class="tpl-param">program​</span>, GLuint <span class="tpl-param">index​</span>, const GLchar *<span class="tpl-param">name​</span>);
+</pre>
+<dl><dd><span class="tpl-param">index​</span> is the attribute index to assign. <span class="tpl-param">name​</span> is the name of the vertex shader input to assign the given index to.</dd>
+<dd>Note that it is perfectly legal to use this function to assign indices to names that are not mentioned in the vertex shader. The linking process will only use the names that are actually used by the vertex shader. Because of that, it is also perfectly legal to assign multiple names to the <i>same index</i>; this is only an error if a shader attempts to use both of the names that use the same index.</dd>
+<dt>Automatic assignment</dt>
+<dd>If neither of the prior two methods assign an input to an attribute index, then the index is automatically assigned by OpenGL when the program is linked. The index assigned is completely arbitrary and may be different for different programs that are linked, even if they use the exact same vertex shader code.</dd></dl>
+<p>Note that like <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniforms</a>, vertex attributes can be "active" and non-active. Active inputs are those that the compiler/linker detects are actually in use. The vertex shader and GLSL program linking process can decide that some input are not in use and therefore they are not active. This is done even if an explicit attribute index is assigned in the vertex shader.
+</p><p>The active attributes can be queried via program introspection, either through the <a href="/opengl/Program_Interface_Query" class="mw-redirect" title="Program Interface Query">new, generic API</a> or the <a href="/opengl/Program_Introspection#Attributes" title="Program Introspection">old API</a>.
+</p>
+<h3><span class="mw-headline" id="Multiple_attributes">Multiple attributes</span></h3>
+<p>Attributes may be arrays, matrices, and double-precision types (if OpenGL 4.1<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/vertex_attrib_64bit.txt">ARB_vertex_attrib_64bit</a> is available). Or combinations of any of these. Some of these types are large enough to require that the input variable be assigned to multiple attribute indices.
+</p><p>Matrix inputs take up one attribute index for every column. Array attributes take up one index per element, even if the array is a <span class="tpl-code">float</span> and could have use up to 4 indices.
+</p><p>Double-precision input variables of <span class="tpl-code">double</span> or <span class="tpl-code">dvec</span> types <i>always</i> take up one attribute. Even if they are <span class="tpl-code">dvec4</span>.
+</p><p>These combine with each other. A <span class="tpl-code">mat2x4[2]</span> array is broken up into four <span class="tpl-code">vec4</span> values, each of which is assigned an index. Thus, it takes up 4 indices; the first two indices specify the two columns of array index 0, and the next two indices specify the two columns of array index 1.
+</p><p>When an input requires multiple indices, it will always be assigned <i>sequential</i> indices starting from the given index. Consider:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">a_matrix</span><span class="p">;</span>
+</pre></div>
+<p><span class="tpl-code">a_matrix</span> will be assigned attribute indices 3, 4, 5, and 6. This works regardless of what methods you use to assign vertex attribute indices to input variables.
+</p><p>Linking will fail if any index ranges collide. Thus, this will fail to link:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">a_matrix</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">vec4</span><span class="w"> </span><span class="n">a_vec</span><span class="p">;</span>
+</pre></div>
+<p>Because <span class="tpl-code">a_matrix</span> has four columns, it will take up the attribute indices on the range [0, 3]. That overlaps with <span class="tpl-code">a_vec</span>'s attribute index, and thus a linking error will occur.
+</p><p>This will also fail, assuming the implementation only allows 16 attribute indices:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mo">0</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">a_matrix1</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">a_matrix2</span><span class="p">;</span>
+<span class="k">layout</span><span class="p">(</span><span class="n">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">a_matrix3</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">mat4</span><span class="w"> </span><span class="n">bad_matrix</span><span class="p">;</span>
+</pre></div>
+<p>Even though there are 4 total attribute indices available after the <span class="tpl-code">a_matrix*</span> indices are assigned, they cannot be assigned <i>sequentially</i>. There is no attribute index for <span class="tpl-code">bad_matrix</span> that will allow it to get 4 sequential indices. Thus, the linker will fail.
+</p>
+<h3><span class="mw-headline" id="Attribute_limits">Attribute limits</span></h3>
+<p>In general, the number of attribute indices <i>are</i> the limitation on them. No attribute can be assigned an index higher than <span class="tpl-enum">GL_MAX_VERTEX_ATTRIBS</span>.
+</p><p>There is a case which makes this more complex: double-precision attributes (if OpenGL 4.1<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/vertex_attrib_64bit.txt">ARB_vertex_attrib_64bit</a> is available). <span class="tpl-code">dvec3</span> and <span class="tpl-code">dvec4</span> only take up one attribute index. But implementations are allowed to count them <i>twice</i> when determining the limits on the number of attributes. Thus, while a <span class="tpl-code">dmat2x3[4]</span> will only take up 8 attribute indices (4 array elements of 2 columns of <span class="tpl-code">dvec3</span>s), the implementation is allowed to consider this as taking up 16 indices when determining if a shader is using up too many attribute indices. As such, a <span class="tpl-code">dmat2x3[<b>5</b>]</span> may fail to link even though it only uses 10 attribute indices.
+</p><p>Note the use of the word "allowed". The implementation is free to count them only once, but you can't <i>rely</i> on it. So you need to assume that these will consume two input resources, even though they only use one index. Since there is no way to query whether any particular implementation will count them twice, you <i>must assume</i> that they will take up two resources.
+</p>
+<h3><span class="mw-headline" id="Other_inputs">Other inputs</span></h3>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Vertex_Shader/Defined_Inputs" title="Vertex Shader/Defined Inputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Vertex_Shader/Defined_Inputs&amp;action=edit">E</a></span></span></div>
+<p><a class="mw-selflink selflink">Vertex Shaders</a> have the following built-in input variables.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_VertexID</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_InstanceID</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_DrawID</span><span class="p">;</span><span class="w"> </span><span class="c1">// Requires GLSL 4.60 or ARB_shader_draw_parameters</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_BaseVertex</span><span class="p">;</span><span class="w"> </span><span class="c1">// Requires GLSL 4.60 or ARB_shader_draw_parameters</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_BaseInstance</span><span class="p">;</span><span class="w"> </span><span class="c1">// Requires GLSL 4.60 or ARB_shader_draw_parameters</span>
+</pre></div>
+<dl><dt><span class="tpl-code">gl_VertexID</span></dt>
+<dd>the index of the vertex currently being processed. When using non-indexed rendering, it is the effective index of the current vertex (the number of vertices processed + the <span class="tpl-param">first​</span> value). For indexed rendering, it is the index used to fetch this vertex from the buffer.</dd></dl>
+<div style="margin-left: 3em;">
+<b>Note:</b> <span class="tpl-code">gl_VertexID</span> will have the <a href="/opengl/Draw_Base_Index" class="mw-redirect" title="Draw Base Index"><span class="tpl-param">baseVertex​</span> parameter</a> added to the index, if there was such a parameter in the rendering command.</div>
+<dl><dt><span class="tpl-code">gl_InstanceID</span></dt>
+<dd>the index of the current instance when doing some form of <a href="/opengl/Instancing" class="mw-redirect" title="Instancing">instanced rendering</a>. The instance count <i>always</i> starts at 0, even when using base instance calls. When not using instanced rendering, this value will be 0.</dd></dl>
+<div style="margin-left: 3em;">
+<b>Warning:</b> This value <i><b>does not</b></i> follow the <a href="/opengl/Instancing" class="mw-redirect" title="Instancing"><span class="tpl-param">baseInstance​</span> provided by some instanced rendering functions</a>. <span class="tpl-code">gl_InstanceID</span> always falls on the half-open range [0, <span class="tpl-param">instancecount​</span>). If you have GLSL 4.60, you may use <span class="tpl-code">gl_BaseInstance</span> to compute the proper instance index.</div>
+<dl><dt><span class="tpl-code">gl_DrawID</span></dt>
+<dd>the index of the drawing command within <a href="/opengl/Multidraw_Rendering" class="mw-redirect" title="Multidraw Rendering">multi-draw rendering</a> commands (including indirect multi-draw commands). The first draw command has an ID of 0, increasing by one as the renderer passes through drawing commands.</dd>
+<dd>This value will always be a <a href="/opengl/Dynamically_Uniform_Expression" class="mw-redirect" title="Dynamically Uniform Expression">Dynamically Uniform Expression</a>.</dd>
+<dt><span class="tpl-code">gl_BaseVertex</span></dt>
+<dd>the value of the <span class="tpl-param">baseVertex​</span> parameter of the rendering command. If the rendering command did not include that parameter, the value of this input will be 0.</dd>
+<dt><span class="tpl-code">gl_BaseInstance</span></dt>
+<dd>the value of the <span class="tpl-param">baseInstance​</span> parameter of the <a href="/opengl/Instancing" class="mw-redirect" title="Instancing">instanced rendering command</a>. If the rendering command did not include this parameter, the value of this input will be 0.</dd></dl>
+<h2><span class="mw-headline" id="Outputs">Outputs</span></h2>
+<p>Output variables from the vertex shader are passed to the next section of the pipeline. Many of the next stages are optional, so if they are not present, then the outputs are passed to the next one that is. They are in this order:
+</p>
+<ol><li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a>. If no <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a> is present, the <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shader</a> will get them.</li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a></li></ol>
+<p>User-defined output variables can have <a href="/opengl/Interpolation_qualifiers" class="mw-redirect" title="Interpolation qualifiers">interpolation qualifiers</a> (though these only matter if the output is being passed directly to the <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a> stage). Vertex shader outputs can also be aggregated into <a href="/opengl/Interface_Block" class="mw-redirect" title="Interface Block">Interface Blocks</a>.
+</p><p><br />
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Vertex_Shader/Defined_Outputs" title="Vertex Shader/Defined Outputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Vertex_Shader/Defined_Outputs&amp;action=edit">E</a></span></span></div>
+<p><b>Vertex Shaders</b> have the following predefined outputs.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+<p><span class="tpl-code">gl_PerVertex</span> defines an <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block</a> for outputs. The block is defined without an instance name, so that prefixing the names is not required.
+</p><p>These variables only take on the meanings below if this shader is the last active <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage, and if rasterization is still active (ie: <span class="tpl-enum">GL_RASTERIZER_DISCARD</span> is not enabled). The text below explains how the <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a> system uses the variables. These variables may not be redeclared with interpolation qualifiers.
+</p>
+<dl><dt><span class="tpl-code">gl_Position</span></dt>
+<dd>the clip-space output position of the current vertex.</dd>
+<dt><span class="tpl-code">gl_PointSize</span></dt>
+<dd>the pixel width/height of the point being rasterized. It only has a meaning when rendering <a href="/opengl/Point_Primitive" class="mw-redirect" title="Point Primitive">point primitives</a>. It will be clamped to the <span class="tpl-enum">GL_POINT_SIZE_RANGE</span>.</dd>
+<dt><span class="tpl-code">gl_ClipDistance</span></dt>
+<dd>allows the shader to set the distance from the vertex to each <a href="/opengl/User-Defined_Clip_Plane" class="mw-redirect" title="User-Defined Clip Plane">user-defined clipping half-space</a>. A non-negative distance means that the vertex is inside/behind the clip plane, and a negative distance means it is outside/in front of the clip plane. Each element in the array is one clip plane. In order to use this variable, the user must manually redeclare it with an explicit size.  With GLSL 4.10<span> or </span><a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/separate_shader_objects.txt">ARB_separate_shader_objects</a>, the whole <span class="tpl-code">gl_PerVertex</span> block needs to be redeclared. Otherwise just the <span class="tpl-code">gl_ClipDistance</span> built-in needs to be redeclared.</dd></dl>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a></li>
+<li><a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attribute</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318052523
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.084 seconds
+Real time usage: 0.092 seconds
+Preprocessor visited node count: 930/1000000
+Post‐expand include size: 18157/2097152 bytes
+Template argument size: 3972/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 6/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 5432/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   48.710      1 -total
+ 32.81%   15.984      1 Template:Pipeline_float
+ 31.74%   15.460      2 Template:Snippet
+ 25.60%   12.470      1 Template:Pipeline_list
+ 16.33%    7.953     23 Template:Pagelink
+ 12.75%    6.212      1 Vertex_Shader/Defined_Inputs
+ 11.16%    5.434      1 Vertex_Shader/Defined_Outputs
+  6.86%    3.341     34 Template:Code
+  6.78%    3.303      2 Template:Note
+  6.18%    3.009      2 Template:Require
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1563-0!canonical and timestamp 20260318052523 and revision id 14097. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Vertex_Shader&amp;oldid=14097">https://wikis.khronos.org/opengl/index.php?title=Vertex_Shader&amp;oldid=14097</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li><li><a href="/opengl/Category:Vertex_Processing" title="Category:Vertex Processing">Vertex Processing</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Vertex+Shader" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Vertex_Shader" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Vertex_Shader&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Vertex_Shader"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Vertex_Shader&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Vertex_Shader&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Vertex_Shader" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Vertex_Shader" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Vertex_Shader&amp;oldid=14097" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Vertex_Shader&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Vertex_Shader&amp;id=14097&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 10 November 2017, at 11:03.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":175,"wgPageParseReport":{"limitreport":{"cputime":"0.084","walltime":"0.092","ppvisitednodes":{"value":930,"limit":1000000},"postexpandincludesize":{"value":18157,"limit":2097152},"templateargumentsize":{"value":3972,"limit":2097152},"expansiondepth":{"value":9,"limit":100},"expensivefunctioncount":{"value":6,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":5432,"limit":5000000},"timingprofile":["100.00%   48.710      1 -total"," 32.81%   15.984      1 Template:Pipeline_float"," 31.74%   15.460      2 Template:Snippet"," 25.60%   12.470      1 Template:Pipeline_list"," 16.33%    7.953     23 Template:Pagelink"," 12.75%    6.212      1 Vertex_Shader/Defined_Inputs"," 11.16%    5.434      1 Vertex_Shader/Defined_Outputs","  6.86%    3.341     34 Template:Code","  6.78%    3.303      2 Template:Note","  6.18%    3.009      2 Template:Require"]},"cachereport":{"timestamp":"20260318052523","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6ca76ba9a3d1',t:'MTc3NDIzNzMyOA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

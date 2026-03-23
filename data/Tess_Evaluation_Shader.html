@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Tessellation Evaluation Shader - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Tessellation_Evaluation_Shader rootpage-Tessellation_Evaluation_Shader skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Tessellation Evaluation Shader</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"><span class="mw-redirectedfrom">(Redirected from <a href="/opengl/index.php?title=Tess_Evaluation_Shader&amp;redirect=no" class="mw-redirect" title="Tess Evaluation Shader">Tess Evaluation Shader</a>)</span></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Tessellation Evaluation Shader</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.0</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Rendering Pipeline</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">Rendering Pipeline Overview</a></div>
+<hr />
+<ul><li><a href="/opengl/Vertex_Specification" title="Vertex Specification">Vertex Specification</a>
+<ul><li><a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a></li>
+<li><a href="/opengl/Primitive" title="Primitive">Primitive</a></li></ul></li>
+<li><a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li></ul></li>
+<li><a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a>
+<ul><li><a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a></li></ul></li>
+<li><a href="/opengl/Primitive_Assembly" title="Primitive Assembly">Primitive Assembly</a>
+<ul><li><a href="/opengl/Face_Culling" title="Face Culling">Face Culling</a></li></ul></li>
+<li><a href="/opengl/Rasterization" title="Rasterization">Rasterization</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Per-Sample_Processing" title="Per-Sample Processing">Per-Sample Processing</a>
+<ul><li><a href="/opengl/Scissor_Test" title="Scissor Test">Scissor Test</a></li>
+<li><a href="/opengl/Stencil_Test" title="Stencil Test">Stencil Test</a></li>
+<li><a href="/opengl/Depth_Test" title="Depth Test">Depth Test</a></li>
+<li><a href="/opengl/Blending" title="Blending">Blending</a></li>
+<li><a href="/opengl/Logical_Operation" title="Logical Operation">Logical Operation</a></li>
+<li><a href="/opengl/Write_Mask" title="Write Mask">Write Mask</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>The <b>Tessellation Evaluation Shader</b> (TES) is a <a href="/opengl/Shader" title="Shader">Shader</a> program written in <a href="/opengl/GLSL" class="mw-redirect" title="GLSL">GLSL</a> that takes the results of a <a href="/opengl/Tessellation" title="Tessellation">Tessellation</a> operation and computes the interpolated positions and other per-vertex data from them. These values are passed on to the next stage in the pipeline.
+</p><p>The (TES) takes the abstract patch generated by the <a href="/opengl/Tessellation_Primitive_Generator" class="mw-redirect" title="Tessellation Primitive Generator">tessellation primitive generation stage</a>, as well as the actual vertex data for the entire patch, and generates a particular vertex from it. Each TES invocation generates a single vertex. It can also take per-patch data provided by the <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a>.
+</p><p>The number of times the TES is invoked can differ from implementation to implementation. It will be invoked at least once per tessellated vertex in the abstract patch, but there is no guarantee that the TES won't be invoked multiple times for the same vertex. However, like the <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a>, the TES is expected to output the same value for the same vertex in the abstract patch.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Tessellation_options"><span class="tocnumber">1</span> <span class="toctext">Tessellation options</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Abstract_patch_type"><span class="tocnumber">1.1</span> <span class="toctext">Abstract patch type</span></a></li>
+<li class="toclevel-2 tocsection-3"><a href="#Spacing"><span class="tocnumber">1.2</span> <span class="toctext">Spacing</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Primitive_ordering"><span class="tocnumber">1.3</span> <span class="toctext">Primitive ordering</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Primitive_generation"><span class="tocnumber">1.4</span> <span class="toctext">Primitive generation</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Inputs"><span class="tocnumber">2</span> <span class="toctext">Inputs</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Outputs"><span class="tocnumber">3</span> <span class="toctext">Outputs</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Tessellation_options">Tessellation options</span></h2>
+<p>The presence of an active TES in a program or program pipeline is what governs whether or not the tessellation primitive generation stage will occur. Because of that, many options that control the particular form of tessellation are specified in the TES itself.
+</p><p>The details of what these mean for the tessellation results are described in the section on the <a href="/opengl/Tessellation_Primitive_Generator" class="mw-redirect" title="Tessellation Primitive Generator">tessellation primitive generation</a>. This section will only describe how to specify these options, not go into detail on exactly what they do.
+</p><p>All of these options are input layout qualifiers. They are specified using that syntax:
+</p>
+<pre>layout(<span class="tpl-param">param1​</span>, <span class="tpl-param">param2​</span>, ...) in;
+</pre>
+<p>They can be specified as separate statements or all in one. However, each particular type of parameter can only be specified once (you technically can specify them multiple times, but they all must be the same).
+</p>
+<h3><span class="mw-headline" id="Abstract_patch_type">Abstract patch type</span></h3>
+<p>The TES defines the type of <a href="/opengl/Abstract_Patch" class="mw-redirect" title="Abstract Patch">abstract patch</a> that will be tessellated.
+</p><p>The possible values for this are:
+</p>
+<ul><li><span class="tpl-code">isolines</span>: The patch is a rectangular block of parallel lines. The output is a series of lines.</li>
+<li><span class="tpl-code">triangles</span>: The patch is a triangle. The output is a series of triangles.</li>
+<li><span class="tpl-code">quads</span>: The patch is a quadrilateral. The output is a series of triangles.</li></ul>
+<p>The TES <i>must</i> provide this option.
+</p>
+<h3><span class="mw-headline" id="Spacing">Spacing</span></h3>
+<p>The TES has options that control the spacing between tessellated vertices of the abstract patch. The possible values for this are:
+</p>
+<ul><li><span class="tpl-code">equal_spacing</span>: There will be equal distances between vertices in the abstract patch.</li>
+<li><span class="tpl-code">fractional_even_spacing</span>: There will always be an even number of segments. Two of the segments will grow and shrink based on how close the tessellation level is to generating more vertices.</li>
+<li><span class="tpl-code">fractional_odd_spacing</span>: As even-spacing, but there will always be an odd number of segments.</li></ul>
+<p>This is optional. If the TES does not specify this parameter, <span class="tpl-code">equal_spacing</span> will be used.
+</p>
+<h3><span class="mw-headline" id="Primitive_ordering">Primitive ordering</span></h3>
+<p>When emitting triangles, the <a href="/opengl/Winding_Order" class="mw-redirect" title="Winding Order">Winding Order</a> can be important for face culling. The process of tessellation takes place over an abstract patch, which is not in any particular coordinate system. It is the TES's responsibility to take abstract patch coordinates and generate real clip-space (or whatever your <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> expects) positions from them.
+</p><p>Therefore, maintaining the proper winding order for triangles is the job of the TES. To facilitate that, the TES has the ability to control the winding order of the <a href="/opengl/Tessellation#Tessellation_primitive_generator" title="Tessellation">primitive generator</a>. This is done via the <span class="tpl-code">cw</span> and <span class="tpl-code">ccw</span> parameters.
+</p><p>Remember that this parameter only controls the winding order of the triangles within the <i>abstract patch</i>. The winding order of the final triangle primitives will ultimately be based on the TES's generated positions. As such, different triangles generated from the same patch can have different final winding orders.
+</p><p>This parameter is optional. If the TES does not specify this parameter, <span class="tpl-code">ccw</span> will be used. Since lines don't have a winding order, this parameter is useless when using the <span class="tpl-code">isolines</span> patch type or <span class="tpl-code">point_mode</span> rendering.
+</p>
+<h3><span class="mw-headline" id="Primitive_generation">Primitive generation</span></h3>
+<p>Normally, the kind of <a href="/opengl/Primitive" title="Primitive">Primitive</a> emitted by the primitive generator is defined by the <a href="#Abstract_patch_type">abstract patch type</a>. <span class="tpl-code">isolines</span> will generate a series of line-strips, while the others will generate a series of triangles.
+</p><p>The TES can force the primitive generator to override this and simply generate a point primitive for each vertex in the tessellated patch. A <a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a> could modify these and build a quad from each point, or they could simply be drawn as points.
+</p><p>To do this, use the layout qualifier <span class="tpl-code">point_mode</span>. Obviously specifying this makes the <a href="#Primitive_ordering">ordering</a> parameter unimportant.
+</p>
+<h2><span class="mw-headline" id="Inputs">Inputs</span></h2>
+<p>The inputs for the TES are the per-vertex and per-patch outputs from the <a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a> (or directly from the vertex shader if no TCS is active). Each TES invocation can access all of the outputs for a particular patch.
+</p><p>Per-vertex inputs from the TCS are arrays of values, indexed by a vertex index. Like TCS outputs, TES inputs can be declared without an explicit size:
+</p>
+<pre>in vec2 vertexTexCoord[];
+</pre>
+<p>The length of the array (<span class="tpl-code">vertexTexCoord.length()</span>) is the size of the input patch.
+</p><p>Per-patch outputs from the TCS can be taken as inputs in the TES using the <span class="tpl-code">patch</span> keyword:
+</p>
+<pre>patch in vec4 data;
+</pre>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Tessellation_Evaluation_Shader/Defined_Inputs" title="Tessellation Evaluation Shader/Defined Inputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation_Evaluation_Shader/Defined_Inputs&amp;action=edit">E</a></span></span></div>
+<p><b>Tessellation Evaluation Shader</b>s have the following built-in inputs.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="kt">vec3</span><span class="w"> </span><span class="nb">gl_TessCoord</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_PatchVerticesIn</span><span class="p">;</span>
+<span class="k">in</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nb">gl_PrimitiveID</span><span class="p">;</span>
+</pre></div>
+<dl><dt><span class="tpl-code">gl_TessCoord</span></dt>
+<dd>the location within the <a href="/opengl/Abstract_Patch" class="mw-redirect" title="Abstract Patch">tessellated abstract patch</a> for this particular vertex. Every input parameter other than this one will be identical for all TES invocations within a patch.</dd>
+<dd>Which components of this <span class="tpl-code">vec3</span> that have valid values depends on the abstract patch type. For <span class="tpl-code">isolines</span> and <span class="tpl-code">quads</span>, only the XY components have valid values. For <span class="tpl-code">triangles</span>, all three components have valid values. All valid values are normalized floats (on the range [0, 1]).</dd>
+<dt><span class="tpl-code">gl_PatchVerticesIn</span></dt>
+<dd>the vertex count for the patch being processed. This is either the output vertex count specified by the TCS, or the patch vertex size specified by <span class="tpl-code"><a href="/opengl/GLAPI/glPatchParameter" title="GLAPI/glPatchParameter">glPatchParameter</a></span> if no TCS is active. Attempts to index per-vertex inputs by a value greater than or equal to <span class="tpl-code">gl_PatchVerticesIn</span> results in undefined behavior.</dd>
+<dt><span class="tpl-code">gl_PrimitiveID</span></dt>
+<dd>the index of the current patch in the series of patches being processed for this draw call. <a href="/opengl/Primitive_restart" class="mw-redirect" title="Primitive restart">Primitive restart</a>, if used, has no effect on the primitive ID.</dd></dl>
+<div style="margin-left: 3em;">
+<b>Note:</b> The <a href="/opengl/Tessellation#Tessellation_primitive_generator" title="Tessellation">tessellation primitive generator</a> will cull patches that have a zero for one of the active outer tessellation levels. <a rel="nofollow" class="external text" href="https://www.khronos.org/bugzilla/show_bug.cgi?id=754">The intent of the specification seems to be</a> that <span class="tpl-code">gl_PrimitiveID</span> will still be incremented for culled patches. So the primitive ID for the TES is equivalent to the ID for the TCS invocations that generated that patch. But this is not entirely clear from the spec itself.</div>
+<p>The TES also has access to the tessellation levels provided for the patch by the TCS or by OpenGL:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">patch</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_TessLevelOuter</span><span class="p">[</span><span class="mi">4</span><span class="p">];</span>
+<span class="k">patch</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_TessLevelInner</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</pre></div>
+<p>Only the outer and inner levels actually used by the abstract patch are valid. For example, if this TES uses <span class="tpl-code">isolines</span>, only <span class="tpl-code">gl_TessLevelOuter[0]</span> and <span class="tpl-code">gl_TessLevelOuter[1]</span> will have valid values.
+</p><p>The TES also takes the built-in per-vertex variables output by the <a href="/opengl/TCS_Output" class="mw-redirect" title="TCS Output">TCS</a>:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">in</span><span class="w"> </span><span class="nb">gl_PerVertex</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">}</span><span class="w"> </span><span class="nb">gl_in</span><span class="p">[</span><span class="nb">gl_MaxPatchVertices</span><span class="p">];</span>
+</pre></div>
+<p>Note that just because <span class="tpl-code">gl_in</span> is defined to have <span class="tpl-code">gl_MaxPatchVertices</span> entries does not mean that you can access beyond <span class="tpl-code">gl_PatchVerticesIn</span> and get reasonable values.
+</p>
+<h2><span class="mw-headline" id="Outputs">Outputs</span></h2>
+<p>Each TES invocation outputs a separate vertex worth of data. Therefore, the TES outputs are scalars (you can have output arrays, but, they won't be treated specially the way per-vertex input arrays are).
+</p><p>User-defined outputs from the TES can have <a href="/opengl/Interpolation_qualifiers" class="mw-redirect" title="Interpolation qualifiers">interpolation qualifiers</a> on them.
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Tessellation_Evaluation_Shader/Defined_Outputs" title="Tessellation Evaluation Shader/Defined Outputs">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation_Evaluation_Shader/Defined_Outputs&amp;action=edit">E</a></span></span></div>
+<p><b>Tessellation Evaluation Shader</b>s have the following built-in outputs.
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">out</span><span class="w"> </span><span class="nb">gl_PerVertex</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">vec4</span><span class="w"> </span><span class="nb">gl_Position</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_PointSize</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">float</span><span class="w"> </span><span class="nb">gl_ClipDistance</span><span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+<p><span class="tpl-code">gl_PerVertex</span> defines an <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">interface block</a> for outputs. The block is defined without an instance name, so that prefixing the names is not required.
+</p><p>These variables only take on the meanings below if this shader is the last active <a href="/opengl/Vertex_Processing" title="Vertex Processing">Vertex Processing</a> stage, and if rasterization is still active (ie: <span class="tpl-enum">GL_RASTERIZER_DISCARD</span> is not enabled). The text below explains how the <a href="/opengl/Vertex_Post-Processing" title="Vertex Post-Processing">Vertex Post-Processing</a> system uses the variables. These variables may not be redeclared with interpolation qualifiers.
+</p>
+<dl><dt><span class="tpl-code">gl_Position</span></dt>
+<dd>the clip-space output position of the current vertex.</dd>
+<dt><span class="tpl-code">gl_PointSize</span></dt>
+<dd>the <a href="/opengl/Point_Sprite" class="mw-redirect" title="Point Sprite">pixel width/height of the point</a> being rasterized. It only has a meaning when rendering point primitives, which in a TES requires using the <span class="tpl-code">point_mode​</span> input layout qualifier.</dd>
+<dt><span class="tpl-code">gl_ClipDistance</span></dt>
+<dd>allows the shader to set the distance from the vertex to each <a href="/opengl/User-Defined_Clip_Plane" class="mw-redirect" title="User-Defined Clip Plane">User-Defined Clip Plane</a>. A positive distance means that the vertex is inside/behind the clip plane, and a negative distance means it is outside/in front of the clip plane. Each element in the array is one clip plane. In order to use this variable, the user must manually redeclare it with an explicit size.</dd></dl>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li><a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318160424
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.093 seconds
+Real time usage: 0.103 seconds
+Preprocessor visited node count: 1287/1000000
+Post‐expand include size: 24627/2097152 bytes
+Template argument size: 6209/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 4/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 2922/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   67.759      1 -total
+ 52.74%   35.735      1 Template:Stack
+ 37.72%   25.559      2 Template:Snippet
+ 30.61%   20.741      1 Template:Infobox_feature
+ 27.85%   18.870      1 Template:Infobox2
+ 20.08%   13.607      1 Tessellation_Evaluation_Shader/Defined_Inputs
+ 17.27%   11.699      1 Template:Pipeline_float
+ 14.37%    9.738      1 Template:Pipeline_list
+ 10.31%    6.987     10 Template:Infobox/shortrow
+ 10.13%    6.861     24 Template:Pagelink
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2344-0!canonical and timestamp 20260318160424 and revision id 13732. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Tessellation_Evaluation_Shader&amp;oldid=13732">https://wikis.khronos.org/opengl/index.php?title=Tessellation_Evaluation_Shader&amp;oldid=13732</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li><li><a href="/opengl/Category:Vertex_Processing" title="Category:Vertex Processing">Vertex Processing</a></li><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Shader Storage Buffer Object - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Shader_Storage_Buffer_Object rootpage-Shader_Storage_Buffer_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Shader Storage Buffer Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table cellpadding="0" cellspacing="1" style="float:right; background: transparent; margin: 0; padding: 0;"><tbody><tr>
+<td>
+<table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Shader Storage Buffer Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.3</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+</td>
+</tr><tr><td><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">OpenGL Objects</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object</a></div>
+<hr />
+<ul><li><a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Objects</a>
+<ul><li><a href="/opengl/Vertex_Buffer_Object" class="mw-redirect" title="Vertex Buffer Object">Vertex Buffer Objects</a></li>
+<li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Objects</a></li>
+<li><b>Shader Storage Buffer Object</b>s</li>
+<li><a href="/opengl/Pixel_Buffer_Object" title="Pixel Buffer Object">Pixel Buffer Objects</a></li>
+<li><a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counters</a></li>
+<li><a href="/opengl/Buffer_Object_Streaming" title="Buffer Object Streaming">Buffer Object Streaming</a></li></ul></li>
+<li><a href="/opengl/Vertex_Array_Object" class="mw-redirect" title="Vertex Array Object">Vertex Array Objects</a></li>
+<li><a href="/opengl/Texture" title="Texture">Textures</a>
+<ul><li><a href="/opengl/Texture_Storage" title="Texture Storage">Texture Storage</a></li>
+<li><a href="/opengl/Image_Format" title="Image Format">Image formats</a></li>
+<li><a href="/opengl/Sampler_Object" title="Sampler Object">Sampler Objects</a></li>
+<li><a href="/opengl/Cubemap_Texture" title="Cubemap Texture">Cubemap Textures</a></li>
+<li><a href="/opengl/Array_Texture" title="Array Texture">Array Textures</a></li>
+<li><a href="/opengl/Multisample_Texture" title="Multisample Texture">Multisample Textures</a></li>
+<li><a href="/opengl/Rectangle_Texture" title="Rectangle Texture">Rectangle Textures</a></li>
+<li><a href="/opengl/3D_Texture" title="3D Texture">3D Textures</a></li>
+<li><a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a></li>
+<li><a href="/opengl/Texture_Storage#Texture_views" title="Texture Storage">Texture Views</a></li></ul></li>
+<li><a href="/opengl/Query_Object" title="Query Object">Asynchronous query objects</a></li>
+<li><a href="/opengl/Framebuffer_Object" title="Framebuffer Object">Framebuffer Objects</a>
+<ul><li><a href="/opengl/Default_Framebuffer" title="Default Framebuffer">Default Framebuffer</a></li>
+<li><a href="/opengl/Renderbuffer_Object" title="Renderbuffer Object">Renderbuffer Objects</a></li></ul></li>
+<li><b>Unconventional objects:</b>
+<ul><li><a href="/opengl/Sync_Object" title="Sync Object">Sync Objects</a></li>
+<li><a href="/opengl/GLSL_Object" title="GLSL Object">Shader and program objects</a></li></ul></li></ul>
+</div>
+</div>
+</td></tr></tbody></table>
+<p>A <b>Shader Storage Buffer Object</b> is a <a href="/opengl/Buffer_Object" title="Buffer Object">Buffer Object</a> that is used to store and retrieve data from within the <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a>.
+</p><p>SSBOs are a lot like <a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Objects</a>. Shader storage blocks are defined by <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface Block (GLSL)s</a> in almost the same way as uniform blocks. Buffer objects that store SSBOs are bound to SSBO binding points, just as buffer objects for uniforms are bound to UBO binding points. And so forth.
+</p><p>The major differences between them are:
+</p>
+<ol><li>SSBOs can be much larger. The OpenGL spec guarantees that UBOs can be up to 16KB in size (implementations can allow them to be bigger). The spec guarantees that SSBOs can be up to 128<b>MB</b>. Most implementations will let you allocate a size up to the limit of GPU memory.</li>
+<li>SSBOs are writable, even atomically; UBOs are <span class="tpl-code">uniform</span>s. SSBOs reads and writes use <a href="/opengl/Incoherent_Memory_Access" class="mw-redirect" title="Incoherent Memory Access">incoherent memory accesses</a>, so they need the appropriate barriers, just as <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> operations.</li>
+<li>SSBOs can have variable storage, up to whatever buffer range was bound for that particular buffer; UBOs must have a specific, fixed storage size. This means that you can have an array of arbitrary length in an SSBO (at the end, rather). The actual size of the array, based on the range of the buffer bound, can be queried at runtime in the shader using the <span class="tpl-code">length</span> function on the unbounded array variable.</li>
+<li>SSBO access, all things being equal, will likely be slower than UBO access. SSBOs are generally accessed like buffer textures, while UBO data is accessed through internal shader-accessible memory reads. At the very least, UBOs will be no slower than SSBOs.</li></ol>
+<p>Functionally speaking, SSBOs can be thought of as a much nicer interface to <a href="/opengl/Buffer_Texture" title="Buffer Texture">Buffer Textures</a> when accessed via <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a>.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Shader_specification"><span class="tocnumber">1</span> <span class="toctext">Shader specification</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Memory_qualifiers"><span class="tocnumber">2</span> <span class="toctext">Memory qualifiers</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Atomic_operations"><span class="tocnumber">3</span> <span class="toctext">Atomic operations</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#OpenGL_usage"><span class="tocnumber">4</span> <span class="toctext">OpenGL usage</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Shader_specification">Shader specification</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface Block (GLSL)</a><i></i></div>
+<p>SSBOs are declared as interface blocks, using the <span class="tpl-code">buffer</span> keyword. They have special <span class="tpl-code">layout</span> qualifiers for specifying important aspects of them, such a memory layout and binding qualities.
+</p>
+<h2><span class="mw-headline" id="Memory_qualifiers">Memory qualifiers</span></h2>
+<p>Storage blocks, and members thereof, may have memory qualifiers applied to them, which affect how memory operations on those variables are performed. Qualifiers associated with the block apply to all members of that block.
+</p>
+<dl><dt><span class="tpl-code">coherent</span></dt>
+<dd>Normally, the compiler is free to assume that this shader invocation is the only invocation that modifies values read through this variable. It also can freely assume that other shader invocations may not see values written through this variable.</dd>
+<dd>Using this qualifier is required to allow dependent shader invocations to communicate with one another, as it <a href="/opengl/Memory_Model#Ensuring_visibility" title="Memory Model">enforces the coherency of memory accesses</a>. Using this requires the appropriate memory barriers to be executed, so that visibility can be achieved.</dd>
+<dd>When communicating between shader invocations for different rendering commands, <span class="tpl-code"><a href="/opengl/GLAPI/glMemoryBarrier" title="GLAPI/glMemoryBarrier">glMemoryBarrier</a></span> should be used <i>instead</i> of this qualifier.</dd>
+<dt><span class="tpl-code">volatile</span></dt>
+<dd>The compiler normally is free to assume that values accessed through variables will only change after memory barriers or other synchronization. With this qualifier, the compiler assumes that the contents of the storage represented by the variable could be changed at any time.</dd>
+<dt><span class="tpl-code">restrict</span></dt>
+<dd>Normally, the compiler must assume that you could access the same image/buffer object through separate variables in the same shader. Therefore, if you write to one variable, and read from a second, the compiler assumes that it is possible that you could be reading the value you just wrote. With this qualifier, you are telling the compiler that this particular variable is the only variable that can modify the memory visible through that variable within this shader invocation (other shader stages don't count here). This allows the compiler to optimize reads/writes better.</dd>
+<dd>You should use this wherever possible.</dd>
+<dt><span class="tpl-code">readonly</span></dt>
+<dd>Normally, the compiler allows you to read and write from variables as you wish. If you use this, the variable can only be used for reading operations (atomic operations are forbidden as they also count as writes).</dd>
+<dt><span class="tpl-code">writeonly</span></dt>
+<dd>Normally, the compiler allows you to read and write from variables as you wish. If you use this, the variable can only be used for writing operations (atomic operations are forbidden as they also count as reads).</dd></dl>
+<div style="margin-left: 3em;">
+<b>Note:</b> <span class="tpl-code">writeonly</span> and <span class="tpl-code">readonly</span> are not mutually exclusive. For variables tagged with both qualifiers, it is still possible to query information about the resource. For example, <span class="tpl-code">image</span> variables so qualified can still have the image's size looked up.</div>
+<h2><span class="mw-headline" id="Atomic_operations">Atomic operations</span></h2>
+<p>There are special atomic functions that can be applied to variables in storage blocks (these can also be applied to <a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a> <span class="tpl-code">shared</span> variables). These only operate on <span class="tpl-code">uint</span> or <span class="tpl-code">int</span> types, but these can be members of aggregates (structs/arrays) or vector elements (ie: you can atomically access <span class="tpl-code">uvec3.x</span>).
+</p>
+<div style="float: right"><span class="tpl-vte"><a href="/opengl/Atomic_Variable_Operations" title="Atomic Variable Operations">V</a> &#183;  <span class="plainlinks"><a rel="nofollow" class="external text" href="https://wikis.khronos.org/opengl/index.php?title=Atomic_Variable_Operations&amp;action=edit">E</a></span></span></div>
+<p>All of the atomic functions return the <i><b>original</b></i> value. The term "<i>n</i>int" can be <span class="tpl-code">int</span> or <span class="tpl-code">uint</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicAdd(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>Adds <span class="tpl-param">data​</span> to <span class="tpl-param">mem​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicMin(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>The <span class="tpl-param">mem​</span>'s value is no lower than <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicMax(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>The <span class="tpl-param">mem​</span>'s value is no greater than <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicAnd (inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p><span class="tpl-param">mem​</span> becomes the bitwise-and between <span class="tpl-param">mem​</span> and <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicOr(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p><span class="tpl-param">mem​</span> becomes the bitwise-or between <span class="tpl-param">mem​</span> and <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicXor(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p><span class="tpl-param">mem​</span> becomes the bitwise-xor between <span class="tpl-param">mem​</span> and <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicExchange(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>Sets <span class="tpl-param">mem​</span>'s value to <span class="tpl-param">data​</span>.
+</p>
+<div class="funcdef">
+<i>n</i>int atomicCompSwap(inout <i>n</i>int <span class="tpl-param">mem​</span>, <i>n</i>int <span class="tpl-param">compare​</span>, <i>n</i>int <span class="tpl-param">data​</span>)</div>
+<p>If the current value of <span class="tpl-param">mem​</span> is equal to <span class="tpl-param">compare​</span>, then <span class="tpl-param">mem​</span> is set to <span class="tpl-param">data​</span>. Otherwise it is left unchanged.
+</p>
+<h2><span class="mw-headline" id="OpenGL_usage">OpenGL usage</span></h2>
+<p>To copy an array of variable size to the SSBO
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">data</span><span class="p">[</span><span class="n">SOME_SIZE</span><span class="p">];</span>
+<span class="p">...</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">ssbo</span><span class="p">;</span>
+<span class="n">glGenBuffers</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ssbo</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_SHADER_STORAGE_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="n">ssbo</span><span class="p">);</span>
+<span class="n">glBufferData</span><span class="p">(</span><span class="n">GL_SHADER_STORAGE_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">data</span><span class="p">),</span><span class="w"> </span><span class="n">data</span><span class="err">​</span><span class="p">,</span><span class="w"> </span><span class="n">GLenum</span><span class="w"> </span><span class="n">usage</span><span class="p">);</span><span class="w"> </span><span class="c1">//sizeof(data) only works for statically sized C/C++ arrays.</span>
+<span class="n">glBindBufferBase</span><span class="p">(</span><span class="n">GL_SHADER_STORAGE_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">ssbo</span><span class="p">);</span>
+<span class="n">glBindBuffer</span><span class="p">(</span><span class="n">GL_SHADER_STORAGE_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// unbind</span>
+</pre></div>
+<p>Or if you just want to update a part of the already created SSBO
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="n">glBufferSubData</span><span class="p">(</span><span class="n">GL_SHADER_STORAGE_BUFFER</span><span class="p">,</span><span class="w"> </span><span class="n">offset</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span><span class="w"> </span><span class="c1">//to update partially</span>
+</pre></div>
+<p>Note that the buffer is bound to the <a href="/opengl/Layout_Qualifier_(GLSL)#Binding_points" title="Layout Qualifier (GLSL)">binding index</a> 3. It can be assigned to an array in the shader like this:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">std430</span><span class="p">,</span><span class="w"> </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">buffer</span><span class="w"> </span><span class="n">layoutName</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">data_SSBO</span><span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+<p>There can only be one array of variable size per SSBO and it has to be the bottommost variable in the block definition. So this is possible too:
+</p>
+<div class="mw-highlight mw-highlight-lang-glsl mw-content-ltr" dir="ltr"><pre><span></span><span class="k">layout</span><span class="p">(</span><span class="n">std430</span><span class="p">,</span><span class="w"> </span><span class="n">binding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">buffer</span><span class="w"> </span><span class="n">anotherLayoutName</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">some_int</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">fixed_array</span><span class="p">[</span><span class="mi">42</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">variable_array</span><span class="p">[];</span>
+<span class="p">};</span>
+</pre></div>
+<p>The data can be assigned via a struct like this:
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">ssbo_data</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">foo</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">bar</span><span class="p">[</span><span class="mi">42</span><span class="p">];</span>
+<span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">baz</span><span class="p">[</span><span class="n">MY_SIZE</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div>
+<table class="metadata plainlinks stub" style="background: #CCF; border: 1px solid black;"><tbody><tr>
+<td>TODO: This section needs to be filled in.</td></tr></tbody></table>
+<!-- 
+NewPP limit report
+Cached time: 20260318164703
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.098 seconds
+Real time usage: 0.108 seconds
+Preprocessor visited node count: 1523/1000000
+Post‐expand include size: 26161/2097152 bytes
+Template argument size: 7264/2097152 bytes
+Highest expansion depth: 13/100
+Expensive parser function count: 5/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 5180/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   74.613      1 -total
+ 50.31%   37.538      1 Template:Stack
+ 27.66%   20.635      1 Template:Infobox_feature
+ 24.84%   18.537      1 Template:Infobox2
+ 24.43%   18.231      1 Template:Snippet
+ 18.50%   13.807      1 Template:Object_float
+ 17.98%   13.413      1 Atomic_Variable_Operations
+ 15.95%   11.897      1 Template:Object_list
+ 10.56%    7.876      1 Template:Memory_qualifiers
+ 10.19%    7.601     26 Template:Pagelink
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:2261-0!canonical and timestamp 20260318164703 and revision id 14672. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Shader_Storage_Buffer_Object&amp;oldid=14672">https://wikis.khronos.org/opengl/index.php?title=Shader_Storage_Buffer_Object&amp;oldid=14672</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:Objects" title="Category:Objects">Objects</a></li><li><a href="/opengl/Category:Buffer_Objects" title="Category:Buffer Objects">Buffer Objects</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>

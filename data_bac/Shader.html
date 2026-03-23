@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Shader - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"825ee5018151825c24829278","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"Shader","wgTitle":"Shader","wgCurRevisionId":14593,"wgRevisionId":14593,"wgArticleId":1578,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Shaders"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"Shader","wgRelevantArticleId":1578,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=skins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Shader rootpage-Shader skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Shader</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><b>Shader</b>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p>A <b>Shader</b> is a user-defined program designed to run on some stage of a graphics processor. Shaders provide the code for certain programmable stages of the <a href="/opengl/Rendering_Pipeline_Overview" title="Rendering Pipeline Overview">rendering pipeline</a>. They can also be used in a slightly more limited form for general, on-GPU computation.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Stages"><span class="tocnumber">1</span> <span class="toctext">Stages</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Execution_and_invocations"><span class="tocnumber">2</span> <span class="toctext">Execution and invocations</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Execution_model_and_divergence"><span class="tocnumber">3</span> <span class="toctext">Execution model and divergence</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Resource_limitations"><span class="tocnumber">4</span> <span class="toctext">Resource limitations</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Aggregate_limits"><span class="tocnumber">4.1</span> <span class="toctext">Aggregate limits</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Stages">Stages</span></h2>
+<p>The rendering pipeline defines certain sections to be programmable. Each of these sections, or stages, represents a particular type of programmable processing. Each stage has a set of inputs and outputs, which are passed from prior stages and on to subsequent stages (whether programmable or not).
+</p><p>Shaders are written in the <a href="/opengl/OpenGL_Shading_Language" title="OpenGL Shading Language">OpenGL Shading Language</a>. The OpenGL rendering pipeline defines the following shader stages, with their enumerator name:
+</p>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shaders</a>: <span class="tpl-enum">GL_VERTEX_SHADER</span></li>
+<li><a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control</a> and <a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Evaluation Shaders</a>: <span class="tpl-enum">GL_TESS_CONTROL_SHADER</span> and <span class="tpl-enum">GL_TESS_EVALUATION_SHADER</span>. (requires GL 4.0 or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/tessellation_shader.txt">ARB_tessellation_shader</a>)</li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shaders</a>: <span class="tpl-enum">GL_GEOMETRY_SHADER</span></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a>: <span class="tpl-enum">GL_FRAGMENT_SHADER</span></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>: <span class="tpl-enum">GL_COMPUTE_SHADER</span>. (requires GL 4.3 or <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/compute_shader.txt">ARB_compute_shader</a>)</li></ul>
+<p>A <a href="/opengl/GLSL_Object" title="GLSL Object">program object</a> can combine multiple shader stages (built from shader objects) into a single, linked whole. A <a href="/opengl/Program_Pipeline_Object" class="mw-redirect" title="Program Pipeline Object">program pipeline object</a> can combine programs that contain individual shader stages into a whole pipeline.
+</p><p>While shader stages do use the same language, each stage has a separate set of inputs and outputs, as well as <a href="/opengl/GLSL_Predefined_Variables" class="mw-redirect" title="GLSL Predefined Variables">built-in variables</a>. As such, shader objects are built for a specific shader stage. So while program objects can contain multiple stages, shader objects only contain code for a single stage.
+</p>
+<h2><span class="mw-headline" id="Execution_and_invocations">Execution and invocations</span></h2>
+<p>When a <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">drawing command</a> is executed, the currently bound <a href="/opengl/Program_Object" class="mw-redirect" title="Program Object">Program Object</a>, or <a href="/opengl/Program_Pipeline_Object" class="mw-redirect" title="Program Pipeline Object">Program Pipeline Object</a>, will be used in the rendering operation. The programmable portions of the <a href="/opengl/Rendering_Pipeline" class="mw-redirect" title="Rendering Pipeline">Rendering Pipeline</a> will execute the shader code stored in the currently used program(s). 
+</p><p>Each shader stage that has code executes one or more times, based on exactly what is rendering. Each shader stage defines the frequency at which it executes.
+</p><p>Each execution of a shader stage within a <a href="/opengl/Rendering_Command" class="mw-redirect" title="Rendering Command">Rendering Command</a> is called an "invocation". With a rare few exceptions, shader stage invocations cannot interact with one another. Exactly how many invocations execute for most shader stages depends on the amount of stuff being rendered and the nature of that shader stage.
+</p>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shaders</a>: Approximately once per input vertex in the <a href="/opengl/Vertex_Specification" title="Vertex Specification">vertex stream</a>. This may be <a href="/opengl/Vertex_Shader_Frequency" class="mw-redirect" title="Vertex Shader Frequency">less than once per vertex</a> if indexed rendering is used, due to the <a href="/opengl/Post_Transform_Cache" title="Post Transform Cache">Post Transform Cache</a>, but it will be at least once for each unique set of vertex attributes.</li>
+<li><a href="/opengl/Tessellation_Control_Shader" title="Tessellation Control Shader">Tessellation Control Shaders</a>: <i>Precisely</i> once per output vertex per patch. Invocations operating on the same input patch can <a href="/opengl/TCS_Synchronization" class="mw-redirect" title="TCS Synchronization">intercommunicate though their output variables</a>.</li>
+<li><a href="/opengl/Tessellation_Evaluation_Shader" title="Tessellation Evaluation Shader">Tessellation Evaluation Shaders</a>: Approximately once per vertex in the <a href="/opengl/Tessellation" title="Tessellation">tessellation of the abstract patch</a>. A unique vertex in the patch may be processed more than once. The minimum number of TES invocations is once per unique vertex in the patch; the maximum is one for each vertex for each primitive generated by a patch.</li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shaders</a>: Once per primitive reaching this stage. <a href="/opengl/Geometry_Shader_Instancing" class="mw-redirect" title="Geometry Shader Instancing">Geometry shader instancing</a> allows the GS to be invoked multiple times for each input primitive.</li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a>: Once per <a href="/opengl/Fragment" title="Fragment">Fragment</a> generated by the <a href="/opengl/Rasterization" title="Rasterization">rasterizer</a>. It may be executed more than this, as "helper" fragment shader instances may be used by the implementation. These instances however cannot write data (in any way, whether fragment shader outputs, <a href="/opengl/Image_Load_Store" title="Image Load Store">Image Load Store</a> or anything else). They exist mostly to compute <a href="/opengl/Implicit_Derivative" class="mw-redirect" title="Implicit Derivative">Implicit Derivatives</a> to make many texture sampling functions work.</li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shaders</a>: The number of invocations is defined by the number of work groups requested by the <a href="/opengl/Compute_Dispatch" class="mw-redirect" title="Compute Dispatch">dispatch operation</a> multiplied by the compute shader's local size. Compute shader invocations within a work group have <a href="/opengl/Compute_Shader#Shared_variables" title="Compute Shader">some limited intercommunication functionality</a>.</li></ul>
+<h2><span class="mw-headline" id="Execution_model_and_divergence">Execution model and divergence</span></h2>
+<p>Let us hypothetically divide up a computational unit of a CPU or GPU into a command processor and mathematical unit (note that this division isn't really true, but it is useful for this discussion).
+</p><p>The command processor is responsible for reading a command and telling the mathematical unit what to do, then reading the next command. If that command is a branch operation, it is the command processor that figures out where to branch to, to pick which command to execute next. For conditional branches, the command can be broken down into the math that computes the condition (executed on the math unit), followed by the command processor reading the result of the condition and picking the next command to execute based on that.
+</p><p>One of the things that gives GPUs their significant performance advantages over CPUs is that GPUs are able to perform many more computations in parallel. But the specifics of GPU parallelism are quite different from standard CPU threads.
+</p><p>Let's say that we have a set of command sequences we want to execute. Each sequence has its own set of input data, and will write to its own output values. But each command sequence is completely independent of each other; none of them can communicate with each other in any way.
+</p><p>If you want to execute this set of commands completely in parallel, you need one command processor and one mathematical unit for each command sequence.
+</p><p>However, let's alter our scenario. What if all of the above command sequences were actually the same sequence of commands, simply acting on different input values and writing to different output locations? If we were to design a processor for such an operation, it could have a single command processor which feeds multiple mathematical units. It reads one command, and tells the math units to execute that command on that units own variables. Each math unit has its own temporary values as well, to serve as intermediates.
+</p><p>This all works... right up until you need to execute a conditional branch (<span class="tpl-code">if</span>, <span class="tpl-code">for</span>, etc). What happens if the math computations that lead to a conditional branch result in different values for different command sequences? The desired result would be that these sequences would execute different commands. But we only have one command processor, so it can't pick different commands to execute. How do you deal with this?
+</p><p>When a conditional branch diverges like this, you have to do something unpleasant. The branch can be broken down into path A and path B. The command processor basically has to freeze all of the math units that need to execute path B commands. Then it executes the path A commands. Once that's done, it goes back to the branch and execute path B's commands.
+</p><p>As such, in actual GPUs, the number of mathematical units relative to the number of command processes tends to be kept relatively small. 1 CP to 32 MUs is about as large as you might want to go.
+</p><p>Also, in real GPUs the mathematical units aren't really <i>separate</i> processing elements. After all, all of them are going to execute the same command at the same time, so they're doing the same math, just on different values.
+</p><p>What happens in real GPUs is that you have one "mathematical unit" which can perform the same action on multiple pieces of input data, writing to multiple intermediate data locations. That is, if you want to do <span class="tpl-code">x = 2 + 3</span> and <span class="tpl-code">y = 6 + 9</span>, you're conceptually executing the same command: addition. So what a GPU does is bundle them together. You're not doing two separate addition commands; you're doing <span class="tpl-code">(x, y) = (2, 3) + (6, 9)</span> as a single operation.
+</p><p>This is the essence of Single Instruction, Multiple Data (SIMD): a single instruction that performs its operation on multiple independent pieces of data.
+</p><p>Under this execution model, a shader invocation is just one of the elements executing in a SIMD processing system. As such, multiple shader invocations are bundled together and executed on the same SIMD core.
+</p><p>The big problem, as outlined above, is divergence upon conditional branching. But not all conditional branches are the same. There are basically 2 kinds of conditional branches: those where you can tell at compile time whether invocations in the same SIMD will never diverge, and those where you cannot tell.
+</p><p>The compiler can only be certain that there will be no divergence in a branch if the expression causing the branch is derived from constants, <span class="tpl-code">uniform</span> values, and other expressions which themselves are derived only from constants and uniforms. We can call this a "statically uniform expression".
+</p><p>Note that this is different from <a href="/opengl/Dynamically_Uniform_Expression" class="mw-redirect" title="Dynamically Uniform Expression">Dynamically Uniform Expressions</a>. All statically uniform expressions are dynamically uniform too, but not vice-versa. If a non-statically uniform value happens to be constant throughout a shader operation (all shader invocations get the same input value, for example), then expressions based on that value are dynamically uniform. But because the compiler cannot <i>know this</i>, it must assume that divergence is possible.
+</p><p>So, you can loop over a range of values defined by a <span class="tpl-code">uniform</span> variable with full confidence that there will be no divergence.
+</p><p>Non-statically uniform expressions may cause runtime divergence. But on modern GPUs, they don't cause a performance issue unless they actually do diverge at runtime.
+</p>
+<div style="margin-left: 3em;">
+<b>Note:</b> There are certain input values where you can be reasonably certain no divergence will happen. And <span class="tpl-code">gl_DrawID</span> is an input value which is statically uniform, since the standard requires it to always be dynamically uniform.</div>
+<p>Even with potentially divergent branches, compilers attempt to avoid the pain of true execution divergence wherever possible. For example, a simple <span class="tpl-code">&#160;?&#160;:</span> expression will rarely cause SIMD divergence; the compiler will usually generate code that evaluates *both expressions*, and each individual invocation will discard one or the other based on the condition. If those expressions involve calling complex functions, the compiler may allow true divergence, but if it's simple math like <span class="tpl-code"> value = condition&#160;? X + 5&#160;: Y - 20</span>, the compiler will almost certainly execute both.
+</p><p>This extends to regular <span class="tpl-code">if</span> statements as well, depending on how clever the compiler is. If the code in those conditions is pretty small, then it will try to execute both wherever possible. But again, it will only do this if the condition is not statically determinable to be non-divergent.
+</p>
+<h2><span class="mw-headline" id="Resource_limitations">Resource limitations</span></h2>
+<p>Shaders have access to a wide variety of resources. They can access <a href="/opengl/Texture" title="Texture">Textures</a>, <a href="/opengl/GLSL_Uniform" class="mw-redirect" title="GLSL Uniform">uniforms</a>, <a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">uniform blocks</a>, <a href="/opengl/Image_Load_Store" title="Image Load Store">image variables</a>, <a href="/opengl/Atomic_Counter" title="Atomic Counter">atomic counters</a>, <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage buffers</a>, and potentially other information. There are limits however on exactly how much stuff each shader stage can access. Each resource has a query-able maximum count of accessible resources for each stage.
+</p><p>Note that each stage may also have limitations on stage-specific resources; vertex shaders have a hard limit on the number of <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attributes</a>, for example. This section will discuss resources that are general to all shaders.
+</p><p>The query-able limits, and their associated meanings, are as follows. Note that the "*" is the stage name. It can be <span class="tpl-enum">VERTEX</span>, <span class="tpl-enum">TESS_CONTROL</span>, <span class="tpl-enum">TESS_EVALUATION</span>, <span class="tpl-enum">COMPUTE</span>, <span class="tpl-enum">GEOMETRY</span> or <span class="tpl-enum">FRAGMENT</span>. These values also have an OpenGL-required minimum; OpenGL implementations (of a certain version) will support at least this many of that resource.
+</p>
+<dl><dt><span class="tpl-enum">MAX_*_UNIFORM_COMPONENTS</span></dt>
+<dd>This is the number of active components of <a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">uniform variables</a> that can be defined outside of a uniform block. The term "component" is meant as the basic component of a vector/matrix. So a <span class="tpl-code">vec3</span> takes up 3 components. The minimum value here is 1024, enough room for 256 <span class="tpl-code">vec4</span>s.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_UNIFORM_BLOCKS</span></dt>
+<dd>The maximum number of <a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">uniform blocks</a> that this shader stage can access. The OpenGL-required minimum is 12 in GL 3.3, and 14 in GL 4.3.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_INPUT_COMPONENTS</span></dt>
+<dd>The maximum number of components that this stage can take as input. The required minimum value differs from shader stage to shader stage. Note that <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shaders</a> do not have this value, as they use a different input mechanic based on <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">Vertex Attributes</a>. Their limit is <span class="tpl-enum">GL_MAX_VERTEX_ATTRIBUTES</span>, where each attribute can be at most 4 components.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_OUTPUT_COMPONENTS</span></dt>
+<dd>The maximum number of components that this stage can output. The required minimum value differs from shader stage to shader stage. Note that <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shaders</a> do not have this value, as they use a <a href="/opengl/Fragment_Shader_Output_Buffer" class="mw-redirect" title="Fragment Shader Output Buffer">different output mechanic</a> based on draw buffers. Their limit is <span class="tpl-enum">GL_MAX_DRAW_BUFFERS</span>, where each draw buffer output can be at most 4 components.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_TEXTURE_IMAGE_UNITS</span></dt>
+<dd>The maximum number of texture image units that the <a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">sampler</a> in this shader can access. The OpenGL-required minimum value is 16 for each stage.</dd>
+<dd><div style="margin-left: 3em;"></div></dd></dl>
+<p><b>Note:</b> For legacy reasons, the enumerator for the fragment shader equivalent is called <span class="tpl-enum">GL_MAX_TEXTURE_IMAGE_UNITS</span>. No "<span class="tpl-enum">FRAGMENT</span>".
+</p><dl><dt><span class="tpl-enum">GL_MAX_*_IMAGE_UNIFORMS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_image_load_store.txt">ARB_shader_image_load_store</a>)</dt>
+<dd>The maximum number of <a href="/opengl/Image_Load_Store" title="Image Load Store">image variables</a> for this shader stage. The OpenGL-required minimum is 8 for fragment and compute shaders, and <b>0</b> for the rest. This means implementations may not allow you to use image variables in non-fragment or compute stages.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_ATOMIC_COUNTERS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a>)</dt>
+<dd>The maximum number of <a href="/opengl/Atomic_Counter" title="Atomic Counter">Atomic Counter</a> variables that this stage can define. The OpenGL-required minimum is 8 for fragment and compute shaders, and <b>0</b> for the rest.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_ATOMIC_COUNTER_BUFFERS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a>)</dt>
+<dd>The maximum number of different buffers that the atomic counter variables can come from. The OpenGL-required minimum is 1 for fragment shaders, 8 for compute shaders (note: possible spec typo), and again 0 for the rest.</dd>
+<dt><span class="tpl-enum">GL_MAX_*_SHADER_STORAGE_BLOCKS</span> (requires GL 4.3/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a>)</dt>
+<dd>The maximum number of different <a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">shader storage blocks</a> that a stage can use. For fragment and compute shaders, the OpenGL-required minimum is 8; for the rest, it is <b>0</b>.</dd></dl>
+<h3><span class="mw-headline" id="Aggregate_limits">Aggregate limits</span></h3>
+<p>While these define the resources usable to a shader stage, there are some limits beyond this, which cover all shader stages in total.
+</p>
+<dl><dt><span class="tpl-enum">GL_MAX_UNIFORM_BUFFER_BINDINGS</span></dt>
+<dd>The limit on the number of uniform buffer binding points. This is the limit for <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> when using <span class="tpl-enum">GL_UNIFORM_BUFFER</span>. In GL 3.3, this value is a minimum of 36 (3 shader stages, with a minimum of 12 blocks per stage). In 4.3, this value is a minimum of 72.</dd>
+<dt><span class="tpl-enum">GL_MAX_COMBINED_UNIFORM_BLOCKS</span></dt>
+<dd>The maximum number of uniform blocks that all of the active programs can use. If two (or more) shader stages use the same block, they count separately towards this limit. In GL 3.3, this was 36; in 4.3, it is 70.</dd>
+<dt><span class="tpl-enum">GL_MAX_COMBINED_TEXTURE_IMAGE_UNITS</span></dt>
+<dd>The total number of texture units that can be used from all active programs. This is the limit on <span class="tpl-code"><a href="/opengl/GLAPI/glActiveTexture" title="GLAPI/glActiveTexture">glActiveTexture(GL_TEXTURE0 + <i>i</i>)</a></span> and <span class="tpl-code"><a href="/opengl/GLAPI/glBindSampler" title="GLAPI/glBindSampler">glBindSampler</a></span>. In GL 3.3, this was 48; in 4.3, it is 96.</dd>
+<dt><span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_ATTRIBS</span></dt>
+<dd>When doing separate mode <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>, this is the maximum number of varying variables that can be captured. This has a minimum of 4.</dd>
+<dt><span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_SEPARATE_COMPONENTS</span></dt>
+<dd>When doing separate mode Transform Feedback, this is the maximum number of components for a single varying variable (note that varyings can be arrays or structs) that can be captured. This has a minimum of 4.</dd>
+<dt><span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_INTERLEAVED_COMPONENTS</span></dt>
+<dd>When doing interleaved <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>, this is the total number of components that can be captured within a single buffer. This has a minimum of 64.</dd>
+<dt><span class="tpl-enum">GL_MAX_TRANSFORM_FEEDBACK_BUFFERS</span> (requires GL 4.0/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/transform_feedback3.txt">ARB_transform_feedback3</a>)</dt>
+<dd>The maximum number of buffers that can be written to in transform feedback operations. This has a minimum of 4.</dd>
+<dt><span class="tpl-enum">GL_MAX_ATOMIC_COUNTER_BUFFER_BINDINGS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a>)</dt>
+<dd>The total number of atomic counter buffer binding points. This is the limit for <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> when using <span class="tpl-enum">GL_ATOMIC_COUNTER_BUFFER</span>. This value has a minimum of 1.</dd>
+<dt><span class="tpl-enum">GL_MAX_COMBINED_ATOMIC_COUNTER_BUFFERS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a>)</dt>
+<dd>The maximum number of atomic counter buffers variables across all active programs. This value has a minimum of 1.</dd>
+<dt><span class="tpl-enum">GL_MAX_COMBINED_ATOMIC_COUNTERS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a>)</dt>
+<dd>The maximum number of atomic counter variables across all active programs. This value has a minimum of 8.</dd>
+<dt><span class="tpl-enum">GL_MAX_SHADER_STORAGE_BUFFER_BINDINGS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_atomic_counters.txt">ARB_shader_atomic_counters</a>)</dt>
+<dd>The total number of shader storage buffer binding points. This is the limit for <span class="tpl-code"><a href="/opengl/GLAPI/glBindBufferRange" title="GLAPI/glBindBufferRange">glBindBufferRange</a></span> when using <span class="tpl-enum">GL_SHADER_STORAGE_BUFFER</span>. This value has a minimum of 8.</dd>
+<dt><span class="tpl-enum">GL_MAX_COMBINED_SHADER_STORAGE_BLOCKS</span> (requires GL 4.3/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a>)</dt>
+<dd>The maximum number of shader storage blocks across all active programs. As with UBOs, blocks that are the same between stages are counted for each stage. This value has a minimum of 8.</dd>
+<dt><span class="tpl-enum">GL_MAX_IMAGE_UNITS</span> (requires GL 4.2/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/image_load_store.txt">ARB_image_load_store</a>)</dt>
+<dd>The total number of image units that can be used for image variables from all active programs. This is the limit on <span class="tpl-code"><a href="/opengl/GLAPI/glBindImageTexture" title="GLAPI/glBindImageTexture">glBindImageTexture</a></span>. This value has a minimum of 8.</dd>
+<dt><span class="tpl-enum">GL_MAX_COMBINED_SHADER_OUTPUT_RESOURCES</span> (requires GL 4.3/<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/shader_storage_buffer_object.txt">ARB_shader_storage_buffer_object</a>)</dt>
+<dd>The total number of shader storage blocks, image variables, <i>and</i> fragment shader outputs across all active programs cannot exceed this number. This is the "amount of stuff" that a sequence of shaders can write to (barring <a href="/opengl/Transform_Feedback" title="Transform Feedback">Transform Feedback</a>). This value has a minimum of 8.</dd></dl>
+<!-- 
+NewPP limit report
+Cached time: 20260317185128
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.073 seconds
+Real time usage: 0.076 seconds
+Preprocessor visited node count: 1025/1000000
+Post‐expand include size: 10428/2097152 bytes
+Template argument size: 4351/2097152 bytes
+Highest expansion depth: 8/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   34.537      1 -total
+ 36.93%   12.756      1 Template:Shader_float
+ 30.74%   10.618      1 Template:Shader_list
+ 18.53%    6.398     22 Template:Pagelink
+ 13.36%    4.615     42 Template:Enum
+  8.97%    3.099      2 Template:Note
+  8.37%    2.892     14 Template:Extref
+  8.19%    2.829     19 Template:Code
+  7.91%    2.732      6 Template:Apifunc
+  5.19%    1.792      2 Template:Note_style
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1578-0!canonical and timestamp 20260317185128 and revision id 14593. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Shader&amp;oldid=14593">https://wikis.khronos.org/opengl/index.php?title=Shader&amp;oldid=14593</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Category</a>: <ul><li><a href="/opengl/index.php?title=Category:Shaders&amp;action=edit&amp;redlink=1" class="new" title="Category:Shaders (page does not exist)">Shaders</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=Shader" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/Shader" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="new mw-list-item"><a href="/opengl/index.php?title=Talk:Shader&amp;action=edit&amp;redlink=1" rel="discussion" class="new" title="Discussion about the content page (page does not exist) [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/Shader"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=Shader&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=Shader&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/Shader" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/Shader" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=Shader&amp;oldid=14593" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=Shader&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=Shader&amp;id=14593&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 9 October 2019, at 15:06.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":158,"wgPageParseReport":{"limitreport":{"cputime":"0.073","walltime":"0.076","ppvisitednodes":{"value":1025,"limit":1000000},"postexpandincludesize":{"value":10428,"limit":2097152},"templateargumentsize":{"value":4351,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":0,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":0,"limit":5000000},"timingprofile":["100.00%   34.537      1 -total"," 36.93%   12.756      1 Template:Shader_float"," 30.74%   10.618      1 Template:Shader_list"," 18.53%    6.398     22 Template:Pagelink"," 13.36%    4.615     42 Template:Enum","  8.97%    3.099      2 Template:Note","  8.37%    2.892     14 Template:Extref","  8.19%    2.829     19 Template:Code","  7.91%    2.732      6 Template:Apifunc","  5.19%    1.792      2 Template:Note_style"]},"cachereport":{"timestamp":"20260317185128","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6d267c29a3d1',t:'MTc3NDIzNzM0OA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

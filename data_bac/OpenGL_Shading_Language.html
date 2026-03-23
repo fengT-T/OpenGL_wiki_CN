@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>OpenGL Shading Language - OpenGL Wiki</title>
+<script>(function(){var className="client-js";var cookie=document.cookie.match(/(?:^|; )khronos_opengl_wiki_mw_mwclientpreferences=([^;]+)/);if(cookie){cookie[1].split('%2C').forEach(function(pref){className=className.replace(new RegExp('(^| )'+pref.replace(/-clientpref-\w+$|[^\w-]+/g,'')+'-clientpref-\\w+( |$)'),'$1'+pref+'$2');});}document.documentElement.className=className;}());RLCONF={"wgBreakFrames":false,"wgSeparatorTransformTable":["",""],"wgDigitTransformTable":["",""],"wgDefaultDateFormat":"dmy","wgMonthNames":["","January","February","March","April","May","June","July","August","September","October","November","December"],"wgRequestId":"3bd3ebae665313463e3078a6","wgCanonicalNamespace":"","wgCanonicalSpecialPageName":false,"wgNamespaceNumber":0,"wgPageName":"OpenGL_Shading_Language","wgTitle":"OpenGL Shading Language","wgCurRevisionId":14750,"wgRevisionId":14750,"wgArticleId":1366,"wgIsArticle":true,"wgIsRedirect":false,"wgAction":"view","wgUserName":null,"wgUserGroups":["*"],"wgCategories":["Pages using deprecated source tags","OpenGL Shading Language","Shading Languages"],"wgPageViewLanguage":"en","wgPageContentLanguage":"en","wgPageContentModel":"wikitext","wgRelevantPageName":"OpenGL_Shading_Language","wgRelevantArticleId":1366,"wgIsProbablyEditable":false,"wgRelevantPageIsProbablyEditable":false,"wgRestrictionEdit":[],"wgRestrictionMove":[],"wgCiteReferencePreviewsActive":true,"wgCheckUserClientHintsHeadersJsApi":["architecture","bitness","brands","fullVersionList","mobile","model","platform","platformVersion"]};
+RLSTATE={"site.styles":"ready","user.styles":"ready","user":"ready","user.options":"loading","ext.pygments":"ready","skins.vector.styles.legacy":"ready"};RLPAGEMODULES=["ext.pygments.view","site","mediawiki.page.ready","mediawiki.toc","skins.vector.legacy.js","ext.checkUser.clientHints","ext.moderation.notify","ext.moderation.notify.desktop"];</script>
+<script>(RLQ=window.RLQ||[]).push(function(){mw.loader.impl(function(){return["user.options@12s5i",function($,jQuery,require,module){mw.user.tokens.set({"patrolToken":"+\\","watchToken":"+\\","csrfToken":"+\\"});
+}];});});</script>
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=ext.pygments%7Cskins.vector.styles.legacy&amp;only=styles&amp;skin=vector">
+<script async="" src="/opengl/load.php?lang=en&amp;modules=startup&amp;only=scripts&amp;raw=1&amp;skin=vector"></script>
+<meta name="ResourceLoaderDynamicStyles" content="">
+<link rel="stylesheet" href="/opengl/load.php?lang=en&amp;modules=site.styles&amp;only=styles&amp;skin=vector">
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+<link rel="search" type="application/opensearchdescription+xml" href="/opengl/rest.php/v1/search" title="OpenGL Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="https://wikis.khronos.org/opengl/api.php?action=rsd">
+<link rel="alternate" type="application/atom+xml" title="OpenGL Wiki Atom feed" href="/opengl/index.php?title=Special:RecentChanges&amp;feed=atom">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G3S4SEH0HX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    analytics_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied'
+  });
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-G3S4SEH0HX', {
+    anonymize_ip: true,
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false,
+    send_page_view: true
+  });
+</script>
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-OpenGL_Shading_Language rootpage-OpenGL_Shading_Language skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">OpenGL Shading Language</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><div class="side-list">
+<div style="font-size: 100%; font-weight: bold;">GLSL</div>
+<div class="side-list-contents">
+<div style="text-align: center;"><a class="mw-selflink selflink">OpenGL Shading Language</a></div>
+<hr />
+<ul><li><a href="/opengl/Shader" title="Shader">Shader</a>
+<ul><li><a href="/opengl/GLSL_Object" title="GLSL Object">Objects</a></li>
+<li><a href="/opengl/Shader_Compilation" title="Shader Compilation">Compilation</a></li>
+<li><a href="/opengl/Program_Introspection" title="Program Introspection">Introspection</a></li></ul></li>
+<li><a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">The core language</a></li>
+<li><a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Variable types</a>
+<ul><li><a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type qualifiers</a></li>
+<li><a href="/opengl/Layout_Qualifier_(GLSL)" title="Layout Qualifier (GLSL)">Layout qualifiers</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform variables</a></li>
+<li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler variables</a></li>
+<li><a href="/opengl/Image_Load_Store" title="Image Load Store">Image variables</a></li></ul></li>
+<li><a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in variables</a></li>
+<li><a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface blocks</a>
+<ul><li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform blocks</a></li>
+<li><a href="/opengl/Shader_Storage_Buffer_Object" title="Shader Storage Buffer Object">Shader storage blocks</a></li></ul></li>
+<li><a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a></li>
+<li><b>Shader stages:</b>
+<ul><li><a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex Shader</a></li>
+<li><a href="/opengl/Tessellation" title="Tessellation">Tessellation</a></li>
+<li><a href="/opengl/Geometry_Shader" title="Geometry Shader">Geometry Shader</a></li>
+<li><a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a></li>
+<li><a href="/opengl/Compute_Shader" title="Compute Shader">Compute Shader</a></li></ul></li>
+<li><a href="/opengl/Shading_languages" title="Shading languages">Other shading languages</a></li></ul>
+</div>
+</div>
+<p>The <b>OpenGL Shading Language</b> (GLSL) is the principal shading language for OpenGL. While, thanks to <a href="/opengl/OpenGL_Extension" title="OpenGL Extension">OpenGL Extensions</a>, there are several shading languages available for use in OpenGL, GLSL (and <a href="/opengl/SPIR-V" title="SPIR-V">SPIR-V</a>) are supported directly by OpenGL without extensions.
+</p><p>GLSL is a C-style language. The language has undergone a number of version changes, and it shares the deprecation model of OpenGL. The current version of GLSL is 4.60.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Compilation_model"><span class="tocnumber">1</span> <span class="toctext">Compilation model</span></a>
+<ul>
+<li class="toclevel-2 tocsection-2"><a href="#Terminology"><span class="tocnumber">1.1</span> <span class="toctext">Terminology</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-3"><a href="#Language"><span class="tocnumber">2</span> <span class="toctext">Language</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Standard_library"><span class="tocnumber">2.1</span> <span class="toctext">Standard library</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Variable_types"><span class="tocnumber">2.2</span> <span class="toctext">Variable types</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Type_qualifiers"><span class="tocnumber">2.3</span> <span class="toctext">Type qualifiers</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Interface_blocks"><span class="tocnumber">2.4</span> <span class="toctext">Interface blocks</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Predefined_variables"><span class="tocnumber">2.5</span> <span class="toctext">Predefined variables</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Using_GLSL_shaders"><span class="tocnumber">3</span> <span class="toctext">Using GLSL shaders</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#Building_shaders"><span class="tocnumber">3.1</span> <span class="toctext">Building shaders</span></a>
+<ul>
+<li class="toclevel-3 tocsection-11"><a href="#Attributes_and_draw_buffers"><span class="tocnumber">3.1.1</span> <span class="toctext">Attributes and draw buffers</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-12"><a href="#Setting_uniforms"><span class="tocnumber">3.2</span> <span class="toctext">Setting uniforms</span></a>
+<ul>
+<li class="toclevel-3 tocsection-13"><a href="#Setting_samplers"><span class="tocnumber">3.2.1</span> <span class="toctext">Setting samplers</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-14"><a href="#Error_Checking"><span class="tocnumber">3.3</span> <span class="toctext">Error Checking</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-15"><a href="#See_also"><span class="tocnumber">4</span> <span class="toctext">See also</span></a></li>
+<li class="toclevel-1 tocsection-16"><a href="#External_links"><span class="tocnumber">5</span> <span class="toctext">External links</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Compilation_model">Compilation model</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Shader_Compilation" title="Shader Compilation">Shader Compilation</a><i></i></div>
+<p>GLSL is quite unique among shading languages due to its compilation model. It's compilation model is more like the standard C paradigm. Compilation is overseen by <a href="/opengl/Shader_Compilation#Shader_and_program_objects" title="Shader Compilation">a number of object types</a>. Note that these do not follow the standard <a href="/opengl/OpenGL_Objects" class="mw-redirect" title="OpenGL Objects">OpenGL Objects</a> paradigm.
+</p>
+<h3><span class="mw-headline" id="Terminology">Terminology</span></h3>
+<p>Because of GLSL's unique compilation model, GLSL uses unique terminology.
+</p><p>According to GLSL's standard terminology, a <i>shader</i> is just a compiled set of strings for a particular programmable stage; it does not even need to have the complete code for that stage. A <i>program</i> is a fully linked program that covers multiple programmable stages.
+</p><p>For the sake of clarity, we will adjust this slightly. When the term <i>shader</i> is used, it will be synonymous with the GLSL concept of <i>program</i>. To refer to a GLSL shader, the term <i>shader object</i> will be used.
+</p>
+<h2><span class="mw-headline" id="Language">Language</span></h2>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Core_Language_(GLSL)" title="Core Language (GLSL)">Core Language (GLSL)</a><i></i></div>
+<p>GLSL is a lot like C/C++ in many ways. It supports most of the familiar structural components (for-loops, if-statements, etc). But it has some important language differences.
+</p>
+<h3><span class="mw-headline" id="Standard_library">Standard library</span></h3>
+<p>The OpenGL Shading Language defines a number of <b>standard functions</b>. Some standard functions are specific to certain shader stages, while most are available in any stage. There is reference documentation for these functions available <a rel="nofollow" class="external text" href="http://www.opengl.org/sdk/docs/manglsl/">here</a>.
+</p>
+<h3><span class="mw-headline" id="Variable_types">Variable types</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Data_Type_(GLSL)" title="Data Type (GLSL)">Data Type (GLSL)</a><i></i></div>
+<p>C has a number of basic types. GLSL uses some of these, but adds many more.
+</p>
+<h3><span class="mw-headline" id="Type_qualifiers">Type qualifiers</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Type_Qualifier_(GLSL)" title="Type Qualifier (GLSL)">Type Qualifier (GLSL)</a><i></i></div>
+<p>GLSL's uses a large number of qualifiers to specify where the values that various variables contain come from. Qualifiers also modify how those variables can be used.
+</p>
+<h3><span class="mw-headline" id="Interface_blocks">Interface blocks</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Interface_Block_(GLSL)" title="Interface Block (GLSL)">Interface Block (GLSL)</a><i></i></div>
+<p>Certain variable definitions can be grouped into interface blocks. These can be used to make communication between different shader stages easier, or to allow storage for variables to come from a buffer object.
+</p>
+<h3><span class="mw-headline" id="Predefined_variables">Predefined variables</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/Built-in_Variable_(GLSL)" title="Built-in Variable (GLSL)">Built-in Variable (GLSL)</a><i></i></div>
+<p>The different shader stages have a number of predefined variables for them. These are provided by the system for various system-specific use.
+</p>
+<h2><span class="mw-headline" id="Using_GLSL_shaders">Using GLSL shaders</span></h2>
+<h3><span class="mw-headline" id="Building_shaders">Building shaders</span></h3>
+<h4><span class="mw-headline" id="Attributes_and_draw_buffers">Attributes and draw buffers</span></h4>
+<p>For the stages at the start and end of the pipeline (vertex and fragment, respectively), the initial input values and final output values do not come from or go to shader stages. The input values to a vertex shader come from <a href="/opengl/Vertex_Attribute" class="mw-redirect" title="Vertex Attribute">vertex data</a> <a href="/opengl/Vertex_Specification" title="Vertex Specification">specified</a> in a <a href="/opengl/Vertex_Array_Objects" class="mw-redirect" title="Vertex Array Objects">vertex array object</a>, pulled from <a href="/opengl/Vertex_Buffer_Objects" class="mw-redirect" title="Vertex Buffer Objects">vertex buffer objects</a> during <a href="/opengl/Vertex_Rendering" title="Vertex Rendering">Vertex Rendering</a>. The output values of a fragment shader are piped to particular buffers for the currently bound framebuffer; either the <a href="/opengl/Default_Framebuffer" title="Default Framebuffer">default framebuffer</a> or a <a href="/opengl/Framebuffer_Objects" class="mw-redirect" title="Framebuffer Objects">framebuffer object</a>.
+</p><p>Because of this, there is a mapping layer for the program's inputs and outputs. The vertex shader's input names are mapped to attribute indices, while the fragment shader's output names are mapped to draw buffer indices. This mapping can be created before the program is linked. If it is not, or if the mapping does not cover all of the inputs and outputs, then the linker will automatically define what indices are mapped to which unmapped input or output names. This auto-generated mapping can be queried by the user after the program is linked.
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="Setting_uniforms">Setting uniforms</span></h3>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/GLSL_Uniform#Uniform_management" class="mw-redirect" title="GLSL Uniform">GLSL Uniform#Uniform management</a><i></i></div>
+<p>Uniforms in GLSL are shader variables that are set from user code, but only are allowed to change between different <span class="tpl-code">glDraw*</span> calls. Uniforms can be queried and set by the code external to a particular shader. Uniforms can be arranged into blocks, and the data storage for these blocks can come from buffer objects.
+</p>
+<h4><span class="mw-headline" id="Setting_samplers">Setting samplers</span></h4>
+<div class="rellink" style="margin-left: 1.5em; font-style: italic;">Main article: <a href="/opengl/GLSL_Sampler#Binding_textures_to_samplers" class="mw-redirect" title="GLSL Sampler">GLSL Sampler#Binding textures to samplers</a><i></i></div>
+<p>Samplers are special types which must be defined as uniforms. They represent bound textures in the OpenGL context. They are set like integer, 1D uniform values.
+</p>
+<h3><span class="mw-headline" id="Error_Checking">Error Checking</span></h3>
+<p>This piece of code shows the process of loading a vertex and fragment shaders. Then it compiles them and also checks for errors. The idea here is to encourage newcomers to GLSL to always check for errors. It is in C++ but that doesn't matter.
+</p><p>Note that the process of loading and compiling shaders hasn't changed much over the different GL versions.
+</p><p>Full compile/link of a <a href="/opengl/Vertex_Shader" title="Vertex Shader">Vertex</a> and <a href="/opengl/Fragment_Shader" title="Fragment Shader">Fragment Shader</a>.
+</p>
+<div class="mw-highlight mw-highlight-lang-cpp mw-content-ltr" dir="ltr"><pre><span></span><span class="c1">// Read our shaders into the appropriate buffers</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">vertexSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// Get source code for vertex shader.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">fragmentSource</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="c1">// Get source code for fragment shader.</span>
+
+<span class="c1">// Create an empty vertex shader handle</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">vertexShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_VERTEX_SHADER</span><span class="p">);</span>
+
+<span class="c1">// Send the vertex shader source code to GL</span>
+<span class="c1">// Note that std::string&#39;s .c_str is NULL character terminated.</span>
+<span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="w"> </span><span class="o">*</span><span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">vertexSource</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Compile the vertex shader</span>
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="n">GLint</span><span class="w"> </span><span class="n">isCompiled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the shader anymore.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Create an empty fragment shader handle</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">fragmentShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateShader</span><span class="p">(</span><span class="n">GL_FRAGMENT_SHADER</span><span class="p">);</span>
+
+<span class="c1">// Send the fragment shader source code to GL</span>
+<span class="c1">// Note that std::string&#39;s .c_str is NULL character terminated.</span>
+<span class="n">source</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">GLchar</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="n">fragmentSource</span><span class="p">.</span><span class="n">c_str</span><span class="p">();</span>
+<span class="n">glShaderSource</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+
+<span class="c1">// Compile the fragment shader</span>
+<span class="n">glCompileShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_COMPILE_STATUS</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">isCompiled</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isCompiled</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetShaderiv</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetShaderInfoLog</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the shader anymore.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Either of them. Don&#39;t leak shaders.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Vertex and fragment shaders are successfully compiled.</span>
+<span class="c1">// Now time to link them together into a program.</span>
+<span class="c1">// Get a program object.</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">program</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">glCreateProgram</span><span class="p">();</span>
+
+<span class="c1">// Attach our shaders to our program</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="n">glAttachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="c1">// Link our program</span>
+<span class="n">glLinkProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+
+<span class="c1">// Note the different functions here: glGetProgram* instead of glGetShader*.</span>
+<span class="n">GLint</span><span class="w"> </span><span class="n">isLinked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_LINK_STATUS</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">isLinked</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isLinked</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">GL_FALSE</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">	</span><span class="n">GLint</span><span class="w"> </span><span class="n">maxLength</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span><span class="n">glGetProgramiv</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">GL_INFO_LOG_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// The maxLength includes the NULL character</span>
+<span class="w">	</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">GLchar</span><span class="o">&gt;</span><span class="w"> </span><span class="n">infoLog</span><span class="p">(</span><span class="n">maxLength</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glGetProgramInfoLog</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">maxLength</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">infoLog</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// We don&#39;t need the program anymore.</span>
+<span class="w">	</span><span class="n">glDeleteProgram</span><span class="p">(</span><span class="n">program</span><span class="p">);</span>
+<span class="w">	</span><span class="c1">// Don&#39;t leak shaders either.</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="w">	</span><span class="n">glDeleteShader</span><span class="p">(</span><span class="n">fragmentShader</span><span class="p">);</span>
+
+<span class="w">	</span><span class="c1">// Use the infoLog as you see fit.</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="c1">// In this simple program, we&#39;ll just leave</span>
+<span class="w">	</span><span class="k">return</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Always detach shaders after a successful link.</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">vertexShader</span><span class="p">);</span>
+<span class="n">glDetachShader</span><span class="p">(</span><span class="n">program</span><span class="p">,</span><span class="w"> </span><span class="n">fragmentShader</span><span class="p">);</span>
+</pre></div>
+<h2><span class="mw-headline" id="See_also">See also</span></h2>
+<ul><li>GLSL
+<ul><li><a href="/opengl/Sampler_(GLSL)" title="Sampler (GLSL)">Sampler (GLSL)</a></li>
+<li><a href="/opengl/Uniform_(GLSL)" title="Uniform (GLSL)">Uniform (GLSL)</a></li>
+<li><a href="/opengl/Uniform_Buffer_Object" title="Uniform Buffer Object">Uniform Buffer Object</a></li>
+<li><a href="/opengl/GLSL_:_common_mistakes" title="GLSL : common mistakes">GLSL&#160;: common mistakes</a></li>
+<li><a href="/opengl/GLSL_:_nVidia_specific_features" title="GLSL : nVidia specific features">GLSL&#160;: nVidia specific features</a></li>
+<li><a href="/opengl/Hardware_specifics:_NVidia#GLSL_shader_conformance" title="Hardware specifics: NVidia">Hardware_specifics:_NVidia#GLSL_shader_conformance</a></li>
+<li><a href="/opengl/History_of_OpenGL" title="History of OpenGL">History of OpenGL</a></li></ul></li></ul>
+<h2><span class="mw-headline" id="External_links">External links</span></h2>
+<ul><li><a rel="nofollow" class="external text" href="http://www.opengl.org/documentation/glsl/">Current Specification for the OpenGL Shading Language</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/documentation/red_book/">OpenGL Red Book</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.opengl.org/documentation/blue_book/">OpenGL Blue Book</a></li>
+<li><a rel="nofollow" class="external text" href="http://www.ati.com/developer/rendermonkey/">RenderMonkey Shader Development Environment</a></li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318171445
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.080 seconds
+Real time usage: 0.088 seconds
+Preprocessor visited node count: 673/1000000
+Post‐expand include size: 5908/2097152 bytes
+Template argument size: 1597/2097152 bytes
+Highest expansion depth: 8/100
+Expensive parser function count: 1/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 14456/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   34.243      1 -total
+ 38.14%   13.059      1 Template:Shader_float
+ 31.34%   10.731      1 Template:Shader_list
+ 21.12%    7.233      8 Template:Main
+ 18.61%    6.371     22 Template:Pagelink
+ 17.67%    6.052      1 Example/GLSL_Full_Compile_Linking
+ 13.66%    4.679      1 Template:Current_glsl_version
+  5.57%    1.907      1 Template:Code
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1366-0!canonical and timestamp 20260318171445 and revision id 14750. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=OpenGL_Shading_Language&amp;oldid=14750">https://wikis.khronos.org/opengl/index.php?title=OpenGL_Shading_Language&amp;oldid=14750</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/index.php?title=Category:Pages_using_deprecated_source_tags&amp;action=edit&amp;redlink=1" class="new" title="Category:Pages using deprecated source tags (page does not exist)">Pages using deprecated source tags</a></li><li><a href="/opengl/Category:OpenGL_Shading_Language" title="Category:OpenGL Shading Language">OpenGL Shading Language</a></li><li><a href="/opengl/index.php?title=Category:Shading_Languages&amp;action=edit&amp;redlink=1" class="new" title="Category:Shading Languages (page does not exist)">Shading Languages</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+<nav id="p-personal" class="mw-portlet mw-portlet-personal vector-user-menu-legacy vector-menu" aria-labelledby="p-personal-label"  >
+	<h3
+		id="p-personal-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Personal tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="pt-anonuserpage" class="mw-list-item"><span title="The user page for the IP address you are editing as">Not logged in</span></li><li id="pt-anontalk" class="mw-list-item"><a href="/opengl/Special:MyTalk" title="Discussion about edits from this IP address [n]" accesskey="n"><span>Talk</span></a></li><li id="pt-anoncontribs" class="mw-list-item"><a href="/opengl/Special:MyContributions" title="A list of edits made from this IP address [y]" accesskey="y"><span>Contributions</span></a></li><li id="pt-login" class="mw-list-item"><a href="/opengl/index.php?title=Special:UserLogin&amp;returnto=OpenGL+Shading+Language" title="You are encouraged to log in; however, it is not mandatory [o]" accesskey="o"><span>Log in</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+		<div id="left-navigation">
+			
+<nav id="p-namespaces" class="mw-portlet mw-portlet-namespaces vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-namespaces-label"  >
+	<h3
+		id="p-namespaces-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Namespaces</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-nstab-main" class="selected mw-list-item"><a href="/opengl/OpenGL_Shading_Language" title="View the content page [c]" accesskey="c"><span>Page</span></a></li><li id="ca-talk" class="mw-list-item"><a href="/opengl/Talk:OpenGL_Shading_Language" rel="discussion" title="Discussion about the content page [t]" accesskey="t"><span>Discussion</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-variants" class="mw-portlet mw-portlet-variants emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-variants-label"  >
+	<input type="checkbox"
+		id="p-variants-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-variants"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-variants-label"
+	>
+	<label
+		id="p-variants-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">English</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+		</div>
+		<div id="right-navigation">
+			
+<nav id="p-views" class="mw-portlet mw-portlet-views vector-menu-tabs vector-menu-tabs-legacy vector-menu" aria-labelledby="p-views-label"  >
+	<h3
+		id="p-views-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Views</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="ca-view" class="selected mw-list-item"><a href="/opengl/OpenGL_Shading_Language"><span>Read</span></a></li><li id="ca-viewsource" class="mw-list-item"><a href="/opengl/index.php?title=OpenGL_Shading_Language&amp;action=edit" title="This page is protected.&#10;You can view its source [e]" accesskey="e"><span>View source</span></a></li><li id="ca-history" class="mw-list-item"><a href="/opengl/index.php?title=OpenGL_Shading_Language&amp;action=history" title="Past revisions of this page [h]" accesskey="h"><span>View history</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<nav id="p-cactions" class="mw-portlet mw-portlet-cactions emptyPortlet vector-menu-dropdown vector-menu" aria-labelledby="p-cactions-label"  title="More options" >
+	<input type="checkbox"
+		id="p-cactions-checkbox"
+		role="button"
+		aria-haspopup="true"
+		data-event-name="ui.dropdown-p-cactions"
+		class="vector-menu-checkbox"
+		aria-labelledby="p-cactions-label"
+	>
+	<label
+		id="p-cactions-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">More</span>
+	</label>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			
+		</ul>
+		
+	</div>
+</nav>
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+<nav id="p-navigation" class="mw-portlet mw-portlet-navigation vector-menu-portal portal vector-menu" aria-labelledby="p-navigation-label"  >
+	<h3
+		id="p-navigation-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Navigation</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-mainpage" class="mw-list-item"><a href="/opengl/Main_Page" title="Visit the main page [z]" accesskey="z"><span>Main Page</span></a></li><li id="n-Getting-Started" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Getting Started</span></a></li><li id="n-Download-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/wiki/Getting_Started" rel="nofollow"><span>Download OpenGL</span></a></li><li id="n-Registry" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL/" rel="nofollow"><span>Registry</span></a></li><li id="n-Reference-Pages" class="mw-list-item"><a href="https://www.khronos.org/registry/OpenGL-Refpages/gl4/" rel="nofollow"><span>Reference Pages</span></a></li><li id="n-Reference-Guide" class="mw-list-item"><a href="https://www.khronos.org/developers/reference-cards/" rel="nofollow"><span>Reference Guide</span></a></li><li id="n-News" class="mw-list-item"><a href="https://www.khronos.org/news/tags/tag/OpenGL/" rel="nofollow"><span>News</span></a></li><li id="n-Community-Forums" class="mw-list-item"><a href="https://www.opengl.org/discussion_boards" rel="nofollow"><span>Community Forums</span></a></li><li id="n-About-OpenGL" class="mw-list-item"><a href="https://www.khronos.org/opengl/" rel="nofollow"><span>About OpenGL</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+<nav id="p-Help" class="mw-portlet mw-portlet-Help vector-menu-portal portal vector-menu" aria-labelledby="p-Help-label"  >
+	<h3
+		id="p-Help-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Help</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="n-Contact-Us" class="mw-list-item"><a href="https://www.khronos.org/about/contact/" rel="nofollow"><span>Contact Us</span></a></li><li id="n-Privacy-Policy" class="mw-list-item"><a href="https://www.khronos.org/legal/privacy" rel="nofollow"><span>Privacy Policy</span></a></li><li id="n-Help-Editing" class="mw-list-item"><a href="https://www.mediawiki.org/wiki/Help:Contents"><span>Help Editing</span></a></li><li id="n-recentchanges" class="mw-list-item"><a href="/opengl/Special:RecentChanges" title="A list of recent changes in the wiki [r]" accesskey="r"><span>Recent changes</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+<nav id="p-tb" class="mw-portlet mw-portlet-tb vector-menu-portal portal vector-menu" aria-labelledby="p-tb-label"  >
+	<h3
+		id="p-tb-label"
+		
+		class="vector-menu-heading "
+	>
+		<span class="vector-menu-heading-label">Tools</span>
+	</h3>
+	<div class="vector-menu-content">
+		
+		<ul class="vector-menu-content-list">
+			
+			<li id="t-whatlinkshere" class="mw-list-item"><a href="/opengl/Special:WhatLinksHere/OpenGL_Shading_Language" title="A list of all wiki pages that link here [j]" accesskey="j"><span>What links here</span></a></li><li id="t-recentchangeslinked" class="mw-list-item"><a href="/opengl/Special:RecentChangesLinked/OpenGL_Shading_Language" rel="nofollow" title="Recent changes in pages linked from this page [k]" accesskey="k"><span>Related changes</span></a></li><li id="t-specialpages" class="mw-list-item"><a href="/opengl/Special:SpecialPages" title="A list of all special pages [q]" accesskey="q"><span>Special pages</span></a></li><li id="t-print" class="mw-list-item"><a href="javascript:print();" rel="alternate" title="Printable version of this page [p]" accesskey="p"><span>Printable version</span></a></li><li id="t-permalink" class="mw-list-item"><a href="/opengl/index.php?title=OpenGL_Shading_Language&amp;oldid=14750" title="Permanent link to this revision of this page"><span>Permanent link</span></a></li><li id="t-info" class="mw-list-item"><a href="/opengl/index.php?title=OpenGL_Shading_Language&amp;action=info" title="More information about this page"><span>Page information</span></a></li><li id="t-cite" class="mw-list-item"><a href="/opengl/index.php?title=Special:CiteThisPage&amp;page=OpenGL_Shading_Language&amp;id=14750&amp;wpFormIdentifier=titleform" title="Information on how to cite this page"><span>Cite this page</span></a></li>
+		</ul>
+		
+	</div>
+</nav>
+
+	
+</div>
+
+</div>
+
+<footer id="footer" class="mw-footer" >
+	<ul id="footer-info">
+	<li id="footer-info-lastmod"> This page was last edited on 1 February 2021, at 22:31.</li>
+</ul>
+
+	<ul id="footer-places">
+</ul>
+
+	<ul id="" class="noprint">
+</ul>
+
+</footer>
+
+<script>(RLQ=window.RLQ||[]).push(function(){mw.config.set({"wgBackendResponseTime":165,"wgPageParseReport":{"limitreport":{"cputime":"0.080","walltime":"0.088","ppvisitednodes":{"value":673,"limit":1000000},"postexpandincludesize":{"value":5908,"limit":2097152},"templateargumentsize":{"value":1597,"limit":2097152},"expansiondepth":{"value":8,"limit":100},"expensivefunctioncount":{"value":1,"limit":100},"unstrip-depth":{"value":0,"limit":20},"unstrip-size":{"value":14456,"limit":5000000},"timingprofile":["100.00%   34.243      1 -total"," 38.14%   13.059      1 Template:Shader_float"," 31.34%   10.731      1 Template:Shader_list"," 21.12%    7.233      8 Template:Main"," 18.61%    6.371     22 Template:Pagelink"," 17.67%    6.052      1 Example/GLSL_Full_Compile_Linking"," 13.66%    4.679      1 Template:Current_glsl_version","  5.57%    1.907      1 Template:Code"]},"cachereport":{"timestamp":"20260318171445","ttl":1209600,"transientcontent":false}}});});</script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9e0a6d1ceac0a3d1',t:'MTc3NDIzNzM0Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

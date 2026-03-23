@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html class="client-nojs" lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<title>Sync Object - OpenGL Wiki</title>
+
+
+
+
+<meta name="ResourceLoaderDynamicStyles" content="">
+
+<meta name="generator" content="MediaWiki 1.43.3">
+<meta name="robots" content="max-image-preview:standard">
+<meta name="format-detection" content="telephone=no">
+<meta name="viewport" content="width=1120">
+
+
+
+
+
+</head>
+<body class="skin-vector-legacy mediawiki ltr sitedir-ltr mw-hide-empty-elt ns-0 ns-subject page-Sync_Object rootpage-Sync_Object skin-vector action-view"><div id="mw-page-base" class="noprint"></div>
+<div id="mw-head-base" class="noprint"></div>
+<div id="content" class="mw-body" role="main">
+	<a id="top"></a>
+	<div id="siteNotice"></div>
+	<div class="mw-indicators">
+	</div>
+	<h1 id="firstHeading" class="firstHeading mw-first-heading"><span class="mw-page-title-main">Sync Object</span></h1>
+	<div id="bodyContent" class="vector-body">
+		<div id="siteSub" class="noprint">From OpenGL Wiki</div>
+		<div id="contentSub"><div id="mw-content-subtitle"></div></div>
+		<div id="contentSub2"></div>
+		
+		<div id="jump-to-nav"></div>
+		<a class="mw-jump-link" href="#mw-head">Jump to navigation</a>
+		<a class="mw-jump-link" href="#searchInput">Jump to search</a>
+		<div id="mw-content-text" class="mw-body-content"><div class="mw-content-ltr mw-parser-output" lang="en" dir="ltr"><table class="infobox" cellspacing="5" style="width: 22em; text-align: left; font-size: 88%; line-height: 1.5em; float: right; border-collapse: separate; border-spacing: 0; border-width: 1px; border-style: solid; border-color: #000; background-color: #F8F8F8; margin: 5px; padding: 0.5em;"><caption class="" style="font-size: 125%; font-weight: bold; padding-bottom: 4px;">Sync Object</caption>
+<tbody><tr>
+  <td></td>
+  <td></td>
+  <td style="width: 1em;"></td>
+</tr>
+<tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core in version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+4.6</td></tr>
+  <tr class="" valign="top"><th scope="row" colspan="2" style="text-align:left; padding-bottom: 0.5em;">Core since version</th>
+    <td class="" style="padding-bottom: 0.5em;">
+3.2</td></tr>
+  
+  
+  
+  
+  
+  
+  
+  
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Core ARB extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/ARB/sync.txt">ARB_sync</a></td></tr>
+ 
+ 
+ <tr class="" valign="top"><th scope="row" style="text-align:left; padding-bottom: 0.5em;">Vendor extension</th>
+    <td class="" colspan="2" style="padding-bottom: 0.5em;">
+<a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/fence.txt">NV_fence</a></td></tr>
+ 
+ 
+ 
+ 
+ 
+ 
+
+</tbody></table>
+<p><b>Sync Objects</b> are objects that are used to <a href="/opengl/Synchronization" title="Synchronization">synchronize</a> the activity between the GPU and the application. <span class="tpl-code"><a href="/opengl/GLAPI/glFinish" title="GLAPI/glFinish">glFinish</a></span> is a start to synchronization, but sync objects allow for much finer grained control.
+</p>
+<div id="toc" class="toc" role="navigation" aria-labelledby="mw-toc-heading"><input type="checkbox" role="button" id="toctogglecheckbox" class="toctogglecheckbox" style="display:none" /><div class="toctitle" lang="en" dir="ltr"><h2 id="mw-toc-heading">Contents</h2><span class="toctogglespan"><label class="toctogglelabel" for="toctogglecheckbox"></label></span></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Sync_Object_Conventions"><span class="tocnumber">1</span> <span class="toctext">Sync Object Conventions</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Synchronization"><span class="tocnumber">2</span> <span class="toctext">Synchronization</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Flushing_and_contexts"><span class="tocnumber">2.1</span> <span class="toctext">Flushing and contexts</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Sync_Object_Types"><span class="tocnumber">3</span> <span class="toctext">Sync Object Types</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Fence"><span class="tocnumber">3.1</span> <span class="toctext">Fence</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Legacy_Sync"><span class="tocnumber">4</span> <span class="toctext">Legacy Sync</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Reference"><span class="tocnumber">5</span> <span class="toctext">Reference</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Sync_Object_Conventions">Sync Object Conventions</span></h2>
+<p>Sync objects do not follow the standard <a href="/opengl/OpenGL_Object" title="OpenGL Object">OpenGL Object model</a>. Regular OpenGL objects use <span class="tpl-code">GLuint</span> names; sync objects are defined as a pointer to an opaque type. This is defined as:
+</p>
+<pre> typedef struct __GLsync *GLsync;
+</pre>
+<p>Sync objects have a type. Each sync object type has its own unique object creation function, though they all create GLsync objects. Thus, these objects are not created with the usual pair of <span class="tpl-code">glGen*/glDelete*</span> functions. There is a generic <span class="tpl-code"><a href="/opengl/GLAPI/glDeleteSync" title="GLAPI/glDeleteSync">glDeleteSync</a></span> function to delete any kind of sync object.
+</p><p>Sync objects are never bound to the context, nor do they encapsulate state the way normal GL objects do. These are <i>not</i> OpenGL objects.
+</p>
+<h2><span class="mw-headline" id="Synchronization">Synchronization</span></h2>
+<p>The purpose of sync objects is to synchronize the CPU with the GPU's actions. To do this, sync objects have the concept of a current status. The status of a sync object can be signaled or unsignaled; this state represents some condition of the GPU, depending on the particular type of sync object and how it was used. This is similar to how mutual exclusives are used to synchronize behavior between threads; when a mutex becomes signaled, it allows other threads that are waiting on it to activate.
+</p><p>To block all CPU operations until a sync object is signaled, you call this function:
+</p>
+<div class="funcdef">
+enum <span class="tpl-code"><a href="/opengl/GLAPI/glClientWaitSync" title="GLAPI/glClientWaitSync">glClientWaitSync</a></span>(GLsync <i>sync</i>, GLbitfield <i>flags</i>, GLuint64 <i>timeout</i>)</div>
+<p>This function will not return until one of two things happens: the <span class="tpl-param">sync​</span> object parameter becomes signaled, or a number of nanoseconds greater than or equal to the <span class="tpl-param">timeout​</span> parameter passes. If <span class="tpl-param">timeout​</span> is zero, the function will simply check to see if the sync object is signaled and return immediately. Note that the fact that <span class="tpl-param">timeout​</span> is in nanoseconds does <i>not</i> imply that this function has true nanosecond granularity in its timeout; you are only guaranteed that <i>at least</i> that much time will pass.
+</p><p>The return value explains why <span class="tpl-code"><a href="/opengl/GLAPI/glClientWaitSync" title="GLAPI/glClientWaitSync">glClientWaitSync</a></span> returned. If it returns <span class="tpl-enum">GL_ALREADY_SIGNALED</span>, then the sync object was signaled before the function was called. If it returns <span class="tpl-enum">GL_TIMEOUT_EXPIRED</span>, then the sync object did not signal within the given timeout period. If <span class="tpl-enum">GL_CONDITION_SATISFIED</span> is returned, then the sync object was signaled within the given timeout period. If an <a href="/opengl/OpenGL_Error" title="OpenGL Error">OpenGL Error</a> occurred, then <span class="tpl-enum">GL_WAIT_FAILED</span> will be returned in addition to raising an error.
+</p><p>The <span class="tpl-param">flags​</span> parameter controls how OpenGL's command queue is flushed. If you pass <span class="tpl-enum">GL_SYNC_FLUSH_COMMANDS_BIT</span>, then the equivalent of a <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span> will be issued before blocking on the sync object. This is done to prevent a <a href="#Flushing_and_contexts">certain kind of infinite loop</a> due to the GPU's command queue being currently too full to accept the sync object.
+</p><p>There is another function for waiting on sync objects:
+</p>
+<div class="funcdef">
+void <span class="tpl-code"><a href="/opengl/GLAPI/glWaitSync" title="GLAPI/glWaitSync">glWaitSync</a></span>(GLsync <i>sync</i>, GLbitfield <i>flags</i>, GLuint64 <i>timeout</i>)</div>
+<p>Recall the discussion in the article on <a href="/opengl/Synchronization" title="Synchronization">Synchronization</a> about the difference between the GPU's command queue and the driver's internal command buffer. What <span class="tpl-code"><a href="/opengl/GLAPI/glWaitSync" title="GLAPI/glWaitSync">glWaitSync</a></span> does is prevent the driver from adding <i>any</i> commands to the GPU's command queue until this sync object is signaled. This function does not halt the CPU.
+</p><p>The driver will still put commands in its internal buffer. But none of them will be seen by the GPU until this sync object is signaled.
+</p><p>You need to ensure that the sync object is in the GPU's command queue. If you don't, then you may create an infinite loop. Since <span class="tpl-code"><a href="/opengl/GLAPI/glWaitSync" title="GLAPI/glWaitSync">glWaitSync</a></span> prevents the driver from adding <i>any</i> commands to the GPU command queue, this would include the <i>sync object itself</i> if it has not yet been added to the queue. This function does not take the <span class="tpl-enum">GL_SYNC_FLUSH_COMMANDS_BIT</span>, so you have to do it with a manual <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span> call.
+</p>
+<h3><span class="mw-headline" id="Flushing_and_contexts">Flushing and contexts</span></h3>
+<p>It is important that syncs are properly flushed into the GPU's command queue. Without proper flushing, the sync object may never be signaled. This is why <span class="tpl-code"><a href="/opengl/GLAPI/glClientWaitSync" title="GLAPI/glClientWaitSync">glClientWaitSync</a></span> takes a parameter that causes an automatic flush.
+</p><p>But there is another problem. Flushing is ultimately a <a href="/opengl/OpenGL_Context" title="OpenGL Context">context-specific</a> action, as it flushes the current context's command queue. Therefore, not only must you perform a flush, you must perform that flush on the same context that created the sync object.
+</p><p>The flush can be performed via <span class="tpl-code"><a href="/opengl/GLAPI/glFlush" title="GLAPI/glFlush">glFlush</a></span>. But a flush can also be performed by passing <span class="tpl-enum">GL_SYNC_FLUSH_COMMANDS_BIT</span> to <span class="tpl-code"><a href="/opengl/GLAPI/glClientWaitSync" title="GLAPI/glClientWaitSync">glClientWaitSync</a></span>. In OpenGL 4.5, this flush is made special. If it's the first time that you are waiting on that particular sync object, and the wait is in the same context that created the sync object, the flush will behave as if you had issued it immediately after the sync object. So if you had issued other OpenGL commands after the sync object was created, they will not be flushed.
+</p><p>After the first flush, you do not need to flush the pipeline again to ensure that the sync object becomes signaled. So if you want to wait on a sync object multiple times, you should make sure to <i>not</i> use the flush bit again (unless you're in GL 4.5 in the same thread, where this automatically works).
+</p>
+<h2><span class="mw-headline" id="Sync_Object_Types">Sync Object Types</span></h2>
+<p>As previously mentioned, sync objects have a specific type, which defines their signaling behavior. Currently, there is only one type: fences.
+</p>
+<h3><span class="mw-headline" id="Fence">Fence</span></h3>
+<p>A fence is a sync object that is added to the OpenGL command stream. It starts unsignaled, and becomes signaled when the GPU executes and completes the fence. Because OpenGL must execute and complete commands in order, when a fence becomes signaled, you can be certain that the GPU has <i>completed</i> all OpenGL commands issued before the fence was created.
+</p><p>A fence is created with this function:
+</p>
+<div class="funcdef">
+GLsync <span class="tpl-code"><a href="/opengl/GLAPI/glFenceSync" title="GLAPI/glFenceSync">glFenceSync</a></span>(GLenum <i>condition</i>, GLbitfield <i>flags</i>)</div>
+<p>This function not only creates a fence, but it <i>adds</i> it to the command stream. So only call it in the location you want to place the fence.
+</p><p>The only available value for <span class="tpl-param">condition​</span> is <span class="tpl-enum">GL_SYNC_GPU_COMMANDS_COMPLETE</span>. This causes the fence to be signaled when the GPU has completed all previously issued commands. Currently, the <span class="tpl-param">flags​</span> field has no possible parameters; it should be 0. The field exists in case of future extensions to this functionality.
+</p><p>The fact that fences are signaled after the commands have <i>completed</i>, not just are started, means that it allows you to know when the GPU has finished using certain resources. For example, if you want to access a buffer object, but do not want to block the CPU until the GPU has finished using it, then you can set a fence after the last command that used the buffer object. It is also useful for knowing when a <a href="/opengl/Pixel_Buffer_Objects" class="mw-redirect" title="Pixel Buffer Objects">pixel buffer</a> or <a href="/opengl/Transform_Feedback" title="Transform Feedback">feedback buffer</a> has the data you requested.
+</p>
+<h2><span class="mw-headline" id="Legacy_Sync">Legacy Sync</span></h2>
+<p>NVIDIA hardware has had the <a rel="nofollow" class="external text" href="http://www.opengl.org/registry/specs/NV/fence.txt">NV_fence</a> extension for a long time, since the GeForce 256 days. This extension provides the effect of fence sync objects, though with a different API.
+</p>
+<h2><span class="mw-headline" id="Reference">Reference</span></h2>
+<ul><li><a href="/opengl/Category:Core_API_Ref_Synchronization" title="Category:Core API Ref Synchronization">Category:Core API Ref Synchronization</a>: Function documentation for sync objects as well as other non-object synchronization.</li></ul>
+<!-- 
+NewPP limit report
+Cached time: 20260318104152
+Cache expiry: 1209600
+Reduced expiry: false
+Complications: [show‐toc]
+CPU time usage: 0.054 seconds
+Real time usage: 0.057 seconds
+Preprocessor visited node count: 930/1000000
+Post‐expand include size: 9135/2097152 bytes
+Template argument size: 2272/2097152 bytes
+Highest expansion depth: 9/100
+Expensive parser function count: 0/100
+Unstrip recursion depth: 0/20
+Unstrip post‐expand size: 0/5000000 bytes
+-->
+<!--
+Transclusion expansion time report (%,ms,calls,template)
+100.00%   36.055      1 -total
+ 53.25%   19.198      1 Template:Infobox_feature
+ 46.86%   16.896      1 Template:Infobox2
+ 16.43%    5.925     10 Template:Infobox/longrow
+ 16.23%    5.853     13 Template:Apifunc
+ 12.77%    4.603     10 Template:Infobox/shortrow
+  9.65%    3.480      3 Template:Funcdef
+  8.67%    3.126     15 Template:Code
+  5.12%    1.846      7 Template:Param
+  4.90%    1.767      8 Template:Enum
+-->
+
+<!-- Saved in parser cache with key khronos_opengl_wiki-mw_:pcache:idhash:1508-0!canonical and timestamp 20260318104152 and revision id 14307. Rendering was triggered because: page-view
+ -->
+</div>
+<div class="printfooter" data-nosnippet="">Retrieved from "<a dir="ltr" href="https://wikis.khronos.org/opengl/index.php?title=Sync_Object&amp;oldid=14307">https://wikis.khronos.org/opengl/index.php?title=Sync_Object&amp;oldid=14307</a>"</div></div>
+		<div id="catlinks" class="catlinks" data-mw="interface"><div id="mw-normal-catlinks" class="mw-normal-catlinks"><a href="/opengl/Special:Categories" title="Special:Categories">Categories</a>: <ul><li><a href="/opengl/Category:Synchronization" title="Category:Synchronization">Synchronization</a></li><li><a href="/opengl/Category:General_OpenGL" title="Category:General OpenGL">General OpenGL</a></li></ul></div></div>
+	</div>
+</div>
+
+<div id="mw-navigation">
+	<h2>Navigation menu</h2>
+	<div id="mw-head">
+		
+
+
+		<div id="left-navigation">
+			
+
+
+			
+
+
+		</div>
+		<div id="right-navigation">
+			
+
+
+			
+
+
+			
+<div id="p-search" role="search" class="vector-search-box-vue  vector-search-box-show-thumbnail vector-search-box-auto-expand-width vector-search-box">
+	<h3 >Search</h3>
+	<form action="/opengl/index.php" id="searchform" class="vector-search-box-form">
+		<div id="simpleSearch"
+			class="vector-search-box-inner"
+			 data-search-loc="header-navigation">
+			<input class="vector-search-box-input"
+				 type="search" name="search" placeholder="Search OpenGL Wiki" aria-label="Search OpenGL Wiki" autocapitalize="sentences" title="Search OpenGL Wiki [f]" accesskey="f" id="searchInput"
+			>
+			<input type="hidden" name="title" value="Special:Search">
+			<input id="mw-searchButton"
+				 class="searchButton mw-fallbackSearchButton" type="submit" name="fulltext" title="Search the pages for this text" value="Search">
+			<input id="searchButton"
+				 class="searchButton" type="submit" name="go" title="Go to a page with this exact name if it exists" value="Go">
+		</div>
+	</form>
+</div>
+
+		</div>
+	</div>
+	
+<div id="mw-panel" class="vector-legacy-sidebar">
+	<div id="p-logo" role="banner">
+		<a class="mw-wiki-logo" href="/opengl/Main_Page"
+			title="Visit the main page"></a>
+	</div>
+	
+
+
+	
+
+
+
+
+	
+</div>
+
+</div>
+
+
+
+
+</body>
+</html>
