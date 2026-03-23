@@ -6,6 +6,7 @@ export default defineConfig({
   lang: "zh-CN",
   srcDir: "./docs",
   outDir: "./dist",
+  base: "/OpenGL_wiki_CN",
   themeConfig: {
     nav: [
       { text: "首页", link: "/" },
@@ -272,6 +273,28 @@ export default defineConfig({
     footer: {
       message: "基于 OpenGL Wiki 的本地化项目",
       copyright: "Copyright © 2024 Khronos Group",
+    },
+
+    search: {
+      provider: "local",
+      options: {
+        miniSearch: {
+          /**
+           * @type {Pick<import('minisearch').Options, 'extractField' | 'tokenize' | 'processTerm'>}
+           */
+          options: {
+            /* ... */
+          },
+          /**
+           * @type {import('minisearch').SearchOptions}
+           * @default
+           * { fuzzy: 0.2, prefix: true, boost: { title: 4, text: 2, titles: 1 } }
+           */
+          searchOptions: {
+            /* ... */
+          },
+        },
+      },
     },
   },
 });
